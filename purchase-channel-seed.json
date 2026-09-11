@@ -1,0 +1,52 @@
+{
+  "schema_version": "0.16",
+  "generated_for": "RoboQuo prototype",
+  "last_checked": "2026-09-12",
+  "policy": "Prices and availability are snapshots. Confirm on source website.",
+  "purchase_channels": [
+    {
+      "retailer": "MISUMI Japan",
+      "country": "Japan",
+      "manufacturer": "FAIRINO",
+      "product": "FR Series Collaborative Robot",
+      "purchase_mode": "online",
+      "price_snapshot": "From JPY 720000 excl. tax",
+      "availability_snapshot": "Normally 19 days+",
+      "source_url": "https://jp.misumi-ec.com/vona2/maker/FAIRINO/mech_robot/M3814000000/",
+      "source_type": "retailer"
+    },
+    {
+      "retailer": "MISUMI Japan",
+      "country": "Japan",
+      "manufacturer": "DOBOT",
+      "product": "MG400 Desktop Collaborative Robot",
+      "purchase_mode": "online",
+      "price_snapshot": "From JPY 438000 excl. tax",
+      "availability_snapshot": "Check retailer",
+      "source_url": "https://jp.misumi-ec.com/vona2/mech_robot/M3814000000/",
+      "source_type": "retailer"
+    },
+    {
+      "retailer": "RobotShop Japan",
+      "country": "Japan",
+      "manufacturer": "DOBOT",
+      "product": "CR5AS Collaborative Robot",
+      "purchase_mode": "online",
+      "price_snapshot": "JPY 3088334 incl. tax",
+      "availability_snapshot": "On demand",
+      "source_url": "https://jp.robotshop.com/products/dobot-cr5as-robot-arm",
+      "source_type": "retailer"
+    },
+    {
+      "retailer": "FAIRINO Official",
+      "country": "Global",
+      "manufacturer": "FAIRINO",
+      "product": "FR Series / Purchase Channels",
+      "purchase_mode": "official",
+      "price_snapshot": null,
+      "availability_snapshot": "Online store + distributors",
+      "source_url": "https://www.fairino.com/PURCHASECHANNELS",
+      "source_type": "manufacturer"
+    }
+  ]
+}
