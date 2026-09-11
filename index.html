@@ -99,18 +99,26 @@
     <div><div class="kicker">ROBOT ECOSYSTEM</div><h2 data-i18n="ecosystemTitle">로봇만 사는 곳이 아닙니다</h2><p data-i18n="ecosystemBody">로봇 메이커, 그리퍼·EOAT 메이커, 대리점, SI, 전문가, 물류까지 한 거래 안에서 연결하는 것이 RoboQuo의 목표입니다.</p></div>
     <div class="eco-flow"><span>Robot Maker</span><b>→</b><span>EOAT</span><b>→</b><span>Seller</span><b>→</b><span>SI / Expert</span><b>→</b><span>Buyer</span></div>
   </section>
+  <section class="wrap rfq-section">
+    <div class="kicker">ONE RFQ ENGINE</div><h2 data-i18n="rfqTitle">New, used and services — one request flow</h2><p data-i18n="rfqDesc">For new equipment, local dealers can quote. For used robots, sellers can set a price or accept bids. For services, SIs and experts can compete on the project.</p>
+    <div class="rfq-grid"><div><strong data-i18n="rfqNew">New robots & EOAT</strong><span data-i18n="rfqNewSub">Request quote → regional sellers respond</span></div><div><strong data-i18n="rfqUsed">Used robots</strong><span data-i18n="rfqUsedSub">Fixed price or bidding</span></div><div><strong data-i18n="rfqService">Services</strong><span data-i18n="rfqServiceSub">Project post → matched providers bid</span></div></div>
+  </section>
 </section>
 
 <section id="categories" class="page">
-  <div class="wrap page-head"><div class="kicker">CATEGORIES</div><h1 data-i18n="categoryTitle">로봇을 용도별로 찾기</h1><p data-i18n="categoryDesc">메이커를 몰라도 괜찮습니다. 하려는 작업이나 로봇 형태를 선택하세요.</p></div>
-  <div class="wrap category-grid" id="categoryGrid"></div>
+  <div class="wrap page-head"><div class="kicker">CATEGORIES</div><h1 data-i18n="categoryTitle">Find by robot type or application</h1><p data-i18n="categoryDesc">Start with the robot shape or the job you want to automate.</p></div>
+  <div class="wrap category-section-head"><div><div class="kicker">ROBOT TYPES</div><h2 data-i18n="robotTypeTitle">Robot types</h2></div><p data-i18n="robotTypeDesc">Industrial robots, cobots, AMRs, humanoids, quadrupeds and more.</p></div>
+  <div class="wrap category-grid" id="robotTypeGrid"></div>
+  <div class="wrap category-section-head application-head"><div><div class="kicker">APPLICATIONS</div><h2 data-i18n="applicationTitle">Applications</h2></div><p data-i18n="applicationDesc">Welding, painting, palletizing, machine tending, inspection and more.</p></div>
+  <div class="wrap category-grid application-grid" id="applicationGrid"></div>
 </section>
 
 <section id="robots" class="page">
   <div class="wrap page-head split"><div><div class="kicker">ROBOQUO MARKET</div><h1 data-i18n="marketTitle">로봇 마켓</h1><p data-i18n="marketDesc">기업이 보유한 중고·신품 로봇을 검색하고 직접 문의하거나 가격을 제안할 수 있습니다.</p></div><button class="primary" data-action="sell" data-i18n="sellRobot">로봇 판매</button></div>
   <div class="wrap market-toolbar">
     <div class="search-field"><span>⌕</span><input id="marketSearch" data-i18n-placeholder="marketSearchPh" placeholder="메이커, 모델, 지역 검색" /></div>
-    <select id="categoryFilter"><option value="" data-i18n="allCategories">모든 카테고리</option></select>
+    <select id="categoryFilter"><option value="" data-i18n="allCategories">All robot types</option></select>
+    <select id="applicationFilter"><option value="" data-i18n="allApplications">All applications</option></select>
     <select id="countryFilter"><option value="" data-i18n="allCountries">모든 국가</option><option>Japan</option><option>Korea</option><option>Germany</option><option>USA</option></select>
     <select id="saleFilter"><option value="" data-i18n="allSaleTypes">모든 판매방식</option><option value="fixed" data-i18n="fixedPrice">고정가</option><option value="bid" data-i18n="bidding">비딩</option></select>
   </div>
@@ -119,17 +127,26 @@
 
 <section id="makers" class="page">
   <div class="wrap page-head"><div class="kicker">MANUFACTURERS & ECOSYSTEM</div><h1 data-i18n="makerTitle">메이커에서 시작해도 됩니다</h1><p data-i18n="makerDesc">로봇 메이커를 선택하면 주요 모델, 주변기기, 판매업체와 서비스업체까지 연결합니다.</p></div>
-  <div class="wrap maker-tabs"><button class="tab active" data-maker-tab="robot" data-i18n="robotMakers">로봇 메이커</button><button class="tab" data-maker-tab="eoat" data-i18n="eoatMakers">그리퍼·EOAT</button></div>
+  <div class="wrap maker-tabs"><button class="tab active" data-maker-tab="robot" data-i18n="robotMakers">Robot Makers</button><button class="tab" data-maker-tab="eoat" data-i18n="eoatMakers">Grippers & EOAT</button></div>
+  <div class="wrap maker-filterbar">
+    <select id="makerRegionFilter"><option value="" data-i18n="allRegions">All regions</option><option>Japan</option><option>Korea</option><option>China</option><option>Europe</option><option>North America</option></select>
+    <select id="makerTypeFilter"><option value="" data-i18n="allRobotTypes">All robot types</option></select>
+    <span id="makerCount" class="database-count"></span>
+  </div>
   <div class="wrap maker-grid" id="makerGrid"></div>
   <div class="wrap compatibility-demo">
     <div><div class="kicker">COMPATIBILITY</div><h2 data-i18n="compatTitle">로봇과 주변기기를 연결</h2><p data-i18n="compatBody">예: FANUC CRX를 선택하면 호환 가능한 그리퍼, 비전, 툴체인저와 설치 가능한 업체를 한 번에 확인하는 구조입니다.</p></div>
     <div class="compat-path"><span>FANUC CRX-10iA/L</span><b>→</b><span>OnRobot / Robotiq / SCHUNK</span><b>→</b><span data-i18n="localSupport">지역별 판매·설치 지원</span></div>
   </div>
+  <section class="wrap network-section">
+    <div class="section-title-row"><div><div class="kicker">REGIONAL NETWORK</div><h2 data-i18n="regionalNetworkTitle">Manufacturer offices and dealer networks by market</h2><p data-i18n="regionalNetworkDesc">RoboQuo will only label a company Authorized after manufacturer-source verification or a claimed profile.</p></div><button class="secondary" id="joinDealerBtn" data-i18n="joinDealer">Join as a dealer</button></div>
+    <div class="network-grid" id="networkGrid"></div>
+  </section>
 </section>
 
 <section id="companies" class="page">
   <div class="wrap page-head split"><div><div class="kicker">COMPANY DIRECTORY</div><h1 data-i18n="companyTitle">업체를 찾고 바로 문의</h1><p data-i18n="companyDesc">로봇 대리점, 중고 로봇 업체, SI, EOAT 업체, 물류·서비스업체를 지역과 기술로 찾습니다.</p></div><button class="secondary" id="registerCompanyBtn" data-i18n="registerCompany">회사 등록</button></div>
-  <div class="wrap market-toolbar company-tools"><div class="search-field"><span>⌕</span><input id="companySearch" data-i18n-placeholder="companySearchPh" placeholder="회사명, FANUC, Yaskawa, Vision..." /></div><select id="companyTypeFilter"><option value="" data-i18n="allCompanyTypes">모든 업체 유형</option><option>Robot Dealer</option><option>Used Robot Dealer</option><option>System Integrator</option><option>EOAT Supplier</option><option>Logistics</option></select></div>
+  <div class="wrap market-toolbar company-tools"><div class="search-field"><span>⌕</span><input id="companySearch" data-i18n-placeholder="companySearchPh" placeholder="회사명, FANUC, Yaskawa, Vision..." /></div><select id="companyTypeFilter"><option value="" data-i18n="allCompanyTypes">All company types</option><option>Manufacturer</option><option>Manufacturer Office</option><option>Dealer Network</option><option>Robot Dealer</option><option>Used Robot Dealer</option><option>System Integrator</option><option>EOAT Supplier</option><option>Logistics</option></select><select id="companyCountryFilter"><option value="" data-i18n="allCountries">All countries</option><option>Japan</option><option>Korea</option><option>China</option><option>Global</option></select></div>
   <div class="wrap company-grid" id="companyGrid"></div>
 </section>
 

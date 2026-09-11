@@ -1,12 +1,18 @@
-# RoboQuo v14 — 10 Language Global UI
+# RoboQuo v15 — Ecosystem Directory & Expanded Categories
 
-- Default display language: English
-- Fixed global brand headline: **Robots. Services. Experts. One place.**
-- Representative languages: English, Japanese, Korean, Simplified Chinese, German, French, Spanish, Italian, Portuguese, Vietnamese
-- Core Asian languages retain full reviewed copy from v13
-- European/Vietnamese packs cover the primary user journey and fall back to English for technical prototype strings
-- Language selection is remembered in the browser
-- Category names/descriptions localized for all 10 languages
-- PWA cache bumped to v14
+## What changed
+- Robot taxonomy split into **Robot Types** and **Applications**.
+- Added AMR/AGV, mobile manipulators, humanoids, quadrupeds, cleanroom/semiconductor, and warehouse robots.
+- Added a seed directory of major manufacturers from Japan, Korea, China, Europe, and North America.
+- Added regional manufacturer-office / dealer-network seed records.
+- Added one RFQ concept: new equipment quotes, used-robot bidding, and service-project bidding.
+- Added `robot-directory-seed.json` for future migration into a real database such as Supabase/PostgreSQL.
 
-Upload all files in this folder to the root of the existing GitHub repository. Vercel will redeploy automatically.
+## Data policy
+- This is a **seed directory**, not an exhaustive global database.
+- RoboQuo should never display `Authorized Dealer` unless the manufacturer source confirms it or the manufacturer/dealer claims and verifies the profile.
+- Manufacturer names and basic factual directory information can be seeded; inventory, pricing and claims of authorization should come from the company or verified official sources.
+- Public phone/email should be optional. Keep inquiries inside RoboQuo where possible so transaction data and leads remain on-platform.
+
+## Suggested live database tables
+`manufacturers`, `robot_models`, `robot_types`, `applications`, `companies`, `company_territories`, `manufacturer_authorizations`, `listings`, `rfqs`, `bids`, `projects`, `translations`, `source_verifications`.

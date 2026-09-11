@@ -1,0 +1,1415 @@
+{
+  "schema_version": "0.15",
+  "generated_for": "RoboQuo prototype",
+  "note": "Seed directory. Authorized dealer status must be verified from manufacturer source or claimed profile.",
+  "robot_types": [
+    {
+      "id": "industrial",
+      "icon": "industrial",
+      "names": {
+        "en": "Industrial Robots",
+        "ja": "産業用ロボット",
+        "ko": "산업용 로봇",
+        "zh": "工业机器人",
+        "de": "Industrieroboter",
+        "fr": "Robots industriels",
+        "es": "Robots industriales",
+        "it": "Robot industriali",
+        "pt": "Robôs industriais",
+        "vi": "Robot công nghiệp"
+      },
+      "desc": {
+        "en": "6-axis articulated robots for handling, assembly and production",
+        "ja": "搬送・組立・生産向けの6軸多関節ロボット",
+        "ko": "핸들링·조립·생산용 6축 다관절 로봇",
+        "zh": "用于搬运、装配和生产的六轴机器人",
+        "de": "6-axis articulated robots for handling, assembly and production",
+        "fr": "6-axis articulated robots for handling, assembly and production",
+        "es": "6-axis articulated robots for handling, assembly and production",
+        "it": "6-axis articulated robots for handling, assembly and production",
+        "pt": "6-axis articulated robots for handling, assembly and production",
+        "vi": "6-axis articulated robots for handling, assembly and production"
+      }
+    },
+    {
+      "id": "collaborative",
+      "icon": "cobot",
+      "names": {
+        "en": "Collaborative Robots",
+        "ja": "協働ロボット",
+        "ko": "협동로봇",
+        "zh": "协作机器人",
+        "de": "Kollaborative Roboter",
+        "fr": "Robots collaboratifs",
+        "es": "Robots colaborativos",
+        "it": "Robot collaborativi",
+        "pt": "Robôs colaborativos",
+        "vi": "Robot cộng tác"
+      },
+      "desc": {
+        "en": "Robots designed to work closer to people",
+        "ja": "人の近くで使用しやすいロボット",
+        "ko": "사람 가까이에서 함께 작업하도록 설계된 로봇",
+        "zh": "适合与人近距离协作的机器人",
+        "de": "Robots designed to work closer to people",
+        "fr": "Robots designed to work closer to people",
+        "es": "Robots designed to work closer to people",
+        "it": "Robots designed to work closer to people",
+        "pt": "Robots designed to work closer to people",
+        "vi": "Robots designed to work closer to people"
+      }
+    },
+    {
+      "id": "scara",
+      "icon": "scara",
+      "names": {
+        "en": "SCARA Robots",
+        "ja": "SCARAロボット",
+        "ko": "SCARA 로봇",
+        "zh": "SCARA机器人",
+        "de": "SCARA Robots",
+        "fr": "SCARA Robots",
+        "es": "SCARA Robots",
+        "it": "SCARA Robots",
+        "pt": "SCARA Robots",
+        "vi": "SCARA Robots"
+      },
+      "desc": {
+        "en": "High-speed assembly, transfer and pick & place",
+        "ja": "高速組立・搬送・ピック＆プレース",
+        "ko": "고속 조립·이송·픽앤플레이스",
+        "zh": "高速装配、搬运与取放",
+        "de": "High-speed assembly, transfer and pick & place",
+        "fr": "High-speed assembly, transfer and pick & place",
+        "es": "High-speed assembly, transfer and pick & place",
+        "it": "High-speed assembly, transfer and pick & place",
+        "pt": "High-speed assembly, transfer and pick & place",
+        "vi": "High-speed assembly, transfer and pick & place"
+      }
+    },
+    {
+      "id": "delta",
+      "icon": "delta",
+      "names": {
+        "en": "Delta & Parallel Robots",
+        "ja": "デルタ・パラレルロボット",
+        "ko": "델타·패러렐 로봇",
+        "zh": "Delta与并联机器人",
+        "de": "Delta & Parallel Robots",
+        "fr": "Delta & Parallel Robots",
+        "es": "Delta & Parallel Robots",
+        "it": "Delta & Parallel Robots",
+        "pt": "Delta & Parallel Robots",
+        "vi": "Delta & Parallel Robots"
+      },
+      "desc": {
+        "en": "Ultra-fast picking, sorting, food and packaging",
+        "ja": "超高速ピッキング・選別・食品・包装",
+        "ko": "초고속 픽킹·분류·식품·포장",
+        "zh": "高速分拣、食品与包装",
+        "de": "Ultra-fast picking, sorting, food and packaging",
+        "fr": "Ultra-fast picking, sorting, food and packaging",
+        "es": "Ultra-fast picking, sorting, food and packaging",
+        "it": "Ultra-fast picking, sorting, food and packaging",
+        "pt": "Ultra-fast picking, sorting, food and packaging",
+        "vi": "Ultra-fast picking, sorting, food and packaging"
+      }
+    },
+    {
+      "id": "amr",
+      "icon": "amr",
+      "names": {
+        "en": "AMR & AGV",
+        "ja": "AMR・AGV",
+        "ko": "AMR·AGV",
+        "zh": "AMR与AGV",
+        "de": "AMR & AGV",
+        "fr": "AMR & AGV",
+        "es": "AMR y AGV",
+        "it": "AMR & AGV",
+        "pt": "AMR & AGV",
+        "vi": "AMR & AGV"
+      },
+      "desc": {
+        "en": "Autonomous and guided mobile robots for factories and warehouses",
+        "ja": "工場・倉庫向けの自律・無人搬送ロボット",
+        "ko": "공장·물류창고용 자율이동·무인이송 로봇",
+        "zh": "面向工厂与仓库的自主移动机器人",
+        "de": "Autonomous and guided mobile robots for factories and warehouses",
+        "fr": "Autonomous and guided mobile robots for factories and warehouses",
+        "es": "Autonomous and guided mobile robots for factories and warehouses",
+        "it": "Autonomous and guided mobile robots for factories and warehouses",
+        "pt": "Autonomous and guided mobile robots for factories and warehouses",
+        "vi": "Autonomous and guided mobile robots for factories and warehouses"
+      }
+    },
+    {
+      "id": "mobile_manipulator",
+      "icon": "mobile",
+      "names": {
+        "en": "Mobile Manipulators",
+        "ja": "モバイルマニピュレータ",
+        "ko": "모바일 매니퓰레이터",
+        "zh": "移动操作机器人",
+        "de": "Mobile Manipulatoren",
+        "fr": "Manipulateurs mobiles",
+        "es": "Manipuladores móviles",
+        "it": "Manipolatori mobili",
+        "pt": "Manipuladores móveis",
+        "vi": "Robot thao tác di động"
+      },
+      "desc": {
+        "en": "Mobile bases combined with robot arms for flexible automation",
+        "ja": "移動ベースとロボットアームを組み合わせた自動化",
+        "ko": "이동베이스와 로봇암을 결합한 유연 자동화",
+        "zh": "移动底盘与机械臂结合的柔性自动化",
+        "de": "Mobile bases combined with robot arms for flexible automation",
+        "fr": "Mobile bases combined with robot arms for flexible automation",
+        "es": "Mobile bases combined with robot arms for flexible automation",
+        "it": "Mobile bases combined with robot arms for flexible automation",
+        "pt": "Mobile bases combined with robot arms for flexible automation",
+        "vi": "Mobile bases combined with robot arms for flexible automation"
+      }
+    },
+    {
+      "id": "humanoid",
+      "icon": "humanoid",
+      "names": {
+        "en": "Humanoid Robots",
+        "ja": "ヒューマノイドロボット",
+        "ko": "휴머노이드 로봇",
+        "zh": "人形机器人",
+        "de": "Humanoide Roboter",
+        "fr": "Robots humanoïdes",
+        "es": "Robots humanoides",
+        "it": "Robot umanoidi",
+        "pt": "Robôs humanoides",
+        "vi": "Robot hình người"
+      },
+      "desc": {
+        "en": "Bipedal or human-form robots for emerging industrial tasks",
+        "ja": "二足歩行・人型の次世代ロボット",
+        "ko": "이족보행·인간형 차세대 로봇",
+        "zh": "双足或人形的新一代机器人",
+        "de": "Bipedal or human-form robots for emerging industrial tasks",
+        "fr": "Bipedal or human-form robots for emerging industrial tasks",
+        "es": "Bipedal or human-form robots for emerging industrial tasks",
+        "it": "Bipedal or human-form robots for emerging industrial tasks",
+        "pt": "Bipedal or human-form robots for emerging industrial tasks",
+        "vi": "Bipedal or human-form robots for emerging industrial tasks"
+      }
+    },
+    {
+      "id": "quadruped",
+      "icon": "quadruped",
+      "names": {
+        "en": "Quadruped Robots",
+        "ja": "四足歩行ロボット",
+        "ko": "사족보행 로봇",
+        "zh": "四足机器人",
+        "de": "Vierbeinige Roboter",
+        "fr": "Robots quadrupèdes",
+        "es": "Robots cuadrúpedos",
+        "it": "Robot quadrupedi",
+        "pt": "Robôs quadrúpedes",
+        "vi": "Robot bốn chân"
+      },
+      "desc": {
+        "en": "Legged robots for inspection, patrol and difficult terrain",
+        "ja": "点検・巡回・不整地向けの脚式ロボット",
+        "ko": "점검·순찰·험지용 보행 로봇",
+        "zh": "用于巡检、巡逻和复杂地形的足式机器人",
+        "de": "Legged robots for inspection, patrol and difficult terrain",
+        "fr": "Legged robots for inspection, patrol and difficult terrain",
+        "es": "Legged robots for inspection, patrol and difficult terrain",
+        "it": "Legged robots for inspection, patrol and difficult terrain",
+        "pt": "Legged robots for inspection, patrol and difficult terrain",
+        "vi": "Legged robots for inspection, patrol and difficult terrain"
+      }
+    },
+    {
+      "id": "cleanroom",
+      "icon": "cleanroom",
+      "names": {
+        "en": "Cleanroom & Semiconductor Robots",
+        "ja": "クリーン・半導体ロボット",
+        "ko": "클린룸·반도체 로봇",
+        "zh": "洁净室与半导体机器人",
+        "de": "Cleanroom & Semiconductor Robots",
+        "fr": "Cleanroom & Semiconductor Robots",
+        "es": "Cleanroom & Semiconductor Robots",
+        "it": "Cleanroom & Semiconductor Robots",
+        "pt": "Cleanroom & Semiconductor Robots",
+        "vi": "Cleanroom & Semiconductor Robots"
+      },
+      "desc": {
+        "en": "Wafer, display and clean-environment handling",
+        "ja": "ウェハ・ディスプレイ・クリーン搬送",
+        "ko": "웨이퍼·디스플레이·클린 환경 이송",
+        "zh": "晶圆、显示与洁净环境搬运",
+        "de": "Wafer, display and clean-environment handling",
+        "fr": "Wafer, display and clean-environment handling",
+        "es": "Wafer, display and clean-environment handling",
+        "it": "Wafer, display and clean-environment handling",
+        "pt": "Wafer, display and clean-environment handling",
+        "vi": "Wafer, display and clean-environment handling"
+      }
+    },
+    {
+      "id": "warehouse",
+      "icon": "warehouse",
+      "names": {
+        "en": "Warehouse Robots",
+        "ja": "倉庫ロボット",
+        "ko": "물류창고 로봇",
+        "zh": "仓储机器人",
+        "de": "Lagerroboter",
+        "fr": "Robots d'entrepôt",
+        "es": "Robots de almacén",
+        "it": "Robot da magazzino",
+        "pt": "Robôs de armazém",
+        "vi": "Robot kho vận"
+      },
+      "desc": {
+        "en": "Goods-to-person, picking and fulfillment automation",
+        "ja": "GTP・ピッキング・フルフィルメント自動化",
+        "ko": "GTP·피킹·풀필먼트 자동화",
+        "zh": "货到人、拣选与履约自动化",
+        "de": "Goods-to-person, picking and fulfillment automation",
+        "fr": "Goods-to-person, picking and fulfillment automation",
+        "es": "Goods-to-person, picking and fulfillment automation",
+        "it": "Goods-to-person, picking and fulfillment automation",
+        "pt": "Goods-to-person, picking and fulfillment automation",
+        "vi": "Goods-to-person, picking and fulfillment automation"
+      }
+    }
+  ],
+  "applications": [
+    {
+      "id": "handling",
+      "icon": "industrial",
+      "names": {
+        "en": "Handling & Transfer",
+        "ja": "搬送・ハンドリング",
+        "ko": "핸들링·이송",
+        "zh": "搬运与转运",
+        "de": "Handling & Transfer",
+        "fr": "Handling & Transfer",
+        "es": "Handling & Transfer",
+        "it": "Handling & Transfer",
+        "pt": "Handling & Transfer",
+        "vi": "Handling & Transfer"
+      },
+      "desc": {
+        "en": "Move parts, products and materials",
+        "ja": "部品・製品・材料の搬送",
+        "ko": "부품·제품·자재 이송",
+        "zh": "零部件与物料搬运",
+        "de": "Move parts, products and materials",
+        "fr": "Move parts, products and materials",
+        "es": "Move parts, products and materials",
+        "it": "Move parts, products and materials",
+        "pt": "Move parts, products and materials",
+        "vi": "Move parts, products and materials"
+      }
+    },
+    {
+      "id": "machine_tending",
+      "icon": "industrial",
+      "names": {
+        "en": "Machine Tending",
+        "ja": "マシンテンディング",
+        "ko": "머신텐딩",
+        "zh": "机床上下料",
+        "de": "Machine Tending",
+        "fr": "Machine Tending",
+        "es": "Machine Tending",
+        "it": "Machine Tending",
+        "pt": "Machine Tending",
+        "vi": "Machine Tending"
+      },
+      "desc": {
+        "en": "Load and unload CNC, press and process machines",
+        "ja": "CNC・プレス・加工機への投入・取出し",
+        "ko": "CNC·프레스·가공기 로딩/언로딩",
+        "zh": "CNC、冲压与加工设备上下料",
+        "de": "Load and unload CNC, press and process machines",
+        "fr": "Load and unload CNC, press and process machines",
+        "es": "Load and unload CNC, press and process machines",
+        "it": "Load and unload CNC, press and process machines",
+        "pt": "Load and unload CNC, press and process machines",
+        "vi": "Load and unload CNC, press and process machines"
+      }
+    },
+    {
+      "id": "assembly",
+      "icon": "scara",
+      "names": {
+        "en": "Assembly",
+        "ja": "組立",
+        "ko": "조립",
+        "zh": "装配",
+        "de": "Assembly",
+        "fr": "Assembly",
+        "es": "Assembly",
+        "it": "Assembly",
+        "pt": "Assembly",
+        "vi": "Assembly"
+      },
+      "desc": {
+        "en": "Screwdriving, insertion and component assembly",
+        "ja": "ねじ締め・挿入・部品組立",
+        "ko": "스크류드라이빙·삽입·부품 조립",
+        "zh": "锁螺丝、插装与部件装配",
+        "de": "Screwdriving, insertion and component assembly",
+        "fr": "Screwdriving, insertion and component assembly",
+        "es": "Screwdriving, insertion and component assembly",
+        "it": "Screwdriving, insertion and component assembly",
+        "pt": "Screwdriving, insertion and component assembly",
+        "vi": "Screwdriving, insertion and component assembly"
+      }
+    },
+    {
+      "id": "palletizing",
+      "icon": "pallet",
+      "names": {
+        "en": "Palletizing",
+        "ja": "パレタイジング",
+        "ko": "팔레타이징",
+        "zh": "码垛",
+        "de": "Palletizing",
+        "fr": "Palletizing",
+        "es": "Palletizing",
+        "it": "Palletizing",
+        "pt": "Palletizing",
+        "vi": "Palletizing"
+      },
+      "desc": {
+        "en": "Stack boxes, bags and cases onto pallets",
+        "ja": "箱・袋・ケースのパレット積載",
+        "ko": "박스·포대·케이스 팔레트 적재",
+        "zh": "箱、袋与包装码垛",
+        "de": "Stack boxes, bags and cases onto pallets",
+        "fr": "Stack boxes, bags and cases onto pallets",
+        "es": "Stack boxes, bags and cases onto pallets",
+        "it": "Stack boxes, bags and cases onto pallets",
+        "pt": "Stack boxes, bags and cases onto pallets",
+        "vi": "Stack boxes, bags and cases onto pallets"
+      }
+    },
+    {
+      "id": "arc_welding",
+      "icon": "welding",
+      "names": {
+        "en": "Arc Welding",
+        "ja": "アーク溶接",
+        "ko": "아크용접",
+        "zh": "弧焊",
+        "de": "Arc Welding",
+        "fr": "Arc Welding",
+        "es": "Arc Welding",
+        "it": "Arc Welding",
+        "pt": "Arc Welding",
+        "vi": "Arc Welding"
+      },
+      "desc": {
+        "en": "Continuous weld seams for metal fabrication",
+        "ja": "金属加工の連続溶接",
+        "ko": "금속 가공 연속 용접",
+        "zh": "金属加工连续焊接",
+        "de": "Continuous weld seams for metal fabrication",
+        "fr": "Continuous weld seams for metal fabrication",
+        "es": "Continuous weld seams for metal fabrication",
+        "it": "Continuous weld seams for metal fabrication",
+        "pt": "Continuous weld seams for metal fabrication",
+        "vi": "Continuous weld seams for metal fabrication"
+      }
+    },
+    {
+      "id": "spot_welding",
+      "icon": "welding",
+      "names": {
+        "en": "Spot Welding",
+        "ja": "スポット溶接",
+        "ko": "스폿용접",
+        "zh": "点焊",
+        "de": "Spot Welding",
+        "fr": "Spot Welding",
+        "es": "Spot Welding",
+        "it": "Spot Welding",
+        "pt": "Spot Welding",
+        "vi": "Spot Welding"
+      },
+      "desc": {
+        "en": "Automotive body and sheet-metal spot welding",
+        "ja": "車体・板金のスポット溶接",
+        "ko": "차체·판금 스폿용접",
+        "zh": "车身与钣金点焊",
+        "de": "Automotive body and sheet-metal spot welding",
+        "fr": "Automotive body and sheet-metal spot welding",
+        "es": "Automotive body and sheet-metal spot welding",
+        "it": "Automotive body and sheet-metal spot welding",
+        "pt": "Automotive body and sheet-metal spot welding",
+        "vi": "Automotive body and sheet-metal spot welding"
+      }
+    },
+    {
+      "id": "painting",
+      "icon": "painting",
+      "names": {
+        "en": "Painting & Coating",
+        "ja": "塗装・コーティング",
+        "ko": "도장·코팅",
+        "zh": "喷涂与涂层",
+        "de": "Painting & Coating",
+        "fr": "Painting & Coating",
+        "es": "Painting & Coating",
+        "it": "Painting & Coating",
+        "pt": "Painting & Coating",
+        "vi": "Painting & Coating"
+      },
+      "desc": {
+        "en": "Painting, spraying, sealing and coating",
+        "ja": "塗装・スプレー・シーリング・コート",
+        "ko": "도장·분사·실링·코팅",
+        "zh": "喷漆、喷涂、密封与涂层",
+        "de": "Painting, spraying, sealing and coating",
+        "fr": "Painting, spraying, sealing and coating",
+        "es": "Painting, spraying, sealing and coating",
+        "it": "Painting, spraying, sealing and coating",
+        "pt": "Painting, spraying, sealing and coating",
+        "vi": "Painting, spraying, sealing and coating"
+      }
+    },
+    {
+      "id": "packaging",
+      "icon": "delta",
+      "names": {
+        "en": "Packaging & Sorting",
+        "ja": "包装・選別",
+        "ko": "포장·분류",
+        "zh": "包装与分拣",
+        "de": "Packaging & Sorting",
+        "fr": "Packaging & Sorting",
+        "es": "Packaging & Sorting",
+        "it": "Packaging & Sorting",
+        "pt": "Packaging & Sorting",
+        "vi": "Packaging & Sorting"
+      },
+      "desc": {
+        "en": "High-speed packing, sorting and pick & place",
+        "ja": "高速包装・選別・ピック＆プレース",
+        "ko": "고속 포장·분류·픽앤플레이스",
+        "zh": "高速包装、分拣与取放",
+        "de": "High-speed packing, sorting and pick & place",
+        "fr": "High-speed packing, sorting and pick & place",
+        "es": "High-speed packing, sorting and pick & place",
+        "it": "High-speed packing, sorting and pick & place",
+        "pt": "High-speed packing, sorting and pick & place",
+        "vi": "High-speed packing, sorting and pick & place"
+      }
+    },
+    {
+      "id": "inspection",
+      "icon": "cleanroom",
+      "names": {
+        "en": "Inspection & Vision",
+        "ja": "検査・ビジョン",
+        "ko": "검사·비전",
+        "zh": "检测与视觉",
+        "de": "Inspection & Vision",
+        "fr": "Inspection & Vision",
+        "es": "Inspection & Vision",
+        "it": "Inspection & Vision",
+        "pt": "Inspection & Vision",
+        "vi": "Inspection & Vision"
+      },
+      "desc": {
+        "en": "Vision inspection, measurement and quality control",
+        "ja": "画像検査・測定・品質管理",
+        "ko": "비전검사·측정·품질관리",
+        "zh": "视觉检测、测量与质量控制",
+        "de": "Vision inspection, measurement and quality control",
+        "fr": "Vision inspection, measurement and quality control",
+        "es": "Vision inspection, measurement and quality control",
+        "it": "Vision inspection, measurement and quality control",
+        "pt": "Vision inspection, measurement and quality control",
+        "vi": "Vision inspection, measurement and quality control"
+      }
+    },
+    {
+      "id": "grinding",
+      "icon": "industrial",
+      "names": {
+        "en": "Grinding & Polishing",
+        "ja": "研磨・ポリッシング",
+        "ko": "연마·폴리싱",
+        "zh": "打磨与抛光",
+        "de": "Grinding & Polishing",
+        "fr": "Grinding & Polishing",
+        "es": "Grinding & Polishing",
+        "it": "Grinding & Polishing",
+        "pt": "Grinding & Polishing",
+        "vi": "Grinding & Polishing"
+      },
+      "desc": {
+        "en": "Surface finishing, deburring and sanding",
+        "ja": "仕上げ・バリ取り・サンディング",
+        "ko": "표면 마감·디버링·샌딩",
+        "zh": "表面处理、去毛刺与打磨",
+        "de": "Surface finishing, deburring and sanding",
+        "fr": "Surface finishing, deburring and sanding",
+        "es": "Surface finishing, deburring and sanding",
+        "it": "Surface finishing, deburring and sanding",
+        "pt": "Surface finishing, deburring and sanding",
+        "vi": "Surface finishing, deburring and sanding"
+      }
+    },
+    {
+      "id": "food",
+      "icon": "cobot",
+      "names": {
+        "en": "Food & Beverage",
+        "ja": "食品・飲料",
+        "ko": "식음료",
+        "zh": "食品与饮料",
+        "de": "Food & Beverage",
+        "fr": "Food & Beverage",
+        "es": "Food & Beverage",
+        "it": "Food & Beverage",
+        "pt": "Food & Beverage",
+        "vi": "Food & Beverage"
+      },
+      "desc": {
+        "en": "Food handling, serving and hygienic automation",
+        "ja": "食品搬送・提供・衛生自動化",
+        "ko": "식품 핸들링·서빙·위생 자동화",
+        "zh": "食品搬运、服务与卫生自动化",
+        "de": "Food handling, serving and hygienic automation",
+        "fr": "Food handling, serving and hygienic automation",
+        "es": "Food handling, serving and hygienic automation",
+        "it": "Food handling, serving and hygienic automation",
+        "pt": "Food handling, serving and hygienic automation",
+        "vi": "Food handling, serving and hygienic automation"
+      }
+    },
+    {
+      "id": "semiconductor",
+      "icon": "cleanroom",
+      "names": {
+        "en": "Semiconductor & Display",
+        "ja": "半導体・ディスプレイ",
+        "ko": "반도체·디스플레이",
+        "zh": "半导体与显示",
+        "de": "Semiconductor & Display",
+        "fr": "Semiconductor & Display",
+        "es": "Semiconductor & Display",
+        "it": "Semiconductor & Display",
+        "pt": "Semiconductor & Display",
+        "vi": "Semiconductor & Display"
+      },
+      "desc": {
+        "en": "Wafer, panel and clean-process automation",
+        "ja": "ウェハ・パネル・クリーン工程自動化",
+        "ko": "웨이퍼·패널·클린공정 자동화",
+        "zh": "晶圆、面板与洁净制程自动化",
+        "de": "Wafer, panel and clean-process automation",
+        "fr": "Wafer, panel and clean-process automation",
+        "es": "Wafer, panel and clean-process automation",
+        "it": "Wafer, panel and clean-process automation",
+        "pt": "Wafer, panel and clean-process automation",
+        "vi": "Wafer, panel and clean-process automation"
+      }
+    }
+  ],
+  "manufacturers": [
+    {
+      "name": "FANUC",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "industrial",
+        "collaborative",
+        "scara",
+        "delta",
+        "cleanroom"
+      ],
+      "series": "CRX · CR · LR Mate · M · R · P",
+      "status": "official-source",
+      "url": "https://www.fanuc.co.jp/en/product/robot/"
+    },
+    {
+      "name": "Yaskawa Motoman",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "industrial",
+        "collaborative",
+        "cleanroom"
+      ],
+      "series": "HC · GP · AR · SP · PL",
+      "status": "official-source",
+      "url": "https://www.yaskawa-global.com/product/robotics"
+    },
+    {
+      "name": "Kawasaki Robotics",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "industrial"
+      ],
+      "series": "RS · BX · CP · K · duAro",
+      "status": "directory",
+      "url": "https://kawasakirobotics.com/"
+    },
+    {
+      "name": "DENSO Robotics",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "industrial",
+        "collaborative",
+        "scara"
+      ],
+      "series": "COBOTTA · VS · VM · HS",
+      "status": "directory",
+      "url": "https://www.densorobotics.com/"
+    },
+    {
+      "name": "Mitsubishi Electric",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "industrial",
+        "collaborative",
+        "scara"
+      ],
+      "series": "MELFA FR · ASSISTA · RH",
+      "status": "directory",
+      "url": "https://www.mitsubishielectric.com/fa/products/rbt/robot/"
+    },
+    {
+      "name": "Epson Robots",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "industrial",
+        "scara"
+      ],
+      "series": "GX · T · C · N",
+      "status": "directory",
+      "url": "https://epson.com/robots"
+    },
+    {
+      "name": "Yamaha Robotics",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "scara",
+        "industrial"
+      ],
+      "series": "YK-X · YK-TW · Cartesian",
+      "status": "directory",
+      "url": "https://global.yamaha-motor.com/business/robot/"
+    },
+    {
+      "name": "Nachi-Fujikoshi",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "industrial"
+      ],
+      "series": "MZ · MC · SRA",
+      "status": "directory",
+      "url": "https://www.nachirobotics.com/"
+    },
+    {
+      "name": "OMRON Robotics",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "scara",
+        "delta",
+        "amr"
+      ],
+      "series": "i4L · Hornet · LD / MD",
+      "status": "directory",
+      "url": "https://automation.omron.com/"
+    },
+    {
+      "name": "DAIHEN / OTC",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "industrial"
+      ],
+      "series": "FD Series · Welding Robots",
+      "status": "directory",
+      "url": "https://www.daihen.co.jp/en/"
+    },
+    {
+      "name": "Doosan Robotics",
+      "origin": "Korea",
+      "region": "Korea",
+      "types": [
+        "collaborative"
+      ],
+      "series": "P · H · M · A · E Series",
+      "status": "official-source",
+      "url": "https://www.doosanrobotics.com/en/product-solutions/product"
+    },
+    {
+      "name": "Rainbow Robotics",
+      "origin": "Korea",
+      "region": "Korea",
+      "types": [
+        "collaborative",
+        "amr",
+        "mobile_manipulator",
+        "quadruped"
+      ],
+      "series": "RBC · RBY · RBM · RBQ",
+      "status": "official-source",
+      "url": "https://rainbow-robotics.com/en/products/"
+    },
+    {
+      "name": "Hanwha Robotics",
+      "origin": "Korea",
+      "region": "Korea",
+      "types": [
+        "collaborative",
+        "amr"
+      ],
+      "series": "HCR · AGV / AMR",
+      "status": "official-source",
+      "url": "https://hanwharobotics.com/en/index"
+    },
+    {
+      "name": "Neuromeka",
+      "origin": "Korea",
+      "region": "Korea",
+      "types": [
+        "collaborative",
+        "delta",
+        "amr",
+        "humanoid"
+      ],
+      "series": "Indy · NURI · LASER · Moby",
+      "status": "official-source",
+      "url": "https://en.neuromeka.com/"
+    },
+    {
+      "name": "Hyundai Robotics",
+      "origin": "Korea",
+      "region": "Korea",
+      "types": [
+        "industrial"
+      ],
+      "series": "Industrial · Welding · Palletizing",
+      "status": "directory",
+      "url": "https://www.hyundai-robotics.com/"
+    },
+    {
+      "name": "ROBOSTAR",
+      "origin": "Korea",
+      "region": "Korea",
+      "types": [
+        "industrial",
+        "scara"
+      ],
+      "series": "Industrial · SCARA",
+      "status": "directory",
+      "url": "https://www.robostar.co.kr/"
+    },
+    {
+      "name": "TWINNY",
+      "origin": "Korea",
+      "region": "Korea",
+      "types": [
+        "amr"
+      ],
+      "series": "Autonomous Mobile Robots",
+      "status": "directory",
+      "url": "https://twinny.ai/"
+    },
+    {
+      "name": "JAKA Robotics",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "collaborative",
+        "mobile_manipulator"
+      ],
+      "series": "Zu · Pro · S · A · AL · Mini · EI",
+      "status": "official-source",
+      "url": "https://www.jaka.com/en/productList"
+    },
+    {
+      "name": "DOBOT",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "collaborative",
+        "scara",
+        "humanoid"
+      ],
+      "series": "CRA · CR · Nova · M1 Pro · ATOM",
+      "status": "official-source",
+      "url": "https://www.dobot-robots.com/products"
+    },
+    {
+      "name": "AUBO Robotics",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "collaborative"
+      ],
+      "series": "AUBO-i · AUBO-C",
+      "status": "directory",
+      "url": "https://www.aubo-robotics.com/"
+    },
+    {
+      "name": "Elite Robots",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "collaborative"
+      ],
+      "series": "CS · EC Series",
+      "status": "directory",
+      "url": "https://www.elite-robots.com/"
+    },
+    {
+      "name": "FAIRINO",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "collaborative"
+      ],
+      "series": "FR3 · FR5 · FR10 · FR16 · FR20 · FR30",
+      "status": "official-source",
+      "url": "https://www.fairino.com/Cobots"
+    },
+    {
+      "name": "ROKAE",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "industrial",
+        "collaborative",
+        "mobile_manipulator",
+        "humanoid"
+      ],
+      "series": "xMate · NB · XB · CMR · Human.X",
+      "status": "official-source",
+      "url": "https://www.rokae.com/en/"
+    },
+    {
+      "name": "ESTUN Robotics",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "industrial",
+        "collaborative"
+      ],
+      "series": "Industrial · Cobot",
+      "status": "directory",
+      "url": "https://en.estun.com/"
+    },
+    {
+      "name": "SIASUN",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "industrial",
+        "collaborative",
+        "amr"
+      ],
+      "series": "Industrial · Cobot · Mobile",
+      "status": "directory",
+      "url": "https://en.siasun.com/"
+    },
+    {
+      "name": "EFORT",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "industrial"
+      ],
+      "series": "Industrial Robots",
+      "status": "directory",
+      "url": "https://www.efort.com.cn/"
+    },
+    {
+      "name": "STEP Robotics",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "industrial"
+      ],
+      "series": "Industrial Robots",
+      "status": "directory",
+      "url": "https://www.stepelectric.com/"
+    },
+    {
+      "name": "Unitree Robotics",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "humanoid",
+        "quadruped"
+      ],
+      "series": "H1 · H2 · G1 · R1 · B2 · A2 · Go2",
+      "status": "official-source",
+      "url": "https://www.unitree.com/"
+    },
+    {
+      "name": "UBTECH Robotics",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "humanoid"
+      ],
+      "series": "Walker Series",
+      "status": "directory",
+      "url": "https://www.ubtrobot.com/"
+    },
+    {
+      "name": "Fourier Intelligence",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "humanoid"
+      ],
+      "series": "GR Series",
+      "status": "directory",
+      "url": "https://www.fftai.com/"
+    },
+    {
+      "name": "Geek+",
+      "origin": "China",
+      "region": "China",
+      "types": [
+        "amr",
+        "warehouse"
+      ],
+      "series": "Goods-to-Person · Picking · Sorting",
+      "status": "directory",
+      "url": "https://www.geekplus.com/"
+    },
+    {
+      "name": "ABB Robotics",
+      "origin": "Switzerland",
+      "region": "Europe",
+      "types": [
+        "industrial",
+        "collaborative",
+        "scara",
+        "delta",
+        "cleanroom"
+      ],
+      "series": "IRB · GoFa · SWIFTI · YuMi · FlexPicker",
+      "status": "directory",
+      "url": "https://new.abb.com/products/robotics"
+    },
+    {
+      "name": "KUKA",
+      "origin": "Germany",
+      "region": "Europe",
+      "types": [
+        "industrial",
+        "collaborative",
+        "amr"
+      ],
+      "series": "KR · LBR · KMP",
+      "status": "directory",
+      "url": "https://www.kuka.com/"
+    },
+    {
+      "name": "Universal Robots",
+      "origin": "Denmark",
+      "region": "Europe",
+      "types": [
+        "collaborative"
+      ],
+      "series": "UR3e · UR7e · UR12e · UR15 · UR20 · UR30",
+      "status": "official-source",
+      "url": "https://www.universal-robots.com/"
+    },
+    {
+      "name": "Stäubli Robotics",
+      "origin": "Switzerland",
+      "region": "Europe",
+      "types": [
+        "industrial",
+        "scara",
+        "cleanroom"
+      ],
+      "series": "TX2 · TS2 · Cleanroom",
+      "status": "directory",
+      "url": "https://www.staubli.com/"
+    },
+    {
+      "name": "Comau",
+      "origin": "Italy",
+      "region": "Europe",
+      "types": [
+        "industrial",
+        "collaborative"
+      ],
+      "series": "NJ · Racer · Cobot",
+      "status": "directory",
+      "url": "https://www.comau.com/"
+    },
+    {
+      "name": "NEURA Robotics",
+      "origin": "Germany",
+      "region": "Europe",
+      "types": [
+        "collaborative",
+        "humanoid"
+      ],
+      "series": "LARA · MAiRA · 4NE-1",
+      "status": "directory",
+      "url": "https://neura-robotics.com/"
+    },
+    {
+      "name": "MiR",
+      "origin": "Denmark",
+      "region": "Europe",
+      "types": [
+        "amr"
+      ],
+      "series": "MiR250 · MiR600 · MiR1350",
+      "status": "directory",
+      "url": "https://www.mobile-industrial-robots.com/"
+    },
+    {
+      "name": "PAL Robotics",
+      "origin": "Spain",
+      "region": "Europe",
+      "types": [
+        "humanoid",
+        "amr"
+      ],
+      "series": "TIAGo · ARI · REEM",
+      "status": "directory",
+      "url": "https://pal-robotics.com/"
+    },
+    {
+      "name": "Exotec",
+      "origin": "France",
+      "region": "Europe",
+      "types": [
+        "warehouse"
+      ],
+      "series": "Skypod",
+      "status": "directory",
+      "url": "https://www.exotec.com/"
+    },
+    {
+      "name": "Franka Robotics",
+      "origin": "Germany",
+      "region": "Europe",
+      "types": [
+        "collaborative"
+      ],
+      "series": "Franka Research 3 · Production 3",
+      "status": "directory",
+      "url": "https://franka.de/"
+    },
+    {
+      "name": "Boston Dynamics",
+      "origin": "USA",
+      "region": "North America",
+      "types": [
+        "quadruped",
+        "humanoid",
+        "warehouse"
+      ],
+      "series": "Spot · Atlas · Stretch",
+      "status": "official-source",
+      "url": "https://bostondynamics.com/"
+    },
+    {
+      "name": "Agility Robotics",
+      "origin": "USA",
+      "region": "North America",
+      "types": [
+        "humanoid"
+      ],
+      "series": "Digit",
+      "status": "official-source",
+      "url": "https://www.agilityrobotics.com/"
+    },
+    {
+      "name": "Figure",
+      "origin": "USA",
+      "region": "North America",
+      "types": [
+        "humanoid"
+      ],
+      "series": "Figure Humanoid",
+      "status": "directory",
+      "url": "https://www.figure.ai/"
+    },
+    {
+      "name": "Apptronik",
+      "origin": "USA",
+      "region": "North America",
+      "types": [
+        "humanoid"
+      ],
+      "series": "Apollo",
+      "status": "directory",
+      "url": "https://apptronik.com/"
+    },
+    {
+      "name": "Locus Robotics",
+      "origin": "USA",
+      "region": "North America",
+      "types": [
+        "amr",
+        "warehouse"
+      ],
+      "series": "LocusOne · AMR fleet",
+      "status": "directory",
+      "url": "https://locusrobotics.com/"
+    },
+    {
+      "name": "OTTO Motors / Rockwell Automation",
+      "origin": "Canada",
+      "region": "North America",
+      "types": [
+        "amr"
+      ],
+      "series": "OTTO AMRs",
+      "status": "directory",
+      "url": "https://ottomotors.com/"
+    },
+    {
+      "name": "Seegrid",
+      "origin": "USA",
+      "region": "North America",
+      "types": [
+        "amr"
+      ],
+      "series": "Autonomous Mobile Robots",
+      "status": "directory",
+      "url": "https://seegrid.com/"
+    },
+    {
+      "name": "Symbotic",
+      "origin": "USA",
+      "region": "North America",
+      "types": [
+        "warehouse"
+      ],
+      "series": "Warehouse automation",
+      "status": "directory",
+      "url": "https://www.symbotic.com/"
+    }
+  ],
+  "eoat_manufacturers": [
+    {
+      "name": "OnRobot",
+      "origin": "Denmark",
+      "region": "Europe",
+      "types": [
+        "gripper",
+        "vacuum",
+        "sander",
+        "screwdriver",
+        "ft",
+        "toolchanger"
+      ],
+      "series": "RG · 2FG · 3FG · VG · VGC · VGP · HEX · Sander",
+      "status": "official-source",
+      "url": "https://onrobot.com/"
+    },
+    {
+      "name": "Robotiq",
+      "origin": "Canada",
+      "region": "North America",
+      "types": [
+        "gripper",
+        "vacuum",
+        "vision"
+      ],
+      "series": "2F · Hand-E · Vacuum · Wrist Camera",
+      "status": "directory",
+      "url": "https://robotiq.com/"
+    },
+    {
+      "name": "SCHUNK",
+      "origin": "Germany",
+      "region": "Europe",
+      "types": [
+        "gripper",
+        "toolchanger"
+      ],
+      "series": "Grippers · Tool Changers",
+      "status": "directory",
+      "url": "https://schunk.com/"
+    },
+    {
+      "name": "Zimmer Group",
+      "origin": "Germany",
+      "region": "Europe",
+      "types": [
+        "gripper",
+        "toolchanger"
+      ],
+      "series": "Grippers · Handling Components",
+      "status": "directory",
+      "url": "https://www.zimmer-group.com/"
+    },
+    {
+      "name": "SMC",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "gripper",
+        "vacuum"
+      ],
+      "series": "Pneumatic Grippers · Vacuum",
+      "status": "directory",
+      "url": "https://www.smcworld.com/"
+    },
+    {
+      "name": "Schmalz",
+      "origin": "Germany",
+      "region": "Europe",
+      "types": [
+        "vacuum"
+      ],
+      "series": "Vacuum Gripping Systems",
+      "status": "directory",
+      "url": "https://www.schmalz.com/"
+    },
+    {
+      "name": "ATI Industrial Automation",
+      "origin": "USA",
+      "region": "North America",
+      "types": [
+        "toolchanger",
+        "ft"
+      ],
+      "series": "Tool Changers · Force/Torque",
+      "status": "directory",
+      "url": "https://www.ati-ia.com/"
+    },
+    {
+      "name": "Coval",
+      "origin": "France",
+      "region": "Europe",
+      "types": [
+        "vacuum"
+      ],
+      "series": "Vacuum Components",
+      "status": "directory",
+      "url": "https://www.coval.com/"
+    }
+  ],
+  "regional_network_seed": [
+    {
+      "name": "OnRobot Japan K.K.",
+      "type": "Manufacturer Office",
+      "country": "Japan",
+      "region": "Tokyo",
+      "makers": [
+        "OnRobot"
+      ],
+      "status": "Official source",
+      "source_url": "https://onrobot.com/en/contact-us"
+    },
+    {
+      "name": "OnRobot Korea",
+      "type": "Manufacturer Office",
+      "country": "Korea",
+      "region": "Anyang",
+      "makers": [
+        "OnRobot"
+      ],
+      "status": "Official source",
+      "source_url": "https://onrobot.com/en/contact-us"
+    },
+    {
+      "name": "Universal Robots Japan",
+      "type": "Manufacturer Office",
+      "country": "Japan",
+      "region": "Tokyo",
+      "makers": [
+        "Universal Robots"
+      ],
+      "status": "Official source",
+      "source_url": "https://www.universal-robots.com/ja/about-us/offices/"
+    },
+    {
+      "name": "Universal Robots Korea",
+      "type": "Manufacturer Office",
+      "country": "Korea",
+      "region": "Seongnam",
+      "makers": [
+        "Universal Robots"
+      ],
+      "status": "Official source",
+      "source_url": "https://www.universal-robots.com/ja/about-us/offices/"
+    },
+    {
+      "name": "JAKA Japan Office",
+      "type": "Manufacturer Office",
+      "country": "Japan",
+      "region": "Nagoya",
+      "makers": [
+        "JAKA Robotics"
+      ],
+      "status": "Official source",
+      "source_url": "https://www.jaka.com/en/productLists/Collaborative_Robot"
+    },
+    {
+      "name": "Doosan Robotics Dealer Network",
+      "type": "Dealer Network",
+      "country": "Global",
+      "region": "100+ countries",
+      "makers": [
+        "Doosan Robotics"
+      ],
+      "status": "Official source",
+      "source_url": "https://www.doosanrobotics.com/en/about/company/overview/"
+    },
+    {
+      "name": "Rainbow Robotics",
+      "type": "Manufacturer",
+      "country": "Korea",
+      "region": "Daejeon / Korea",
+      "makers": [
+        "Rainbow Robotics"
+      ],
+      "status": "Official source",
+      "source_url": "https://rainbow-robotics.com/en/products/"
+    },
+    {
+      "name": "Neuromeka",
+      "type": "Manufacturer",
+      "country": "Korea",
+      "region": "Seoul / Korea",
+      "makers": [
+        "Neuromeka"
+      ],
+      "status": "Official source",
+      "source_url": "https://en.neuromeka.com/download"
+    },
+    {
+      "name": "Hanwha Robotics",
+      "type": "Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "makers": [
+        "Hanwha Robotics"
+      ],
+      "status": "Official source",
+      "source_url": "https://hanwharobotics.com/en/index"
+    }
+  ]
+}
