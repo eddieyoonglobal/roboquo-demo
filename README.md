@@ -1,11 +1,12 @@
-# RoboQuo v13 — Localization Fix
+# RoboQuo v14 — 10 Language Global UI
 
-Changes:
-- Fixed raw `<strong>` tags showing on the About page.
-- Full interface localization for Korean, Japanese, English and Simplified Chinese, including modals and action flows.
-- Browser-language auto detection on first visit.
-- Language choice persists in localStorage.
-- Added global-language architecture note for future on-demand AI translation of user/company content.
-- Bumped PWA service-worker cache to v13.
+- Default display language: English
+- Fixed global brand headline: **Robots. Services. Experts. One place.**
+- Representative languages: English, Japanese, Korean, Simplified Chinese, German, French, Spanish, Italian, Portuguese, Vietnamese
+- Core Asian languages retain full reviewed copy from v13
+- European/Vietnamese packs cover the primary user journey and fall back to English for technical prototype strings
+- Language selection is remembered in the browser
+- Category names/descriptions localized for all 10 languages
+- PWA cache bumped to v14
 
-Upload these files to the GitHub repository root and overwrite the existing files. Vercel will redeploy automatically.
+Upload all files in this folder to the root of the existing GitHub repository. Vercel will redeploy automatically.
