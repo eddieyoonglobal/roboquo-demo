@@ -1,336 +1,175 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101828">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="RoboQuo">
-<link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
-<title>RoboQuo</title>
-<style>
-:root{--bg:#f5f7fa;--card:#fff;--text:#111827;--muted:#667085;--line:#e5e7eb;--blue:#2848ff;--dark:#101828;--soft:#eef2ff}
-*{box-sizing:border-box}html[lang="en"] body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}html[lang="ko"] body{font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;letter-spacing:-.015em}html[lang="ja"] body{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic","Meiryo","Noto Sans JP",sans-serif;letter-spacing:-.01em}html[lang="zh"] body{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif}body{margin:0;background:var(--bg);color:var(--text)}button,input,select,textarea{font:inherit}button{cursor:pointer}a{text-decoration:none;color:inherit}.wrap{width:min(1180px,92vw);margin:auto}header{height:70px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 4vw;position:sticky;top:0;z-index:20}.brand{font-weight:800;font-size:20px;display:flex;gap:10px;align-items:center}.mark{background:var(--dark);color:#fff;border-radius:9px;padding:8px;font-size:11px}nav{display:flex;gap:24px;font-size:14px}nav a{cursor:pointer;color:#344054}.right{display:flex;gap:8px;align-items:center}.btn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:10px 14px;font-weight:700}.dark{background:var(--dark);color:#fff;border-color:var(--dark)}.blue{background:var(--blue);color:#fff;border-color:var(--blue)}.ghost{background:#fff}.page{display:none}.page.active{display:block}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;padding:76px 0 45px;align-items:center}.eyebrow{font-size:11px;color:var(--blue);font-weight:800;letter-spacing:.14em;margin-bottom:12px}h1{font-size:58px;line-height:1.05;letter-spacing:-.055em;margin:0}.hero h1 span{color:var(--blue)}.lead{font-size:18px;color:var(--muted);line-height:1.75;max-width:660px}.how-box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin-top:20px}.how-box strong{display:block;font-size:14px;margin-bottom:7px}.how-box p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}.action{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;text-align:left;display:flex;flex-direction:column;gap:12px;transition:.15s}.action:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(16,24,40,.06)}.action-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.action strong{display:block;font-size:18px}.action small{color:var(--muted);line-height:1.45;font-size:13px}.go-row{display:flex;justify-content:space-between;align-items:center}.go-chip{font-size:11px;font-weight:800;color:var(--blue);background:var(--soft);padding:7px 9px;border-radius:999px}.go-btn{border:0;background:var(--dark);color:#fff;border-radius:10px;padding:10px 12px;font-size:12px;font-weight:800}.visual{background:#fff;border:1px solid var(--line);border-radius:22px;padding:14px;box-shadow:0 20px 50px rgba(16,24,40,.08)}.robot{height:385px;border-radius:17px;background:linear-gradient(145deg,#eef2f6,#d8dee7);display:grid;place-items:center;font-size:110px;position:relative}.tag{position:absolute;background:var(--dark);color:#fff;border-radius:8px;padding:8px 10px;font-size:11px}.t1{top:18px;left:18px}.t2{right:18px;bottom:18px;background:var(--blue)}.bar{background:var(--dark);color:#fff;display:grid;grid-template-columns:repeat(4,1fr);padding:24px 5vw;text-align:center}.bar strong{display:block;font-size:22px}.bar span{font-size:11px;color:#cbd5e1}.section{padding:70px 0}.section h2{font-size:38px;letter-spacing:-.04em;margin:0 0 12px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px}.card p,.muted{color:var(--muted);line-height:1.7}.step{font-size:11px;font-weight:800;color:var(--blue)}.pagehead{padding:55px 0 28px}.pagehead h1{font-size:46px}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-bottom:70px}input,select,textarea{width:100%;padding:11px 12px;border:1px solid #d0d5dd;border-radius:9px;background:#fff;color:var(--text)}label{display:grid;gap:6px;font-size:12px;font-weight:700}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.methods{display:grid;gap:10px}.method{border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;gap:10px}.method input{width:auto}.estimate{background:var(--dark);color:#fff;border-radius:13px;padding:16px;margin:14px 0}.estimate small{color:#98a2b3}.estimate strong{display:block;font-size:22px;margin:6px 0}.listings,.experts,.companies{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding-bottom:70px}.listing,.expert,.company{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden}.thumb{height:170px;background:linear-gradient(145deg,#eef2f6,#d9dfe8);display:grid;place-items:center;font-size:56px}.body{padding:16px}.body h3{margin:0 0 6px}.meta{font-size:11px;color:var(--muted)}.price{display:flex;justify-content:space-between;margin-top:14px;font-weight:800}.badge{font-size:10px;background:#ecfdf3;color:#067647;border-radius:999px;padding:5px 8px}.bid{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:10px 0}.match{color:#067647;font-weight:800}.quote{display:flex;justify-content:space-between;border:1px solid var(--line);border-radius:10px;padding:13px;margin-top:8px}.company-top{display:flex;justify-content:space-between;align-items:center;gap:8px}.company-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}.company-tags span{font-size:11px;padding:6px 8px;background:#f2f4f7;border-radius:999px}.company-actions{display:flex;gap:8px;margin-top:14px;flex-wrap:wrap}.company-hero{display:grid;grid-template-columns:1fr 360px;gap:20px;padding-bottom:30px}.company-panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px}.company-panel h2{margin:0 0 12px;font-size:26px}footer{background:#fff;border-top:1px solid var(--line);padding:30px 4vw;display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.hidden{display:none}.toast{position:fixed;right:20px;bottom:20px;background:var(--dark);color:#fff;padding:12px 14px;border-radius:9px;opacity:0;transition:.2s;z-index:50}.toast.show{opacity:1}@media(max-width:980px){nav{display:none}.hero,.grid2,.company-hero{grid-template-columns:1fr}.cards,.listings,.experts,.companies{grid-template-columns:1fr 1fr}}@media(max-width:620px){h1{font-size:42px}.actions,.cards,.listings,.experts,.companies,.formgrid{grid-template-columns:1fr}.bar{grid-template-columns:1fr 1fr;gap:18px}.right .btn{display:none}}
-
-.global-search{margin-top:20px;position:relative}.search-row{display:flex;gap:8px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 8px 26px rgba(16,24,40,.04)}.search-row input{border:0;box-shadow:none;font-size:14px}.search-row input:focus{box-shadow:none}.search-results{position:absolute;left:0;right:0;top:62px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 42px rgba(16,24,40,.12);z-index:25;max-height:360px;overflow:auto}.search-result{padding:13px 15px;border-bottom:1px solid #f1f3f5;display:flex;justify-content:space-between;gap:12px;cursor:pointer}.search-result:last-child{border-bottom:0}.search-result:hover{background:#f8fafc}.search-result strong{display:block;font-size:13px}.search-result small{color:var(--muted)}.search-type{font-size:10px;font-weight:800;color:var(--blue);background:var(--soft);padding:5px 7px;border-radius:999px;height:max-content}.detail-wrap{padding:45px 0 75px}.company-detail-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:20px}.company-detail-main,.company-detail-side{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px}.company-logo{width:64px;height:64px;border-radius:15px;background:var(--dark);color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px}.company-title-row{display:flex;gap:16px;align-items:center}.company-detail-main h1{font-size:34px;letter-spacing:-.04em;margin:0}.detail-section{border-top:1px solid var(--line);padding-top:20px;margin-top:22px}.detail-section h3{margin:0 0 10px}.info-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.info-item{background:#f8fafc;border-radius:11px;padding:12px}.info-item small{display:block;color:var(--muted);margin-bottom:4px}.inquiry-list{display:grid;gap:12px;padding-bottom:75px}.inquiry-card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;grid-template-columns:1fr auto;gap:16px}.inquiry-card h3{margin:0 0 6px}.status{font-size:10px;font-weight:800;border-radius:999px;padding:6px 9px;background:#fffaeb;color:#b54708;height:max-content}.empty-state{background:#fff;border:1px dashed #cbd5e1;border-radius:16px;padding:34px;text-align:center;color:var(--muted)}.top-search-note{font-size:11px;color:var(--muted);margin-top:6px}.back-btn{border:0;background:transparent;color:#475467;font-weight:700;padding:0;margin-bottom:18px}
-@media(max-width:980px){.company-detail-grid{grid-template-columns:1fr}}
-@media(max-width:620px){.search-row{flex-direction:column}.inquiry-card{grid-template-columns:1fr}.info-grid{grid-template-columns:1fr}}
-
-
-/* v7 mobile / PWA layer */
-.mobile-bottom-nav,.mobile-overlay,.mobile-more-sheet{display:none}
-.mobile-bottom-nav{position:fixed;left:0;right:0;bottom:0;z-index:80;background:rgba(255,255,255,.97);backdrop-filter:blur(18px);border-top:1px solid var(--line);padding:7px 10px calc(7px + env(safe-area-inset-bottom));grid-template-columns:repeat(5,1fr);box-shadow:0 -8px 30px rgba(16,24,40,.07)}
-.mobile-tab{min-height:52px;border:0;background:transparent;border-radius:12px;color:#667085;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:10px;font-weight:700;touch-action:manipulation}
-.mobile-tab .mi{font-size:20px;line-height:1}
-.mobile-tab.active{color:var(--blue);background:#f5f7ff}
-.mobile-tab.sell-tab{background:var(--dark);color:white;margin-top:-17px;min-height:58px;border-radius:17px;box-shadow:0 8px 22px rgba(16,24,40,.20)}
-.mobile-overlay{position:fixed;inset:0;background:rgba(16,24,40,.42);z-index:88}
-.mobile-more-sheet{position:fixed;left:0;right:0;bottom:0;z-index:90;background:white;border-radius:24px 24px 0 0;padding:10px 18px calc(22px + env(safe-area-inset-bottom));box-shadow:0 -20px 60px rgba(16,24,40,.20);max-height:78vh;overflow:auto}
-.sheet-handle{width:42px;height:4px;background:#d0d5dd;border-radius:999px;margin:2px auto 16px}
-.sheet-title{font-size:20px;font-weight:800;margin-bottom:13px}
-.sheet-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.sheet-action{border:1px solid var(--line);background:#fff;border-radius:14px;padding:15px;text-align:left;min-height:66px;font-weight:700}
-.sheet-action small{display:block;color:var(--muted);font-weight:500;margin-top:3px}
-.sheet-section{border-top:1px solid var(--line);padding-top:15px;margin-top:16px}
-.mobile-install-help{font-size:12px;color:var(--muted);line-height:1.6;margin-top:10px;padding:12px;background:#f8fafc;border-radius:12px}
-.mobile-lang{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
-.pwa-badge{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:800;color:#344054;background:#f2f4f7;padding:6px 8px;border-radius:999px}
-@media(max-width:768px){
-  html{scroll-padding-bottom:88px}
-  body{padding-bottom:calc(72px + env(safe-area-inset-bottom));-webkit-tap-highlight-color:transparent}
-  header{height:58px;padding:0 16px;position:sticky}.brand{font-size:18px}.mark{padding:7px}.right #lang{max-width:110px;font-size:13px}.right .btn{display:none}
-  nav{display:none}.mobile-bottom-nav{display:grid}
-  .wrap{width:min(100% - 28px,1180px)}
-  .hero{grid-template-columns:1fr;gap:26px;padding:32px 0 26px}.hero h1,h1{font-size:36px;line-height:1.12;letter-spacing:-.045em}.lead{font-size:15px;line-height:1.65;margin:16px 0}.eyebrow{font-size:10px;margin-bottom:9px}.how-box{margin-top:14px;padding:14px}.global-search{margin-top:14px}.search-row{padding:6px;border-radius:13px}.search-row input{font-size:16px;min-height:44px}.search-row .btn{min-height:44px}.search-results{top:60px;max-height:50vh}
-  .actions{grid-template-columns:1fr 1fr;gap:9px;margin-top:17px}.action{padding:14px;border-radius:14px;min-height:132px}.action strong{font-size:16px}.action small{font-size:12px}.go-row{align-items:flex-end}.go-row>.muted{font-size:10px;max-width:65%}.go-btn{padding:9px 10px}
-  .visual{padding:10px;border-radius:18px}.robot{height:245px;font-size:76px;border-radius:14px}.tag{font-size:9px;padding:7px 8px}.t1{top:12px;left:12px}.t2{right:12px;bottom:12px}
-  .bar{grid-template-columns:1fr 1fr;gap:18px;padding:22px 14px}.bar strong{font-size:20px}.bar span{font-size:10px}
-  .section{padding:42px 0}.section h2{font-size:29px}.cards,.listings,.experts,.companies{grid-template-columns:1fr;gap:12px}.card{padding:18px;border-radius:16px}
-  .pagehead{padding:30px 0 20px}.pagehead h1{font-size:32px;line-height:1.18}.pagehead p{margin-bottom:0}
-  .grid2,.company-hero,.company-detail-grid{grid-template-columns:1fr;gap:14px;padding-bottom:34px}.company-hero{padding-bottom:20px}.company-panel,.company-detail-main,.company-detail-side{padding:18px;border-radius:16px}.company-title-row{align-items:flex-start}.company-detail-main h1{font-size:27px}.info-grid,.formgrid{grid-template-columns:1fr}.inquiry-list{padding-bottom:35px}
-  input,select,textarea{font-size:16px;min-height:44px}.btn{min-height:44px}.methods .method{min-height:64px}.quote{gap:10px}.quote strong{white-space:nowrap}
-  footer{display:none}.toast{left:14px;right:14px;bottom:calc(84px + env(safe-area-inset-bottom));text-align:center}
-}
-@media(max-width:420px){
-  .actions{grid-template-columns:1fr}.action{min-height:auto}.hero h1,h1{font-size:34px}.sheet-grid{grid-template-columns:1fr 1fr}.mobile-tab{font-size:9px}.mobile-tab .mi{font-size:19px}
-}
-
-
-/* v8 About / mission */
-.rq-mission-home{padding-top:0;padding-bottom:70px}.mission-home-card{background:linear-gradient(135deg,#fff 0%,#f4f6ff 100%);border:1px solid #dfe4ff;border-radius:24px;padding:34px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center}.mission-home-card h2{font-size:34px;letter-spacing:-.04em;margin:0 0 10px}.mission-lead{font-size:15px;margin:0;max-width:780px}.big-mission-btn{min-width:160px;min-height:50px}.about-hero{padding:78px 0 55px;max-width:1000px}.about-hero h1{font-size:58px;max-width:880px}.about-hero .lead{max-width:820px}.about-promise{margin-top:28px;border-left:4px solid var(--blue);background:#fff;border-radius:0 14px 14px 0;padding:18px 20px;display:grid;gap:5px}.about-promise strong{font-size:15px}.about-promise span{color:var(--muted);font-size:13px;line-height:1.6}.about-section{padding:65px 0}.about-heading{max-width:760px;margin-bottom:30px}.about-heading h2,.about-dark h2{font-size:40px;letter-spacing:-.04em;margin:0 0 12px}.about-heading p,.about-dark p{color:var(--muted);line-height:1.75;margin:0}.principle-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.principle-card{background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;min-height:210px}.principle-card>span{font-size:10px;font-weight:800;color:var(--blue);background:var(--soft);padding:6px 8px;border-radius:999px}.principle-card h3{font-size:19px;margin:20px 0 9px}.principle-card p{font-size:13px;color:var(--muted);line-height:1.65;margin:0}.about-dark{background:var(--dark);color:#fff;padding:65px 0}.about-dark-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}.about-dark p{color:#b9c2d0}.light-eye{color:#8da2ff}.operating-list{display:grid;gap:0;border:1px solid #344054;border-radius:18px;overflow:hidden}.operating-list div{display:grid;grid-template-columns:48px 1fr;gap:15px;padding:18px;border-bottom:1px solid #344054;align-items:center}.operating-list div:last-child{border-bottom:0}.operating-list b{color:#8da2ff;font-size:11px}.operating-list span{font-size:14px;line-height:1.55}.ecosystem-row{display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;gap:12px;align-items:center}.ecosystem-row>div{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px;text-align:center;min-height:105px;display:flex;flex-direction:column;justify-content:center}.ecosystem-row>span{text-align:center;color:var(--blue);font-size:22px}.ecosystem-row strong{font-size:15px}.ecosystem-row small{color:var(--muted);margin-top:6px;line-height:1.45}.about-cta{margin-top:35px;background:#fff;border:1px solid var(--line);border-radius:18px;padding:24px;display:flex;justify-content:space-between;gap:25px;align-items:center}.about-cta h3{margin:0 0 5px}.about-cta p{margin:0;color:var(--muted);font-size:13px}.about-cta .btn{min-width:150px}
-@media(max-width:980px){.principle-grid{grid-template-columns:1fr 1fr}.about-dark-grid{grid-template-columns:1fr;gap:30px}.ecosystem-row{grid-template-columns:1fr 32px 1fr;}.ecosystem-row>span:nth-of-type(2){display:none}.ecosystem-row>div:nth-of-type(3),.ecosystem-row>div:nth-of-type(4){margin-top:8px}}
-@media(max-width:768px){.rq-mission-home{padding-bottom:42px}.mission-home-card{grid-template-columns:1fr;padding:22px;border-radius:18px;gap:18px}.mission-home-card h2{font-size:27px}.big-mission-btn{width:100%}.about-hero{padding:38px 0 30px}.about-hero h1{font-size:35px}.about-section{padding:42px 0}.about-heading h2,.about-dark h2{font-size:29px}.principle-grid{grid-template-columns:1fr}.principle-card{min-height:auto}.about-dark{padding:44px 0}.ecosystem-row{grid-template-columns:1fr}.ecosystem-row>span{transform:rotate(90deg);height:20px}.ecosystem-row>span:nth-of-type(2){display:block}.about-cta{align-items:stretch;flex-direction:column}.about-cta .btn{width:100%}}
-
-
-/* v9 — locale-aware, Apple-like home hierarchy */
-.hero-v9{min-height:600px;display:flex;align-items:center;justify-content:center;padding:92px 0 78px;text-align:center}
-.hero-copy-v9{width:min(900px,100%);margin:auto}
-.localized-hero{font-size:72px;line-height:1.02;letter-spacing:-.06em;max-width:900px;margin:0 auto}
-.localized-hero span{color:var(--blue)}
-.hero-lead-v9{max-width:760px;margin:24px auto 0;font-size:19px}
-.hero-primary-actions{display:flex;justify-content:center;gap:12px;margin-top:30px}
-.hero-link{border-radius:999px;padding:13px 20px;font-weight:800;border:1px solid var(--line);display:flex;gap:14px;align-items:center;justify-content:center;min-width:150px}
-.hero-link.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
-.hero-link.secondary{background:#fff;color:var(--text)}
-.hero-link b{font-size:17px;font-weight:500}
-.global-search-v9{width:min(680px,100%);margin:30px auto 0;text-align:left}
-.quick-section-v9{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:66px 0 72px}
-.quick-heading-v9{display:flex;justify-content:space-between;align-items:end;margin-bottom:26px}
-.quick-heading-v9 h2{font-size:38px;letter-spacing:-.04em;margin:0}
-.quick-heading-v9 p{color:var(--muted);margin:10px 0 0}
-.quick-grid-v9{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.quick-card-v9{border:1px solid var(--line);background:#fff;border-radius:16px;padding:21px;text-align:left;display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;transition:.18s}
-.quick-card-v9:hover{transform:translateY(-2px);border-color:#b8c0cc;box-shadow:0 10px 28px rgba(16,24,40,.06)}
-.quick-card-v9 .quick-no{font-size:10px;font-weight:800;color:var(--blue);background:var(--soft);padding:7px;border-radius:999px}
-.quick-card-v9 strong{display:block;font-size:16px;margin-bottom:5px}.quick-card-v9 small{display:block;color:var(--muted);line-height:1.45}.quick-card-v9 b{font-size:20px;font-weight:400;color:#667085}
-html[lang="ko"] .localized-hero{font-size:70px;line-height:1.08;letter-spacing:-.065em}
-html[lang="ja"] .localized-hero{font-size:68px;line-height:1.12;letter-spacing:-.045em;font-weight:700}
-html[lang="zh"] .localized-hero{font-size:70px;line-height:1.1;letter-spacing:-.04em}
-html[lang="en"] .localized-hero{font-size:72px;line-height:1.01;letter-spacing:-.055em}
-@media(max-width:980px){.quick-grid-v9{grid-template-columns:1fr 1fr}.localized-hero,html[lang="ko"] .localized-hero,html[lang="ja"] .localized-hero,html[lang="zh"] .localized-hero,html[lang="en"] .localized-hero{font-size:58px}.hero-v9{min-height:auto;padding:75px 0 62px}}
-@media(max-width:620px){.hero-v9{padding:55px 0 44px}.localized-hero,html[lang="ko"] .localized-hero,html[lang="ja"] .localized-hero,html[lang="zh"] .localized-hero,html[lang="en"] .localized-hero{font-size:43px;line-height:1.08}.hero-lead-v9{font-size:16px}.hero-primary-actions{flex-direction:column;align-items:stretch}.hero-link{width:100%}.quick-section-v9{padding:44px 0}.quick-heading-v9 h2{font-size:30px}.quick-grid-v9{grid-template-columns:1fr}.my-roboquo{display:none}}
-
-
-/* v10: fixed global English brand line + locale-specific supporting copy */
-.hero-v10-brand{
-  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;
-  font-size:68px!important;line-height:1.04!important;letter-spacing:-.058em!important;
-  font-weight:800;margin:0;max-width:1000px;color:var(--text)
-}
-.hero-v10-brand span{color:var(--blue)}
-.hero-local-copy{margin:22px 0 0;font-size:21px;line-height:1.55;font-weight:650;color:#344054;max-width:760px}
-.hero-support-copy{margin:8px 0 0;font-size:15px;line-height:1.7;color:var(--muted);max-width:760px}
-html[lang="ja"] .hero-local-copy{font-family:"Hiragino Sans","Yu Gothic UI","Yu Gothic","Meiryo","Noto Sans JP",sans-serif;font-weight:600;letter-spacing:-.02em}
-html[lang="ko"] .hero-local-copy{font-family:"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;font-weight:650;letter-spacing:-.025em}
-html[lang="zh"] .hero-local-copy{font-family:"PingFang SC","Microsoft YaHei","Noto Sans SC",sans-serif;font-weight:600}
-@media(max-width:820px){.hero-v10-brand{font-size:54px!important}.hero-local-copy{font-size:19px}}
-@media(max-width:620px){.hero-v10-brand{font-size:42px!important;line-height:1.07!important}.hero-local-copy{font-size:18px;margin-top:18px}.hero-support-copy{font-size:14px}}
-
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>RoboQuo — Robots. Services. Experts. One place.</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="apple-touch-icon" href="icon-192.svg" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<header>
-<div class="brand" onclick="go('home')" style="cursor:pointer"><span class="mark">RQ</span>RoboQuo</div>
-<nav>
-<a onclick="go('market')" data-i18n="navRobots"></a>
-<a onclick="go('projects')" data-i18n="navProjects"></a>
-<a onclick="go('experts')" data-i18n="navExperts"></a>
-<a onclick="go('companies')" data-i18n="navCompanies"></a>
-<a onclick="go('about')" data-i18n="navAbout"></a>
-<a onclick="go('cross')" data-i18n="navCross"></a>
-</nav>
-<div class="right"><select id="lang"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">EN</option><option value="zh">中文</option></select><button class="btn ghost my-roboquo" onclick="go('inquiries')" data-i18n="myRoboQuo"></button><button class="btn dark" onclick="go('sell')" data-i18n="sellShort"></button></div>
+<header class="site-header">
+  <a class="brand" href="#home" data-route="home" aria-label="RoboQuo home"><span class="rq">RQ</span><span>RoboQuo</span></a>
+  <nav class="desktop-nav">
+    <a href="#robots" data-route="robots" data-i18n="navRobots">로봇</a>
+    <a href="#categories" data-route="categories" data-i18n="navCategories">카테고리</a>
+    <a href="#makers" data-route="makers" data-i18n="navMakers">메이커</a>
+    <a href="#companies" data-route="companies" data-i18n="navCompanies">업체 찾기</a>
+    <a href="#projects" data-route="projects" data-i18n="navProjects">프로젝트</a>
+    <a href="#about" data-route="about" data-i18n="navAbout">RoboQuo 소개</a>
+  </nav>
+  <div class="header-actions">
+    <select id="languageSelect" class="lang" aria-label="Language">
+      <option value="ko">한국어</option><option value="ja">日本語</option><option value="en">English</option><option value="zh">中文</option>
+    </select>
+    <button class="text-btn" id="myRoboquoBtn" data-i18n="myRoboquo">내 RoboQuo</button>
+    <button class="primary small" data-action="sell" data-i18n="sellRobot">로봇 판매</button>
+  </div>
 </header>
+
 <main>
 <section id="home" class="page active">
-  <div class="wrap hero-v9">
-    <div class="hero-copy-v9">
-      <div class="eyebrow">THE ROBOT INDUSTRY MARKETPLACE</div>
-      <h1 class="hero-v10-brand">Robots. Services. Experts.<br><span>One place.</span></h1>
-      <p class="hero-local-copy" data-i18n="heroLocalCopy"></p>
-      <p class="hero-support-copy" data-i18n="heroSupportCopy"></p>
-      <div class="hero-primary-actions">
-        <button class="hero-link primary" onclick="go('market')"><span data-i18n="heroBuy"></span><b>→</b></button>
-        <button class="hero-link secondary" onclick="go('sell')"><span data-i18n="heroSell"></span><b>→</b></button>
+  <div class="hero wrap">
+    <div class="hero-copy">
+      <div class="kicker">ROBOQUO</div>
+      <h1>Robots. Services. Experts.<br><span>One place.</span></h1>
+      <p class="local-headline" data-i18n="localHeadline">로봇 거래와 서비스를 한 곳에서</p>
+      <p class="hero-desc" data-i18n="heroDesc">로봇을 찾고, 판매하고, 필요한 주변기기와 업체·전문가까지 쉽게 연결합니다.</p>
+      <div class="hero-search">
+        <div class="search-field"><span>⌕</span><input id="globalSearch" data-i18n-placeholder="searchPlaceholder" placeholder="FANUC CRX, OnRobot RG2, 로봇 티칭..." /></div>
+        <button class="primary" id="searchBtn" data-i18n="search">검색</button>
       </div>
-      <div class="global-search global-search-v9">
-        <div class="search-row"><input id="globalSearch" data-i18n-placeholder="globalSearchPh"><button class="btn blue" id="globalSearchBtn" data-i18n="searchNow"></button></div>
-        <div class="top-search-note" data-i18n="searchHint"></div>
-        <div id="globalSearchResults" class="search-results hidden"></div>
+      <div class="hero-actions">
+        <button class="primary big" data-route="robots" data-i18n="findRobots">로봇 찾기</button>
+        <button class="secondary big" data-action="sell" data-i18n="sellRobotNow">로봇 판매하기</button>
       </div>
+      <p class="access-note"><strong data-i18n="browseFree">둘러보기는 자유롭게.</strong> <span data-i18n="joinWhenNeeded">문의·비딩할 때만 간단히 가입하세요.</span></p>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 720 620" role="img" aria-label="Industrial robot illustration">
+        <defs><linearGradient id="g1" x1="0" x2="1"><stop stop-color="#f4f5f7"/><stop offset="1" stop-color="#d9dee7"/></linearGradient></defs>
+        <rect x="0" y="0" width="720" height="620" rx="36" fill="url(#g1)"/>
+        <ellipse cx="365" cy="532" rx="250" ry="42" fill="#c8ced8" opacity=".55"/>
+        <rect x="278" y="430" width="175" height="82" rx="26" fill="#f0b51c"/>
+        <circle cx="360" cy="414" r="60" fill="#f6c83f" stroke="#d69e09" stroke-width="18"/>
+        <rect x="329" y="240" width="68" height="190" rx="30" fill="#f2b71d" transform="rotate(-20 363 335)"/>
+        <circle cx="310" cy="248" r="57" fill="#f6c83f" stroke="#d69e09" stroke-width="17"/>
+        <rect x="305" y="210" width="210" height="62" rx="28" fill="#f2b71d" transform="rotate(-12 410 241)"/>
+        <circle cx="515" cy="201" r="48" fill="#f6c83f" stroke="#d69e09" stroke-width="15"/>
+        <rect x="500" y="170" width="135" height="48" rx="22" fill="#f2b71d" transform="rotate(38 568 194)"/>
+        <rect x="606" y="214" width="63" height="75" rx="14" fill="#202938" transform="rotate(38 638 251)"/>
+        <rect x="28" y="28" width="156" height="44" rx="12" fill="#111827"/><text x="106" y="56" text-anchor="middle" fill="white" font-size="15" font-family="Arial" font-weight="700">AI ROBOT ID</text>
+        <rect x="472" y="526" width="214" height="50" rx="13" fill="#2848ff"/><text x="579" y="557" text-anchor="middle" fill="white" font-size="15" font-family="Arial" font-weight="700">FANUC M-20iA · 94%</text>
+      </svg>
     </div>
   </div>
 
-  <section class="quick-section-v9">
-    <div class="wrap">
-      <div class="quick-heading-v9">
-        <div><div class="eyebrow" data-i18n="quickEyebrow"></div><h2 data-i18n="quickTitle"></h2><p data-i18n="quickSub"></p></div>
-      </div>
-      <div class="quick-grid-v9">
-        <button class="quick-card-v9" onclick="go('market')"><span class="quick-no">01</span><div><strong data-i18n="a1"></strong><small data-i18n="a1s"></small></div><b>→</b></button>
-        <button class="quick-card-v9" onclick="go('sell')"><span class="quick-no">02</span><div><strong data-i18n="a2"></strong><small data-i18n="a2s"></small></div><b>→</b></button>
-        <button class="quick-card-v9" onclick="go('experts')"><span class="quick-no">03</span><div><strong data-i18n="a3"></strong><small data-i18n="a3s"></small></div><b>→</b></button>
-        <button class="quick-card-v9" onclick="go('projects')"><span class="quick-no">04</span><div><strong data-i18n="a4"></strong><small data-i18n="a4s"></small></div><b>→</b></button>
-        <button class="quick-card-v9" onclick="go('companies')"><span class="quick-no">05</span><div><strong data-i18n="a5"></strong><small data-i18n="a5s"></small></div><b>→</b></button>
-        <button class="quick-card-v9" onclick="go('cross')"><span class="quick-no">06</span><div><strong data-i18n="a6"></strong><small data-i18n="a6s"></small></div><b>→</b></button>
-      </div>
+  <div class="principle-bar">
+    <div><strong data-i18n="browse">Browse</strong><span data-i18n="browseSub">가입 없이 검색</span></div>
+    <div><strong data-i18n="join">Join</strong><span data-i18n="joinSub">필요할 때 이메일 가입</span></div>
+    <div><strong data-i18n="verify">Verify</strong><span data-i18n="verifySub">판매·정산 시 회사 확인</span></div>
+    <div><strong data-i18n="trade">Trade</strong><span data-i18n="tradeSub">비딩·문의·서비스 연결</span></div>
+  </div>
+
+  <section class="wrap section-block">
+    <div class="section-title-row"><div><div class="kicker" data-i18n="startHere">START HERE</div><h2 data-i18n="whatNeed">무엇이 필요하신가요?</h2></div></div>
+    <div class="start-grid">
+      <button class="start-card" data-route="robots"><span class="start-icon">⌕</span><div><strong data-i18n="buyRobot">로봇 구매</strong><small data-i18n="buyRobotSub">중고·신품 로봇 검색</small></div><b>→</b></button>
+      <button class="start-card" data-action="sell"><span class="start-icon">＋</span><div><strong data-i18n="sellRobot">로봇 판매</strong><small data-i18n="sellRobotSub">고정가 또는 비딩</small></div><b>→</b></button>
+      <button class="start-card" data-route="makers"><span class="start-icon">⌘</span><div><strong data-i18n="findPeripheral">주변기기 찾기</strong><small data-i18n="findPeripheralSub">그리퍼·비전·툴체인저</small></div><b>→</b></button>
+      <button class="start-card" data-route="companies"><span class="start-icon">▦</span><div><strong data-i18n="findCompany">업체 찾기</strong><small data-i18n="findCompanySub">대리점·SI·서비스업체</small></div><b>→</b></button>
+      <button class="start-card" data-route="projects"><span class="start-icon">↗</span><div><strong data-i18n="postProject">프로젝트 등록</strong><small data-i18n="postProjectSub">티칭·설치·수리 견적</small></div><b>→</b></button>
+      <button class="start-card" data-route="categories"><span class="start-icon">◫</span><div><strong data-i18n="browseCategory">카테고리 보기</strong><small data-i18n="browseCategorySub">작업·형태별로 쉽게 찾기</small></div><b>→</b></button>
     </div>
   </section>
 
-  <div class="bar"><div><strong>AI</strong><span data-i18n="metric1"></span></div><div><strong>3</strong><span data-i18n="metric2"></span></div><div><strong>4</strong><span data-i18n="metric3"></span></div><div><strong>B2B</strong><span data-i18n="metric4"></span></div></div>
+  <section class="wrap section-block compact">
+    <div class="section-title-row"><div><div class="kicker" data-i18n="popularCategories">POPULAR CATEGORIES</div><h2 data-i18n="robotMadeSimple">어려운 로봇도 용도별로 쉽게</h2></div><button class="link-btn" data-route="categories" data-i18n="viewAll">전체 보기 →</button></div>
+    <div class="category-strip" id="homeCategoryStrip"></div>
+  </section>
 
-  <div class="wrap section rq-mission-home">
-    <div class="mission-home-card">
-      <div><div class="eyebrow" data-i18n="missionEyebrow"></div><h2 data-i18n="missionHomeTitle"></h2><p class="lead mission-lead" data-i18n="missionHomeBody"></p></div>
-      <button class="btn dark big-mission-btn" onclick="go('about')"><span data-i18n="learnAbout"></span> →</button>
+  <section class="wrap section-block compact">
+    <div class="section-title-row"><div><div class="kicker">MARKET</div><h2 data-i18n="latestRobots">최근 로봇 매물</h2></div><button class="link-btn" data-route="robots" data-i18n="viewMarket">마켓 보기 →</button></div>
+    <div class="listing-grid" id="homeListings"></div>
+  </section>
+
+  <section class="wrap ecosystem-callout">
+    <div><div class="kicker">ROBOT ECOSYSTEM</div><h2 data-i18n="ecosystemTitle">로봇만 사는 곳이 아닙니다</h2><p data-i18n="ecosystemBody">로봇 메이커, 그리퍼·EOAT 메이커, 대리점, SI, 전문가, 물류까지 한 거래 안에서 연결하는 것이 RoboQuo의 목표입니다.</p></div>
+    <div class="eco-flow"><span>Robot Maker</span><b>→</b><span>EOAT</span><b>→</b><span>Seller</span><b>→</b><span>SI / Expert</span><b>→</b><span>Buyer</span></div>
+  </section>
+</section>
+
+<section id="categories" class="page">
+  <div class="wrap page-head"><div class="kicker">CATEGORIES</div><h1 data-i18n="categoryTitle">로봇을 용도별로 찾기</h1><p data-i18n="categoryDesc">메이커를 몰라도 괜찮습니다. 하려는 작업이나 로봇 형태를 선택하세요.</p></div>
+  <div class="wrap category-grid" id="categoryGrid"></div>
+</section>
+
+<section id="robots" class="page">
+  <div class="wrap page-head split"><div><div class="kicker">ROBOQUO MARKET</div><h1 data-i18n="marketTitle">로봇 마켓</h1><p data-i18n="marketDesc">기업이 보유한 중고·신품 로봇을 검색하고 직접 문의하거나 가격을 제안할 수 있습니다.</p></div><button class="primary" data-action="sell" data-i18n="sellRobot">로봇 판매</button></div>
+  <div class="wrap market-toolbar">
+    <div class="search-field"><span>⌕</span><input id="marketSearch" data-i18n-placeholder="marketSearchPh" placeholder="메이커, 모델, 지역 검색" /></div>
+    <select id="categoryFilter"><option value="" data-i18n="allCategories">모든 카테고리</option></select>
+    <select id="countryFilter"><option value="" data-i18n="allCountries">모든 국가</option><option>Japan</option><option>Korea</option><option>Germany</option><option>USA</option></select>
+    <select id="saleFilter"><option value="" data-i18n="allSaleTypes">모든 판매방식</option><option value="fixed" data-i18n="fixedPrice">고정가</option><option value="bid" data-i18n="bidding">비딩</option></select>
+  </div>
+  <div class="wrap listing-grid market" id="marketListings"></div>
+</section>
+
+<section id="makers" class="page">
+  <div class="wrap page-head"><div class="kicker">MANUFACTURERS & ECOSYSTEM</div><h1 data-i18n="makerTitle">메이커에서 시작해도 됩니다</h1><p data-i18n="makerDesc">로봇 메이커를 선택하면 주요 모델, 주변기기, 판매업체와 서비스업체까지 연결합니다.</p></div>
+  <div class="wrap maker-tabs"><button class="tab active" data-maker-tab="robot" data-i18n="robotMakers">로봇 메이커</button><button class="tab" data-maker-tab="eoat" data-i18n="eoatMakers">그리퍼·EOAT</button></div>
+  <div class="wrap maker-grid" id="makerGrid"></div>
+  <div class="wrap compatibility-demo">
+    <div><div class="kicker">COMPATIBILITY</div><h2 data-i18n="compatTitle">로봇과 주변기기를 연결</h2><p data-i18n="compatBody">예: FANUC CRX를 선택하면 호환 가능한 그리퍼, 비전, 툴체인저와 설치 가능한 업체를 한 번에 확인하는 구조입니다.</p></div>
+    <div class="compat-path"><span>FANUC CRX-10iA/L</span><b>→</b><span>OnRobot / Robotiq / SCHUNK</span><b>→</b><span data-i18n="localSupport">지역별 판매·설치 지원</span></div>
+  </div>
+</section>
+
+<section id="companies" class="page">
+  <div class="wrap page-head split"><div><div class="kicker">COMPANY DIRECTORY</div><h1 data-i18n="companyTitle">업체를 찾고 바로 문의</h1><p data-i18n="companyDesc">로봇 대리점, 중고 로봇 업체, SI, EOAT 업체, 물류·서비스업체를 지역과 기술로 찾습니다.</p></div><button class="secondary" id="registerCompanyBtn" data-i18n="registerCompany">회사 등록</button></div>
+  <div class="wrap market-toolbar company-tools"><div class="search-field"><span>⌕</span><input id="companySearch" data-i18n-placeholder="companySearchPh" placeholder="회사명, FANUC, Yaskawa, Vision..." /></div><select id="companyTypeFilter"><option value="" data-i18n="allCompanyTypes">모든 업체 유형</option><option>Robot Dealer</option><option>Used Robot Dealer</option><option>System Integrator</option><option>EOAT Supplier</option><option>Logistics</option></select></div>
+  <div class="wrap company-grid" id="companyGrid"></div>
+</section>
+
+<section id="projects" class="page">
+  <div class="wrap page-head"><div class="kicker">ROBOQUO MATCH</div><h1 data-i18n="projectTitle">필요한 작업을 올리고 견적 받기</h1><p data-i18n="projectDesc">티칭, 설치, 시운전, PLC, 비전, 수리, 교육을 프로젝트로 등록하면 적합한 업체가 가격을 제안합니다.</p></div>
+  <div class="wrap project-layout">
+    <form id="projectForm" class="panel">
+      <div class="step-label">01</div><h2 data-i18n="projectDetails">프로젝트 정보</h2>
+      <div class="form-grid"><label><span data-i18n="workType">작업 종류</span><select id="projectType"><option>Robot Teaching</option><option>Installation / Commissioning</option><option>PLC Programming</option><option>Vision Setup</option><option>Repair / Troubleshooting</option><option>Training</option></select></label><label><span data-i18n="robotModel">로봇 모델</span><input value="Yaskawa GP12 / YRC1000" /></label><label><span data-i18n="location">지역</span><input value="Nagoya, Japan" /></label><label><span data-i18n="preferredDate">희망일</span><input type="date" value="2026-10-12" /></label></div>
+      <label><span data-i18n="priceMethod">가격 방식</span><select><option data-i18n="receiveBids">견적/비딩 받기</option><option data-i18n="setBudget">예산 직접 설정</option></select></label>
+      <label><span data-i18n="description">작업 내용</span><textarea rows="5" data-i18n-placeholder="projectPh" placeholder="Pick & Place 티칭, I/O 설정, 생산 시작 지원"></textarea></label>
+      <button class="primary wide" type="submit" data-i18n="postAndMatch">등록하고 업체 매칭</button>
+    </form>
+    <div class="panel">
+      <div class="step-label">02</div><h2 data-i18n="sampleBids">예상 견적 방식</h2><p class="muted" data-i18n="sampleBidsDesc">가격만이 아니라 경험, 지역, 평가를 함께 보고 선택합니다.</p>
+      <div class="bid-row"><div><strong>Aichi Robot Systems</strong><small>Yaskawa · 48 jobs · ★4.9</small></div><div><b>97%</b><strong>¥240,000</strong></div></div>
+      <div class="bid-row"><div><strong>Takumi Automation</strong><small>YRC1000 · Vision · ★4.8</small></div><div><b>94%</b><strong>¥220,000</strong></div></div>
+      <div class="bid-row"><div><strong>Engineer K.</strong><small>Yaskawa / FANUC · ★4.9</small></div><div><b>92%</b><strong>¥190,000</strong></div></div>
     </div>
   </div>
 </section>
-<section id="market" class="page"><div class="wrap pagehead"><div class="eyebrow">ROBOQUO MARKET</div><h1 data-i18n="marketTitle"></h1><p class="muted" data-i18n="marketSub"></p></div><div class="wrap listings" id="listings"></div></section>
-<section id="sell" class="page"><div class="wrap pagehead"><div class="eyebrow">SELL WITH ROBOQUO</div><h1 data-i18n="sellTitle"></h1><p class="muted" data-i18n="sellSub"></p></div><div class="wrap grid2"><div class="card"><span class="step">01</span><h2 data-i18n="uploadTitle"></h2><input type="file" accept="image/*,video/*" multiple><p class="muted" data-i18n="uploadDesc"></p><button class="btn" onclick="mockAI()" data-i18n="analyze"></button><div id="aires" class="estimate hidden"><small data-i18n="aiDetected"></small><strong>FANUC M-20iA/20M</strong><span>2020 · R-30iB Plus · 20 kg · 1811 mm</span></div></div><div class="card"><span class="step">02</span><h2 data-i18n="sellMethodTitle"></h2><div class="methods"><label class="method"><input type="radio" name="m" value="ai" checked onchange="method()"><div><strong data-i18n="m1"></strong><div class="muted" data-i18n="m1s"></div></div></label><label class="method"><input type="radio" name="m" value="fixed" onchange="method()"><div><strong data-i18n="m2"></strong><div class="muted" data-i18n="m2s"></div></div></label><label class="method"><input type="radio" name="m" value="bid" onchange="method()"><div><strong data-i18n="m3"></strong><div class="muted" data-i18n="m3s"></div></div></label></div><div id="methodbox" class="estimate"></div><button class="btn dark" style="width:100%" onclick="toast(T[LANG].ready)" data-i18n="continue"></button></div></div></section>
-<section id="projects" class="page"><div class="wrap pagehead"><div class="eyebrow">ROBOQUO MATCH</div><h1 data-i18n="projectTitle"></h1><p class="muted" data-i18n="projectSub"></p></div><div class="wrap grid2"><div class="card"><span class="step">01</span><h2 data-i18n="projectDetails"></h2><div class="formgrid"><label><span data-i18n="work"></span><select><option data-i18n="optTeaching"></option><option data-i18n="optInstall"></option><option>PLC</option><option data-i18n="optVision"></option><option data-i18n="optRepair"></option><option data-i18n="optTraining"></option></select></label><label><span data-i18n="robot"></span><input value="Yaskawa GP12 / YRC1000"></label><label><span data-i18n="location"></span><input value="Nagoya, Japan"></label><label><span data-i18n="duration"></span><input value="3 days"></label><label><span data-i18n="date"></span><input type="date" value="2026-10-12"></label><label><span data-i18n="priceMode"></span><select><option data-i18n="receiveBids"></option><option data-i18n="setBudget"></option></select></label></div><label style="margin-top:12px"><span data-i18n="description"></span><textarea rows="5" data-i18n-placeholder="projectPlaceholder"></textarea></label><button class="btn dark" style="width:100%;margin-top:14px" onclick="toast(T[LANG].matched)" data-i18n="findProviders"></button></div><div class="card"><span class="step">02</span><h2 data-i18n="matchedProviders"></h2><p class="muted" data-i18n="matchedSub"></p><div class="bid"><span>Aichi Robot Systems<br><small class="muted">Yaskawa · 48 jobs · ★4.9</small></span><span><b class="match">97%</b><br>¥240,000</span></div><div class="bid"><span>Takumi Automation<br><small class="muted">YRC1000 · Vision · ★4.8</small></span><span><b class="match">94%</b><br>¥220,000</span></div><div class="bid"><span>Engineer K.<br><small class="muted">Yaskawa/FANUC · ★4.9</small></span><span><b class="match">92%</b><br>¥190,000</span></div></div></div></section>
-<section id="experts" class="page"><div class="wrap pagehead"><div class="eyebrow">ROBOQUO EXPERTS</div><h1 data-i18n="expertTitle"></h1><p class="muted" data-i18n="expertSub"></p></div><div class="wrap experts" id="expertgrid"></div></section>
-<section id="companies" class="page"><div class="wrap pagehead"><div class="eyebrow">ROBOQUO COMPANIES</div><h1 data-i18n="companyTitle"></h1><p class="muted" data-i18n="companySub"></p></div><div class="wrap company-hero"><div class="company-panel"><h2 data-i18n="companyFindTitle"></h2><p class="muted" data-i18n="companyFindBody"></p><div class="company-actions"><button class="btn dark" onclick="toast(T[LANG].companyInquiry)" data-i18n="askCompany"></button><button class="btn ghost" onclick="toast(T[LANG].companyRegister)" data-i18n="registerCompany"></button></div></div><div class="company-panel"><h2 data-i18n="companyContactTitle"></h2><div class="formgrid"><label><span data-i18n="companyName"></span><input data-i18n-placeholder="companyNamePh"></label><label><span data-i18n="contactPerson"></span><input data-i18n-placeholder="contactPersonPh"></label></div><label style="margin-top:12px"><span data-i18n="email"></span><input value="info@company.com"></label><label style="margin-top:12px"><span data-i18n="inquiry"></span><textarea rows="4" data-i18n-placeholder="companyInquiryPh"></textarea></label><button class="btn blue" style="width:100%;margin-top:14px" onclick="submitGeneralInquiry()" data-i18n="sendInquiry"></button></div></div><div class="wrap companies" id="companygrid"></div></section>
-<section id="companydetail" class="page"><div class="wrap detail-wrap"><button class="back-btn" onclick="go('companies')">← <span data-i18n="backCompanies"></span></button><div id="companyDetailContent"></div></div></section>
-<section id="inquiries" class="page"><div class="wrap pagehead"><div class="eyebrow">ROBOQUO INQUIRIES</div><h1 data-i18n="inquiryHistoryTitle"></h1><p class="muted" data-i18n="inquiryHistorySub"></p></div><div class="wrap inquiry-list" id="inquiryList"></div></section>
+
 <section id="about" class="page">
-  <div class="wrap about-hero">
-    <div class="eyebrow" data-i18n="aboutEyebrow"></div>
-    <h1 data-i18n-html="aboutTitle"></h1>
-    <p class="lead" data-i18n="aboutLead"></p>
-    <div class="about-promise"><strong data-i18n="aboutPromiseTitle"></strong><span data-i18n="aboutPromiseBody"></span></div>
+  <div class="wrap about-hero"><div class="kicker">ABOUT ROBOQUO</div><h1 data-i18n="aboutTitle">로봇 거래의 장벽을 낮추는 회사</h1><p data-i18n="aboutLead">RoboQuo는 로봇을 사고파는 것뿐 아니라 주변기기, 업체, 전문가, 물류까지 연결해 복잡한 로봇 거래를 단순하게 만드는 것을 목표로 합니다.</p></div>
+  <div class="wrap name-story">
+    <div><div class="kicker">WHY ROBOQUO?</div><h2>Robo + Quo</h2></div>
+    <div><p data-i18n="nameStory1"><strong>Robo</strong>는 Robot / Robotics를 뜻합니다.</p><p data-i18n="nameStory2"><strong>Quo</strong>는 브랜드 의미로 “어디로, 어디에서”라는 방향성과 연결의 이미지를 담았습니다.</p><p data-i18n="nameStory3">그래서 <strong>RoboQuo</strong>는 “로봇 생태계가 모이고, 다음 거래로 이어지는 곳”이라는 의미로 사용합니다.</p></div>
   </div>
-
-  <div class="wrap about-section">
-    <div class="about-heading"><div class="eyebrow" data-i18n="missionEyebrow"></div><h2 data-i18n="missionTitle"></h2><p data-i18n="missionBody"></p></div>
-    <div class="principle-grid">
-      <div class="principle-card"><span>01</span><h3 data-i18n="principle1Title"></h3><p data-i18n="principle1Body"></p></div>
-      <div class="principle-card"><span>02</span><h3 data-i18n="principle2Title"></h3><p data-i18n="principle2Body"></p></div>
-      <div class="principle-card"><span>03</span><h3 data-i18n="principle3Title"></h3><p data-i18n="principle3Body"></p></div>
-      <div class="principle-card"><span>04</span><h3 data-i18n="principle4Title"></h3><p data-i18n="principle4Body"></p></div>
-    </div>
-  </div>
-
-  <div class="about-dark">
-    <div class="wrap about-dark-grid">
-      <div><div class="eyebrow light-eye" data-i18n="operateEyebrow"></div><h2 data-i18n="operateTitle"></h2><p data-i18n="operateBody"></p></div>
-      <div class="operating-list">
-        <div><b>01</b><span data-i18n="operate1"></span></div>
-        <div><b>02</b><span data-i18n="operate2"></span></div>
-        <div><b>03</b><span data-i18n="operate3"></span></div>
-        <div><b>04</b><span data-i18n="operate4"></span></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="wrap about-section">
-    <div class="about-heading"><div class="eyebrow" data-i18n="ecosystemEyebrow"></div><h2 data-i18n="ecosystemTitle"></h2><p data-i18n="ecosystemBody"></p></div>
-    <div class="ecosystem-row">
-      <div><strong data-i18n="ecoBuyers"></strong><small data-i18n="ecoBuyersSub"></small></div><span>↔</span>
-      <div><strong data-i18n="ecoSellers"></strong><small data-i18n="ecoSellersSub"></small></div><span>↔</span>
-      <div><strong data-i18n="ecoExperts"></strong><small data-i18n="ecoExpertsSub"></small></div><span>↔</span>
-      <div><strong data-i18n="ecoPartners"></strong><small data-i18n="ecoPartnersSub"></small></div>
-    </div>
-    <div class="about-cta"><div><h3 data-i18n="aboutCtaTitle"></h3><p data-i18n="aboutCtaBody"></p></div><button class="btn blue" onclick="go('market')" data-i18n="startRoboQuo"></button></div>
-  </div>
+  <div class="wrap values-grid"><div class="value"><span>01</span><h3>Simple</h3><p data-i18n="valueSimple">로봇을 모르는 사람도 사용할 수 있게.</p></div><div class="value"><span>02</span><h3>Transparent</h3><p data-i18n="valueTransparent">가격, 조건, 판매자 정보를 명확하게.</p></div><div class="value"><span>03</span><h3>Trusted</h3><p data-i18n="valueTrusted">거래 단계가 깊어질수록 회사 확인을 강화.</p></div><div class="value"><span>04</span><h3>Global</h3><p data-i18n="valueGlobal">언어와 국가의 장벽을 낮추기.</p></div></div>
+  <div class="wrap membership-model"><div><div class="kicker">MEMBERSHIP MODEL</div><h2 data-i18n="membershipTitle">먼저 사용하고, 필요할 때 가입</h2><p data-i18n="membershipDesc">검색과 열람은 자유롭게. 관심 저장·문의·비딩은 이메일 가입. 판매와 정산은 회사 인증. 불필요한 가입 장벽을 만들지 않습니다.</p></div><div class="membership-steps"><span>Browse freely</span><b>→</b><span>Join when needed</span><b>→</b><span>Verify when trading</span></div></div>
 </section>
-<section id="cross" class="page"><div class="wrap pagehead"><div class="eyebrow">ROBOQUO CROSS-BORDER</div><h1 data-i18n="crossTitle"></h1><p class="muted" data-i18n="crossSub"></p></div><div class="wrap grid2"><div class="card"><span class="step">01</span><h2 data-i18n="routeTitle"></h2><div class="formgrid"><label><span data-i18n="from"></span><input value="Nagoya, Japan"></label><label><span data-i18n="to"></span><input value="Busan, Korea"></label><label><span data-i18n="robot"></span><input value="FANUC M-20iA/20M"></label><label><span data-i18n="weight"></span><input value="250 kg + controller"></label></div><button class="btn dark" style="width:100%;margin-top:14px" onclick="toast(T[LANG].logistics)" data-i18n="getQuotes"></button></div><div class="card"><span class="step">02</span><h2 data-i18n="partnerQuotes"></h2><div class="quote"><span>Japan-Korea Logistics A</span><strong>¥180,000</strong></div><div class="quote"><span>Global Robot Freight</span><strong>¥198,000</strong></div><div class="quote"><span>Industrial Forwarder C</span><strong>¥215,000</strong></div><p class="muted" data-i18n="crossFeatures"></p></div></div><div class="wrap card" style="margin-bottom:70px"><div class="eyebrow" data-i18n="vendorEyebrow"></div><h2 data-i18n="vendorTitle"></h2><p class="muted" data-i18n="vendorBody"></p></div></section>
 </main>
 
-<div id="mobileOverlay" class="mobile-overlay" onclick="closeMobileMenu()"></div>
-<div id="mobileMoreSheet" class="mobile-more-sheet" role="dialog" aria-modal="true">
-  <div class="sheet-handle"></div>
-  <div class="sheet-title" data-i18n="mobileMenuTitle">More</div>
-  <div class="sheet-grid">
-    <button class="sheet-action" onclick="mobileGo('experts')"><span data-i18n="navExperts"></span><small data-i18n="mobileExpertsSub"></small></button>
-    <button class="sheet-action" onclick="mobileGo('companies')"><span data-i18n="navCompanies"></span><small data-i18n="mobileCompaniesSub"></small></button>
-    <button class="sheet-action" onclick="mobileGo('about')"><span data-i18n="navAbout"></span><small data-i18n="mobileAboutSub"></small></button>
-    <button class="sheet-action" onclick="mobileGo('inquiries')"><span data-i18n="navInquiries"></span><small data-i18n="mobileInquiriesSub"></small></button>
-    <button class="sheet-action" onclick="mobileGo('cross')"><span data-i18n="navCross"></span><small data-i18n="mobileCrossSub"></small></button>
-  </div>
-  <div class="sheet-section mobile-lang">
-    <div><strong data-i18n="mobileLanguage"></strong><div class="muted" style="font-size:11px" data-i18n="mobileLanguageSub"></div></div>
-    <select id="mobileLang"><option value="ko">한국어</option><option value="ja">日本語</option><option value="en">EN</option><option value="zh">中文</option></select>
-  </div>
-  <div class="sheet-section">
-    <button id="installAppBtn" class="btn dark" style="width:100%" onclick="installRoboQuo()" data-i18n="installApp"></button>
-    <div id="installHelp" class="mobile-install-help hidden"></div>
-  </div>
+<div class="mobile-nav"><button data-route="home"><span>⌂</span><small data-i18n="home">홈</small></button><button data-route="robots"><span>⌕</span><small data-i18n="navRobots">로봇</small></button><button class="sell-mobile" data-action="sell"><span>＋</span><small data-i18n="sellShort">판매</small></button><button data-route="companies"><span>▦</span><small data-i18n="navCompanies">업체 찾기</small></button><button data-route="makers"><span>⌘</span><small data-i18n="navMakers">메이커</small></button></div>
+
+<div id="modalBackdrop" class="modal-backdrop hidden">
+  <div class="modal" id="modal"></div>
 </div>
-<nav class="mobile-bottom-nav" aria-label="Mobile navigation">
-  <button class="mobile-tab active" data-page="home" onclick="mobileGo('home')"><span class="mi">⌂</span><span data-i18n="mobileHome"></span></button>
-  <button class="mobile-tab" data-page="market" onclick="mobileGo('market')"><span class="mi">⚙</span><span data-i18n="navRobots"></span></button>
-  <button class="mobile-tab sell-tab" data-page="sell" onclick="mobileGo('sell')"><span class="mi">＋</span><span data-i18n="sellShort"></span></button>
-  <button class="mobile-tab" data-page="projects" onclick="mobileGo('projects')"><span class="mi">▣</span><span data-i18n="navProjects"></span></button>
-  <button class="mobile-tab" data-page="more" onclick="openMobileMenu()"><span class="mi">☰</span><span data-i18n="mobileMore"></span></button>
-</nav>
+<div id="toast" class="toast"></div>
 
-<footer><div class="brand"><span class="mark">RQ</span>RoboQuo</div><span data-i18n="footer"></span><span>Prototype v8</span></footer><div id="toast" class="toast"></div>
-<script>
-let LANG='ko';
-const T={ko:{navRobots:'로봇',navProjects:'프로젝트',navExperts:'전문가',navCompanies:'회사',navCross:'해외거래',sellShort:'판매',eyebrow:'로봇 산업 마켓플레이스',heroTitle:'로봇·서비스·전문가를<br><span>한 곳에서.</span>',heroText:'로봇 매매부터 티칭·설치 지원, 해외거래까지. 복잡했던 로봇 거래를 더 쉽게 만듭니다.',howTitle:'무엇을 해야 할지 모르겠다면 아래 메뉴를 눌러 시작하세요.',howText:'각 카드는 실제 이동 버튼입니다. 원하는 항목을 클릭하면 해당 페이지로 바로 들어갑니다.',clickMove:'클릭하면 해당 메뉴로 이동',goNow:'바로가기',a1:'로봇 구매',a1s:'검증된 매물 검색',a2:'로봇 판매',a2s:'가격 설정 또는 견적 받기',a3:'전문가 찾기',a3s:'티칭·설치·수리',a4:'프로젝트 등록',a4s:'매칭 업체에게 견적 받기',a5:'회사 찾기',a5s:'업체 정보 확인 및 문의',a6:'해외거래 지원',a6s:'운송·통관 파트너 찾기',aiRobotId:'AI 로봇 인식',metric1:'로봇 자동 인식',metric2:'판매 방식',metric3:'지원 언어',metric4:'글로벌 B2B 매칭',simpleEyebrow:'누구나 쉽게',simpleTitle:'로봇 업계의 거래를 하나의 흐름으로.',c1t:'로봇 마켓',c1b:'중고·신품 로봇과 주변기기. 고정가, AI 가격추천, 딜러 견적 중 선택.',c2t:'RoboQuo Match',c2b:'티칭, 시운전, PLC, 비전, 수리, 교육. 적합한 업체를 먼저 매칭한 뒤 견적을 받습니다.',c3t:'해외거래',c3b:'운송, 통관, 검사, 현지 설치 파트너까지 한 거래 안에서 연결합니다.',marketTitle:'로봇 마켓',marketSub:'중고·신품 산업용 로봇, 협동로봇, 주변기기를 거래합니다.',sellTitle:'몇 단계면 로봇 판매 등록.',sellSub:'사진이나 동영상을 올리고 원하는 판매 방식을 선택하세요.',uploadTitle:'사진·동영상 업로드',uploadDesc:'로봇 전체, 명판, 컨트롤러, 티치펜던트 사진을 권장합니다.',analyze:'AI 분석',aiDetected:'AI 인식 결과',sellMethodTitle:'판매 방식 선택',m1:'AI 가격 견적',m1s:'시장 데이터와 로봇 상태로 가격 범위 제시',m2:'내 가격 설정',m2s:'원하는 판매가를 직접 설정',m3:'딜러 견적 받기',m3s:'24/48/72시간 검증된 업체 입찰',continue:'계속',projectTitle:'로봇 작업을 등록하고 견적을 받으세요.',projectSub:'티칭, 설치, 시운전, PLC, 비전, 수리, 교육 등.',projectDetails:'프로젝트 정보',work:'작업 종류',robot:'로봇',location:'지역',duration:'기간',date:'희망일',priceMode:'가격 방식',receiveBids:'견적 받기',setBudget:'예산 직접 설정',description:'작업 내용',findProviders:'매칭 업체 찾기',matchedProviders:'추천 업체',matchedSub:'로봇 기술, 지역, 일정, 과거 실적을 기준으로 추천합니다.',optTeaching:'로봇 티칭',optInstall:'설치·시운전',optVision:'비전 셋업',optRepair:'수리·트러블슈팅',optTraining:'교육',projectPlaceholder:'Pick & Place 티칭, I/O 설정, 생산 시작 지원',expertTitle:'내 로봇을 아는 전문가를 찾으세요.',expertSub:'제조사, 컨트롤러, PLC, 지역, 기술로 검색합니다.',companyTitle:'회사 찾기 및 문의',companySub:'로봇 업체, 시스템 인테그레이터, 서비스 회사 정보를 확인하고 바로 문의할 수 있습니다.',companyFindTitle:'업체를 보고 바로 문의하세요.',companyFindBody:'회사 소개, 전문 분야, 대응 지역을 보고 적합한 업체를 찾을 수 있습니다. 필요한 경우 회사 등록도 가능합니다.',askCompany:'업체에 문의하기',registerCompany:'회사 등록하기',companyContactTitle:'문의 보내기',companyName:'회사명',companyNamePh:'예: ABC Automation',contactPerson:'담당자명',contactPersonPh:'예: Eddie Yoon',email:'이메일',inquiry:'문의 내용',companyInquiryPh:'예: FANUC 로봇 티칭 가능한지 문의드립니다.',sendInquiry:'문의 보내기',crossTitle:'복잡한 준비 없이 해외로 거래하세요.',crossSub:'운송, 통관, 검사, 현지 설치 파트너를 연결합니다.',routeTitle:'운송 경로',from:'출발지',to:'도착지',weight:'예상 중량',getQuotes:'물류 견적 받기',partnerQuotes:'파트너 견적',crossFeatures:'픽업 · 포장 · 수출통관 지원 · 수입통관 파트너 · 현지 배송 · 설치 옵션',vendorEyebrow:'거래처 등록 단순화',vendorTitle:'RoboQuo만 한 번 등록하고 전세계에서 조달.',vendorBody:'향후 B2B 거래에서는 RoboQuo가 거래 상대방 또는 중계자로 들어가 해외 판매자마다 신규 거래처 등록을 반복하는 부담을 줄이는 구조를 검토할 수 있습니다.',footer:'로봇 거래를 더 쉽게.',ready:'판매 등록 흐름 준비 완료',matched:'매칭 업체를 찾았습니다',logistics:'물류 파트너를 찾았습니다',estimate:'예상 시장가격',recommended:'권장 판매가',yourPrice:'내 판매가격',bidWindow:'딜러 견적 기간',bidDesc:'검증된 구매업체가 입찰하며, 판매자는 선택할 수 있습니다.',requestQuote:'견적 요청',companyInquiry:'업체 문의 화면을 열었습니다',companyRegister:'회사 등록 기능은 다음 단계에서 연결됩니다',messageSent:'문의가 전송되었습니다'},ja:{navRobots:'ロボット',navProjects:'案件',navExperts:'専門家',navCompanies:'会社',navCross:'海外取引',sellShort:'出品',eyebrow:'ロボット産業のマーケットプレイス',heroTitle:'ロボット・サービス・専門家を<br><span>ひとつの場所で。</span>',heroText:'ロボットの売買、ティーチングや立上げ支援、海外取引まで。複雑だったロボット取引をもっと簡単にします。',howTitle:'何をすればよいか分からない場合は、下のメニューをクリックして開始してください。',howText:'各カードは実際の移動ボタンです。クリックすると該当ページへ移動します。',clickMove:'クリックすると移動します',goNow:'進む',a1:'ロボットを買う',a1s:'検証済み出品を検索',a2:'ロボットを売る',a2s:'価格設定またはオファー受付',a3:'専門家を探す',a3s:'ティーチング・設置・修理',a4:'案件を登録',a4s:'適合業者から見積取得',a5:'会社を探す',a5s:'会社情報の確認と問い合わせ',a6:'海外取引サポート',a6s:'物流・通関パートナーを探す',aiRobotId:'AIロボット認識',metric1:'ロボット自動認識',metric2:'販売方法',metric3:'対応言語',metric4:'グローバルB2Bマッチング',simpleEyebrow:'誰でも簡単に',simpleTitle:'ロボット業界の取引を一つの流れに。',c1t:'ロボットマーケット',c1b:'中古・新品ロボットと周辺機器。固定価格、AI価格目安、業者オファーから選択。',c2t:'RoboQuo Match',c2b:'ティーチング、立上げ、PLC、ビジョン、修理、教育。適合業者を先に選び、見積を受け取ります。',c3t:'海外取引',c3b:'輸送、通関、検査、現地設置まで同じ取引の中でつなぎます。',marketTitle:'ロボットマーケット',marketSub:'中古・新品の産業用ロボット、協働ロボット、周辺機器を取引。',sellTitle:'数ステップでロボットを出品。',sellSub:'写真や動画をアップロードし、販売方法を選択します。',uploadTitle:'写真・動画をアップロード',uploadDesc:'ロボット全体、銘板、コントローラ、ティーチペンダントの写真を推奨します。',analyze:'AI分析',aiDetected:'AI認識結果',sellMethodTitle:'販売方法を選択',m1:'AI価格査定',m1s:'市場データと状態から価格帯を算出',m2:'自分で価格設定',m2s:'希望販売価格を直接設定',m3:'業者からオファー',m3s:'24/48/72時間の確認済み業者入札',continue:'続ける',projectTitle:'ロボット案件を登録して見積を受け取る。',projectSub:'ティーチング、設置、立上げ、PLC、ビジョン、修理、教育など。',projectDetails:'案件情報',work:'作業内容',robot:'ロボット',location:'所在地',duration:'期間',date:'希望日',priceMode:'価格方式',receiveBids:'見積を受ける',setBudget:'予算を設定',description:'作業詳細',findProviders:'適合業者を探す',matchedProviders:'おすすめ業者',matchedSub:'ロボット経験、地域、日程、過去実績から推薦します。',optTeaching:'ロボットティーチング',optInstall:'設置・立上げ',optVision:'ビジョン設定',optRepair:'修理・トラブル対応',optTraining:'教育',projectPlaceholder:'Pick & Placeティーチング、I/O設定、生産立上げ支援',expertTitle:'あなたのロボットを知る専門家を探す。',expertSub:'メーカー、コントローラ、PLC、地域、スキルから検索。',companyTitle:'会社を探して問い合わせ',companySub:'ロボット会社、SI、サービス会社の情報を確認し、そのまま問い合わせできます。',companyFindTitle:'会社情報を見てそのまま問い合わせ。',companyFindBody:'会社紹介、得意分野、対応地域を見て、適した会社を見つけられます。必要に応じて会社登録も可能です。',askCompany:'会社に問い合わせ',registerCompany:'会社を登録',companyContactTitle:'問い合わせ送信',companyName:'会社名',companyNamePh:'例: ABC Automation',contactPerson:'担当者名',contactPersonPh:'例: Eddie Yoon',email:'メール',inquiry:'問い合わせ内容',companyInquiryPh:'例: FANUCロボットのティーチング対応可否を知りたいです。',sendInquiry:'問い合わせ送信',crossTitle:'複雑な手配なしで海外取引。',crossSub:'輸送、通関、検査、現地設置パートナーをつなぎます。',routeTitle:'輸送ルート',from:'集荷元',to:'納入先',weight:'概算重量',getQuotes:'物流見積を取得',partnerQuotes:'パートナー見積',crossFeatures:'集荷 · 梱包 · 輸出通関支援 · 輸入通関パートナー · 現地配送 · 設置オプション',vendorEyebrow:'取引先登録をシンプルに',vendorTitle:'RoboQuoを一度登録して世界から調達。',vendorBody:'将来のB2B取引では、RoboQuoが取引相手または仲介者となり、海外販売者ごとの新規取引先登録負担を減らす構造を検討できます。',footer:'ロボット取引を、もっと簡単に。',ready:'出品フローを準備しました',matched:'適合業者が見つかりました',logistics:'物流パートナーが見つかりました',estimate:'推定市場価格',recommended:'推奨出品価格',yourPrice:'希望販売価格',bidWindow:'業者オファー期間',bidDesc:'確認済み購入業者が入札し、販売者が選択できます。',requestQuote:'見積依頼',companyInquiry:'問い合わせ画面を開きました',companyRegister:'会社登録機能は次の段階で接続します',messageSent:'問い合わせを送信しました'},en:{navRobots:'Robots',navProjects:'Projects',navExperts:'Experts',navCompanies:'Companies',navCross:'Cross-border',sellShort:'Sell',eyebrow:'THE ROBOT INDUSTRY MARKETPLACE',heroTitle:'Robots. Services. Experts.<br><span>One place.</span>',heroText:'Buy and sell robots, find teaching and installation experts, and arrange cross-border support in one simple place.',howTitle:'Not sure where to start? Click one of the options below.',howText:'Each card is an actual navigation button. Click the one that matches what you want to do.',clickMove:'Click to open this section',goNow:'Go now',a1:'Buy a Robot',a1s:'Search verified listings',a2:'Sell a Robot',a2s:'Set price or get offers',a3:'Find an Expert',a3s:'Teaching · setup · repair',a4:'Post a Project',a4s:'Receive matched bids',a5:'Find a Company',a5s:'View company profiles and contact them',a6:'Cross-border Support',a6s:'Find logistics and customs partners',aiRobotId:'AI ROBOT ID',metric1:'Robot identification',metric2:'Selling methods',metric3:'Launch languages',metric4:'Global B2B matching',simpleEyebrow:'SIMPLE BY DESIGN',simpleTitle:'One flow for the robot industry.',c1t:'Robot Market',c1b:'Used or new robots and peripherals. Fixed price, AI price guidance or dealer offers.',c2t:'RoboQuo Match',c2b:'Teaching, commissioning, PLC, vision, repair and training. Match first, then receive bids.',c3t:'Cross-border',c3b:'Shipping, customs, inspection and destination installation partners around the same transaction.',marketTitle:'Robot Marketplace',marketSub:'Used and new industrial robots, cobots and peripherals.',sellTitle:'Sell a robot in a few steps.',sellSub:'Upload photos or video, then choose how you want to sell.',uploadTitle:'Upload photos & video',uploadDesc:'Robot full view, nameplate, controller and pendant are recommended.',analyze:'Analyze with AI',aiDetected:'AI detected',sellMethodTitle:'Choose selling method',m1:'AI Price Estimate',m1s:'Use market data and robot condition',m2:'Set My Price',m2s:'Choose your own listing price',m3:'Get Dealer Offers',m3s:'24/48/72 hour verified bidding',continue:'Continue',projectTitle:'Post robot work. Get matched bids.',projectSub:'Teaching, installation, commissioning, PLC, vision, repair and training.',projectDetails:'Project details',work:'Work type',robot:'Robot',location:'Location',duration:'Duration',date:'Preferred date',priceMode:'Pricing',receiveBids:'Receive bids',setBudget:'Set budget',description:'Description',findProviders:'Find Providers',matchedProviders:'Matched providers',matchedSub:'Recommended by robot skill, region, availability and past performance.',optTeaching:'Robot Teaching',optInstall:'Installation / Commissioning',optVision:'Vision Setup',optRepair:'Repair / Troubleshooting',optTraining:'Training',projectPlaceholder:'Pick & Place teaching, I/O setup and production start-up support',expertTitle:'Find people who know your robot.',expertSub:'Search by maker, controller, PLC, region and skill.',companyTitle:'Find companies and contact them',companySub:'Browse robot companies, system integrators and service providers, then send an inquiry directly.',companyFindTitle:'View company profiles and contact them directly.',companyFindBody:'See company introductions, specialties and service areas. You can also register your own company later.',askCompany:'Contact a company',registerCompany:'Register a company',companyContactTitle:'Send an inquiry',companyName:'Company name',companyNamePh:'e.g. ABC Automation',contactPerson:'Contact person',contactPersonPh:'e.g. Eddie Yoon',email:'Email',inquiry:'Inquiry',companyInquiryPh:'e.g. We would like support for FANUC robot teaching.',sendInquiry:'Send inquiry',crossTitle:'Trade globally without doing everything yourself.',crossSub:'Connect shipping, customs, inspection and local installation partners.',routeTitle:'Shipping route',from:'From',to:'To',weight:'Approx. weight',getQuotes:'Get Quotes',partnerQuotes:'Partner quotes',crossFeatures:'Pickup · packing · export support · import partner · destination delivery · installation option',vendorEyebrow:'ONE VENDOR EXPERIENCE',vendorTitle:'Register RoboQuo once. Source globally.',vendorBody:'For future B2B transactions, RoboQuo can be structured as the commercial counterparty or intermediary to reduce repeated overseas vendor onboarding.',footer:'The easiest way to trade robots.',ready:'Listing flow ready',matched:'Matched providers found',logistics:'Logistics partners found',estimate:'Estimated market value',recommended:'Recommended listing price',yourPrice:'Your listing price',bidWindow:'Dealer offer window',bidDesc:'Verified buyers can bid and the seller chooses whether to accept.',requestQuote:'Request Quote',companyInquiry:'Company inquiry view opened',companyRegister:'Company registration will be connected in the next step',messageSent:'Inquiry sent'},zh:{navRobots:'机器人',navProjects:'项目',navExperts:'专家',navCompanies:'公司',navCross:'跨境交易',sellShort:'出售',eyebrow:'机器人产业交易平台',heroTitle:'机器人、服务、专家<br><span>一个平台。</span>',heroText:'机器人买卖、示教安装、跨境交易支持，一站完成。',howTitle:'如果你不知道从哪里开始，请点击下面的选项。',howText:'每张卡片都是真正的入口按钮。点击后可直接进入对应页面。',clickMove:'点击进入该页面',goNow:'立即进入',a1:'购买机器人',a1s:'搜索已验证设备',a2:'出售机器人',a2s:'自定价格或获取报价',a3:'寻找专家',a3s:'示教·安装·维修',a4:'发布项目',a4s:'获取匹配供应商报价',a5:'寻找公司',a5s:'查看公司资料并咨询',a6:'跨境支持',a6s:'寻找物流和报关合作伙伴',aiRobotId:'AI机器人识别',metric1:'机器人自动识别',metric2:'销售方式',metric3:'支持语言',metric4:'全球B2B匹配',simpleEyebrow:'简单易用',simpleTitle:'机器人产业，一个交易流程。',c1t:'机器人市场',c1b:'二手、新机及周边设备。固定价、AI估价或经销商报价。',c2t:'RoboQuo Match',c2b:'示教、调试、PLC、视觉、维修和培训。先匹配，再获取报价。',c3t:'跨境交易',c3b:'运输、报关、检测和当地安装合作伙伴都在同一交易中连接。',marketTitle:'机器人市场',marketSub:'二手和新工业机器人、协作机器人及周边设备。',sellTitle:'几步完成机器人出售。',sellSub:'上传照片或视频，然后选择销售方式。',uploadTitle:'上传照片和视频',uploadDesc:'建议上传整机、铭牌、控制器和示教器照片。',analyze:'AI分析',aiDetected:'AI识别结果',sellMethodTitle:'选择销售方式',m1:'AI价格估算',m1s:'根据市场数据与设备状态估价',m2:'自定价格',m2s:'自己决定挂牌价格',m3:'获取经销商报价',m3s:'24/48/72小时已验证买家竞价',continue:'继续',projectTitle:'发布机器人项目，获取匹配报价。',projectSub:'示教、安装、调试、PLC、视觉、维修和培训。',projectDetails:'项目详情',work:'工作类型',robot:'机器人',location:'地区',duration:'工期',date:'期望日期',priceMode:'定价方式',receiveBids:'获取报价',setBudget:'设定预算',description:'工作说明',findProviders:'寻找供应商',matchedProviders:'匹配供应商',matchedSub:'根据机器人技能、地区、档期和历史表现推荐。',optTeaching:'机器人示教',optInstall:'安装·调试',optVision:'视觉设置',optRepair:'维修·故障排查',optTraining:'培训',projectPlaceholder:'Pick & Place示教、I/O设置和投产支持',expertTitle:'寻找真正了解你机器人的专家。',expertSub:'按制造商、控制器、PLC、地区和技能搜索。',companyTitle:'寻找公司并咨询',companySub:'查看机器人公司、系统集成商和服务公司的资料，并直接发送咨询。',companyFindTitle:'查看公司资料并直接联系。',companyFindBody:'查看公司介绍、专业领域和服务区域。后续也可以注册你的公司。',askCompany:'咨询公司',registerCompany:'注册公司',companyContactTitle:'发送咨询',companyName:'公司名称',companyNamePh:'例如: ABC Automation',contactPerson:'联系人',contactPersonPh:'例如: Eddie Yoon',email:'邮箱',inquiry:'咨询内容',companyInquiryPh:'例如: 想咨询FANUC机器人示教支持。',sendInquiry:'发送咨询',crossTitle:'无需复杂准备，也能全球交易。',crossSub:'连接运输、报关、检测和当地安装合作伙伴。',routeTitle:'运输路线',from:'出发地',to:'目的地',weight:'预计重量',getQuotes:'获取物流报价',partnerQuotes:'合作伙伴报价',crossFeatures:'提货 · 包装 · 出口支持 · 进口报关伙伴 · 当地配送 · 安装选项',vendorEyebrow:'简化供应商注册',vendorTitle:'只需注册RoboQuo一次，即可全球采购。',vendorBody:'未来B2B交易中，可设计RoboQuo作为交易对手或中介，减少买方反复注册海外卖方的负担。',footer:'让机器人交易更简单。',ready:'挂牌流程已准备',matched:'已找到匹配供应商',logistics:'已找到物流伙伴',estimate:'预计市场价值',recommended:'建议挂牌价',yourPrice:'你的挂牌价格',bidWindow:'经销商报价时限',bidDesc:'已验证买家可报价，卖家自行决定是否接受。',requestQuote:'请求报价',companyInquiry:'已打开公司咨询页面',companyRegister:'公司注册功能将在下一步连接',messageSent:'咨询已发送'}};
-
-Object.assign(T.ko,{navInquiries:'문의내역',globalSearchPh:'로봇, 회사, 전문가를 검색하세요',searchNow:'검색',searchHint:'예: FANUC, Yaskawa, 티칭, Macnica, 물류',backCompanies:'회사 목록으로',inquiryHistoryTitle:'내 문의내역',inquiryHistorySub:'RoboQuo에서 보낸 회사 문의와 견적 요청을 확인합니다.',companyAbout:'회사 소개',companySpecialties:'전문 분야',serviceArea:'대응 지역',languages:'대응 언어',contactCompany:'이 회사에 문의',inquiryMessage:'문의 내용',sendToCompany:'문의 보내기',noInquiries:'아직 보낸 문의가 없습니다.',searchNoResult:'검색 결과가 없습니다.',typeRobot:'로봇',typeCompany:'회사',typeExpert:'전문가',viewDetail:'상세보기',statusPending:'답변 대기',companyInquiryDefault:'로봇 및 자동화 관련 문의 내용을 입력해주세요.'});
-Object.assign(T.ja,{navInquiries:'問い合わせ履歴',globalSearchPh:'ロボット・会社・専門家を検索',searchNow:'検索',searchHint:'例：FANUC、Yaskawa、ティーチング、Macnica、物流',backCompanies:'会社一覧へ',inquiryHistoryTitle:'問い合わせ履歴',inquiryHistorySub:'RoboQuoから送信した会社への問い合わせ・見積依頼を確認できます。',companyAbout:'会社概要',companySpecialties:'得意分野',serviceArea:'対応地域',languages:'対応言語',contactCompany:'この会社に問い合わせ',inquiryMessage:'問い合わせ内容',sendToCompany:'問い合わせ送信',noInquiries:'まだ問い合わせはありません。',searchNoResult:'検索結果がありません。',typeRobot:'ロボット',typeCompany:'会社',typeExpert:'専門家',viewDetail:'詳細を見る',statusPending:'回答待ち',companyInquiryDefault:'ロボット・自動化に関するお問い合わせ内容をご入力ください。'});
-Object.assign(T.en,{navInquiries:'Inquiries',globalSearchPh:'Search robots, companies or experts',searchNow:'Search',searchHint:'e.g. FANUC, Yaskawa, teaching, Macnica, logistics',backCompanies:'Back to companies',inquiryHistoryTitle:'My inquiries',inquiryHistorySub:'Review company inquiries and quote requests sent through RoboQuo.',companyAbout:'About company',companySpecialties:'Specialties',serviceArea:'Service area',languages:'Languages',contactCompany:'Contact this company',inquiryMessage:'Inquiry message',sendToCompany:'Send inquiry',noInquiries:'You have not sent any inquiries yet.',searchNoResult:'No matching results found.',typeRobot:'Robot',typeCompany:'Company',typeExpert:'Expert',viewDetail:'View details',statusPending:'Waiting for reply',companyInquiryDefault:'Describe what you need for your robot or automation project.'});
-Object.assign(T.zh,{navInquiries:'咨询记录',globalSearchPh:'搜索机器人、公司或专家',searchNow:'搜索',searchHint:'例如：FANUC、Yaskawa、示教、Macnica、物流',backCompanies:'返回公司列表',inquiryHistoryTitle:'我的咨询记录',inquiryHistorySub:'查看通过RoboQuo发送的公司咨询与报价请求。',companyAbout:'公司介绍',companySpecialties:'专业领域',serviceArea:'服务地区',languages:'支持语言',contactCompany:'咨询该公司',inquiryMessage:'咨询内容',sendToCompany:'发送咨询',noInquiries:'尚未发送任何咨询。',searchNoResult:'没有找到匹配结果。',typeRobot:'机器人',typeCompany:'公司',typeExpert:'专家',viewDetail:'查看详情',statusPending:'等待回复',companyInquiryDefault:'请输入机器人或自动化项目的咨询内容。'});
-
-
-Object.assign(T.ko,{mobileMenuTitle:'더보기',mobileExpertsSub:'티칭·설치·수리 전문가',mobileCompaniesSub:'업체 정보와 문의',mobileInquiriesSub:'보낸 문의와 견적 요청',mobileCrossSub:'운송·통관·해외거래',mobileLanguage:'언어',mobileLanguageSub:'사이트 전체 언어 변경',installApp:'RoboQuo를 홈 화면에 설치',mobileHome:'홈',mobileMore:'더보기',installIOS:'iPhone: Safari의 공유 버튼을 누르고 「홈 화면에 추가」를 선택하세요.',installAndroid:'Galaxy/Android: Chrome 메뉴에서 「홈 화면에 추가」 또는 「앱 설치」를 선택하세요.',installedHint:'이미 앱 모드로 실행 중이거나 설치가 지원되지 않는 환경입니다.'});
-Object.assign(T.ja,{mobileMenuTitle:'その他',mobileExpertsSub:'ティーチング・設置・修理の専門家',mobileCompaniesSub:'会社情報と問い合わせ',mobileInquiriesSub:'送信した問い合わせ・見積依頼',mobileCrossSub:'輸送・通関・海外取引',mobileLanguage:'言語',mobileLanguageSub:'サイト全体の表示言語',installApp:'RoboQuoをホーム画面に追加',mobileHome:'ホーム',mobileMore:'その他',installIOS:'iPhone：Safariの共有ボタンから「ホーム画面に追加」を選択してください。',installAndroid:'Galaxy/Android：Chromeメニューから「ホーム画面に追加」または「アプリをインストール」を選択してください。',installedHint:'すでにアプリ表示で起動しているか、この環境ではインストールを利用できません。'});
-Object.assign(T.en,{mobileMenuTitle:'More',mobileExpertsSub:'Teaching, setup and repair experts',mobileCompaniesSub:'Company profiles and inquiries',mobileInquiriesSub:'Sent inquiries and quote requests',mobileCrossSub:'Shipping, customs and global trade',mobileLanguage:'Language',mobileLanguageSub:'Change the language for the whole site',installApp:'Install RoboQuo on Home Screen',mobileHome:'Home',mobileMore:'More',installIOS:'iPhone: tap Share in Safari, then choose Add to Home Screen.',installAndroid:'Galaxy/Android: open the Chrome menu and choose Add to Home screen or Install app.',installedHint:'RoboQuo is already running as an app, or installation is not available in this environment.'});
-Object.assign(T.zh,{mobileMenuTitle:'更多',mobileExpertsSub:'示教、安装和维修专家',mobileCompaniesSub:'公司资料与咨询',mobileInquiriesSub:'已发送的咨询和报价请求',mobileCrossSub:'运输、报关与跨境交易',mobileLanguage:'语言',mobileLanguageSub:'切换整个网站语言',installApp:'将RoboQuo安装到主屏幕',mobileHome:'首页',mobileMore:'更多',installIOS:'iPhone：在Safari中点击分享，然后选择“添加到主屏幕”。',installAndroid:'Galaxy/Android：打开Chrome菜单，选择“添加到主屏幕”或“安装应用”。',installedHint:'当前已在应用模式运行，或此环境不支持安装。'});
-
-Object.assign(T.ko,{navAbout:'RoboQuo 소개',mobileAboutSub:'미션과 운영원칙',missionEyebrow:'OUR MISSION',missionHomeTitle:'로봇 거래의 장벽을 낮추는 회사.',missionHomeBody:'RoboQuo는 로봇을 사고파는 것부터 전문가, 서비스, 해외거래까지 복잡했던 과정을 누구나 쉽게 이용할 수 있도록 연결하는 것을 목표로 합니다.',learnAbout:'RoboQuo 알아보기',aboutEyebrow:'ABOUT ROBOQUO',aboutTitle:'로봇 산업을 <span>더 쉽고, 투명하고, 연결된 시장</span>으로.',aboutLead:'RoboQuo는 단순한 중고 로봇 게시판을 만들려는 회사가 아닙니다. 로봇을 사고, 팔고, 설치하고, 티칭하고, 수리하고, 해외로 거래하는 전 과정을 한 곳에서 쉽게 연결하는 글로벌 B2B 플랫폼을 목표로 합니다.',aboutPromiseTitle:'우리의 약속',aboutPromiseBody:'기술은 뒤에서 복잡한 일을 처리하고, 사용자는 앞에서 쉽고 명확하게 거래할 수 있게 합니다.',missionTitle:'우리가 만들고 싶은 시장',missionBody:'로봇 업계의 거래는 아직 정보, 가격, 업체, 언어, 국가가 서로 분리되어 있습니다. RoboQuo는 이 장벽을 하나씩 줄이는 것을 경영의 중심에 둡니다.',principle1Title:'Simple',principle1Body:'처음 방문한 사람도 설명서를 읽지 않고 로봇을 찾고, 팔고, 전문가를 구할 수 있게 합니다.',principle2Title:'Transparent',principle2Body:'가격, 견적, 업체정보, 거래조건을 가능한 한 명확하게 보여주고 비교할 수 있게 합니다.',principle3Title:'Trusted',principle3Body:'검증된 회사, 거래이력, 문의기록과 향후 Robot Passport를 통해 신뢰를 데이터로 쌓습니다.',principle4Title:'Global',principle4Body:'언어와 국경 때문에 좋은 로봇과 좋은 업체가 연결되지 못하는 문제를 줄입니다.',operateEyebrow:'HOW WE OPERATE',operateTitle:'광고보다 거래의 성공을 우선합니다.',operateBody:'RoboQuo는 사용자가 사이트에 오래 머무르는 것보다 실제로 필요한 로봇과 업체를 빠르게 찾고 거래가 성사되는 것을 더 중요한 가치로 봅니다.',operate1:'검색과 등록은 최대한 간단하게 만들고, 필요한 전문정보는 단계적으로 보여줍니다.',operate2:'판매자는 직접 가격을 정하거나 AI 시세와 업체 견적을 선택할 수 있게 합니다.',operate3:'RoboQuo가 모든 일을 직접 하지 않고, 검증된 SI·엔지니어·물류·서비스 업체를 연결합니다.',operate4:'수익은 광고를 과도하게 노출하기보다 거래, 서비스 매칭과 부가가치가 발생할 때 만드는 방향을 지향합니다.',ecosystemEyebrow:'ONE ROBOT ECOSYSTEM',ecosystemTitle:'로봇 한 대의 전체 생애주기를 연결합니다.',ecosystemBody:'구매와 판매에서 끝나지 않고 설치, 티칭, 교육, 유지보수, 수리, 물류까지 필요한 사람과 회사를 이어주는 것이 RoboQuo의 장기적인 방향입니다.',ecoBuyers:'구매기업',ecoBuyersSub:'로봇과 서비스를 쉽게 조달',ecoSellers:'판매기업',ecoSellersSub:'국내외 구매자에게 판매',ecoExperts:'전문가·SI',ecoExpertsSub:'기술과 프로젝트를 연결',ecoPartners:'물류·서비스',ecoPartnersSub:'거래 이후까지 지원',aboutCtaTitle:'필요한 것부터 바로 시작하세요.',aboutCtaBody:'RoboQuo는 복잡한 설명보다 행동이 먼저 보이는 서비스를 지향합니다.',startRoboQuo:'RoboQuo 시작하기'});
-Object.assign(T.ja,{navAbout:'RoboQuoについて',mobileAboutSub:'ミッションと運営方針',missionEyebrow:'OUR MISSION',missionHomeTitle:'ロボット取引の壁を低くする。',missionHomeBody:'RoboQuoはロボットの売買から専門家、サービス、海外取引まで、複雑だったプロセスを誰でも簡単に利用できるようにつなぐことを目指します。',learnAbout:'RoboQuoについて',aboutEyebrow:'ABOUT ROBOQUO',aboutTitle:'ロボット産業を、<span>もっと簡単で透明性が高く、つながる市場</span>へ。',aboutLead:'RoboQuoは単なる中古ロボット掲示板ではありません。ロボットを買う、売る、設置する、ティーチングする、修理する、海外取引するまでを一つの場所で簡単につなぐグローバルB2Bプラットフォームを目指します。',aboutPromiseTitle:'私たちの約束',aboutPromiseBody:'複雑な技術処理は裏側で行い、利用者にはシンプルで分かりやすい取引体験を提供します。',missionTitle:'私たちが目指す市場',missionBody:'ロボット業界では情報、価格、企業、言語、国が分断されています。RoboQuoはその壁を一つずつ減らすことを経営の中心に置きます。',principle1Title:'Simple',principle1Body:'初めての方でも説明書なしでロボットを探し、売り、専門家を探せるようにします。',principle2Title:'Transparent',principle2Body:'価格、見積、企業情報、取引条件を可能な限り明確にし、比較できるようにします。',principle3Title:'Trusted',principle3Body:'確認済み企業、取引履歴、問い合わせ履歴、将来のRobot Passportで信頼をデータとして蓄積します。',principle4Title:'Global',principle4Body:'言語や国境のために良いロボットと良い企業がつながらない問題を減らします。',operateEyebrow:'HOW WE OPERATE',operateTitle:'広告より、取引の成功を優先します。',operateBody:'RoboQuoは滞在時間よりも、必要なロボットや会社を早く見つけ、実際の取引につながることを重視します。',operate1:'検索・登録をできるだけ簡単にし、専門情報は必要な段階で表示します。',operate2:'販売者は自分で価格を設定するか、AI相場や業者オファーを選べます。',operate3:'RoboQuoがすべてを抱えず、確認済みSI・技術者・物流・サービス企業をつなぎます。',operate4:'過剰な広告ではなく、取引・サービスマッチング・付加価値が生まれた時に収益化する方向を目指します。',ecosystemEyebrow:'ONE ROBOT ECOSYSTEM',ecosystemTitle:'ロボット一台のライフサイクル全体をつなぐ。',ecosystemBody:'売買だけでなく、設置、ティーチング、教育、保守、修理、物流まで必要な人と会社をつなぐことが長期的な方向です。',ecoBuyers:'購入企業',ecoBuyersSub:'ロボットとサービスを簡単に調達',ecoSellers:'販売企業',ecoSellersSub:'国内外の買い手へ販売',ecoExperts:'専門家・SI',ecoExpertsSub:'技術と案件をつなぐ',ecoPartners:'物流・サービス',ecoPartnersSub:'取引後までサポート',aboutCtaTitle:'必要なことから始めてください。',aboutCtaBody:'RoboQuoは複雑な説明より、次の行動がすぐ分かるサービスを目指します。',startRoboQuo:'RoboQuoを始める'});
-Object.assign(T.en,{navAbout:'About',mobileAboutSub:'Mission and operating principles',missionEyebrow:'OUR MISSION',missionHomeTitle:'Lower the barriers to robot trade.',missionHomeBody:'RoboQuo aims to connect robot buying, selling, experts, services and cross-border support in a way that is simple enough for anyone to use.',learnAbout:'About RoboQuo',aboutEyebrow:'ABOUT ROBOQUO',aboutTitle:'A robot industry that is <span>simpler, more transparent and better connected.</span>',aboutLead:'RoboQuo is not intended to be just another used-robot listing board. Our goal is a global B2B platform that connects buying, selling, installation, teaching, repair and cross-border trade in one easy workflow.',aboutPromiseTitle:'Our promise',aboutPromiseBody:'Technology handles complexity in the background. Users get a clear and simple experience in the foreground.',missionTitle:'The market we want to build',missionBody:'Robot industry information, pricing, companies, languages and countries are still fragmented. Reducing those barriers is central to how RoboQuo intends to operate.',principle1Title:'Simple',principle1Body:'A first-time visitor should be able to find, sell or get help with a robot without reading a manual.',principle2Title:'Transparent',principle2Body:'Make pricing, quotes, company information and transaction conditions as clear and comparable as possible.',principle3Title:'Trusted',principle3Body:'Build trust through verified companies, transaction history, inquiry records and eventually Robot Passport data.',principle4Title:'Global',principle4Body:'Reduce the language and border barriers that stop good robots and good companies from finding each other.',operateEyebrow:'HOW WE OPERATE',operateTitle:'Transaction success before advertising.',operateBody:'RoboQuo values helping users find the right robot or company and complete real transactions more than maximizing time spent on the site.',operate1:'Keep search and listing simple, and reveal technical detail when it is actually needed.',operate2:'Let sellers choose their own price, AI guidance or competitive company offers.',operate3:'Connect verified SIs, engineers, logistics and service companies instead of trying to do every job ourselves.',operate4:'Aim to earn when real transaction and service value is created rather than through excessive advertising.',ecosystemEyebrow:'ONE ROBOT ECOSYSTEM',ecosystemTitle:'Connect the full lifecycle of a robot.',ecosystemBody:'Beyond buying and selling, RoboQuo aims to connect installation, teaching, training, maintenance, repair and logistics around the same robot.',ecoBuyers:'Buyers',ecoBuyersSub:'Source robots and services easily',ecoSellers:'Sellers',ecoSellersSub:'Reach domestic and global buyers',ecoExperts:'Experts & SIs',ecoExpertsSub:'Connect skills to projects',ecoPartners:'Logistics & service',ecoPartnersSub:'Support beyond the transaction',aboutCtaTitle:'Start with what you need.',aboutCtaBody:'RoboQuo is designed to show the next action before it shows complexity.',startRoboQuo:'Start with RoboQuo'});
-Object.assign(T.zh,{navAbout:'关于RoboQuo',mobileAboutSub:'使命与运营原则',missionEyebrow:'OUR MISSION',missionHomeTitle:'降低机器人交易的门槛。',missionHomeBody:'RoboQuo希望把机器人买卖、专家、服务和跨境支持连接起来，让任何人都能更简单地使用。',learnAbout:'了解RoboQuo',aboutEyebrow:'ABOUT ROBOQUO',aboutTitle:'让机器人产业成为<span>更简单、更透明、更互联的市场。</span>',aboutLead:'RoboQuo不只是一个二手机器人信息平台。我们的目标是打造全球B2B平台，把购买、销售、安装、示教、维修和跨境交易连接在一个简单流程中。',aboutPromiseTitle:'我们的承诺',aboutPromiseBody:'复杂技术在后台处理，用户在前台获得清晰简单的交易体验。',missionTitle:'我们希望建设的市场',missionBody:'机器人行业的信息、价格、企业、语言和国家仍然彼此分散。减少这些障碍是RoboQuo运营的核心。',principle1Title:'Simple',principle1Body:'第一次使用的人也能无需说明书就找到、出售机器人或寻找专家。',principle2Title:'Transparent',principle2Body:'尽可能清晰展示并比较价格、报价、企业信息和交易条件。',principle3Title:'Trusted',principle3Body:'通过企业验证、交易记录、咨询记录以及未来的Robot Passport积累信任。',principle4Title:'Global',principle4Body:'减少语言和国境造成的阻碍，让优秀机器人和优秀企业更容易连接。',operateEyebrow:'HOW WE OPERATE',operateTitle:'交易成功优先于广告。',operateBody:'RoboQuo更重视用户快速找到合适的机器人或企业并完成真实交易，而不是增加网站停留时间。',operate1:'搜索和发布尽量简单，技术细节在真正需要时再展示。',operate2:'卖家可以选择自定价格、AI价格参考或企业竞价。',operate3:'连接经过验证的SI、工程师、物流和服务公司，而不是所有工作都由RoboQuo自己完成。',operate4:'目标是在真实交易、服务匹配和附加价值产生时获得收益，而不是依赖过量广告。',ecosystemEyebrow:'ONE ROBOT ECOSYSTEM',ecosystemTitle:'连接一台机器人的完整生命周期。',ecosystemBody:'不仅是买卖，还连接安装、示教、培训、维护、维修和物流所需的人员和公司。',ecoBuyers:'采购企业',ecoBuyersSub:'轻松采购机器人与服务',ecoSellers:'销售企业',ecoSellersSub:'连接国内外买家',ecoExperts:'专家与SI',ecoExpertsSub:'让技术匹配项目',ecoPartners:'物流与服务',ecoPartnersSub:'支持交易之后的需求',aboutCtaTitle:'从你现在需要的事情开始。',aboutCtaBody:'RoboQuo希望先让用户看到下一步，而不是先看到复杂性。',startRoboQuo:'开始使用RoboQuo'});
-
-const robots=[['FANUC','M-20iA/20M','2020 · 20 kg · Japan','¥1,280,000','FIXED'],['Yaskawa','GP12','2021 · 12 kg · Japan','Get offers','BIDDING'],['ABB','IRB 2600','2019 · 20 kg · Germany','¥1,650,000','FIXED'],['KUKA','KR 10 R1100-2','2022 · 10 kg · Korea','Get offers','BIDDING'],['Universal Robots','UR10e','2023 · 12.5 kg · USA','¥1,980,000','FIXED'],['Kawasaki','RS013N','2020 · 13 kg · Japan','¥1,100,000','FIXED']];
-const experts=[['Aichi Robot Systems','Yaskawa · YRC1000 · PLC · Vision','Aichi / Tokai · ★4.9 · 48 jobs'],['Takumi Automation','FANUC · CRX · Vision · Safety','Nagoya / Gifu · ★4.8 · 31 jobs'],['Engineer K.','Yaskawa · FANUC · Mitsubishi PLC','Kansai / Tokai · ★4.9 · 22 jobs'],['Robot Service Korea','ABB · KUKA · Repair · Commissioning','Korea · ★4.7 · 64 jobs'],['UR Specialist Japan','Universal Robots · URCap · OnRobot','Kanto · ★5.0 · 19 jobs'],['Global Vision Tech','Cognex · Keyence · Robot Vision','Japan / Korea · ★4.8 · 53 jobs']];
-const companies=[['Macnica','Robot distributor · Vision · Integration','Japan',['FANUC','Vision','Factory Automation']],['Daiki Sangyo','OnRobot distributor · Technical support','Japan',['EOAT','Gripper','Demo support']],['Quantum Automation','System integration · Robot projects','Korea / Japan',['SI','Commissioning','Programming']],['Aichi Robot Systems','Yaskawa specialist','Japan',['Yaskawa','Teaching','PLC']],['Global Robot Freight','Cross-border logistics','Japan / Korea',['Packing','Customs','Delivery']],['Takumi Automation','Factory automation service','Japan',['FANUC','CRX','Safety','Vision']]];
-
-
-// v9: locale-specific copywriting, punctuation and navigation. These are intentionally not literal translations.
-Object.assign(T.ko,{navCompanies:'업체 찾기',navAbout:'RoboQuo 소개',myRoboQuo:'내 RoboQuo',eyebrow:'로봇 산업 마켓플레이스',heroTitle:'로봇 거래를<br><span>더 쉽게</span>',heroText:'로봇 구매·판매부터 티칭, 설치, 수리, 해외거래까지 한 곳에서 연결합니다.',heroBuy:'로봇 찾기',heroSell:'로봇 판매하기',quickEyebrow:'무엇을 찾고 계신가요?',quickTitle:'원하는 일부터 바로 시작하세요',quickSub:'각 항목을 누르면 해당 기능으로 바로 이동합니다.',a5:'업체 찾기',a5s:'SI·대리점·서비스 업체 검색',typeCompany:'업체'});
-Object.assign(T.ja,{navCompanies:'企業を探す',navAbout:'RoboQuoについて',myRoboQuo:'My RoboQuo',eyebrow:'ロボット産業のマーケットプレイス',heroTitle:'ロボット取引を、<br><span>もっと簡単に</span>',heroText:'ロボットの売買からティーチング、設置、修理、海外取引まで、ひとつにつなぎます。',heroBuy:'ロボットを探す',heroSell:'ロボットを出品',quickEyebrow:'何をお探しですか？',quickTitle:'やりたいことから、すぐに始める',quickSub:'項目を選ぶと、該当する機能へ移動します。',a5:'企業を探す',a5s:'SI・代理店・サービス会社を検索',typeCompany:'企業'});
-Object.assign(T.en,{navCompanies:'Find Companies',navAbout:'About RoboQuo',myRoboQuo:'My RoboQuo',eyebrow:'THE ROBOT INDUSTRY MARKETPLACE',heroTitle:'Robots. Services. Experts.<br><span>One place.</span>',heroText:'Buy and sell robots, find technical experts, and arrange cross-border support in one place.',heroBuy:'Find a robot',heroSell:'Sell a robot',quickEyebrow:'WHAT DO YOU NEED?',quickTitle:'Start with the job you need to get done.',quickSub:'Choose an option to go directly to the right workflow.',a5:'Find Companies',a5s:'Search SIs, distributors and service providers',typeCompany:'Company'});
-Object.assign(T.zh,{navCompanies:'寻找企业',navAbout:'关于 RoboQuo',myRoboQuo:'我的 RoboQuo',eyebrow:'机器人产业交易平台',heroTitle:'机器人交易，<br><span>更简单</span>',heroText:'从机器人买卖到示教、安装、维修和跨境交易，一站式连接。',heroBuy:'寻找机器人',heroSell:'出售机器人',quickEyebrow:'您需要什么？',quickTitle:'从您要做的事情开始',quickSub:'选择一个项目，即可直接进入相应功能。',a5:'寻找企业',a5s:'搜索系统集成商、经销商和服务商',typeCompany:'企业'});
-
-
-// v10: English headline stays global; this copy is written independently for each locale.
-Object.assign(T.ko,{heroLocalCopy:'로봇 거래와 서비스를 한 곳에서',heroSupportCopy:'로봇 구매·판매부터 티칭, 설치, 수리, 해외거래까지 필요한 사람과 서비스를 쉽게 연결합니다.'});
-Object.assign(T.ja,{heroLocalCopy:'ロボットの売買からサービスまで、ひとつの場所で',heroSupportCopy:'ロボットの購入・販売からティーチング、設置、修理、海外取引まで、必要な企業や専門家につなぎます。'});
-Object.assign(T.en,{heroLocalCopy:'Buy, sell, and connect with the people who make robots work.',heroSupportCopy:'From robot trading to teaching, installation, repair and cross-border support, RoboQuo brings the workflow together.'});
-Object.assign(T.zh,{heroLocalCopy:'机器人交易与服务，一站完成',heroSupportCopy:'从机器人买卖到示教、安装、维修和跨境交易，轻松连接所需企业与专业人员。'});
-
-const companyDetails={
-'Macnica':{about:'Automation and technology distributor supporting robotics, vision and factory automation projects.',area:'Japan',languages:'Japanese / English',specialties:['Robot distribution','Vision','Factory Automation','Technical support']},
-'Daiki Sangyo':{about:'Industrial equipment distributor supporting EOAT, robot demonstrations and technical sales.',area:'Japan',languages:'Japanese',specialties:['EOAT','Grippers','Demo support','Robot peripherals']},
-'Quantum Automation':{about:'System integration company supporting robot installation, programming and commissioning.',area:'Japan / Korea',languages:'Japanese / Korean / English',specialties:['System Integration','Commissioning','Programming','Robot cells']},
-'Aichi Robot Systems':{about:'Robot engineering company focused on Yaskawa systems, teaching and PLC integration.',area:'Aichi / Tokai',languages:'Japanese',specialties:['Yaskawa','Teaching','PLC','On-site support']},
-'Global Robot Freight':{about:'Cross-border logistics partner for industrial robot packing, customs and delivery.',area:'Japan / Korea',languages:'Japanese / Korean / English',specialties:['Packing','Customs','International freight','Delivery']},
-'Takumi Automation':{about:'Factory automation engineering company supporting FANUC robots, safety and vision.',area:'Nagoya / Gifu',languages:'Japanese',specialties:['FANUC','CRX','Safety','Vision']}
-};
-
-function applyLang(lang){LANG=lang;document.documentElement.lang=lang;document.querySelectorAll('[data-i18n]').forEach(el=>{const k=el.dataset.i18n;if(T[lang][k]!=null)el.textContent=T[lang][k]});document.querySelectorAll('[data-i18n-html]').forEach(el=>{const k=el.dataset.i18nHtml;if(T[lang][k]!=null)el.innerHTML=T[lang][k]});document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{const k=el.dataset.i18nPlaceholder;if(T[lang][k]!=null)el.placeholder=T[lang][k]});localStorage.setItem('roboquoLang',lang);const ml=document.getElementById('mobileLang');if(ml)ml.value=lang;renderExperts();renderCompanies();renderInquiries();method();}
-function go(id){document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));const target=document.getElementById(id);if(target)target.classList.add('active');updateMobileNav(id);window.scrollTo(0,0)}
-function renderListings(){document.getElementById('listings').innerHTML=robots.map(r=>`<div class="listing"><div class="thumb">⚙</div><div class="body"><h3>${r[0]} ${r[1]}</h3><div class="meta">${r[2]}</div><div class="price"><span>${r[3]}</span><span class="badge">${r[4]}</span></div></div></div>`).join('')}
-function renderExperts(){document.getElementById('expertgrid').innerHTML=experts.map(e=>`<div class="expert"><div class="body"><span class="badge">✓ VERIFIED</span><h3>${e[0]}</h3><p>${e[1]}</p><div class="meta">${e[2]}</div><button class="btn dark" style="width:100%;margin-top:14px" onclick="toast(T[LANG].requestQuote)">${T[LANG].requestQuote}</button></div></div>`).join('')}
-function renderCompanies(){document.getElementById('companygrid').innerHTML=companies.map((c,i)=>`<div class="company"><div class="body"><div class="company-top"><span class="badge">✓ VERIFIED</span><span class="meta">${c[2]}</span></div><h3 style="margin-top:10px">${c[0]}</h3><p>${c[1]}</p><div class="company-tags">${c[3].map(x=>`<span>${x}</span>`).join('')}</div><div class="company-actions"><button class="btn dark" onclick="showCompanyDetail(${i})">${T[LANG].viewDetail}</button><button class="btn ghost" onclick="quickInquiry(${i})">${T[LANG].askCompany}</button></div></div></div>`).join('')}
-function showCompanyDetail(i){const c=companies[i],d=companyDetails[c[0]]||{};document.getElementById('companyDetailContent').innerHTML=`<div class="company-detail-grid"><div class="company-detail-main"><div class="company-title-row"><div class="company-logo">${c[0].split(' ').map(x=>x[0]).join('').slice(0,2)}</div><div><span class="badge">✓ VERIFIED</span><h1>${c[0]}</h1><div class="muted">${c[1]}</div></div></div><div class="detail-section"><h3>${T[LANG].companyAbout}</h3><p class="muted">${d.about||c[1]}</p></div><div class="detail-section"><h3>${T[LANG].companySpecialties}</h3><div class="company-tags">${(d.specialties||c[3]).map(x=>`<span>${x}</span>`).join('')}</div></div><div class="detail-section"><div class="info-grid"><div class="info-item"><small>${T[LANG].serviceArea}</small><strong>${d.area||c[2]}</strong></div><div class="info-item"><small>${T[LANG].languages}</small><strong>${d.languages||'-'}</strong></div></div></div></div><div class="company-detail-side"><h2>${T[LANG].contactCompany}</h2><label>${T[LANG].contactPerson}<input id="detailContactName" placeholder="Eddie Yoon"></label><label style="margin-top:10px">${T[LANG].email}<input id="detailEmail" value="info@company.com"></label><label style="margin-top:10px">${T[LANG].inquiryMessage}<textarea id="detailMessage" rows="7" placeholder="${T[LANG].companyInquiryDefault}"></textarea></label><button class="btn blue" style="width:100%;margin-top:14px" onclick="saveInquiry('${c[0].replace(/'/g,"\\'")}')">${T[LANG].sendToCompany}</button></div></div>`;go('companydetail')}
-function quickInquiry(i){showCompanyDetail(i);setTimeout(()=>document.getElementById('detailMessage')?.focus(),50)}
-function submitGeneralInquiry(){const inputs=document.querySelectorAll('#companies .company-panel input'),ta=document.querySelector('#companies .company-panel textarea');const company=inputs[0]?.value||'General company inquiry';saveInquiry(company,ta?.value||'')}
-function saveInquiry(company,msg){const message=msg||document.getElementById('detailMessage')?.value||T[LANG].companyInquiryDefault;const items=JSON.parse(localStorage.getItem('roboquoInquiries')||'[]');items.unshift({company,message,date:new Date().toLocaleString(),status:'pending'});localStorage.setItem('roboquoInquiries',JSON.stringify(items));renderInquiries();toast(T[LANG].messageSent);go('inquiries')}
-function renderInquiries(){const el=document.getElementById('inquiryList');if(!el)return;const items=JSON.parse(localStorage.getItem('roboquoInquiries')||'[]');el.innerHTML=items.length?items.map(x=>`<div class="inquiry-card"><div><h3>${x.company}</h3><div class="meta">${x.date}</div><p class="muted">${x.message}</p></div><span class="status">${T[LANG].statusPending}</span></div>`).join(''):`<div class="empty-state">${T[LANG].noInquiries}</div>`}
-function runGlobalSearch(){const q=(document.getElementById('globalSearch').value||'').trim().toLowerCase(),box=document.getElementById('globalSearchResults');if(!q){box.classList.add('hidden');return}const results=[];robots.forEach((r,i)=>{if(r.join(' ').toLowerCase().includes(q))results.push({type:'robot',title:`${r[0]} ${r[1]}`,sub:r[2],i})});companies.forEach((c,i)=>{if(c.flat().join(' ').toLowerCase().includes(q))results.push({type:'company',title:c[0],sub:c[1],i})});experts.forEach((e,i)=>{if(e.join(' ').toLowerCase().includes(q))results.push({type:'expert',title:e[0],sub:e[1],i})});box.innerHTML=results.length?results.slice(0,10).map(r=>`<div class="search-result" onclick="openSearchResult('${r.type}',${r.i})"><div><strong>${r.title}</strong><small>${r.sub}</small></div><span class="search-type">${r.type==='robot'?T[LANG].typeRobot:r.type==='company'?T[LANG].typeCompany:T[LANG].typeExpert}</span></div>`).join(''):`<div class="search-result"><div><strong>${T[LANG].searchNoResult}</strong></div></div>`;box.classList.remove('hidden')}
-function openSearchResult(type,i){document.getElementById('globalSearchResults').classList.add('hidden');if(type==='company')showCompanyDetail(i);else if(type==='expert')go('experts');else go('market')}
-function mockAI(){document.getElementById('aires').classList.remove('hidden');toast(T[LANG].aiDetected)}
-function method(){let el=document.querySelector('input[name=m]:checked');if(!el)return;let v=el.value,b=document.getElementById('methodbox'),t=T[LANG];if(v==='fixed')b.innerHTML=`<small>${t.yourPrice}</small><strong>¥1,280,000</strong><span>${t.m2s}</span>`;else if(v==='bid')b.innerHTML=`<small>${t.bidWindow}</small><strong>48 hours</strong><span>${t.bidDesc}</span>`;else b.innerHTML=`<small>${t.estimate}</small><strong>¥1,150,000 – ¥1,350,000</strong><span>${t.recommended}: ¥1,280,000</span>`}
-function toast(s){let t=document.getElementById('toast');t.textContent=s;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1800)}
-
-let deferredInstallPrompt=null;
-function updateMobileNav(page){
-  document.querySelectorAll('.mobile-tab').forEach(b=>b.classList.remove('active'));
-  let mapped=['home','market','sell','projects'].includes(page)?page:'more';
-  document.querySelector(`.mobile-tab[data-page="${mapped}"]`)?.classList.add('active');
-}
-function openMobileMenu(){document.getElementById('mobileOverlay').style.display='block';document.getElementById('mobileMoreSheet').style.display='block';document.body.style.overflow='hidden';updateMobileNav('more')}
-function closeMobileMenu(){document.getElementById('mobileOverlay').style.display='none';document.getElementById('mobileMoreSheet').style.display='none';document.body.style.overflow='';const active=document.querySelector('.page.active')?.id||'home';updateMobileNav(active)}
-function mobileGo(id){closeMobileMenu();go(id)}
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;});
-async function installRoboQuo(){
-  const help=document.getElementById('installHelp');
-  const standalone=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
-  if(standalone){help.textContent=T[LANG].installedHint;help.classList.remove('hidden');return}
-  if(deferredInstallPrompt){deferredInstallPrompt.prompt();await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;closeMobileMenu();return}
-  const isiOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
-  help.textContent=isiOS?T[LANG].installIOS:T[LANG].installAndroid;
-  help.classList.remove('hidden');
-}
-if('serviceWorker' in navigator && location.protocol!=='file:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./service-worker.js').catch(()=>{}));}
-
-document.getElementById('lang').addEventListener('change',e=>applyLang(e.target.value));document.getElementById('mobileLang')?.addEventListener('change',e=>{document.getElementById('lang').value=e.target.value;applyLang(e.target.value)});document.getElementById('globalSearchBtn').addEventListener('click',runGlobalSearch);document.getElementById('globalSearch').addEventListener('keydown',e=>{if(e.key==='Enter')runGlobalSearch()});renderListings();renderExperts();renderCompanies();renderInquiries();const saved=localStorage.getItem('roboquoLang')||'ko';document.getElementById('lang').value=saved;const mlang=document.getElementById('mobileLang');if(mlang)mlang.value=saved;applyLang(saved);updateMobileNav('home');
-</script>
-</body></html>
+<script src="app.js"></script>
+</body>
+</html>
