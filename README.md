@@ -1,22 +1,24 @@
-# RoboQuo v21 — Japan Legal Names + Global Robotics Events
+# RoboQuo v22 — Global Trade + Guided Procurement
 
-This build upgrades the manufacturer directory and events database while keeping the Tokyo Supabase connection.
+This is the current GitHub/Vercel website build.
 
-## Key changes
-- Japanese UI displays verified Japanese legal company names (株式会社 etc.) with English legal names/brands alongside them.
-- 151 global robot / EOAT makers are seeded through the database seed file.
-- Events include date, city, venue, organizer, previous attendance/exhibitors/booths/area where officially available.
-- Attendance that represents co-located shows is explicitly labeled; it is not presented as a single-show attendance figure.
-- iREX 2027 is shown as “early December 2027” because exact dates have not yet been announced.
-- Global search matches Japanese and English manufacturer names and event names.
-- Tokyo Supabase remains the system of record; GitHub/Vercel files remain presentation/code only.
+## Main updates
+- Tokyo Supabase live database connection remains enabled.
+- Language-based company priority remains: Japanese → Japan first, Korean → Korea first, English → Worldwide. Users can still switch to other countries.
+- New **Build Your Solution** guided procurement flow: Robot → EOAT → Vision → Services → Logistics → Payment / RFQ.
+- New **Guided Robot Listing** flow with autosaved draft, guided photo checklist, robot/nameplate/controller/pendant/cable/operating-hours/error capture, condition history, included equipment, dismantling and export logistics.
+- Public auction wording is replaced by **Private Offer / Make Offer** terminology in the UI.
+- New **RoboQuo One Vendor** concept section for reducing multi-supplier onboarding/payment administration.
+- Existing global manufacturer, company, Where-to-Buy and robotics-event directory remains available.
+- Japanese and Korean are prioritized for the new guided flows; other global languages fall back to English for new wizard-specific text until the dynamic translation backend is connected.
 
-## Run these SQL files in Supabase SQL Editor (in order)
-1. `database/003_roboquo_i18n_event_upgrade.sql`
-2. `database/004_global_manufacturers_full_seed.sql`
-3. `database/004b_japan_manufacturer_localizations.sql`
-4. `database/005_global_robotics_events_seed.sql`
+## GitHub update
+Upload all files in this folder to the existing `roboquo-demo` repository and commit. Same filenames overwrite the old version. Vercel redeploys automatically.
 
-Then upload the website files in this folder to the existing GitHub `roboquo-demo` repository and commit. Vercel will redeploy automatically.
+## Important
+Customer/company/listing data belongs in Supabase, not GitHub.
+Never commit database passwords, Supabase secret/service-role keys, payment secret keys or mail passwords.
+The browser publishable Supabase key in `supabase-config.js` is the public client key and is protected by RLS.
 
-Do not put database passwords, service-role keys, or secret keys in GitHub.
+## Database
+The country sales-company seed is supplied separately in the all-in-one package. It adds Japanese and Korean local sales entities such as FANUC Japan / Korea FANUC, YASKAWA Japan / Korea, Kawasaki Robotics Korea, Hyundai WIA, HD Hyundai Robotics and others.
