@@ -1,0 +1,24 @@
+RoboQuo v24.2 — Seller model master + Auth redirect + live language refresh
+
+Changes
+1. Language selection refreshes the v24 commerce UI immediately. No page reload should be needed.
+2. The main brand headline always remains in English:
+   Robots. Ready to trade.
+   Supporting copy, buttons and guidance follow the selected language.
+3. Japanese UI copy uses Japanese punctuation (、。) for Japanese prose. Product/model names remain unchanged.
+4. Seller form now uses a manufacturer selector and manufacturer-dependent model selector.
+   - 143 manufacturers available from the RoboQuo global directory.
+   - 539 seeded current/legacy robot models across 29 major robot manufacturers.
+   - If a model is missing, choose Other / Not listed and enter it manually.
+   - The model master is intentionally expandable; do not treat the current seed as an official exhaustive product-history database.
+5. Seller flow no longer forces account creation before starting the form. Users can prepare the listing first and authenticate only when publishing.
+6. Supabase signup redirect is fixed in code to https://roboquo.com/ and pending seller actions persist across email confirmation.
+
+IMPORTANT — Supabase dashboard setting still required
+Authentication > URL Configuration
+- Site URL: https://roboquo.com
+- Redirect URLs:
+  https://roboquo.com/**
+  https://www.roboquo.com/**
+
+If an old confirmation email already contains localhost:3000, generate a new confirmation email after deploying v24.2 and correcting the Supabase URL settings.

@@ -1,14 +1,25 @@
-# RoboQuo v24.2 — Instant language switching
+# RoboQuo v24.1 — Full language consistency fix
 
-## Fixed in v24.2
-- Changing the language selector updates the whole page immediately. A manual refresh is no longer required.
-- The top global hero headline is intentionally fixed in English: **Robots. Ready to trade.**
-- Navigation, commerce UI, guidance and supporting copy continue to follow the selected language.
-- Removed residual English labels from Japanese, Korean and Simplified Chinese UI where they were not intentional brand/technical terms.
-- Localized Home/About and the About-page value headings.
-- Japanese copy was checked for Japanese punctuation. Japanese sentences use `、` rather than the English comma `,`.
-- Japanese font stack remains Hiragino Sans / Yu Gothic / Meiryo / Noto Sans JP.
-- PWA cache version bumped so the new files replace the previous cached build.
+This is the latest commerce-focused RoboQuo website update.
+
+## v24.1 changes
+- Fixed the issue where Japanese/Korean navigation was localized but commerce sections remained in English.
+- Added localized v24 commerce UI for all 10 supported languages:
+  - English
+  - 日本語
+  - 한국어
+  - 简体中文
+  - Deutsch
+  - Français
+  - Español
+  - Italiano
+  - Português
+  - Tiếng Việt
+- Localized product cards, product detail view, cart, checkout, collaboration section, market headings and key page labels.
+- Country names use the site's localized country labels where available.
+- Existing Supabase sign-up/sign-in remains enabled.
+- Existing events, company directory, manufacturers, search and seller wizard remain available.
+- Updated PWA service-worker cache so `v24.css` and `v24.js` are included and the new language build is not masked by an older cache.
 
 ## Deploy
-Upload all files in this folder to the root of the existing GitHub repository and commit. Vercel will redeploy automatically.
+Upload all files in this folder to the root of the existing GitHub repository and commit the changes. Vercel will redeploy automatically.

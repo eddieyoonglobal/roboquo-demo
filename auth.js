@@ -14,18 +14,23 @@
   };
   const lang=()=>document.documentElement.lang||'en';
   const tx=k=>(copy[lang()]||copy.en)[k]||copy.en[k]||k;
+  const PROD_ORIGIN='https://roboquo.com';
+  const PENDING_KEY='rqPendingAuthV24';
   let client=null,session=null,pending=null;
+  function loadPending(){try{return JSON.parse(localStorage.getItem(PENDING_KEY)||'null')}catch(_){return null}}
+  function savePending(v){pending=v||null;if(v)localStorage.setItem(PENDING_KEY,JSON.stringify(v));else localStorage.removeItem(PENDING_KEY)}
+  function authRedirectUrl(){return `${PROD_ORIGIN}/`;}
   window.rqAuthSession=null;
   function esc2(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
   function setSession(s){session=s||null;window.rqAuthSession=session;const b=document.getElementById('myRoboquoBtn');if(b&&session?.user?.email)b.title=session.user.email;}
   function authModal(mode='login',type='generic',target='RoboQuo'){
-    pending={type,target};
+    savePending({type,target});
     const signup=mode==='signup';
     openModal(`<div class="kicker">${esc2(tx('account'))}</div><div class="auth-switch"><button class="${!signup?'active':''}" onclick="rqShowAuth('login')">${esc2(tx('login'))}</button><button class="${signup?'active':''}" onclick="rqShowAuth('signup')">${esc2(tx('signup'))}</button></div><h2>${esc2(signup?tx('signup'):tx('login'))}</h2><p>${esc2(tx('needLogin'))}</p>${signup?`<label>${esc2(tx('name'))}<input id="rqAuthName" autocomplete="name"></label>`:''}<label>${esc2(tx('email'))}<input id="rqAuthEmail" type="email" autocomplete="email" placeholder="name@company.com"></label><label>${esc2(tx('password'))}<input id="rqAuthPassword" type="password" autocomplete="${signup?'new-password':'current-password'}" placeholder="${esc2(tx('passwordHint'))}"></label><div id="rqAuthError" class="auth-error"></div><div class="modal-actions"><button class="secondary" onclick="closeModal()">${esc2(tx('close'))}</button><button class="primary" onclick="rqSubmitAuth('${signup?'signup':'login'}')">${esc2(signup?tx('create'):tx('login'))}</button></div>`);
   }
   window.rqShowAuth=(mode)=>authModal(mode,pending?.type||'generic',pending?.target||'RoboQuo');
   function errMsg(msg){const el=document.getElementById('rqAuthError');if(el)el.textContent=msg||tx('failed');}
-  async function resume(){const p=pending;pending=null;closeModal();if(!p)return;if(p.type==='bid'&&window.openBid)return window.openBid(p.target);if(p.type==='sell'&&window.rqStartSell)return window.rqStartSell();if(window.toast)toast(`${p.target}: ${tx('welcome')}`);}
+  async function resume(){const p=pending||loadPending();savePending(null);closeModal();if(!p)return;if(p.type==='bid'&&window.openBid)return window.openBid(p.target);if((p.type==='sell'||p.type==='publishSell')&&window.rqStartSell)return window.rqStartSell();if(window.toast)toast(`${p.target}: ${tx('welcome')}`);}
   window.rqSubmitAuth=async(mode)=>{
     if(!client)return errMsg(tx('failed'));
     const email=(document.getElementById('rqAuthEmail')?.value||'').trim();
@@ -36,7 +41,7 @@
     errMsg('');
     try{
       if(mode==='signup'){
-        const {data,error}=await client.auth.signUp({email,password,options:{data:{display_name:name,language:lang()},emailRedirectTo:`${location.origin}/`}});
+        const {data,error}=await client.auth.signUp({email,password,options:{data:{display_name:name,language:lang()},emailRedirectTo:authRedirectUrl()}});
         if(error)throw error;
         if(data.session){setSession(data.session);localStorage.removeItem('rqUserEmail');if(window.toast)toast(tx('welcome'));await resume();}
         else {errMsg(tx('confirm'));}
@@ -47,7 +52,7 @@
   };
   window.rqRequireAuth=(type='generic',target='RoboQuo')=>{if(session)return true;authModal('login',type,target);return false;};
   // Override the v22 email-only demo access modal.
-  window.openAuth=(type,target)=>{if(session){pending={type,target};return resume();}authModal('login',type,target);};
+  window.openAuth=(type,target)=>{if(session){savePending({type,target});return resume();}authModal('login',type,target);};
   window.rqOpenAccount=()=>{
     if(!session)return authModal('login','account','RoboQuo');
     const email=session.user.email||'';const name=session.user.user_metadata?.display_name||'';
@@ -57,10 +62,12 @@
   async function init(){
     try{
       if(!window.supabase||!window.RQ_SUPABASE_URL||!window.RQ_SUPABASE_PUBLISHABLE_KEY){console.warn('RoboQuo Auth: Supabase config missing');return;}
+      pending=loadPending();
       client=window.supabase.createClient(window.RQ_SUPABASE_URL,window.RQ_SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
       window.rqSupabase=client;
       const {data}=await client.auth.getSession();setSession(data?.session||null);
-      client.auth.onAuthStateChange((_event,s)=>setSession(s));
+      if(data?.session&&pending)setTimeout(()=>resume(),120);
+      client.auth.onAuthStateChange((event,s)=>{setSession(s);if(s&&(event==='SIGNED_IN'||event==='USER_UPDATED')&&loadPending()){pending=loadPending();setTimeout(()=>resume(),120);}});
     }catch(e){console.warn('RoboQuo Auth init',e);}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();

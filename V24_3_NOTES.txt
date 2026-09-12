@@ -1,0 +1,7 @@
+RoboQuo v24.3 Hero UX Fix
+- Removed the confusing AI robot illustration from the home hero.
+- Removed the diagonal dark/white split that caused white text to become unreadable.
+- Hero is now a consistent dark background.
+- Right side now explains the actual selling action: upload Robot / Nameplate / Controller photos.
+- The sell panel updates immediately with the selected language.
+- Main brand headline "Robots. Ready to trade." remains English in every locale.
