@@ -4,10 +4,11 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <meta content="#ffffff" name="theme-color"/>
-<title>RoboQuo — Robots. Services. Experts. One place.</title>
+<title>RoboQuo v24 — Buy and sell robots worldwide</title>
 <link href="manifest.json" rel="manifest"/>
 <link href="icon-192.svg" rel="apple-touch-icon"/>
 <link href="styles.css" rel="stylesheet"/>
+<link href="v24.css" rel="stylesheet"/>
 </head>
 <body>
 <header class="site-header">
@@ -156,7 +157,7 @@
 </section>
 <section class="page" id="events">
 <div class="wrap page-head split"><div><div class="kicker">GLOBAL ROBOTICS CALENDAR</div><h1 data-i18n="eventsTitle">Global robotics events</h1><p data-i18n="eventsDesc">Confirmed robotics and automation events sorted by date.</p></div></div>
-<div class="wrap event-toolbar"><select id="eventPhaseFilter"><option data-i18n="upcomingEvents" value="upcoming">Upcoming</option><option data-i18n="pastEvents" value="past">Past events</option><option value="">All</option></select><select id="eventCountryFilter"><option value="">All countries</option></select><select id="eventTypeFilter"><option value="">All event types</option></select></div>
+<div class="wrap event-toolbar"><select id="eventPhaseFilter"><option data-i18n="upcomingEvents" value="upcoming">Upcoming</option><option data-i18n="pastEvents" value="past">Past events</option><option value="">All</option></select><select id="eventYearFilter"><option value="">All years</option></select><select id="eventCountryFilter"><option value="">All countries</option></select><select id="eventTypeFilter"><option value="">All event types</option></select></div>
 <div class="wrap event-grid" id="eventGrid"></div>
 </section>
 <section class="page" id="makers">
@@ -210,6 +211,12 @@
 <div class="wrap language-note"><div class="kicker">GLOBAL BY DESIGN</div><h2 data-i18n="globalLanguageTitle">One RoboQuo, ten languages</h2><p data-i18n="globalLanguageBody">RoboQuo supports ten representative languages. English is the default language, while navigation and guidance adapt to your selection. User-generated content can move to dynamic translation when the database is connected.</p><div class="tag-row language-tags"><span>English</span><span>日本語</span><span>한국어</span><span>简体中文</span><span>Deutsch</span><span>Français</span><span>Español</span><span>Italiano</span><span>Português</span><span>Tiếng Việt</span></div></div>
 <div class="wrap membership-model"><div><div class="kicker">MEMBERSHIP MODEL</div><h2 data-i18n="membershipTitle">Browse first. Join when you need to.</h2><p data-i18n="membershipDesc">Browsing is open. Saving, inquiries and bidding require an email. Company details are verified when selling or entering a transaction.</p></div><div class="membership-steps"><span data-i18n="memberBrowse">Browse freely</span><b>→</b><span data-i18n="memberJoin">Join when needed</span><b>→</b><span data-i18n="memberVerify">Verify when trading</span></div></div>
 </section>
+
+<section class="page" id="cart">
+<div class="wrap page-head split"><div><div class="kicker">ROBOQUO CHECKOUT</div><h1>Your Cart</h1><p>Buy fixed-price robots, peripherals and services with a simple checkout flow.</p></div><button class="secondary" data-route="robots">Continue Shopping</button></div>
+<div class="wrap" id="cartPageMount"></div>
+</section>
+
 </main>
 <div class="mobile-nav"><button data-route="home"><span>⌂</span><small data-i18n="home">Home</small></button><button data-route="robots"><span>⌕</span><small data-i18n="navRobots">Robots</small></button><button class="sell-mobile" data-action="sell"><span>＋</span><small data-i18n="sellShort">Sell</small></button><button data-route="companies"><span>▦</span><small data-i18n="navCompanies">Find Companies</small></button><button data-route="makers"><span>⌘</span><small data-i18n="navMakers">Manufacturers</small></button></div>
 <div class="modal-backdrop hidden" id="modalBackdrop">
@@ -217,6 +224,9 @@
 </div>
 <div class="toast" id="toast"></div>
 <script src="supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="app.js"></script>
+<script src="auth.js"></script>
+<script src="v24.js"></script>
 </body>
 </html>

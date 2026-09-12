@@ -1,235 +1,1338 @@
-{
-  "schema_version": "0.19",
-  "last_checked": "2026-09-12",
-  "note": "Dates are based on official event pages where available. Always confirm on the official website before travel or booking.",
-  "events": [
-    {
-      "name": "LogiMAT 2026",
-      "start": "2026-03-24",
-      "end": "2026-03-26",
-      "country": "Germany",
-      "city": "Stuttgart",
-      "venue": "Messe Stuttgart",
-      "type": "Intralogistics / AMR",
-      "url": "https://www.logimat-messe.de/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "HANNOVER MESSE 2026",
-      "start": "2026-04-20",
-      "end": "2026-04-24",
-      "country": "Germany",
-      "city": "Hannover",
-      "venue": "Hannover Exhibition Grounds",
-      "type": "Industrial Automation / Robotics",
-      "url": "https://www.hannovermesse.de/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "Robotics Summit & Expo 2026",
-      "start": "2026-05-27",
-      "end": "2026-05-28",
-      "country": "USA",
-      "city": "Boston",
-      "venue": "Boston Convention and Exhibition Center",
-      "type": "Robotics Development",
-      "url": "https://www.roboticssummit.com/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "Automate 2026",
-      "start": "2026-06-22",
-      "end": "2026-06-25",
-      "country": "USA",
-      "city": "Chicago",
-      "venue": "McCormick Place",
-      "type": "Automation / Robotics",
-      "url": "https://www.automateshow.com/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "ROSCon JP 2026",
-      "start": "2026-08-04",
-      "end": "2026-08-05",
-      "country": "Japan",
-      "city": "Tsukuba",
-      "venue": "Tsukuba",
-      "type": "ROS / Developer Conference",
-      "url": "https://roscon.ros.org/jp",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "World Robot Conference 2026",
-      "start": "2026-08-19",
-      "end": "2026-08-23",
-      "country": "China",
-      "city": "Beijing",
-      "venue": "Beijing Economic-Technological Development Area",
-      "type": "Robotics / Humanoid",
-      "url": "https://www.worldrobotconference.com/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "ROSCon Global 2026",
-      "start": "2026-09-22",
-      "end": "2026-09-24",
-      "country": "Canada",
-      "city": "Toronto",
-      "venue": "Sheraton Centre Toronto",
-      "type": "ROS / Developer Conference",
-      "url": "https://roscon.ros.org/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "Seoul AI Robot Show 2026",
-      "start": "2026-10-06",
-      "end": "2026-10-08",
-      "country": "Korea",
-      "city": "Seoul",
-      "venue": "COEX B Hall",
-      "type": "AI / Robotics",
-      "url": "https://www.seoulairobot.com/en",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "CIIF Robot Show 2026",
-      "start": "2026-10-12",
-      "end": "2026-10-16",
-      "country": "China",
-      "city": "Shanghai",
-      "venue": "National Exhibition and Convention Center",
-      "type": "Industrial Robotics",
-      "url": "https://www.ciif-expo.com/rs",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "ROBOTWORLD 2026",
-      "start": "2026-11-04",
-      "end": "2026-11-07",
-      "country": "Korea",
-      "city": "Goyang",
-      "venue": "KINTEX",
-      "type": "Manufacturing / Service Robots",
-      "url": "https://www.robotworld.or.kr/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "SPS 2026",
-      "start": "2026-11-24",
-      "end": "2026-11-26",
-      "country": "Germany",
-      "city": "Nuremberg",
-      "venue": "NürnbergMesse",
-      "type": "Smart Production / Automation",
-      "url": "https://sps.mesago.com/nuernberg/en.html",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "RoboNext 2026",
-      "start": "2026-12-02",
-      "end": "2026-12-04",
-      "country": "Japan",
-      "city": "Osaka",
-      "venue": "INTEX Osaka",
-      "type": "Robotics Ecosystem",
-      "url": "https://robonext.nikkan.co.jp/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "CES 2027",
-      "start": "2027-01-06",
-      "end": "2027-01-09",
-      "country": "USA",
-      "city": "Las Vegas",
-      "venue": "Las Vegas",
-      "type": "Technology / Robotics",
-      "url": "https://www.ces.tech/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "Automation World 2027",
-      "start": "2027-03-03",
-      "end": "2027-03-05",
-      "country": "Korea",
-      "city": "Seoul",
-      "venue": "COEX",
-      "type": "Factory Automation / Smart Logistics",
-      "url": "https://www.automationworld.co.kr/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "MECSPE 2027",
-      "start": "2027-03-03",
-      "end": "2027-03-05",
-      "country": "Italy",
-      "city": "Bologna",
-      "venue": "BolognaFiere",
-      "type": "Manufacturing / Robotics",
-      "url": "https://mecspe.com/en/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "Global Industrie 2027",
-      "start": "2027-03-15",
-      "end": "2027-03-18",
-      "country": "France",
-      "city": "Lyon",
-      "venue": "Eurexpo Lyon",
-      "type": "Industry / Robotics",
-      "url": "https://www.global-industrie.com/en",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "LogiMAT 2027",
-      "start": "2027-03-16",
-      "end": "2027-03-18",
-      "country": "Germany",
-      "city": "Stuttgart",
-      "venue": "Messe Stuttgart",
-      "type": "Intralogistics / AMR",
-      "url": "https://www.logimat-messe.de/en/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "Advanced Factories 2027",
-      "start": "2027-03-31",
-      "end": "2027-04-02",
-      "country": "Spain",
-      "city": "Barcelona",
-      "venue": "Fira Barcelona Gran Via",
-      "type": "Automation / Industrial Robotics",
-      "url": "https://www.advancedfactories.com/en/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    },
-    {
-      "name": "automatica 2027",
-      "start": "2027-06-22",
-      "end": "2027-06-25",
-      "country": "Germany",
-      "city": "Munich",
-      "venue": "Trade Fair Center Messe München",
-      "type": "Smart Automation / Robotics",
-      "url": "https://automatica-munich.com/en/",
-      "checked": "2026-09-12",
-      "confirmed": true
-    }
-  ]
-}
+[
+  {
+    "name": "Factory Innovation Week Tokyo 2026 / RoboDEX",
+    "slug": "factory-innovation-week-tokyo-jan-2026",
+    "start": "2026-01-21",
+    "end": "2026-01-23",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Tokyo",
+    "venue": "Tokyo Big Sight",
+    "type": "RoboDEX / Smart Factory / Robotics",
+    "tags": [
+      "RoboDEX",
+      "Robotics",
+      "Humanoid",
+      "AMR",
+      "Smart Factory"
+    ],
+    "url": "https://www.fiweek.jp/tokyo/ja-jp/about/robo.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "previousYear": 2026,
+    "previousVisitors": 78673,
+    "metricScope": "event-result-including-co-located",
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "[東京] ファクトリーイノベーション Week 2026 / ロボデックス",
+        "city_name": "東京",
+        "venue_name": "東京ビッグサイト",
+        "description": "産業ロボット、AGV・AMR、ヒューマノイド、スマート工場、AIなどを扱う製造業向け展示会。",
+        "metric_note": "2026年1月展の来場者78,673名は、ネプコン ジャパン、オートモーティブ ワールド、スマート物流EXPOを含む同時開催展の合計。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Factory Innovation Week Tokyo 2026 / RoboDEX",
+        "city_name": "도쿄",
+        "venue_name": "도쿄 빅사이트",
+        "description": "산업용 로봇, AGV·AMR, 휴머노이드, 스마트공장, AI 등을 다룬 제조업 전시회입니다.",
+        "metric_note": "2026년 1월 방문객 78,673명은 동시 개최 전시회 전체 합계입니다."
+      }
+    ]
+  },
+  {
+    "name": "Automation World 2026",
+    "slug": "automation-world-2026",
+    "start": "2026-03-04",
+    "end": "2026-03-06",
+    "country": "Korea",
+    "countryCode": "KR",
+    "city": "Seoul",
+    "venue": "COEX Halls A-D, Lobby & THE PLATZ",
+    "type": "Factory Automation / Robotics / Vision / Logistics",
+    "tags": [
+      "Factory Automation",
+      "Robotics",
+      "AMR",
+      "Machine Vision",
+      "Smart Factory"
+    ],
+    "url": "https://www.automationworld.co.kr/sub-03?hl=ko",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "previousYear": 2026,
+    "previousVisitors": 80019,
+    "previousExhibitors": 500,
+    "previousBooths": 2300,
+    "metricScope": "event-result",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "Automation World 2026（韓国）",
+        "city_name": "ソウル",
+        "venue_name": "COEX 全館",
+        "description": "スマート工場、国際工場自動化、マシンビジョン、スマート物流を統合した韓国最大級の製造自動化展。",
+        "metric_note": "2026年実績：500社、2,300ブース、来場80,019名。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "AW 2026 스마트공장·자동화산업전",
+        "city_name": "서울",
+        "venue_name": "코엑스 전관",
+        "description": "Smart Factory Expo, aimex, Korea Vision Show, Smart Logistics Zone으로 구성된 국내 대표 제조 자동화 전시회입니다.",
+        "metric_note": "2026년 실적: 500개 기업, 2,300부스, 80,019명 참관."
+      }
+    ]
+  },
+  {
+    "name": "LogiMAT 2026",
+    "slug": "logimat-2026",
+    "start": "2026-03-24",
+    "end": "2026-03-26",
+    "country": "Germany",
+    "countryCode": "DE",
+    "city": "Stuttgart",
+    "venue": "Messe Stuttgart",
+    "type": "Intralogistics / AMR / Warehouse Automation",
+    "tags": [
+      "AMR",
+      "Warehouse Automation",
+      "Intralogistics",
+      "Material Handling"
+    ],
+    "url": "https://www.logimat-messe.de/en/press/press-releases-downloads/press-releases/logimat-2026-stuttgart-final-report",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "previousYear": 2026,
+    "previousVisitors": 69856,
+    "previousExhibitors": 1671,
+    "previousArea": 68969,
+    "metricScope": "event-result",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "LogiMAT 2026",
+        "city_name": "シュトゥットガルト",
+        "venue_name": "メッセ・シュトゥットガルト",
+        "description": "AMR、AGV、倉庫自動化、マテリアルハンドリング等を扱う世界最大級のイントラロジスティクス展。",
+        "metric_note": "2026年実績：来場69,856名、出展1,671社、ネット展示面積68,969㎡。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "LogiMAT 2026",
+        "city_name": "슈투트가르트",
+        "venue_name": "Messe Stuttgart",
+        "description": "AMR, AGV, 창고자동화, 자재취급 등을 다루는 세계 최대급 인트라로지스틱스 전시회입니다.",
+        "metric_note": "2026년 실적: 방문객 69,856명, 참가사 1,671개, 순 전시면적 68,969㎡."
+      }
+    ]
+  },
+  {
+    "name": "Manufacturing World Nagoya 2026",
+    "slug": "manufacturing-world-nagoya-2026",
+    "start": "2026-04-08",
+    "end": "2026-04-10",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Nagoya",
+    "venue": "Port Messe Nagoya",
+    "type": "Manufacturing / Automation / DX",
+    "tags": [
+      "Manufacturing",
+      "Automation",
+      "DX",
+      "Sensors"
+    ],
+    "url": "https://www.manufacturing-world.jp/nagoya/ja-jp/previous.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "previousYear": 2026,
+    "previousVisitors": 28253,
+    "previousExhibitors": 607,
+    "metricScope": "event-result",
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "ものづくり ワールド [名古屋] 2026",
+        "city_name": "名古屋",
+        "venue_name": "ポートメッセなごや",
+        "description": "部品、製造技術、設備、3Dプリンタ、DX・AI、計測・センサ等を扱う中部最大級の製造業展示会。",
+        "metric_note": "2026年実績：来場28,253名、出展607社。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Manufacturing World Nagoya 2026",
+        "city_name": "나고야",
+        "venue_name": "포트메세 나고야",
+        "description": "부품, 제조기술, 설비, 3D 프린터, DX·AI, 계측·센서 등을 다루는 전시회입니다.",
+        "metric_note": "2026년 실적: 방문객 28,253명, 참가사 607개."
+      }
+    ]
+  },
+  {
+    "name": "HANNOVER MESSE 2026",
+    "slug": "hannover-messe-2026",
+    "start": "2026-04-20",
+    "end": "2026-04-24",
+    "country": "Germany",
+    "countryCode": "DE",
+    "city": "Hannover",
+    "venue": "Hannover Exhibition Grounds",
+    "type": "Industrial Automation / AI / Manufacturing",
+    "tags": [
+      "Industrial Automation",
+      "Robotics",
+      "AI",
+      "Manufacturing"
+    ],
+    "url": "https://www.hannovermesse.de/en/",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "HANNOVER MESSE 2026",
+        "city_name": "ハノーバー",
+        "venue_name": "ハノーバー国際見本市会場",
+        "description": "オートメーション、デジタル化、AI、エネルギー、研究開発を網羅する世界有数の産業技術展。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "HANNOVER MESSE 2026",
+        "city_name": "하노버",
+        "venue_name": "하노버 전시장",
+        "description": "자동화, 디지털화, AI, 에너지, 연구개발을 아우르는 세계 대표 산업기술 전시회입니다."
+      }
+    ]
+  },
+  {
+    "name": "Factory Innovation Week Osaka 2026 / RoboDEX",
+    "slug": "factory-innovation-week-osaka-2026",
+    "start": "2026-05-13",
+    "end": "2026-05-15",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Osaka",
+    "venue": "INTEX Osaka",
+    "type": "RoboDEX / Smart Factory / Robotics",
+    "tags": [
+      "RoboDEX",
+      "Robotics",
+      "AMR",
+      "Smart Factory",
+      "Automation"
+    ],
+    "url": "https://www.fiweek.jp/osaka/ja-jp/about/previous/visitorcount.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "previousYear": 2026,
+    "previousVisitors": 26145,
+    "metricScope": "event-result-including-co-located",
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "[大阪] ファクトリーイノベーション Week 2026 / ロボデックス",
+        "city_name": "大阪",
+        "venue_name": "インテックス大阪",
+        "description": "ロボット、スマート工場、省人化、物流自動化などを扱う関西の製造業展示会。",
+        "metric_note": "2026年速報来場者26,145名は併催展からの流入を含む。流入を除く3日間合計は16,112名。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Factory Innovation Week Osaka 2026 / RoboDEX",
+        "city_name": "오사카",
+        "venue_name": "인텍스 오사카",
+        "description": "로봇, 스마트공장, 인력절감, 물류자동화 등을 다룬 간사이 지역 제조 전시회입니다.",
+        "metric_note": "2026년 방문객 26,145명은 동시 개최전 유입 포함 수치이며, 유입 제외 시 16,112명입니다."
+      }
+    ]
+  },
+  {
+    "name": "Automate 2026",
+    "slug": "automate-2026",
+    "start": "2026-06-22",
+    "end": "2026-06-25",
+    "country": "USA",
+    "countryCode": "US",
+    "city": "Chicago",
+    "venue": "McCormick Place",
+    "type": "Robotics / AI / Vision / Automation",
+    "tags": [
+      "Robotics",
+      "AI",
+      "Machine Vision",
+      "Humanoid",
+      "Automation"
+    ],
+    "url": "https://www.automateshow.com/a3-press-releases/a3s-automate-2026-breaks-records-as-demand-for-robotics-ai-and-automation-grows",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "previousYear": 2026,
+    "previousVisitors": 50000,
+    "previousExhibitors": 1230,
+    "previousArea": 39484,
+    "metricScope": "event-result-minimum",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "Automate 2026",
+        "city_name": "シカゴ",
+        "venue_name": "McCormick Place",
+        "description": "ロボティクス、AI、マシンビジョン、モーション、ヒューマノイド等を扱う北米最大級の自動化展。",
+        "metric_note": "2026年実績：登録者50,000名超、出展1,230社、展示フロア425,000平方フィート（約39,484㎡）。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Automate 2026",
+        "city_name": "시카고",
+        "venue_name": "McCormick Place",
+        "description": "로보틱스, AI, 머신비전, 모션, 휴머노이드 등을 다룬 북미 최대급 자동화 전시회입니다.",
+        "metric_note": "2026년 실적: 등록자 50,000명 이상, 참가사 1,230개, 전시면적 425,000ft²(약 39,484㎡)."
+      }
+    ]
+  },
+  {
+    "name": "Manufacturing World Tokyo 2026",
+    "slug": "manufacturing-world-tokyo-2026",
+    "start": "2026-07-01",
+    "end": "2026-07-03",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Tokyo",
+    "venue": "Tokyo Big Sight East, West & South Halls",
+    "type": "Manufacturing / Physical AI / Automation",
+    "tags": [
+      "Manufacturing",
+      "Physical AI",
+      "Automation",
+      "Robotics",
+      "DX"
+    ],
+    "url": "https://www.manufacturing-world.jp/tokyo/ja-jp/previous.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "previousYear": 2026,
+    "previousVisitors": 81697,
+    "previousExhibitors": 2109,
+    "metricScope": "event-result-including-co-located",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "ものづくり ワールド [東京] 2026",
+        "city_name": "東京",
+        "venue_name": "東京ビッグサイト 東・西・南ホール",
+        "description": "部品、AI/DX、ロボット、3Dプリンタ、工場設備、製造業×フィジカルAI等を扱う日本最大級の製造業展示会。",
+        "metric_note": "2026年実績：来場81,697名、出展2,109社。数値は建設DX展プラス、物流DX展を含む合計。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Manufacturing World Tokyo 2026",
+        "city_name": "도쿄",
+        "venue_name": "도쿄 빅사이트 동·서·남홀",
+        "description": "부품, AI/DX, 로봇, 3D프린터, 공장설비, Physical AI 등을 다룬 일본 최대급 제조업 전시회입니다.",
+        "metric_note": "2026년 실적: 방문객 81,697명, 참가사 2,109개. 동시 개최 전시 포함 합계입니다."
+      }
+    ]
+  },
+  {
+    "name": "Factory Innovation Week Tokyo 2026 (September)",
+    "slug": "factory-innovation-week-tokyo-sep-2026",
+    "start": "2026-09-09",
+    "end": "2026-09-11",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Chiba",
+    "venue": "Makuhari Messe",
+    "type": "Robotics / Smart Factory",
+    "tags": [
+      "Robotics",
+      "Smart Factory",
+      "Automation"
+    ],
+    "url": "https://www.fiweek.jp/",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "[東京] ファクトリーイノベーション Week 2026（9月展）",
+        "city_name": "千葉",
+        "venue_name": "幕張メッセ",
+        "description": "ロボデックス、スマート工場EXPOなどで構成される製造業向け展示会。ロボット、自動化、AI・DX、人手不足対策などを扱います。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Factory Innovation Week Tokyo 2026 (9월)",
+        "city_name": "치바",
+        "venue_name": "마쿠하리 멧세",
+        "description": "RoboDEX와 Smart Factory Expo 등을 포함하는 제조업 혁신 전시회입니다."
+      }
+    ]
+  },
+  {
+    "name": "Manufacturing World Osaka 2026",
+    "slug": "manufacturing-world-osaka-2026",
+    "start": "2026-10-07",
+    "end": "2026-10-09",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Osaka",
+    "venue": "INTEX Osaka Halls 1-6",
+    "type": "Manufacturing / Physical AI",
+    "tags": [
+      "Manufacturing",
+      "Physical AI",
+      "Automation",
+      "Robotics"
+    ],
+    "url": "https://www.manufacturing-world.jp/osaka/ja-jp.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedVisitors": 31000,
+    "expectedExhibitors": 1100,
+    "metricScope": "planned",
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "ものづくり ワールド [大阪] 2026",
+        "city_name": "大阪",
+        "venue_name": "インテックス大阪 1～6号館",
+        "description": "製造業DX、工場設備、計測・センサ、ものづくりNEXT、製造業×フィジカルAI展などを含む西日本最大級の製造業展示会。",
+        "metric_note": "出展社数・来場者数は主催者の2026年予定数。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Manufacturing World Osaka 2026",
+        "city_name": "오사카",
+        "venue_name": "인텍스 오사카 1~6호관",
+        "description": "제조 DX, 공장설비, 센서, Physical AI 등을 다루는 대규모 제조업 전시회입니다.",
+        "metric_note": "참가사와 방문객 수는 주최 측의 2026년 예정치입니다."
+      }
+    ]
+  },
+  {
+    "name": "CIIF Robot Show 2026",
+    "slug": "ciif-robot-show-2026",
+    "start": "2026-10-12",
+    "end": "2026-10-16",
+    "country": "China",
+    "countryCode": "CN",
+    "city": "Shanghai",
+    "venue": "National Exhibition and Convention Center, Halls 7.1H & 8.1H",
+    "type": "Industrial Robotics / Humanoid",
+    "tags": [
+      "Industrial Robotics",
+      "Humanoid",
+      "AMR",
+      "Vision"
+    ],
+    "url": "https://www.ciif-expo.com/rs",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedArea": 65000,
+    "previousYear": 2025,
+    "previousVisitors": 223997,
+    "previousExhibitors": 450,
+    "metricScope": "robot-show-previous",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "中国国際工業博覧会 ロボット展（RS）2026",
+        "city_name": "上海",
+        "venue_name": "国家会展中心 7.1H・8.1H",
+        "description": "産業用・協働ロボット、ヒューマノイド、移動ロボット、スマート物流、マシンビジョンなどを扱う大規模ロボット専門展。",
+        "metric_note": "2025年実績はロボット展の主催者公表値。2026年展示規模は65,000㎡予定。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "CIIF Robot Show 2026",
+        "city_name": "상하이",
+        "venue_name": "국가회전중심 7.1H·8.1H",
+        "description": "산업용·협동로봇, 휴머노이드, AMR, 스마트 물류, 머신비전을 다루는 대형 로봇 전문전입니다.",
+        "metric_note": "2025년 실적은 주최 측 공개 수치이며 2026년 전시 규모는 65,000㎡ 예정입니다."
+      }
+    ]
+  },
+  {
+    "name": "JIMTOF 2026",
+    "slug": "jimtof-2026",
+    "start": "2026-10-26",
+    "end": "2026-10-31",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Tokyo",
+    "venue": "Tokyo Big Sight",
+    "type": "Machine Tools / Automation / Robotics",
+    "tags": [
+      "Machine Tools",
+      "Automation",
+      "Robotics",
+      "Manufacturing"
+    ],
+    "url": "https://jimtof.org/",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "previousYear": 2024,
+    "previousVisitors": 129018,
+    "previousBooths": 5744,
+    "previousArea": 118540,
+    "metricScope": "previous-edition",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "JIMTOF 2026 第33回日本国際工作機械見本市",
+        "city_name": "東京",
+        "venue_name": "東京ビッグサイト",
+        "description": "工作機械を中心に自動化、ロボット、計測、周辺機器まで製造技術が集まる日本を代表する国際展示会。",
+        "metric_note": "参考：JIMTOF 2024実績。来場者129,018名、5,744小間、展示面積118,540㎡。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "JIMTOF 2026 일본국제공작기계견본시",
+        "city_name": "도쿄",
+        "venue_name": "도쿄 빅사이트",
+        "description": "공작기계를 중심으로 자동화, 로봇, 계측 및 제조 기술이 모이는 일본 대표 국제 전시회입니다.",
+        "metric_note": "참고: JIMTOF 2024 실적. 방문객 129,018명, 5,744부스, 전시면적 118,540㎡."
+      }
+    ]
+  },
+  {
+    "name": "ROBOTWORLD 2026",
+    "slug": "robotworld-2026",
+    "start": "2026-11-04",
+    "end": "2026-11-07",
+    "country": "Korea",
+    "countryCode": "KR",
+    "city": "Goyang",
+    "venue": "KINTEX Exhibition Center 1, Halls 3-5",
+    "type": "Robotics / Smart Manufacturing",
+    "tags": [
+      "Robotics",
+      "Humanoid",
+      "AMR",
+      "Smart Manufacturing"
+    ],
+    "url": "https://www.robotworld.or.kr/",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "ROBOTWORLD 2026（韓国ロボワールド）",
+        "city_name": "高陽",
+        "venue_name": "KINTEX 第1展示場 3～5ホール",
+        "description": "製造ロボット、サービスロボット、物流ロボット、部品、スマート製造、ソフトウェア等を扱う韓国の主要ロボット展示会。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "2026 로보월드 (ROBOTWORLD 2026)",
+        "city_name": "고양",
+        "venue_name": "킨텍스 제1전시장 3~5홀",
+        "description": "제조용·서비스·물류 로봇, 로봇부품, 스마트제조 솔루션 등을 다루는 국내 대표 로봇 전시회입니다."
+      }
+    ]
+  },
+  {
+    "name": "SPS 2026",
+    "slug": "sps-2026",
+    "start": "2026-11-24",
+    "end": "2026-11-26",
+    "country": "Germany",
+    "countryCode": "DE",
+    "city": "Nuremberg",
+    "venue": "NürnbergMesse",
+    "type": "Industrial Automation / AI",
+    "tags": [
+      "Industrial Automation",
+      "Industrial AI",
+      "Controls",
+      "Sensors"
+    ],
+    "url": "https://sps.mesago.com/nuernberg/en.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedExhibitors": 900,
+    "metricScope": "registered-as-of-2026-05",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "SPS 2026 – Smart Production Solutions",
+        "city_name": "ニュルンベルク",
+        "venue_name": "ニュルンベルクメッセ",
+        "description": "制御、センサ、ソフトウェア、産業通信、Industrial AIなど、産業オートメーションに特化した国際展示会。",
+        "metric_note": "2026年5月時点で900社超が出展登録済み。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "SPS 2026 – Smart Production Solutions",
+        "city_name": "뉘른베르크",
+        "venue_name": "뉘른베르크 메세",
+        "description": "제어, 센서, 소프트웨어, 산업통신, Industrial AI 중심의 국제 자동화 전시회입니다.",
+        "metric_note": "2026년 5월 기준 900개 이상 업체가 참가 등록했습니다."
+      }
+    ]
+  },
+  {
+    "name": "Factory Innovation Week Nagoya 2026",
+    "slug": "factory-innovation-week-nagoya-2026",
+    "start": "2026-11-25",
+    "end": "2026-11-27",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Aichi",
+    "venue": "Aichi Sky Expo Halls C-F",
+    "type": "RoboDEX / Smart Factory / Logistics",
+    "tags": [
+      "RoboDEX",
+      "Robotics",
+      "Smart Factory",
+      "Logistics"
+    ],
+    "url": "https://www.fiweek.jp/nagoya/ja-jp.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedVisitors": 34000,
+    "expectedExhibitors": 620,
+    "metricScope": "planned-including-co-located",
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "[名古屋] ファクトリーイノベーション Week 2026",
+        "city_name": "愛知",
+        "venue_name": "愛知県国際展示場（Aichi Sky Expo）C～Fホール",
+        "description": "ロボデックス、スマート工場EXPO、製造業人手不足対策EXPOなどで構成。スマート物流EXPO等も同時開催。",
+        "metric_note": "620社・34,000名は同時開催展を含む主催者予定数。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Factory Innovation Week Nagoya 2026",
+        "city_name": "아이치",
+        "venue_name": "Aichi Sky Expo C~F홀",
+        "description": "RoboDEX, Smart Factory Expo 등 제조 자동화 전시회와 스마트물류 전시가 함께 열립니다.",
+        "metric_note": "620개사·34,000명은 동시 개최 전시회를 포함한 주최 측 예정치입니다."
+      }
+    ]
+  },
+  {
+    "name": "RoboNext 2026",
+    "slug": "robonext-2026",
+    "start": "2026-12-02",
+    "end": "2026-12-04",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Osaka",
+    "venue": "INTEX Osaka",
+    "type": "Robotics / Physical AI / Humanoid",
+    "tags": [
+      "Robotics",
+      "Physical AI",
+      "Humanoid",
+      "AMR",
+      "SI"
+    ],
+    "url": "https://robonext.nikkan.co.jp/",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedVisitors": 40000,
+    "expectedExhibitors": 300,
+    "expectedBooths": 1000,
+    "metricScope": "planned-including-co-located",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "RoboNext 2026（ロボネクスト）",
+        "city_name": "大阪",
+        "venue_name": "インテックス大阪",
+        "description": "日本ロボット工業会と日刊工業新聞社による新しいロボット展示会。産業用、物流、ヒューマノイド、AI・フィジカルAI、SI、ビジョン、部品・サービスまで対象。",
+        "metric_note": "来場者40,000名は同時開催を含む予定。出展規模300社・団体、1,000小間は目標値。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "RoboNext 2026",
+        "city_name": "오사카",
+        "venue_name": "인텍스 오사카",
+        "description": "일본로봇공업회와 닛칸공업신문이 주최하는 신규 로봇 전시회로 산업·물류·휴머노이드·Physical AI·SI 등을 다룹니다.",
+        "metric_note": "방문객 40,000명은 동시 개최 포함 예정치이며, 300개사·단체/1,000부스는 목표치입니다."
+      }
+    ]
+  },
+  {
+    "name": "Manufacturing World Fukuoka 2026",
+    "slug": "manufacturing-world-fukuoka-2026",
+    "start": "2026-12-02",
+    "end": "2026-12-04",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Fukuoka",
+    "venue": "Marine Messe Fukuoka",
+    "type": "Manufacturing / Automation",
+    "tags": [
+      "Manufacturing",
+      "Automation",
+      "Factory Equipment",
+      "Physical AI"
+    ],
+    "url": "https://www.manufacturing-world.jp/kyushu/ja-jp.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "ものづくり ワールド [福岡] 2026",
+        "city_name": "福岡",
+        "venue_name": "マリンメッセ福岡",
+        "description": "DX、機械部品、工場設備、計測など製造業向け11展で構成される九州の大規模展示会。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Manufacturing World Fukuoka 2026",
+        "city_name": "후쿠오카",
+        "venue_name": "마린멧세 후쿠오카",
+        "description": "DX, 기계부품, 공장설비, 계측 등 제조업 11개 전문전을 구성하는 규슈 지역 전시회입니다."
+      }
+    ]
+  },
+  {
+    "name": "SEMICON Japan 2026",
+    "slug": "semicon-japan-2026",
+    "start": "2026-12-09",
+    "end": "2026-12-11",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Tokyo",
+    "venue": "Tokyo Big Sight",
+    "type": "Semiconductor / Automation / AI",
+    "tags": [
+      "Semiconductor",
+      "Automation",
+      "AI",
+      "Manufacturing"
+    ],
+    "url": "https://www.semiconjapan.org/jp/about",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "SEMICON Japan 2026",
+        "city_name": "東京",
+        "venue_name": "東京ビッグサイト",
+        "description": "半導体製造サプライチェーンを中心に、AI、自動車、IoT等のアプリケーションまで扱う国際展示会。製造装置・自動化関連企業も多数出展。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "SEMICON Japan 2026",
+        "city_name": "도쿄",
+        "venue_name": "도쿄 빅사이트",
+        "description": "반도체 제조 공급망과 AI·자동차·IoT 응용을 다루는 국제 전시회로 제조장비·자동화 기업도 다수 참가합니다."
+      }
+    ]
+  },
+  {
+    "name": "Factory Innovation Week Tokyo 2027 / RoboDEX",
+    "slug": "factory-innovation-week-tokyo-2027",
+    "start": "2027-02-17",
+    "end": "2027-02-19",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Tokyo",
+    "venue": "Tokyo Big Sight",
+    "type": "RoboDEX / Smart Factory / Robotics",
+    "tags": [
+      "RoboDEX",
+      "Robotics",
+      "Smart Factory",
+      "Humanoid"
+    ],
+    "url": "https://www.fiweek.jp/tokyo/ja-jp.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedVisitors": 88000,
+    "expectedExhibitors": 1800,
+    "previousYear": 2026,
+    "previousVisitors": 78673,
+    "metricScope": "planned-and-co-located",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "ファクトリーイノベーション Week 東京 2027 / 第11回 ロボデックス",
+        "city_name": "東京",
+        "venue_name": "東京ビッグサイト",
+        "description": "ロボデックスを中心にスマート工場、フィジカルAI、ヒューマノイド、AGV・AMR、マシンビジョン等を扱う大型展示会。",
+        "metric_note": "1,800社・88,000名は同時開催展を含む予定数。参考：2026年1月展の同時開催含む来場者速報78,673名。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Factory Innovation Week Tokyo 2027 / RoboDEX",
+        "city_name": "도쿄",
+        "venue_name": "도쿄 빅사이트",
+        "description": "RoboDEX를 중심으로 스마트공장, Physical AI, 휴머노이드, AGV/AMR, 머신비전을 다루는 대형 전시회입니다.",
+        "metric_note": "1,800개사·88,000명은 동시 개최 포함 예정치입니다. 참고로 2026년 1월 전시의 동시 개최 포함 방문객 속보는 78,673명이었습니다."
+      }
+    ]
+  },
+  {
+    "name": "Automation World 2027",
+    "slug": "automation-world-2027",
+    "start": "2027-03-03",
+    "end": "2027-03-05",
+    "country": "Korea",
+    "countryCode": "KR",
+    "city": "Seoul",
+    "venue": "COEX Halls A-D, Lobby, THE PLATZ, Grand Ballroom",
+    "type": "Smart Factory / Vision / Logistics",
+    "tags": [
+      "Smart Factory",
+      "Vision",
+      "Logistics",
+      "Automation",
+      "Humanoid"
+    ],
+    "url": "https://www.automationworld.co.kr/overview-exhibition?hl=en",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedVisitors": 80019,
+    "expectedExhibitors": 500,
+    "expectedBooths": 2300,
+    "metricScope": "organizer-show-scale",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "Automation World 2027（韓国）",
+        "city_name": "ソウル",
+        "venue_name": "COEX A～Dホールほか",
+        "description": "Smart Factory Expo、Korea Vision Show、Smart Logistics Zone等で構成される韓国最大級の産業オートメーション展示会。",
+        "metric_note": "主催者が示す2027ショー規模：500社、2,300ブース、80,019名。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Automation World 2027 (AW 2027)",
+        "city_name": "서울",
+        "venue_name": "코엑스 A·B·C·D홀, 로비, THE PLATZ, 그랜드볼룸",
+        "description": "Smart Factory Expo, Korea Vision Show, Smart Logistics Zone 등으로 구성되는 국내 대표 산업 자동화 전시회입니다.",
+        "metric_note": "주최 측 2027 쇼 규모: 500개사, 2,300부스, 80,019명."
+      }
+    ]
+  },
+  {
+    "name": "LogiMAT 2027",
+    "slug": "logimat-2027",
+    "start": "2027-03-16",
+    "end": "2027-03-18",
+    "country": "Germany",
+    "countryCode": "DE",
+    "city": "Stuttgart",
+    "venue": "Stuttgart Trade Fair Centre",
+    "type": "Intralogistics / AMR",
+    "tags": [
+      "Intralogistics",
+      "AMR",
+      "Warehouse Robotics",
+      "Automation"
+    ],
+    "url": "https://www.logimat-messe.de/en",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "previousYear": 2026,
+    "previousVisitors": 69856,
+    "metricScope": "previous-edition",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "LogiMAT 2027",
+        "city_name": "シュトゥットガルト",
+        "venue_name": "メッセ・シュトゥットガルト",
+        "description": "AMR、倉庫ロボット、自動搬送、物流ITなどイントラロジスティクスに特化した欧州最大級の展示会。",
+        "metric_note": "参考：LogiMAT 2026 来場者69,856名。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "LogiMAT 2027",
+        "city_name": "슈투트가르트",
+        "venue_name": "메세 슈투트가르트",
+        "description": "AMR, 창고로봇, 자동반송, 물류 IT 중심의 유럽 대표 인트라로지스틱스 전시회입니다.",
+        "metric_note": "참고: LogiMAT 2026 방문객 69,856명."
+      }
+    ]
+  },
+  {
+    "name": "Advanced Factories 2027",
+    "slug": "advanced-factories-2027",
+    "start": "2027-03-31",
+    "end": "2027-04-02",
+    "country": "Spain",
+    "countryCode": "ES",
+    "city": "Barcelona",
+    "venue": "Fira Barcelona Gran Via",
+    "type": "Industrial Automation / Robotics / AI",
+    "tags": [
+      "Industrial Automation",
+      "Robotics",
+      "AI",
+      "Industry 4.0"
+    ],
+    "url": "https://www.advancedfactories.com/en/",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "previousYear": 2026,
+    "previousVisitors": 34657,
+    "previousExhibitors": 758,
+    "metricScope": "previous-edition",
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "Advanced Factories 2027",
+        "city_name": "バルセロナ",
+        "venue_name": "Fira Barcelona Gran Via",
+        "description": "産業オートメーション、AI、産業ロボティクス、Industry 4.0に特化した南欧の主要イベント。",
+        "metric_note": "参考：2026年は産業関係者34,657名、出展758社。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Advanced Factories 2027",
+        "city_name": "바르셀로나",
+        "venue_name": "Fira Barcelona Gran Via",
+        "description": "산업자동화, AI, 산업용 로봇, Industry 4.0 중심의 남유럽 주요 전시회입니다.",
+        "metric_note": "참고: 2026년 산업 관계자 34,657명, 참가사 758개."
+      }
+    ]
+  },
+  {
+    "name": "HANNOVER MESSE 2027",
+    "slug": "hannover-messe-2027",
+    "start": "2027-04-05",
+    "end": "2027-04-08",
+    "country": "Germany",
+    "countryCode": "DE",
+    "city": "Hannover",
+    "venue": "Hannover Exhibition Grounds",
+    "type": "Industrial Automation / Robotics / AI",
+    "tags": [
+      "Industrial Automation",
+      "Robotics",
+      "AI",
+      "Manufacturing"
+    ],
+    "url": "https://www.hannovermesse.de/en/",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "HANNOVER MESSE 2027",
+        "city_name": "ハノーバー",
+        "venue_name": "ハノーバー国際見本市会場",
+        "description": "Automation & Smart Manufacturing、Motion & Drives、Digital Solutions等を網羅する世界最大級の産業技術展示会。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "HANNOVER MESSE 2027",
+        "city_name": "하노버",
+        "venue_name": "하노버 전시장",
+        "description": "Automation & Smart Manufacturing, Motion & Drives, Digital Solutions 등을 다루는 세계 최대급 산업기술 전시회입니다."
+      }
+    ]
+  },
+  {
+    "name": "Manufacturing World Nagoya 2027",
+    "slug": "manufacturing-world-nagoya-2027",
+    "start": "2027-04-07",
+    "end": "2027-04-09",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Nagoya",
+    "venue": "Port Messe Nagoya",
+    "type": "Manufacturing / Physical AI / Automation",
+    "tags": [
+      "Manufacturing",
+      "Physical AI",
+      "Automation",
+      "Sensors"
+    ],
+    "url": "https://www.manufacturing-world.jp/nagoya/ja-jp.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedVisitors": 30000,
+    "expectedExhibitors": 620,
+    "metricScope": "planned",
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "ものづくり ワールド [名古屋] 2027",
+        "city_name": "名古屋",
+        "venue_name": "ポートメッセなごや",
+        "description": "製造業×フィジカルAI展を含む12の専門展で構成される中部最大級の製造業展示会。",
+        "metric_note": "620社・30,000名は主催者の2027年予定数。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Manufacturing World Nagoya 2027",
+        "city_name": "나고야",
+        "venue_name": "포트메세 나고야",
+        "description": "Manufacturing × Physical AI Expo를 포함하는 중부 지역 대형 제조업 전시회입니다.",
+        "metric_note": "620개사·30,000명은 주최 측의 2027년 예정치입니다."
+      }
+    ]
+  },
+  {
+    "name": "ProMat 2027",
+    "slug": "promat-2027",
+    "start": "2027-04-19",
+    "end": "2027-04-21",
+    "country": "USA",
+    "countryCode": "US",
+    "city": "Chicago",
+    "venue": "McCormick Place",
+    "type": "Supply Chain / AMR / Warehouse Automation",
+    "tags": [
+      "AMR",
+      "Warehouse Automation",
+      "Supply Chain",
+      "Material Handling"
+    ],
+    "url": "https://www.promatshow.com/about",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedExhibitors": 1100,
+    "metricScope": "planned-minimum",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "ProMat 2027",
+        "city_name": "シカゴ",
+        "venue_name": "McCormick Place",
+        "description": "AMR、倉庫自動化、マテリアルハンドリング、サプライチェーン技術が集まる北米最大級の物流展示会。",
+        "metric_note": "主催者は1,100社超のソリューションプロバイダーを予定。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "ProMat 2027",
+        "city_name": "시카고",
+        "venue_name": "McCormick Place",
+        "description": "AMR, 창고자동화, 물류, 자재취급 기술이 모이는 북미 대표 공급망 전시회입니다.",
+        "metric_note": "주최 측은 1,100개 이상의 솔루션 공급업체 참가를 안내하고 있습니다."
+      }
+    ]
+  },
+  {
+    "name": "Automate 2027",
+    "slug": "automate-2027",
+    "start": "2027-05-10",
+    "end": "2027-05-13",
+    "country": "USA",
+    "countryCode": "US",
+    "city": "Las Vegas",
+    "venue": "Las Vegas Convention Center",
+    "type": "Robotics / Automation / Vision / AI",
+    "tags": [
+      "Robotics",
+      "Automation",
+      "Vision",
+      "AI",
+      "Motion"
+    ],
+    "url": "https://www.automateshow.com/attend",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedExhibitors": 1200,
+    "previousYear": 2026,
+    "previousVisitors": 50000,
+    "previousExhibitors": 1230,
+    "previousArea": 39484,
+    "metricScope": "planned-and-previous-edition",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "Automate 2027",
+        "city_name": "ラスベガス",
+        "venue_name": "Las Vegas Convention Center",
+        "description": "北米最大級のロボティクス・自動化展示会。AI、ビジョン、モーション、ヒューマノイド等を幅広く扱います。",
+        "metric_note": "2027年は1,200社超を予定。参考：Automate 2026は登録者50,000名超、出展1,230社。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Automate 2027",
+        "city_name": "라스베이거스",
+        "venue_name": "Las Vegas Convention Center",
+        "description": "AI, 로봇, 머신비전, 모션, 휴머노이드 등을 다루는 북미 최대급 자동화 전시회입니다.",
+        "metric_note": "2027년 1,200개 이상 참가사 예정. 참고: Automate 2026 등록자 50,000명 이상, 참가사 1,230개."
+      }
+    ]
+  },
+  {
+    "name": "Factory Innovation Week Osaka 2027 / RoboDEX",
+    "slug": "factory-innovation-week-osaka-2027",
+    "start": "2027-05-12",
+    "end": "2027-05-14",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Osaka",
+    "venue": "INTEX Osaka",
+    "type": "RoboDEX / Smart Factory / Robotics",
+    "tags": [
+      "RoboDEX",
+      "Robotics",
+      "Humanoid",
+      "AMR",
+      "Smart Factory"
+    ],
+    "url": "https://www.fiweek.jp/osaka/ja-jp.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedVisitors": 33000,
+    "expectedExhibitors": 300,
+    "metricScope": "planned-including-co-located",
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "[大阪] ファクトリーイノベーション Week 2027 / [大阪] ロボデックス",
+        "city_name": "大阪",
+        "venue_name": "インテックス大阪",
+        "description": "産業ロボット、AGV・AMR、ヒューマノイド、フィジカルAI、マシンビジョン等を扱うロボデックスを含む製造業展示会。",
+        "metric_note": "300社・33,000名は同時開催展を含む最終見込み予定数。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Factory Innovation Week Osaka 2027 / RoboDEX",
+        "city_name": "오사카",
+        "venue_name": "인텍스 오사카",
+        "description": "산업용 로봇, AGV/AMR, 휴머노이드, Physical AI, 머신비전 등을 다루는 RoboDEX 포함 전시회입니다.",
+        "metric_note": "300개사·33,000명은 동시 개최를 포함한 예정치입니다."
+      }
+    ]
+  },
+  {
+    "name": "Manufacturing World Tokyo 2027",
+    "slug": "manufacturing-world-tokyo-2027",
+    "start": "2027-06-16",
+    "end": "2027-06-18",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Tokyo",
+    "venue": "Tokyo Big Sight",
+    "type": "Manufacturing / Physical AI / Automation",
+    "tags": [
+      "Manufacturing",
+      "Physical AI",
+      "Automation",
+      "Sensors",
+      "DX"
+    ],
+    "url": "https://www.manufacturing-world.jp/tokyo/en-gb/about.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "expectedVisitors": 70000,
+    "expectedExhibitors": 2000,
+    "metricScope": "planned",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "ものづくり ワールド [東京] 2027",
+        "city_name": "東京",
+        "venue_name": "東京ビッグサイト",
+        "description": "製造業×フィジカルAI展、DX、工場設備、計測・センサ、スマートメンテナンス等を含む大規模製造業展示会。",
+        "metric_note": "出展2,000社、来場70,000名は主催者の2027年予定数。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Manufacturing World Tokyo 2027",
+        "city_name": "도쿄",
+        "venue_name": "도쿄 빅사이트",
+        "description": "Manufacturing × Physical AI, DX, 공장설비, 계측·센서 등을 포함하는 대규모 제조업 전시회입니다.",
+        "metric_note": "참가사 2,000개, 방문객 70,000명은 주최 측의 2027년 예정치입니다."
+      }
+    ]
+  },
+  {
+    "name": "automatica 2027",
+    "slug": "automatica-2027",
+    "start": "2027-06-22",
+    "end": "2027-06-25",
+    "country": "Germany",
+    "countryCode": "DE",
+    "city": "Munich",
+    "venue": "Trade Fair Center Messe München",
+    "type": "Robotics / Smart Automation / Physical AI",
+    "tags": [
+      "Robotics",
+      "Smart Automation",
+      "Physical AI",
+      "Vision"
+    ],
+    "url": "https://automatica-munich.com/en/",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "previousYear": 2025,
+    "previousVisitors": 49284,
+    "previousExhibitors": 798,
+    "previousArea": 66000,
+    "metricScope": "previous-edition",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "automatica 2027",
+        "city_name": "ミュンヘン",
+        "venue_name": "メッセ・ミュンヘン",
+        "description": "スマートオートメーションとロボティクスの世界有数の専門展。Physical AIなど最新テーマも扱います。",
+        "metric_note": "参考：2025年実績は来場49,284名、出展798社、展示面積66,000㎡。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "automatica 2027",
+        "city_name": "뮌헨",
+        "venue_name": "Messe München",
+        "description": "스마트 자동화와 로보틱스 분야의 세계 대표 전문전으로 Physical AI 등 최신 주제를 다룹니다.",
+        "metric_note": "참고: 2025년 방문객 49,284명, 참가사 798개, 전시면적 66,000㎡."
+      }
+    ]
+  },
+  {
+    "name": "Factory Innovation Week Tokyo 2027 (September)",
+    "slug": "factory-innovation-week-tokyo-sep-2027",
+    "start": "2027-09-08",
+    "end": "2027-09-10",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Chiba",
+    "venue": "Makuhari Messe",
+    "type": "Robotics / Smart Factory",
+    "tags": [
+      "Robotics",
+      "Smart Factory",
+      "Automation"
+    ],
+    "url": "https://www.fiweek.jp/hub/ja-jp.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "importance": "major",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "[東京] ファクトリーイノベーション Week 2027（9月展）",
+        "city_name": "千葉",
+        "venue_name": "幕張メッセ",
+        "description": "ロボデックス、スマート工場EXPOなどで構成される秋の製造業課題解決展。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "Factory Innovation Week Tokyo 2027 (9월)",
+        "city_name": "치바",
+        "venue_name": "마쿠하리 멧세",
+        "description": "RoboDEX와 Smart Factory Expo 등으로 구성되는 가을 제조 혁신 전시회입니다."
+      }
+    ]
+  },
+  {
+    "name": "SPS 2027",
+    "slug": "sps-2027",
+    "start": "2027-11-23",
+    "end": "2027-11-25",
+    "country": "Germany",
+    "countryCode": "DE",
+    "city": "Nuremberg",
+    "venue": "NürnbergMesse",
+    "type": "Industrial Automation / AI",
+    "tags": [
+      "Industrial Automation",
+      "Industrial AI",
+      "Controls",
+      "Sensors"
+    ],
+    "url": "https://sps.mesago.com/nuernberg/en/expo/planning-preparation/opening-hours.html",
+    "checked": "2026-09-12",
+    "confirmed": true,
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "SPS 2027 – Smart Production Solutions",
+        "city_name": "ニュルンベルク",
+        "venue_name": "ニュルンベルクメッセ",
+        "description": "スマート・デジタルオートメーションの国際専門展。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "SPS 2027 – Smart Production Solutions",
+        "city_name": "뉘른베르크",
+        "venue_name": "뉘른베르크 메세",
+        "description": "스마트·디지털 자동화 국제 전문 전시회입니다."
+      }
+    ]
+  },
+  {
+    "name": "iREX 2027 - International Robot Exhibition",
+    "slug": "irex-2027",
+    "start": "2027-12-01",
+    "end": "2027-12-10",
+    "country": "Japan",
+    "countryCode": "JP",
+    "city": "Tokyo",
+    "venue": "Tokyo Big Sight",
+    "type": "Robotics / Humanoid / Industrial Automation",
+    "tags": [
+      "Robotics",
+      "Industrial Robotics",
+      "Humanoid",
+      "Service Robots"
+    ],
+    "url": "https://irex.nikkan.co.jp/",
+    "checked": "2026-09-12",
+    "confirmed": false,
+    "datePrecision": "month",
+    "dateDisplay": "Early December 2027 — exact dates TBA",
+    "previousYear": 2025,
+    "previousVisitors": 156110,
+    "metricScope": "previous-edition",
+    "importance": "flagship",
+    "localizations": [
+      {
+        "language_code": "ja",
+        "display_name": "2027国際ロボット展（iREX 2027）",
+        "city_name": "東京",
+        "venue_name": "東京ビッグサイト",
+        "description": "世界最大級のロボット専門展示会。2027年12月上旬開催予定で、正式な会期は主催者の発表待ちです。",
+        "date_display": "2027年12月上旬開催予定（正式日程未発表）",
+        "metric_note": "参考：2025国際ロボット展の来場者実績156,110名。"
+      },
+      {
+        "language_code": "ko",
+        "display_name": "iREX 2027 국제로봇전",
+        "city_name": "도쿄",
+        "venue_name": "도쿄 빅사이트",
+        "description": "세계 최대급 로봇 전문 전시회입니다. 2027년 12월 초 개최 예정이며 정확한 일정은 아직 발표되지 않았습니다.",
+        "date_display": "2027년 12월 초 예정 (정확한 일정 미발표)",
+        "metric_note": "참고: iREX 2025 방문객 156,110명."
+      }
+    ]
+  }
+]

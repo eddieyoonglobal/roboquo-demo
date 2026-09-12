@@ -1,24 +1,52 @@
-# RoboQuo v22 — Global Trade + Guided Procurement
+# RoboQuo v24 — Commerce-first website update
 
-This is the current GitHub/Vercel website build.
+This package contains the **v24 website update** for RoboQuo.
 
-## Main updates
-- Tokyo Supabase live database connection remains enabled.
-- Language-based company priority remains: Japanese → Japan first, Korean → Korea first, English → Worldwide. Users can still switch to other countries.
-- New **Build Your Solution** guided procurement flow: Robot → EOAT → Vision → Services → Logistics → Payment / RFQ.
-- New **Guided Robot Listing** flow with autosaved draft, guided photo checklist, robot/nameplate/controller/pendant/cable/operating-hours/error capture, condition history, included equipment, dismantling and export logistics.
-- Public auction wording is replaced by **Private Offer / Make Offer** terminology in the UI.
-- New **RoboQuo One Vendor** concept section for reducing multi-supplier onboarding/payment administration.
-- Existing global manufacturer, company, Where-to-Buy and robotics-event directory remains available.
-- Japanese and Korean are prioritized for the new guided flows; other global languages fall back to English for new wizard-specific text until the dynamic translation backend is connected.
+## What changed in v24
 
-## GitHub update
-Upload all files in this folder to the existing `roboquo-demo` repository and commit. Same filenames overwrite the old version. Vercel redeploys automatically.
+- Homepage changed from directory-first to **buy / sell commerce-first**
+- Stronger hero section: **Buy Robots / Sell a Robot**
+- New **product-style cards** with:
+  - fixed-price / private-offer status
+  - seller trust indicators
+  - product detail modal
+  - add-to-cart and buy-now actions
+- New **Cart / Checkout** page prototype
+- Existing **Supabase authentication** remains active for sign-up / sign-in
+- Existing **events, companies, makers, search and wizard flows** remain available
+- Kept compatibility with the v23 data structure
 
-## Important
-Customer/company/listing data belongs in Supabase, not GitHub.
-Never commit database passwords, Supabase secret/service-role keys, payment secret keys or mail passwords.
-The browser publishable Supabase key in `supabase-config.js` is the public client key and is protected by RLS.
+## Files
 
-## Database
-The country sales-company seed is supplied separately in the all-in-one package. It adds Japanese and Korean local sales entities such as FANUC Japan / Korea FANUC, YASKAWA Japan / Korea, Kawasaki Robotics Korea, Hyundai WIA, HD Hyundai Robotics and others.
+- `index.html`
+- `styles.css`
+- `v24.css`
+- `app.js`
+- `auth.js`
+- `v24.js`
+- `supabase-config.js`
+- JSON seed files
+
+## Deploy to GitHub Pages
+
+1. Open your GitHub repository.
+2. Upload and replace all files in the website root with this folder contents.
+3. Commit the changes.
+4. GitHub Pages will rebuild automatically.
+
+## Notes
+
+- Sign-up / sign-in uses your existing Supabase public configuration.
+- The cart and checkout are **prototype front-end flows** for now.
+- The live commercial workflow can later connect to payment, escrow, or invoice partners.
+
+
+## v24 contact & collaboration update
+
+Public contact addresses included in the site:
+
+- Sales / trading: `sales@roboquo.com`
+- Partnerships / collaboration: `partnerships@roboquo.com`
+- General inquiries: `info@roboquo.com`
+
+The homepage includes a dedicated collaboration section for manufacturers, dealers, system integrators, service providers, logistics companies and technology partners. The same contacts are also available in the site footer.
