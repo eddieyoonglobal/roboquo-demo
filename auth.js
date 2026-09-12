@@ -21,13 +21,13 @@
   function authModal(mode='login',type='generic',target='RoboQuo'){
     pending={type,target};
     const signup=mode==='signup';
-    openModal(`<div class="kicker">ROBOQUO ACCOUNT</div><div class="auth-switch"><button class="${!signup?'active':''}" onclick="rqShowAuth('login')">${esc2(tx('login'))}</button><button class="${signup?'active':''}" onclick="rqShowAuth('signup')">${esc2(tx('signup'))}</button></div><h2>${esc2(signup?tx('signup'):tx('login'))}</h2><p>${esc2(tx('needLogin'))}</p>${signup?`<label>${esc2(tx('name'))}<input id="rqAuthName" autocomplete="name"></label>`:''}<label>${esc2(tx('email'))}<input id="rqAuthEmail" type="email" autocomplete="email" placeholder="name@company.com"></label><label>${esc2(tx('password'))}<input id="rqAuthPassword" type="password" autocomplete="${signup?'new-password':'current-password'}" placeholder="${esc2(tx('passwordHint'))}"></label><div id="rqAuthError" class="auth-error"></div><div class="modal-actions"><button class="secondary" onclick="closeModal()">${esc2(tx('close'))}</button><button class="primary" onclick="rqSubmitAuth('${signup?'signup':'login'}')">${esc2(signup?tx('create'):tx('login'))}</button></div>`);
+    openModal(`<div class="kicker">${esc2(tx('account'))}</div><div class="auth-switch"><button class="${!signup?'active':''}" onclick="rqShowAuth('login')">${esc2(tx('login'))}</button><button class="${signup?'active':''}" onclick="rqShowAuth('signup')">${esc2(tx('signup'))}</button></div><h2>${esc2(signup?tx('signup'):tx('login'))}</h2><p>${esc2(tx('needLogin'))}</p>${signup?`<label>${esc2(tx('name'))}<input id="rqAuthName" autocomplete="name"></label>`:''}<label>${esc2(tx('email'))}<input id="rqAuthEmail" type="email" autocomplete="email" placeholder="name@company.com"></label><label>${esc2(tx('password'))}<input id="rqAuthPassword" type="password" autocomplete="${signup?'new-password':'current-password'}" placeholder="${esc2(tx('passwordHint'))}"></label><div id="rqAuthError" class="auth-error"></div><div class="modal-actions"><button class="secondary" onclick="closeModal()">${esc2(tx('close'))}</button><button class="primary" onclick="rqSubmitAuth('${signup?'signup':'login'}')">${esc2(signup?tx('create'):tx('login'))}</button></div>`);
   }
   window.rqShowAuth=(mode)=>authModal(mode,pending?.type||'generic',pending?.target||'RoboQuo');
   function errMsg(msg){const el=document.getElementById('rqAuthError');if(el)el.textContent=msg||tx('failed');}
   async function resume(){const p=pending;pending=null;closeModal();if(!p)return;if(p.type==='bid'&&window.openBid)return window.openBid(p.target);if(p.type==='sell'&&window.rqStartSell)return window.rqStartSell();if(window.toast)toast(`${p.target}: ${tx('welcome')}`);}
   window.rqSubmitAuth=async(mode)=>{
-    if(!client)return errMsg('Authentication is not available.');
+    if(!client)return errMsg(tx('failed'));
     const email=(document.getElementById('rqAuthEmail')?.value||'').trim();
     const password=document.getElementById('rqAuthPassword')?.value||'';
     const name=(document.getElementById('rqAuthName')?.value||'').trim();
@@ -51,7 +51,7 @@
   window.rqOpenAccount=()=>{
     if(!session)return authModal('login','account','RoboQuo');
     const email=session.user.email||'';const name=session.user.user_metadata?.display_name||'';
-    openModal(`<div class="kicker">MY ROBOQUO</div><h2>${esc2(name||email||tx('member'))}</h2><p>${esc2(tx('signedIn'))}: ${esc2(email)}</p><div class="tag-row"><span>${esc2(tx('member'))}</span></div><div class="modal-actions"><button class="secondary" onclick="closeModal()">${esc2(tx('close'))}</button><button class="primary" onclick="rqSignOut()">${esc2(tx('signout'))}</button></div>`);
+    openModal(`<div class="kicker">${esc2(tx('account'))}</div><h2>${esc2(name||email||tx('member'))}</h2><p>${esc2(tx('signedIn'))}: ${esc2(email)}</p><div class="tag-row"><span>${esc2(tx('member'))}</span></div><div class="modal-actions"><button class="secondary" onclick="closeModal()">${esc2(tx('close'))}</button><button class="primary" onclick="rqSignOut()">${esc2(tx('signout'))}</button></div>`);
   };
   window.rqSignOut=async()=>{if(client)await client.auth.signOut();setSession(null);closeModal();};
   async function init(){
