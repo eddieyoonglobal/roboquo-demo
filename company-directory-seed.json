@@ -1,0 +1,2042 @@
+{
+  "schema_version": "0.19",
+  "note": "Directory profiles may be unclaimed. Authorized status must be verified from manufacturer sources.",
+  "companies": [
+    {
+      "name": "OnRobot Japan K.K.",
+      "type": "Manufacturer Office",
+      "country": "Japan",
+      "region": "Tokyo",
+      "skills": [
+        "OnRobot"
+      ],
+      "status": "Official source",
+      "source_url": "https://onrobot.com/en/contact-us"
+    },
+    {
+      "name": "OnRobot Korea",
+      "type": "Manufacturer Office",
+      "country": "Korea",
+      "region": "Anyang",
+      "skills": [
+        "OnRobot"
+      ],
+      "status": "Official source",
+      "source_url": "https://onrobot.com/en/contact-us"
+    },
+    {
+      "name": "Universal Robots Japan",
+      "type": "Manufacturer Office",
+      "country": "Japan",
+      "region": "Tokyo",
+      "skills": [
+        "Universal Robots"
+      ],
+      "status": "Official source",
+      "source_url": "https://www.universal-robots.com/ja/about-us/offices/"
+    },
+    {
+      "name": "Universal Robots Korea",
+      "type": "Manufacturer Office",
+      "country": "Korea",
+      "region": "Seongnam",
+      "skills": [
+        "Universal Robots"
+      ],
+      "status": "Official source",
+      "source_url": "https://www.universal-robots.com/about-universal-robots/contact/"
+    },
+    {
+      "name": "MISUMI Japan",
+      "type": "Online Retailer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "FAIRINO",
+        "DOBOT",
+        "Automation components"
+      ],
+      "status": "Official source",
+      "source_url": "https://jp.misumi-ec.com/pr/category_maker/robot_unit.html"
+    },
+    {
+      "name": "RobotShop Japan",
+      "type": "Online Retailer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "DOBOT",
+        "Robotics"
+      ],
+      "status": "Directory",
+      "source_url": "https://jp.robotshop.com/"
+    },
+    {
+      "name": "Dasan Robotics",
+      "type": "Used Robot Dealer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "Used robots",
+        "Industrial robots"
+      ],
+      "status": "Unclaimed Directory Profile"
+    },
+    {
+      "name": "Eurobots",
+      "type": "Used Robot Dealer",
+      "country": "Spain",
+      "region": "Zamudio / Bilbao",
+      "skills": [
+        "ABB",
+        "KUKA",
+        "FANUC",
+        "Yaskawa",
+        "Kawasaki",
+        "Stäubli"
+      ],
+      "status": "Official source",
+      "source_url": "https://www.eurobots.net/"
+    },
+    {
+      "name": "Krüger Industrieautomation",
+      "type": "Used Robot Dealer",
+      "country": "Germany",
+      "region": "Germany",
+      "skills": [
+        "KUKA",
+        "ABB",
+        "FANUC",
+        "Used robots"
+      ],
+      "status": "Official source",
+      "source_url": "https://www.krueger-industrieautomation.de/en/used-robots/"
+    },
+    {
+      "name": "KUKA Used Robots",
+      "type": "Manufacturer Used Robot Program",
+      "country": "Germany",
+      "region": "Global",
+      "skills": [
+        "KUKA",
+        "Used robots"
+      ],
+      "status": "Official source",
+      "source_url": "https://www.kuka.com/en-de/services/kuka-used-robots"
+    },
+    {
+      "name": "Eurobots Marketplace",
+      "type": "Used Robot Marketplace",
+      "country": "Spain",
+      "region": "Europe",
+      "skills": [
+        "ABB",
+        "KUKA",
+        "FANUC",
+        "Used robots"
+      ],
+      "status": "Official source",
+      "source_url": "https://www.eurobotsmarketplace.com/en"
+    },
+    {
+      "name": "FANUC",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "FANUC",
+        "industrial",
+        "collaborative",
+        "scara",
+        "delta"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.fanuc.co.jp/en/product/robot/"
+    },
+    {
+      "name": "Yaskawa Motoman",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "Yaskawa Motoman",
+        "industrial",
+        "collaborative",
+        "cleanroom"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.yaskawa-global.com/product/robotics"
+    },
+    {
+      "name": "Kawasaki Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "Kawasaki Robotics",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://kawasakirobotics.com/"
+    },
+    {
+      "name": "DENSO Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "DENSO Robotics",
+        "industrial",
+        "collaborative",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.densorobotics.com/"
+    },
+    {
+      "name": "Mitsubishi Electric",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "Mitsubishi Electric",
+        "industrial",
+        "collaborative",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.mitsubishielectric.com/fa/products/rbt/robot/"
+    },
+    {
+      "name": "Epson Robots",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "Epson Robots",
+        "industrial",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://epson.com/robots"
+    },
+    {
+      "name": "Yamaha Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "Yamaha Robotics",
+        "scara",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://global.yamaha-motor.com/business/robot/"
+    },
+    {
+      "name": "Nachi-Fujikoshi",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "Nachi-Fujikoshi",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.nachirobotics.com/"
+    },
+    {
+      "name": "OMRON Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "OMRON Robotics",
+        "scara",
+        "delta",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://automation.omron.com/"
+    },
+    {
+      "name": "DAIHEN / OTC",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "DAIHEN / OTC",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.daihen.co.jp/en/"
+    },
+    {
+      "name": "Doosan Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "Doosan Robotics",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.doosanrobotics.com/en/product-solutions/product"
+    },
+    {
+      "name": "Rainbow Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "Rainbow Robotics",
+        "collaborative",
+        "amr",
+        "mobile_manipulator",
+        "quadruped"
+      ],
+      "status": "Directory",
+      "source_url": "https://rainbow-robotics.com/en/products/"
+    },
+    {
+      "name": "Hanwha Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "Hanwha Robotics",
+        "collaborative",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://hanwharobotics.com/en/index"
+    },
+    {
+      "name": "Neuromeka",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "Neuromeka",
+        "collaborative",
+        "delta",
+        "amr",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://en.neuromeka.com/"
+    },
+    {
+      "name": "Hyundai Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "Hyundai Robotics",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.hyundai-robotics.com/"
+    },
+    {
+      "name": "ROBOSTAR",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "ROBOSTAR",
+        "industrial",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.robostar.co.kr/"
+    },
+    {
+      "name": "TWINNY",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "TWINNY",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://twinny.ai/"
+    },
+    {
+      "name": "JAKA Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "JAKA Robotics",
+        "collaborative",
+        "mobile_manipulator"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.jaka.com/en/productList"
+    },
+    {
+      "name": "DOBOT",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "DOBOT",
+        "collaborative",
+        "scara",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.dobot-robots.com/products"
+    },
+    {
+      "name": "AUBO Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "AUBO Robotics",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.aubo-robotics.com/"
+    },
+    {
+      "name": "Elite Robots",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Elite Robots",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.elite-robots.com/"
+    },
+    {
+      "name": "FAIRINO",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "FAIRINO",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.fairino.com/Cobots"
+    },
+    {
+      "name": "ROKAE",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "ROKAE",
+        "industrial",
+        "collaborative",
+        "mobile_manipulator",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.rokae.com/en/"
+    },
+    {
+      "name": "ESTUN Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "ESTUN Robotics",
+        "industrial",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://en.estun.com/"
+    },
+    {
+      "name": "SIASUN",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "SIASUN",
+        "industrial",
+        "collaborative",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://en.siasun.com/"
+    },
+    {
+      "name": "EFORT",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "EFORT",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.efort.com.cn/"
+    },
+    {
+      "name": "STEP Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "STEP Robotics",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.stepelectric.com/"
+    },
+    {
+      "name": "Unitree Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Unitree Robotics",
+        "humanoid",
+        "quadruped"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.unitree.com/"
+    },
+    {
+      "name": "UBTECH Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "UBTECH Robotics",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.ubtrobot.com/"
+    },
+    {
+      "name": "Fourier Intelligence",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Fourier Intelligence",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.fftai.com/"
+    },
+    {
+      "name": "Geek+",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Geek+",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.geekplus.com/"
+    },
+    {
+      "name": "ABB Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Switzerland",
+      "region": "Europe",
+      "skills": [
+        "ABB Robotics",
+        "industrial",
+        "collaborative",
+        "scara",
+        "delta"
+      ],
+      "status": "Directory",
+      "source_url": "https://new.abb.com/products/robotics"
+    },
+    {
+      "name": "KUKA",
+      "type": "Robot Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "KUKA",
+        "industrial",
+        "collaborative",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.kuka.com/"
+    },
+    {
+      "name": "Universal Robots",
+      "type": "Robot Manufacturer",
+      "country": "Denmark",
+      "region": "Europe",
+      "skills": [
+        "Universal Robots",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.universal-robots.com/"
+    },
+    {
+      "name": "Stäubli Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Switzerland",
+      "region": "Europe",
+      "skills": [
+        "Stäubli Robotics",
+        "industrial",
+        "scara",
+        "cleanroom"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.staubli.com/"
+    },
+    {
+      "name": "Comau",
+      "type": "Robot Manufacturer",
+      "country": "Italy",
+      "region": "Europe",
+      "skills": [
+        "Comau",
+        "industrial",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.comau.com/"
+    },
+    {
+      "name": "NEURA Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "NEURA Robotics",
+        "collaborative",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://neura-robotics.com/"
+    },
+    {
+      "name": "MiR",
+      "type": "Robot Manufacturer",
+      "country": "Denmark",
+      "region": "Europe",
+      "skills": [
+        "MiR",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.mobile-industrial-robots.com/"
+    },
+    {
+      "name": "PAL Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Spain",
+      "region": "Europe",
+      "skills": [
+        "PAL Robotics",
+        "humanoid",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://pal-robotics.com/"
+    },
+    {
+      "name": "Exotec",
+      "type": "Robot Manufacturer",
+      "country": "France",
+      "region": "Europe",
+      "skills": [
+        "Exotec",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.exotec.com/"
+    },
+    {
+      "name": "Franka Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "Franka Robotics",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://franka.de/"
+    },
+    {
+      "name": "Boston Dynamics",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Boston Dynamics",
+        "quadruped",
+        "humanoid",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://bostondynamics.com/"
+    },
+    {
+      "name": "Agility Robotics",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Agility Robotics",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.agilityrobotics.com/"
+    },
+    {
+      "name": "Figure",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Figure",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.figure.ai/"
+    },
+    {
+      "name": "Apptronik",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Apptronik",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://apptronik.com/"
+    },
+    {
+      "name": "Locus Robotics",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Locus Robotics",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://locusrobotics.com/"
+    },
+    {
+      "name": "OTTO Motors / Rockwell Automation",
+      "type": "Robot Manufacturer",
+      "country": "Canada",
+      "region": "North America",
+      "skills": [
+        "OTTO Motors / Rockwell Automation",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://ottomotors.com/"
+    },
+    {
+      "name": "Seegrid",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Seegrid",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://seegrid.com/"
+    },
+    {
+      "name": "Symbotic",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Symbotic",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.symbotic.com/"
+    },
+    {
+      "name": "IAI Corporation",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "IAI Corporation",
+        "industrial",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.iai-robot.co.jp/"
+    },
+    {
+      "name": "Shibaura Machine",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "Shibaura Machine",
+        "industrial",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.shibaura-machine.co.jp/en/product/robot/"
+    },
+    {
+      "name": "Janome Industrial Equipment",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "Janome Industrial Equipment",
+        "industrial",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.janomeie.com/"
+    },
+    {
+      "name": "Hirata Corporation",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "Hirata Corporation",
+        "industrial",
+        "cleanroom"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.hirata.co.jp/en/"
+    },
+    {
+      "name": "Mujin",
+      "type": "Robot Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "Mujin",
+        "industrial",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.mujin-corp.com/"
+    },
+    {
+      "name": "ROBOTIS",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "ROBOTIS",
+        "humanoid",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.robotis.us/"
+    },
+    {
+      "name": "HD Hyundai Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "HD Hyundai Robotics",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.hyundai-robotics.com/"
+    },
+    {
+      "name": "Wonik Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "Wonik Robotics",
+        "industrial",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.wonikrobotics.com/"
+    },
+    {
+      "name": "TES Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "TES Robotics",
+        "cleanroom"
+      ],
+      "status": "Directory"
+    },
+    {
+      "name": "Tesollo",
+      "type": "Robot Manufacturer",
+      "country": "Korea",
+      "region": "Korea",
+      "skills": [
+        "Tesollo",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://tesollo.com/"
+    },
+    {
+      "name": "Han's Robot",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Han's Robot",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.hansrobot.net/"
+    },
+    {
+      "name": "GSK CNC Equipment",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "GSK CNC Equipment",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.gsk.com.cn/"
+    },
+    {
+      "name": "QKM Technology",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "QKM Technology",
+        "industrial",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.qkmtech.com/"
+    },
+    {
+      "name": "Inovance Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Inovance Robotics",
+        "industrial",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.inovance.com/"
+    },
+    {
+      "name": "HCFA Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "HCFA Robotics",
+        "industrial",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.hcfa.cn/"
+    },
+    {
+      "name": "Peitian Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Peitian Robotics",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.peitian.com/"
+    },
+    {
+      "name": "Borunte",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Borunte",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.boruntegroup.com/"
+    },
+    {
+      "name": "Cobot (Cobot.cn)",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Cobot (Cobot.cn)",
+        "collaborative"
+      ],
+      "status": "Directory"
+    },
+    {
+      "name": "Pudu Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Pudu Robotics",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.pudurobotics.com/"
+    },
+    {
+      "name": "Quicktron",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Quicktron",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.quicktron.com/"
+    },
+    {
+      "name": "Hikrobot",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Hikrobot",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.hikrobotics.com/"
+    },
+    {
+      "name": "ForwardX Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "ForwardX Robotics",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.forwardx.com/"
+    },
+    {
+      "name": "VisionNav Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "VisionNav Robotics",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.visionnav.com/"
+    },
+    {
+      "name": "Mushiny",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Mushiny",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.mushiny.com/"
+    },
+    {
+      "name": "SEER Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "SEER Robotics",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.seer-group.com/"
+    },
+    {
+      "name": "Standard Robots",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Standard Robots",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.standard-robots.com/"
+    },
+    {
+      "name": "Youibot Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Youibot Robotics",
+        "amr",
+        "mobile_manipulator"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.youibot.com/"
+    },
+    {
+      "name": "Multiway Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Multiway Robotics",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.multiway-robotics.com/"
+    },
+    {
+      "name": "Syrius Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Syrius Robotics",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.syriusrobotics.com/"
+    },
+    {
+      "name": "Galbot",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Galbot",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.galbot.com/"
+    },
+    {
+      "name": "AgiBot",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "AgiBot",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.agibot.com/"
+    },
+    {
+      "name": "Kepler Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Kepler Robotics",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.gotokepler.com/"
+    },
+    {
+      "name": "Astribot",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Astribot",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.astribot.com/"
+    },
+    {
+      "name": "EngineAI",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "EngineAI",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.engineai.com.cn/"
+    },
+    {
+      "name": "Leju Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Leju Robotics",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.lejurobot.com/"
+    },
+    {
+      "name": "LimX Dynamics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "LimX Dynamics",
+        "humanoid",
+        "quadruped"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.limxdynamics.com/"
+    },
+    {
+      "name": "Deep Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Deep Robotics",
+        "quadruped"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.deeprobotics.cn/"
+    },
+    {
+      "name": "Booster Robotics",
+      "type": "Robot Manufacturer",
+      "country": "China",
+      "region": "China",
+      "skills": [
+        "Booster Robotics",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.boosterobotics.com/"
+    },
+    {
+      "name": "Techman Robot",
+      "type": "Robot Manufacturer",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "skills": [
+        "Techman Robot",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.tm-robot.com/"
+    },
+    {
+      "name": "HIWIN",
+      "type": "Robot Manufacturer",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "skills": [
+        "HIWIN",
+        "industrial",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.hiwin.tw/"
+    },
+    {
+      "name": "Delta Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "skills": [
+        "Delta Robotics",
+        "industrial",
+        "scara"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.deltaww.com/"
+    },
+    {
+      "name": "Solomon Technology",
+      "type": "Robot Manufacturer",
+      "country": "Taiwan",
+      "region": "Taiwan",
+      "skills": [
+        "Solomon Technology",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.solomon-3d.com/"
+    },
+    {
+      "name": "igus Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "igus Robotics",
+        "collaborative",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.igus.com/automation"
+    },
+    {
+      "name": "fruitcore robotics",
+      "type": "Robot Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "fruitcore robotics",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.fruitcore-robotics.com/"
+    },
+    {
+      "name": "Kassow Robots",
+      "type": "Robot Manufacturer",
+      "country": "Denmark",
+      "region": "Europe",
+      "skills": [
+        "Kassow Robots",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.kassowrobots.com/"
+    },
+    {
+      "name": "Agile Robots",
+      "type": "Robot Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "Agile Robots",
+        "collaborative",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.agile-robots.com/"
+    },
+    {
+      "name": "Rethink Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "Rethink Robotics",
+        "collaborative",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://rethinkrobotics.com/"
+    },
+    {
+      "name": "KEBA Industrial Automation Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Austria",
+      "region": "Europe",
+      "skills": [
+        "KEBA Industrial Automation Robotics",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.keba.com/"
+    },
+    {
+      "name": "Jenny Science",
+      "type": "Robot Manufacturer",
+      "country": "Switzerland",
+      "region": "Europe",
+      "skills": [
+        "Jenny Science",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.jennyscience.ch/"
+    },
+    {
+      "name": "Mecademic",
+      "type": "Robot Manufacturer",
+      "country": "Canada",
+      "region": "North America",
+      "skills": [
+        "Mecademic",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.mecademic.com/"
+    },
+    {
+      "name": "Robotnik",
+      "type": "Robot Manufacturer",
+      "country": "Spain",
+      "region": "Europe",
+      "skills": [
+        "Robotnik",
+        "amr",
+        "mobile_manipulator"
+      ],
+      "status": "Directory",
+      "source_url": "https://robotnik.eu/"
+    },
+    {
+      "name": "Kivnon",
+      "type": "Robot Manufacturer",
+      "country": "Spain",
+      "region": "Europe",
+      "skills": [
+        "Kivnon",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.kivnon.com/"
+    },
+    {
+      "name": "ASTI Mobile Robotics / ABB",
+      "type": "Robot Manufacturer",
+      "country": "Spain",
+      "region": "Europe",
+      "skills": [
+        "ASTI Mobile Robotics / ABB",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://new.abb.com/products/robotics/autonomous-mobile-robots"
+    },
+    {
+      "name": "BALYO",
+      "type": "Robot Manufacturer",
+      "country": "France",
+      "region": "Europe",
+      "skills": [
+        "BALYO",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.balyo.com/"
+    },
+    {
+      "name": "Sherpa Mobile Robotics",
+      "type": "Robot Manufacturer",
+      "country": "France",
+      "region": "Europe",
+      "skills": [
+        "Sherpa Mobile Robotics",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.sherpa-mr.com/"
+    },
+    {
+      "name": "Wandercraft",
+      "type": "Robot Manufacturer",
+      "country": "France",
+      "region": "Europe",
+      "skills": [
+        "Wandercraft",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.wandercraft.eu/"
+    },
+    {
+      "name": "Magazino",
+      "type": "Robot Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "Magazino",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.magazino.eu/"
+    },
+    {
+      "name": "idealworks",
+      "type": "Robot Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "idealworks",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://idealworks.com/"
+    },
+    {
+      "name": "Innok Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "Innok Robotics",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.innok-robotics.de/"
+    },
+    {
+      "name": "ANYbotics",
+      "type": "Robot Manufacturer",
+      "country": "Switzerland",
+      "region": "Europe",
+      "skills": [
+        "ANYbotics",
+        "quadruped"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.anybotics.com/"
+    },
+    {
+      "name": "BlueBotics",
+      "type": "Robot Manufacturer",
+      "country": "Switzerland",
+      "region": "Europe",
+      "skills": [
+        "BlueBotics",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://bluebotics.com/"
+    },
+    {
+      "name": "1X Technologies",
+      "type": "Robot Manufacturer",
+      "country": "Norway",
+      "region": "Europe",
+      "skills": [
+        "1X Technologies",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.1x.tech/"
+    },
+    {
+      "name": "Tesla Robotics",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Tesla Robotics",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.tesla.com/AI"
+    },
+    {
+      "name": "Sanctuary AI",
+      "type": "Robot Manufacturer",
+      "country": "Canada",
+      "region": "North America",
+      "skills": [
+        "Sanctuary AI",
+        "humanoid"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.sanctuary.ai/"
+    },
+    {
+      "name": "Kinova",
+      "type": "Robot Manufacturer",
+      "country": "Canada",
+      "region": "North America",
+      "skills": [
+        "Kinova",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.kinovarobotics.com/"
+    },
+    {
+      "name": "Rockwell Automation / OTTO Motors",
+      "type": "Robot Manufacturer",
+      "country": "Canada",
+      "region": "North America",
+      "skills": [
+        "Rockwell Automation / OTTO Motors",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://ottomotors.com/"
+    },
+    {
+      "name": "Clearpath Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Canada",
+      "region": "North America",
+      "skills": [
+        "Clearpath Robotics",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://clearpathrobotics.com/"
+    },
+    {
+      "name": "Vecna Robotics",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Vecna Robotics",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.vecnarobotics.com/"
+    },
+    {
+      "name": "Zebra Robotics Automation",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Zebra Robotics Automation",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.zebra.com/"
+    },
+    {
+      "name": "Berkshire Grey",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Berkshire Grey",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.berkshiregrey.com/"
+    },
+    {
+      "name": "Dexterity",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Dexterity",
+        "industrial",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.dexterity.ai/"
+    },
+    {
+      "name": "Ambi Robotics",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Ambi Robotics",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.ambirobotics.com/"
+    },
+    {
+      "name": "Bright Machines",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Bright Machines",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.brightmachines.com/"
+    },
+    {
+      "name": "READY Robotics",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "READY Robotics",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.ready-robotics.com/"
+    },
+    {
+      "name": "Vention",
+      "type": "Robot Manufacturer",
+      "country": "Canada",
+      "region": "North America",
+      "skills": [
+        "Vention",
+        "industrial",
+        "collaborative"
+      ],
+      "status": "Directory",
+      "source_url": "https://vention.io/"
+    },
+    {
+      "name": "Dusty Robotics",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Dusty Robotics",
+        "mobile_manipulator"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.dustyrobotics.com/"
+    },
+    {
+      "name": "Canvas",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Canvas",
+        "mobile_manipulator"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.canvas.build/"
+    },
+    {
+      "name": "Sarcos Technology and Robotics",
+      "type": "Robot Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "Sarcos Technology and Robotics",
+        "mobile_manipulator"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.sarcos.com/"
+    },
+    {
+      "name": "Addverb",
+      "type": "Robot Manufacturer",
+      "country": "India",
+      "region": "India",
+      "skills": [
+        "Addverb",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://addverb.com/"
+    },
+    {
+      "name": "GreyOrange",
+      "type": "Robot Manufacturer",
+      "country": "India",
+      "region": "India",
+      "skills": [
+        "GreyOrange",
+        "amr",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.greyorange.com/"
+    },
+    {
+      "name": "Ati Motors",
+      "type": "Robot Manufacturer",
+      "country": "India",
+      "region": "India",
+      "skills": [
+        "Ati Motors",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://atimotors.com/"
+    },
+    {
+      "name": "Unbox Robotics",
+      "type": "Robot Manufacturer",
+      "country": "India",
+      "region": "India",
+      "skills": [
+        "Unbox Robotics",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.unboxrobotics.com/"
+    },
+    {
+      "name": "Peer Robotics",
+      "type": "Robot Manufacturer",
+      "country": "India",
+      "region": "India",
+      "skills": [
+        "Peer Robotics",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.peerrobotics.ai/"
+    },
+    {
+      "name": "CynLr",
+      "type": "Robot Manufacturer",
+      "country": "India",
+      "region": "India",
+      "skills": [
+        "CynLr",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.cynlr.com/"
+    },
+    {
+      "name": "Systemantics",
+      "type": "Robot Manufacturer",
+      "country": "India",
+      "region": "India",
+      "skills": [
+        "Systemantics",
+        "industrial"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.systemantics.com/"
+    },
+    {
+      "name": "Genrobotics",
+      "type": "Robot Manufacturer",
+      "country": "India",
+      "region": "India",
+      "skills": [
+        "Genrobotics",
+        "mobile_manipulator"
+      ],
+      "status": "Directory",
+      "source_url": "https://genrobotics.com/"
+    },
+    {
+      "name": "PBA Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Singapore",
+      "region": "Southeast Asia",
+      "skills": [
+        "PBA Robotics",
+        "collaborative",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.pbarobotics.com/"
+    },
+    {
+      "name": "SESTO Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Singapore",
+      "region": "Southeast Asia",
+      "skills": [
+        "SESTO Robotics",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.sestorobotics.com/"
+    },
+    {
+      "name": "LionsBot",
+      "type": "Robot Manufacturer",
+      "country": "Singapore",
+      "region": "Southeast Asia",
+      "skills": [
+        "LionsBot",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.lionsbot.com/"
+    },
+    {
+      "name": "DF Automation & Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Malaysia",
+      "region": "Southeast Asia",
+      "skills": [
+        "DF Automation & Robotics",
+        "amr"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.dfautomation.com/"
+    },
+    {
+      "name": "FBR",
+      "type": "Robot Manufacturer",
+      "country": "Australia",
+      "region": "Australia",
+      "skills": [
+        "FBR",
+        "mobile_manipulator"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.fbr.com.au/"
+    },
+    {
+      "name": "Universal Field Robots",
+      "type": "Robot Manufacturer",
+      "country": "Australia",
+      "region": "Australia",
+      "skills": [
+        "Universal Field Robots",
+        "amr",
+        "mobile_manipulator"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.ufr.com.au/"
+    },
+    {
+      "name": "Caja Robotics",
+      "type": "Robot Manufacturer",
+      "country": "Israel",
+      "region": "Middle East",
+      "skills": [
+        "Caja Robotics",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://cajarobotics.com/"
+    },
+    {
+      "name": "BionicHIVE",
+      "type": "Robot Manufacturer",
+      "country": "Israel",
+      "region": "Middle East",
+      "skills": [
+        "BionicHIVE",
+        "warehouse"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.bionichive.com/"
+    },
+    {
+      "name": "OnRobot",
+      "type": "EOAT Manufacturer",
+      "country": "Denmark",
+      "region": "Europe",
+      "skills": [
+        "OnRobot",
+        "gripper",
+        "vacuum",
+        "sander",
+        "screwdriver"
+      ],
+      "status": "Directory",
+      "source_url": "https://onrobot.com/"
+    },
+    {
+      "name": "Robotiq",
+      "type": "EOAT Manufacturer",
+      "country": "Canada",
+      "region": "North America",
+      "skills": [
+        "Robotiq",
+        "gripper",
+        "vacuum",
+        "vision"
+      ],
+      "status": "Directory",
+      "source_url": "https://robotiq.com/"
+    },
+    {
+      "name": "SCHUNK",
+      "type": "EOAT Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "SCHUNK",
+        "gripper",
+        "toolchanger"
+      ],
+      "status": "Directory",
+      "source_url": "https://schunk.com/"
+    },
+    {
+      "name": "Zimmer Group",
+      "type": "EOAT Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "Zimmer Group",
+        "gripper",
+        "toolchanger"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.zimmer-group.com/"
+    },
+    {
+      "name": "SMC",
+      "type": "EOAT Manufacturer",
+      "country": "Japan",
+      "region": "Japan",
+      "skills": [
+        "SMC",
+        "gripper",
+        "vacuum"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.smcworld.com/"
+    },
+    {
+      "name": "Schmalz",
+      "type": "EOAT Manufacturer",
+      "country": "Germany",
+      "region": "Europe",
+      "skills": [
+        "Schmalz",
+        "vacuum"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.schmalz.com/"
+    },
+    {
+      "name": "ATI Industrial Automation",
+      "type": "EOAT Manufacturer",
+      "country": "USA",
+      "region": "North America",
+      "skills": [
+        "ATI Industrial Automation",
+        "toolchanger",
+        "ft"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.ati-ia.com/"
+    },
+    {
+      "name": "Coval",
+      "type": "EOAT Manufacturer",
+      "country": "France",
+      "region": "Europe",
+      "skills": [
+        "Coval",
+        "vacuum"
+      ],
+      "status": "Directory",
+      "source_url": "https://www.coval.com/"
+    }
+  ]
+}

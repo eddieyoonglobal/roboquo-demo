@@ -1,15 +1,22 @@
-# RoboQuo MVP v17 — Unified Global Search
+# RoboQuo v20 — Supabase Tokyo Connected
 
-Built on v16 Where to Buy.
+This version connects the static RoboQuo prototype to the Tokyo Supabase project using the browser-safe publishable key.
 
-## New in v17
-- One global search across robots/listings, manufacturers, companies/dealer networks, Where to Buy channels, robot types and applications
-- Search accepts maker, model, country, region, company type, skill, retailer and category terms
-- Result groups link back to the relevant RoboQuo section
-- Official/source websites remain accessible from manufacturer/company result cards
-- Search UI localized in the same 10 languages as RoboQuo
-- Homepage search is now ecosystem-wide instead of robot-listings-only
-- Future directory/company records added to existing data arrays become searchable automatically
+## Live tables
+The site attempts to read these public tables on load:
+- manufacturers
+- companies
+- events
+- purchase_channels
+- listings
 
-## Important
-This is still a static prototype. Real global directory data, automatic website checks, live pricing and freshness tracking require a backend/database and source-specific update policy.
+If a table is empty or temporarily unavailable, the existing static directory seed remains as a fallback.
+
+## Important security rule
+`supabase-config.js` contains only the public project URL and publishable key. Never add a database password, `service_role`, `sb_secret_...`, or any other secret key to GitHub or browser code.
+
+## Current limitation
+Authentication and customer write operations are not moved to Supabase yet. Company registration, listing creation, bids and inquiries still use the prototype/local flow until Auth + write policies are wired in the next version.
+
+## Deployment
+Upload all files in this folder to the root of the existing `roboquo-demo` GitHub repository and commit. Vercel should redeploy automatically.

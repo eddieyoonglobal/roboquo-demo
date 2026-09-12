@@ -1,227 +1,216 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
-  <meta name="theme-color" content="#ffffff" />
-  <title>RoboQuo — Robots. Services. Experts. One place.</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="icon-192.svg" />
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
+<meta content="#ffffff" name="theme-color"/>
+<title>RoboQuo — Robots. Services. Experts. One place.</title>
+<link href="manifest.json" rel="manifest"/>
+<link href="icon-192.svg" rel="apple-touch-icon"/>
+<link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
 <header class="site-header">
-  <a class="brand" href="#home" data-route="home" aria-label="RoboQuo home"><span class="rq">RQ</span><span>RoboQuo</span></a>
-  <nav class="desktop-nav">
-    <a href="#robots" data-route="robots" data-i18n="navRobots">로봇</a>
-    <a href="#categories" data-route="categories" data-i18n="navCategories">카테고리</a>
-    <a href="#buy" data-route="buy" data-i18n="navBuy">Where to Buy</a>
-    <a href="#makers" data-route="makers" data-i18n="navMakers">메이커</a>
-    <a href="#companies" data-route="companies" data-i18n="navCompanies">업체 찾기</a>
-    <a href="#projects" data-route="projects" data-i18n="navProjects">프로젝트</a>
-    <a href="#about" data-route="about" data-i18n="navAbout">RoboQuo 소개</a>
-  </nav>
-  <div class="header-actions">
-    <select id="languageSelect" class="lang" aria-label="Language">
-      <option value="en">English</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="zh">简体中文</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="it">Italiano</option><option value="pt">Português</option><option value="vi">Tiếng Việt</option>
-    </select>
-    <button class="text-btn" id="myRoboquoBtn" data-i18n="myRoboquo">내 RoboQuo</button>
-    <button class="primary small" data-action="sell" data-i18n="sellRobot">로봇 판매</button>
-  </div>
+<a aria-label="RoboQuo home" class="brand" data-route="home" href="#home"><span class="rq">RQ</span><span>RoboQuo</span></a>
+<nav class="desktop-nav">
+<a data-i18n="navRobots" data-route="robots" href="#robots">Robots</a>
+<a data-i18n="navCategories" data-route="categories" href="#categories">Categories</a>
+<a data-i18n="navBuy" data-route="buy" href="#buy">Where to Buy</a>
+<a data-i18n="navEvents" data-route="events" href="#events">Events</a>
+<a data-i18n="navMakers" data-route="makers" href="#makers">Manufacturers</a>
+<a data-i18n="navCompanies" data-route="companies" href="#companies">Find Companies</a>
+<a data-i18n="navProjects" data-route="projects" href="#projects">Projects</a>
+<a data-i18n="navAbout" data-route="about" href="#about">About RoboQuo</a>
+</nav>
+<div class="header-actions">
+<select aria-label="Language" class="lang" id="languageSelect">
+<option value="en">English</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="zh">简体中文</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="it">Italiano</option><option value="pt">Português</option><option value="vi">Tiếng Việt</option>
+</select>
+<button class="text-btn" data-i18n="myRoboquo" id="myRoboquoBtn">My RoboQuo</button>
+<button class="primary small" data-action="sell" data-i18n="sellRobot">Sell a Robot</button>
+</div>
 </header>
-
 <main>
-<section id="home" class="page active">
-  <div class="hero wrap">
-    <div class="hero-copy">
-      <div class="kicker">ROBOQUO</div>
-      <h1>Robots. Services. Experts.<br><span>One place.</span></h1>
-      <p class="local-headline" data-i18n="localHeadline">로봇 거래와 서비스를 한 곳에서</p>
-      <p class="hero-desc" data-i18n="heroDesc">로봇을 찾고, 판매하고, 필요한 주변기기와 업체·전문가까지 쉽게 연결합니다.</p>
-      <div class="hero-search">
-        <div class="search-field"><span>⌕</span><input id="globalSearch" data-i18n-placeholder="searchPlaceholder" placeholder="FANUC CRX, OnRobot RG2, 로봇 티칭..." /></div>
-        <button class="primary" id="searchBtn" data-i18n="search">검색</button>
-      </div>
-      <div class="hero-actions">
-        <button class="primary big" data-route="robots" data-i18n="findRobots">로봇 찾기</button>
-        <button class="secondary big" data-action="sell" data-i18n="sellRobotNow">로봇 판매하기</button>
-      </div>
-      <p class="access-note"><strong data-i18n="browseFree">둘러보기는 자유롭게.</strong> <span data-i18n="joinWhenNeeded">문의·비딩할 때만 간단히 가입하세요.</span></p>
-    </div>
-    <div class="hero-visual">
-      <svg viewBox="0 0 720 620" role="img" aria-label="Industrial robot illustration">
-        <defs><linearGradient id="g1" x1="0" x2="1"><stop stop-color="#f4f5f7"/><stop offset="1" stop-color="#d9dee7"/></linearGradient></defs>
-        <rect x="0" y="0" width="720" height="620" rx="36" fill="url(#g1)"/>
-        <ellipse cx="365" cy="532" rx="250" ry="42" fill="#c8ced8" opacity=".55"/>
-        <rect x="278" y="430" width="175" height="82" rx="26" fill="#f0b51c"/>
-        <circle cx="360" cy="414" r="60" fill="#f6c83f" stroke="#d69e09" stroke-width="18"/>
-        <rect x="329" y="240" width="68" height="190" rx="30" fill="#f2b71d" transform="rotate(-20 363 335)"/>
-        <circle cx="310" cy="248" r="57" fill="#f6c83f" stroke="#d69e09" stroke-width="17"/>
-        <rect x="305" y="210" width="210" height="62" rx="28" fill="#f2b71d" transform="rotate(-12 410 241)"/>
-        <circle cx="515" cy="201" r="48" fill="#f6c83f" stroke="#d69e09" stroke-width="15"/>
-        <rect x="500" y="170" width="135" height="48" rx="22" fill="#f2b71d" transform="rotate(38 568 194)"/>
-        <rect x="606" y="214" width="63" height="75" rx="14" fill="#202938" transform="rotate(38 638 251)"/>
-        <rect x="28" y="28" width="156" height="44" rx="12" fill="#111827"/><text x="106" y="56" text-anchor="middle" fill="white" font-size="15" font-family="Arial" font-weight="700">AI ROBOT ID</text>
-        <rect x="472" y="526" width="214" height="50" rx="13" fill="#2848ff"/><text x="579" y="557" text-anchor="middle" fill="white" font-size="15" font-family="Arial" font-weight="700">FANUC M-20iA · 94%</text>
-      </svg>
-    </div>
-  </div>
-
-  <div class="principle-bar">
-    <div><strong data-i18n="browse">Browse</strong><span data-i18n="browseSub">가입 없이 검색</span></div>
-    <div><strong data-i18n="join">Join</strong><span data-i18n="joinSub">필요할 때 이메일 가입</span></div>
-    <div><strong data-i18n="verify">Verify</strong><span data-i18n="verifySub">판매·정산 시 회사 확인</span></div>
-    <div><strong data-i18n="trade">Trade</strong><span data-i18n="tradeSub">비딩·문의·서비스 연결</span></div>
-  </div>
-
-  <section class="wrap section-block">
-    <div class="section-title-row"><div><div class="kicker" data-i18n="startHere">START HERE</div><h2 data-i18n="whatNeed">무엇이 필요하신가요?</h2></div></div>
-    <div class="start-grid">
-      <button class="start-card" data-route="robots"><span class="start-icon">⌕</span><div><strong data-i18n="buyRobot">로봇 구매</strong><small data-i18n="buyRobotSub">중고·신품 로봇 검색</small></div><b>→</b></button>
-      <button class="start-card" data-route="buy"><span class="start-icon">↗</span><div><strong data-i18n="buyOnline">온라인 구매처</strong><small data-i18n="buyOnlineSub">국가별 판매처·가격 확인</small></div><b>→</b></button>
-      <button class="start-card" data-action="sell"><span class="start-icon">＋</span><div><strong data-i18n="sellRobot">로봇 판매</strong><small data-i18n="sellRobotSub">고정가 또는 비딩</small></div><b>→</b></button>
-      <button class="start-card" data-route="makers"><span class="start-icon">⌘</span><div><strong data-i18n="findPeripheral">주변기기 찾기</strong><small data-i18n="findPeripheralSub">그리퍼·비전·툴체인저</small></div><b>→</b></button>
-      <button class="start-card" data-route="companies"><span class="start-icon">▦</span><div><strong data-i18n="findCompany">업체 찾기</strong><small data-i18n="findCompanySub">대리점·SI·서비스업체</small></div><b>→</b></button>
-      <button class="start-card" data-route="projects"><span class="start-icon">↗</span><div><strong data-i18n="postProject">프로젝트 등록</strong><small data-i18n="postProjectSub">티칭·설치·수리 견적</small></div><b>→</b></button>
-      <button class="start-card" data-route="categories"><span class="start-icon">◫</span><div><strong data-i18n="browseCategory">카테고리 보기</strong><small data-i18n="browseCategorySub">작업·형태별로 쉽게 찾기</small></div><b>→</b></button>
-    </div>
-  </section>
-
-  <section class="wrap section-block compact">
-    <div class="section-title-row"><div><div class="kicker" data-i18n="popularCategories">POPULAR CATEGORIES</div><h2 data-i18n="robotMadeSimple">어려운 로봇도 용도별로 쉽게</h2></div><button class="link-btn" data-route="categories" data-i18n="viewAll">전체 보기 →</button></div>
-    <div class="category-strip" id="homeCategoryStrip"></div>
-  </section>
-
-  <section class="wrap section-block compact">
-    <div class="section-title-row"><div><div class="kicker">MARKET</div><h2 data-i18n="latestRobots">최근 로봇 매물</h2></div><button class="link-btn" data-route="robots" data-i18n="viewMarket">마켓 보기 →</button></div>
-    <div class="listing-grid" id="homeListings"></div>
-  </section>
-
-  <section class="wrap ecosystem-callout">
-    <div><div class="kicker">ROBOT ECOSYSTEM</div><h2 data-i18n="ecosystemTitle">로봇만 사는 곳이 아닙니다</h2><p data-i18n="ecosystemBody">로봇 메이커, 그리퍼·EOAT 메이커, 대리점, SI, 전문가, 물류까지 한 거래 안에서 연결하는 것이 RoboQuo의 목표입니다.</p></div>
-    <div class="eco-flow"><span>Robot Maker</span><b>→</b><span>EOAT</span><b>→</b><span>Seller</span><b>→</b><span>SI / Expert</span><b>→</b><span>Buyer</span></div>
-  </section>
-  <section class="wrap rfq-section">
-    <div class="kicker">ONE RFQ ENGINE</div><h2 data-i18n="rfqTitle">New, used and services — one request flow</h2><p data-i18n="rfqDesc">For new equipment, local dealers can quote. For used robots, sellers can set a price or accept bids. For services, SIs and experts can compete on the project.</p>
-    <div class="rfq-grid"><div><strong data-i18n="rfqNew">New robots & EOAT</strong><span data-i18n="rfqNewSub">Request quote → regional sellers respond</span></div><div><strong data-i18n="rfqUsed">Used robots</strong><span data-i18n="rfqUsedSub">Fixed price or bidding</span></div><div><strong data-i18n="rfqService">Services</strong><span data-i18n="rfqServiceSub">Project post → matched providers bid</span></div></div>
-  </section>
+<section class="page active" id="home">
+<div class="hero wrap">
+<div class="hero-copy">
+<div class="kicker">ROBOQUO</div>
+<h1>Robots. Services. Experts.<br/><span>One place.</span></h1>
+<p class="local-headline" data-i18n="localHeadline">Buy, sell, and connect with the people who make robots work.</p>
+<p class="hero-desc" data-i18n="heroDesc">Find, buy and sell robots, then connect with peripherals, suppliers and experts in one simple flow.</p>
+<div class="hero-search">
+<div class="search-field"><span>⌕</span><input data-i18n-placeholder="searchPlaceholder" id="globalSearch" placeholder="FANUC CRX, OnRobot RG2, robot teaching..."/></div>
+<button class="primary" data-i18n="search" id="searchBtn">Search</button>
+</div>
+<div class="hero-actions">
+<button class="primary big" data-i18n="findRobots" data-route="robots">Find Robots</button>
+<button class="secondary big" data-action="sell" data-i18n="sellRobotNow">Sell a Robot</button>
+</div>
+<p class="access-note"><strong data-i18n="browseFree">Browse freely.</strong> <span data-i18n="joinWhenNeeded">Join only when you need to inquire, bid or trade.</span></p>
+</div>
+<div class="hero-visual">
+<svg aria-label="Industrial robot illustration" role="img" viewbox="0 0 720 620">
+<defs><lineargradient id="g1" x1="0" x2="1"><stop stop-color="#f4f5f7"></stop><stop offset="1" stop-color="#d9dee7"></stop></lineargradient></defs>
+<rect fill="url(#g1)" height="620" rx="36" width="720" x="0" y="0"></rect>
+<ellipse cx="365" cy="532" fill="#c8ced8" opacity=".55" rx="250" ry="42"></ellipse>
+<rect fill="#f0b51c" height="82" rx="26" width="175" x="278" y="430"></rect>
+<circle cx="360" cy="414" fill="#f6c83f" r="60" stroke="#d69e09" stroke-width="18"></circle>
+<rect fill="#f2b71d" height="190" rx="30" transform="rotate(-20 363 335)" width="68" x="329" y="240"></rect>
+<circle cx="310" cy="248" fill="#f6c83f" r="57" stroke="#d69e09" stroke-width="17"></circle>
+<rect fill="#f2b71d" height="62" rx="28" transform="rotate(-12 410 241)" width="210" x="305" y="210"></rect>
+<circle cx="515" cy="201" fill="#f6c83f" r="48" stroke="#d69e09" stroke-width="15"></circle>
+<rect fill="#f2b71d" height="48" rx="22" transform="rotate(38 568 194)" width="135" x="500" y="170"></rect>
+<rect fill="#202938" height="75" rx="14" transform="rotate(38 638 251)" width="63" x="606" y="214"></rect>
+<rect fill="#111827" height="44" rx="12" width="156" x="28" y="28"></rect><text fill="white" font-family="Arial" font-size="15" font-weight="700" text-anchor="middle" x="106" y="56">AI ROBOT ID</text>
+<rect fill="#2848ff" height="50" rx="13" width="214" x="472" y="526"></rect><text fill="white" font-family="Arial" font-size="15" font-weight="700" text-anchor="middle" x="579" y="557">FANUC M-20iA · 94%</text>
+</svg>
+</div>
+</div>
+<div class="principle-bar">
+<div><strong data-i18n="browse">Browse</strong><span data-i18n="browseSub">Search without signup</span></div>
+<div><strong data-i18n="join">Join</strong><span data-i18n="joinSub">Email signup when needed</span></div>
+<div><strong data-i18n="verify">Verify</strong><span data-i18n="verifySub">Company verification for selling and trading</span></div>
+<div><strong data-i18n="trade">Trade</strong><span data-i18n="tradeSub">Bids, inquiries and services</span></div>
+</div>
+<section class="wrap section-block">
+<div class="section-title-row"><div><div class="kicker" data-i18n="startHere">START HERE</div><h2 data-i18n="whatNeed">What are you looking for?</h2></div></div>
+<div class="start-grid">
+<button class="start-card" data-route="robots"><span class="start-icon">⌕</span><div><strong data-i18n="buyRobot">Buy a Robot</strong><small data-i18n="buyRobotSub">Search used and new robots</small></div><b>→</b></button>
+<button class="start-card" data-route="buy"><span class="start-icon">↗</span><div><strong data-i18n="buyOnline">Buy Online</strong><small data-i18n="buyOnlineSub">Retailers and prices by country</small></div><b>→</b></button>
+<button class="start-card" data-action="sell"><span class="start-icon">＋</span><div><strong data-i18n="sellRobot">Sell a Robot</strong><small data-i18n="sellRobotSub">Fixed price or bidding</small></div><b>→</b></button>
+<button class="start-card" data-route="makers"><span class="start-icon">⌘</span><div><strong data-i18n="findPeripheral">Find Peripherals</strong><small data-i18n="findPeripheralSub">Grippers, vision, tool changers</small></div><b>→</b></button>
+<button class="start-card" data-route="companies"><span class="start-icon">▦</span><div><strong data-i18n="findCompany">Find a Company</strong><small data-i18n="findCompanySub">Dealers, SIs and service providers</small></div><b>→</b></button>
+<button class="start-card" data-route="projects"><span class="start-icon">↗</span><div><strong data-i18n="postProject">Post a Project</strong><small data-i18n="postProjectSub">Teaching, installation and repair</small></div><b>→</b></button>
+<button class="start-card" data-route="events"><span class="start-icon">◷</span><div><strong data-i18n="navEvents">Events</strong><small data-i18n="eventsDesc">Global robotics events and exhibitions</small></div><b>→</b></button>
+<button class="start-card" data-route="categories"><span class="start-icon">◫</span><div><strong data-i18n="browseCategory">Browse Categories</strong><small data-i18n="browseCategorySub">Find by application or robot type</small></div><b>→</b></button>
+</div>
 </section>
-
-
-<section id="searchResults" class="page">
-  <div class="wrap page-head search-results-head">
-    <div class="kicker">GLOBAL SEARCH</div>
-    <h1 data-i18n="globalSearchTitle">Search the entire robot ecosystem</h1>
-    <p data-i18n="globalSearchDesc">Find robots, manufacturers, dealers, companies, online stores, robot types and applications in one search.</p>
-    <div class="search-page-bar">
-      <div class="search-field"><span>⌕</span><input id="searchPageInput" data-i18n-placeholder="globalSearchPlaceholder" placeholder="FANUC, FAIRINO, used robot dealer, AMR, MISUMI..." /></div>
-      <button class="primary" id="searchPageBtn" data-i18n="search">Search</button>
-    </div>
-    <div id="searchSummary" class="search-summary"></div>
-  </div>
-  <div class="wrap" id="globalSearchResults"></div>
+<section class="wrap section-block compact">
+<div class="section-title-row"><div><div class="kicker" data-i18n="popularCategories">POPULAR CATEGORIES</div><h2 data-i18n="robotMadeSimple">Complex robot choices, made simple by application</h2></div><button class="link-btn" data-i18n="viewAll" data-route="categories">View all →</button></div>
+<div class="category-strip" id="homeCategoryStrip"></div>
 </section>
-
-<section id="categories" class="page">
-  <div class="wrap page-head"><div class="kicker">CATEGORIES</div><h1 data-i18n="categoryTitle">Find by robot type or application</h1><p data-i18n="categoryDesc">Start with the robot shape or the job you want to automate.</p></div>
-  <div class="wrap category-section-head"><div><div class="kicker">ROBOT TYPES</div><h2 data-i18n="robotTypeTitle">Robot types</h2></div><p data-i18n="robotTypeDesc">Industrial robots, cobots, AMRs, humanoids, quadrupeds and more.</p></div>
-  <div class="wrap category-grid" id="robotTypeGrid"></div>
-  <div class="wrap category-section-head application-head"><div><div class="kicker">APPLICATIONS</div><h2 data-i18n="applicationTitle">Applications</h2></div><p data-i18n="applicationDesc">Welding, painting, palletizing, machine tending, inspection and more.</p></div>
-  <div class="wrap category-grid application-grid" id="applicationGrid"></div>
+<section class="wrap section-block compact">
+<div class="section-title-row"><div><div class="kicker">MARKET</div><h2 data-i18n="latestRobots">Latest robot listings</h2></div><button class="link-btn" data-i18n="viewMarket" data-route="robots">View market →</button></div>
+<div class="listing-grid" id="homeListings"></div>
 </section>
-
-<section id="robots" class="page">
-  <div class="wrap page-head split"><div><div class="kicker">ROBOQUO MARKET</div><h1 data-i18n="marketTitle">로봇 마켓</h1><p data-i18n="marketDesc">기업이 보유한 중고·신품 로봇을 검색하고 직접 문의하거나 가격을 제안할 수 있습니다.</p></div><button class="primary" data-action="sell" data-i18n="sellRobot">로봇 판매</button></div>
-  <div class="wrap market-toolbar">
-    <div class="search-field"><span>⌕</span><input id="marketSearch" data-i18n-placeholder="marketSearchPh" placeholder="메이커, 모델, 지역 검색" /></div>
-    <select id="categoryFilter"><option value="" data-i18n="allCategories">All robot types</option></select>
-    <select id="applicationFilter"><option value="" data-i18n="allApplications">All applications</option></select>
-    <select id="countryFilter"><option value="" data-i18n="allCountries">모든 국가</option><option>Japan</option><option>Korea</option><option>Germany</option><option>USA</option></select>
-    <select id="saleFilter"><option value="" data-i18n="allSaleTypes">모든 판매방식</option><option value="fixed" data-i18n="fixedPrice">고정가</option><option value="bid" data-i18n="bidding">비딩</option></select>
-  </div>
-  <div class="wrap listing-grid market" id="marketListings"></div>
+<section class="wrap ecosystem-callout">
+<div><div class="kicker">ROBOT ECOSYSTEM</div><h2 data-i18n="ecosystemTitle">Beyond buying robots, connect the entire ecosystem</h2><p data-i18n="ecosystemBody">RoboQuo connects robot and EOAT manufacturers, dealers, system integrators, experts and logistics in one transaction flow.</p></div>
+<div class="eco-flow"><span>Robot Maker</span><b>→</b><span>EOAT</span><b>→</b><span>Seller</span><b>→</b><span>SI / Expert</span><b>→</b><span>Buyer</span></div>
 </section>
-
-
-<section id="buy" class="page">
-  <div class="wrap page-head split"><div><div class="kicker">WHERE TO BUY</div><h1 data-i18n="buyTitle">온라인에서 구매 가능한 로봇 찾기</h1><p data-i18n="buyDesc">RoboQuo에서 제품을 비교하고, 실제 판매처의 최신 가격·재고·납기를 확인한 뒤 해당 스토어에서 구매합니다.</p></div><div class="source-pill"><span class="pulse"></span><span data-i18n="sourceBased">Source-based links</span></div></div>
-  <div class="wrap buy-notice"><strong data-i18n="notSellerTitle">RoboQuo가 직접 판매하는 상품이 아닙니다.</strong><span data-i18n="notSellerBody">표시 가격은 마지막 확인 시점의 참고 정보입니다. 최종 가격, 재고, 납기, 보증은 판매처 홈페이지에서 확인하세요.</span></div>
-  <div class="wrap buy-toolbar">
-    <div class="search-field"><span>⌕</span><input id="buySearch" data-i18n-placeholder="buySearchPh" placeholder="FAIRINO, DOBOT, MISUMI..." /></div>
-    <select id="buyCountry"><option value="" data-i18n="allCountries">All countries</option><option>Japan</option><option>Global</option></select>
-    <select id="buyMaker"><option value="" data-i18n="allMakers">All makers</option><option>FAIRINO</option><option>DOBOT</option></select>
-    <select id="buyMode"><option value="" data-i18n="allPurchaseModes">All purchase modes</option><option value="online" data-i18n="buyOnlineMode">Buy Online</option><option value="official" data-i18n="officialChannels">Official Channels</option></select>
-  </div>
-  <div class="wrap retailer-grid" id="retailerGrid"></div>
-  <div class="wrap refresh-panel">
-    <div><div class="kicker">DATA FRESHNESS</div><h2 data-i18n="refreshTitle">가격과 판매상태는 갱신일을 표시</h2><p data-i18n="refreshBody">현재 데모는 확인일을 표시합니다. 실제 서비스에서는 API·상품 피드가 있으면 자동 갱신하고, 그 외 판매처는 허용 범위 내에서 정기 확인하는 구조로 확장합니다.</p></div>
-    <div class="refresh-steps"><span data-i18n="refreshApi">API / Feed</span><b>→</b><span data-i18n="refreshCheck">Scheduled check</span><b>→</b><span data-i18n="refreshStamp">Last checked</span></div>
-  </div>
+<section class="wrap rfq-section">
+<div class="kicker">ONE RFQ ENGINE</div><h2 data-i18n="rfqTitle">New, used and services — one request flow</h2><p data-i18n="rfqDesc">For new equipment, local dealers can quote. Used robots can be fixed-price or bidding. Service providers bid on projects.</p>
+<div class="rfq-grid"><div><strong data-i18n="rfqNew">New robots &amp; EOAT</strong><span data-i18n="rfqNewSub">Request quote → regional sellers respond</span></div><div><strong data-i18n="rfqUsed">Used robots</strong><span data-i18n="rfqUsedSub">Fixed price or bidding</span></div><div><strong data-i18n="rfqService">Services</strong><span data-i18n="rfqServiceSub">Project post → matched providers bid</span></div></div>
 </section>
-
-<section id="makers" class="page">
-  <div class="wrap page-head"><div class="kicker">MANUFACTURERS & ECOSYSTEM</div><h1 data-i18n="makerTitle">메이커에서 시작해도 됩니다</h1><p data-i18n="makerDesc">로봇 메이커를 선택하면 주요 모델, 주변기기, 판매업체와 서비스업체까지 연결합니다.</p></div>
-  <div class="wrap maker-tabs"><button class="tab active" data-maker-tab="robot" data-i18n="robotMakers">Robot Makers</button><button class="tab" data-maker-tab="eoat" data-i18n="eoatMakers">Grippers & EOAT</button></div>
-  <div class="wrap maker-filterbar">
-    <select id="makerRegionFilter"><option value="" data-i18n="allRegions">All regions</option><option>Japan</option><option>Korea</option><option>China</option><option>Europe</option><option>North America</option></select>
-    <select id="makerTypeFilter"><option value="" data-i18n="allRobotTypes">All robot types</option></select>
-    <span id="makerCount" class="database-count"></span>
-  </div>
-  <div class="wrap maker-grid" id="makerGrid"></div>
-  <div class="wrap compatibility-demo">
-    <div><div class="kicker">COMPATIBILITY</div><h2 data-i18n="compatTitle">로봇과 주변기기를 연결</h2><p data-i18n="compatBody">예: FANUC CRX를 선택하면 호환 가능한 그리퍼, 비전, 툴체인저와 설치 가능한 업체를 한 번에 확인하는 구조입니다.</p></div>
-    <div class="compat-path"><span>FANUC CRX-10iA/L</span><b>→</b><span>OnRobot / Robotiq / SCHUNK</span><b>→</b><span data-i18n="localSupport">지역별 판매·설치 지원</span></div>
-  </div>
-  <section class="wrap network-section">
-    <div class="section-title-row"><div><div class="kicker">REGIONAL NETWORK</div><h2 data-i18n="regionalNetworkTitle">Manufacturer offices and dealer networks by market</h2><p data-i18n="regionalNetworkDesc">RoboQuo will only label a company Authorized after manufacturer-source verification or a claimed profile.</p></div><button class="secondary" id="joinDealerBtn" data-i18n="joinDealer">Join as a dealer</button></div>
-    <div class="network-grid" id="networkGrid"></div>
-  </section>
 </section>
-
-<section id="companies" class="page">
-  <div class="wrap page-head split"><div><div class="kicker">COMPANY DIRECTORY</div><h1 data-i18n="companyTitle">업체를 찾고 바로 문의</h1><p data-i18n="companyDesc">로봇 대리점, 중고 로봇 업체, SI, EOAT 업체, 물류·서비스업체를 지역과 기술로 찾습니다.</p></div><button class="secondary" id="registerCompanyBtn" data-i18n="registerCompany">회사 등록</button></div>
-  <div class="wrap market-toolbar company-tools"><div class="search-field"><span>⌕</span><input id="companySearch" data-i18n-placeholder="companySearchPh" placeholder="회사명, FANUC, Yaskawa, Vision..." /></div><select id="companyTypeFilter"><option value="" data-i18n="allCompanyTypes">All company types</option><option>Manufacturer</option><option>Manufacturer Office</option><option>Dealer Network</option><option>Robot Dealer</option><option>Used Robot Dealer</option><option>System Integrator</option><option>EOAT Supplier</option><option>Logistics</option></select><select id="companyCountryFilter"><option value="" data-i18n="allCountries">All countries</option><option>Japan</option><option>Korea</option><option>China</option><option>Global</option></select></div>
-  <div class="wrap company-grid" id="companyGrid"></div>
+<section class="page" id="searchResults">
+<div class="wrap page-head search-results-head">
+<div class="kicker">GLOBAL SEARCH</div>
+<h1 data-i18n="globalSearchTitle">Search the entire robotics ecosystem</h1>
+<p data-i18n="globalSearchDesc">Search robots, manufacturers, dealers, companies, online sellers, robot types and applications in one place.</p>
+<div class="search-page-bar">
+<div class="search-field"><span>⌕</span><input data-i18n-placeholder="globalSearchPlaceholder" id="searchPageInput" placeholder="FANUC, FAIRINO, used robot dealer, AMR, MISUMI..."/></div>
+<button class="primary" data-i18n="search" id="searchPageBtn">Search</button>
+</div>
+<div class="search-summary" id="searchSummary"></div>
+</div>
+<div class="wrap" id="globalSearchResults"></div>
 </section>
-
-<section id="projects" class="page">
-  <div class="wrap page-head"><div class="kicker">ROBOQUO MATCH</div><h1 data-i18n="projectTitle">필요한 작업을 올리고 견적 받기</h1><p data-i18n="projectDesc">티칭, 설치, 시운전, PLC, 비전, 수리, 교육을 프로젝트로 등록하면 적합한 업체가 가격을 제안합니다.</p></div>
-  <div class="wrap project-layout">
-    <form id="projectForm" class="panel">
-      <div class="step-label">01</div><h2 data-i18n="projectDetails">프로젝트 정보</h2>
-      <div class="form-grid"><label><span data-i18n="workType">작업 종류</span><select id="projectType"><option>Robot Teaching</option><option>Installation / Commissioning</option><option>PLC Programming</option><option>Vision Setup</option><option>Repair / Troubleshooting</option><option>Training</option></select></label><label><span data-i18n="robotModel">로봇 모델</span><input value="Yaskawa GP12 / YRC1000" /></label><label><span data-i18n="location">지역</span><input value="Nagoya, Japan" /></label><label><span data-i18n="preferredDate">희망일</span><input type="date" value="2026-10-12" /></label></div>
-      <label><span data-i18n="priceMethod">가격 방식</span><select><option data-i18n="receiveBids">견적/비딩 받기</option><option data-i18n="setBudget">예산 직접 설정</option></select></label>
-      <label><span data-i18n="description">작업 내용</span><textarea rows="5" data-i18n-placeholder="projectPh" placeholder="Pick & Place 티칭, I/O 설정, 생산 시작 지원"></textarea></label>
-      <button class="primary wide" type="submit" data-i18n="postAndMatch">등록하고 업체 매칭</button>
-    </form>
-    <div class="panel">
-      <div class="step-label">02</div><h2 data-i18n="sampleBids">예상 견적 방식</h2><p class="muted" data-i18n="sampleBidsDesc">가격만이 아니라 경험, 지역, 평가를 함께 보고 선택합니다.</p>
-      <div class="bid-row"><div><strong>Aichi Robot Systems</strong><small>Yaskawa · 48 jobs · ★4.9</small></div><div><b>97%</b><strong>¥240,000</strong></div></div>
-      <div class="bid-row"><div><strong>Takumi Automation</strong><small>YRC1000 · Vision · ★4.8</small></div><div><b>94%</b><strong>¥220,000</strong></div></div>
-      <div class="bid-row"><div><strong>Engineer K.</strong><small>Yaskawa / FANUC · ★4.9</small></div><div><b>92%</b><strong>¥190,000</strong></div></div>
-    </div>
-  </div>
+<section class="page" id="categories">
+<div class="wrap page-head"><div class="kicker">CATEGORIES</div><h1 data-i18n="categoryTitle">Find robots by application</h1><p data-i18n="categoryDesc">You do not need to know the manufacturer. Start with the application or robot type you need.</p></div>
+<div class="wrap category-section-head"><div><div class="kicker">ROBOT TYPES</div><h2 data-i18n="robotTypeTitle">Robot types</h2></div><p data-i18n="robotTypeDesc">Industrial robots, cobots, AMRs, humanoids, quadrupeds and more.</p></div>
+<div class="wrap category-grid" id="robotTypeGrid"></div>
+<div class="wrap category-section-head application-head"><div><div class="kicker">APPLICATIONS</div><h2 data-i18n="applicationTitle">Applications</h2></div><p data-i18n="applicationDesc">Welding, painting, palletizing, machine tending, inspection and more.</p></div>
+<div class="wrap category-grid application-grid" id="applicationGrid"></div>
 </section>
-
-<section id="about" class="page">
-  <div class="wrap about-hero"><div class="kicker">ABOUT ROBOQUO</div><h1 data-i18n="aboutTitle">로봇 거래의 장벽을 낮추는 회사</h1><p data-i18n="aboutLead">RoboQuo는 로봇을 사고파는 것뿐 아니라 주변기기, 업체, 전문가, 물류까지 연결해 복잡한 로봇 거래를 단순하게 만드는 것을 목표로 합니다.</p></div>
-  <div class="wrap name-story">
-    <div><div class="kicker">WHY ROBOQUO?</div><h2>Robo + Quo</h2></div>
-    <div><p data-i18n-html="nameStory1"><strong>Robo</strong>는 Robot / Robotics를 뜻합니다.</p><p data-i18n-html="nameStory2"><strong>Quo</strong>는 브랜드 의미로 “어디로, 어디에서”라는 방향성과 연결의 이미지를 담았습니다.</p><p data-i18n-html="nameStory3">그래서 <strong>RoboQuo</strong>는 “로봇 생태계가 모이고, 다음 거래로 이어지는 곳”이라는 의미로 사용합니다.</p></div>
-  </div>
-  <div class="wrap values-grid"><div class="value"><span>01</span><h3>Simple</h3><p data-i18n="valueSimple">로봇을 모르는 사람도 사용할 수 있게.</p></div><div class="value"><span>02</span><h3>Transparent</h3><p data-i18n="valueTransparent">가격, 조건, 판매자 정보를 명확하게.</p></div><div class="value"><span>03</span><h3>Trusted</h3><p data-i18n="valueTrusted">거래 단계가 깊어질수록 회사 확인을 강화.</p></div><div class="value"><span>04</span><h3>Global</h3><p data-i18n="valueGlobal">언어와 국가의 장벽을 낮추기.</p></div></div>
-  <div class="wrap language-note"><div class="kicker">GLOBAL BY DESIGN</div><h2 data-i18n="globalLanguageTitle">언어가 달라도 같은 RoboQuo</h2><p data-i18n="globalLanguageBody">현재 데모는 한국어·日本語·English·中文 전체 화면을 지원합니다. 실제 서비스에서는 사용자와 업체가 작성한 콘텐츠도 선택 언어로 번역되는 구조를 목표로 합니다.</p><div class="tag-row language-tags"><span>English</span><span>日本語</span><span>한국어</span><span>简体中文</span><span>Deutsch</span><span>Français</span><span>Español</span><span>Italiano</span><span>Português</span><span>Tiếng Việt</span></div></div>
-  <div class="wrap membership-model"><div><div class="kicker">MEMBERSHIP MODEL</div><h2 data-i18n="membershipTitle">먼저 사용하고, 필요할 때 가입</h2><p data-i18n="membershipDesc">검색과 열람은 자유롭게. 관심 저장·문의·비딩은 이메일 가입. 판매와 정산은 회사 인증. 불필요한 가입 장벽을 만들지 않습니다.</p></div><div class="membership-steps"><span data-i18n="memberBrowse">Browse freely</span><b>→</b><span data-i18n="memberJoin">Join when needed</span><b>→</b><span data-i18n="memberVerify">Verify when trading</span></div></div>
+<section class="page" id="robots">
+<div class="wrap page-head split"><div><div class="kicker">ROBOQUO MARKET</div><h1 data-i18n="marketTitle">Robot Marketplace</h1><p data-i18n="marketDesc">Search new and used robots listed by companies, contact sellers, or submit a price offer.</p></div><button class="primary" data-action="sell" data-i18n="sellRobot">Sell a Robot</button></div>
+<div class="wrap market-toolbar">
+<div class="search-field"><span>⌕</span><input data-i18n-placeholder="marketSearchPh" id="marketSearch" placeholder="Search maker, model or location"/></div>
+<select id="categoryFilter"><option data-i18n="allCategories" value="">All categories</option></select>
+<select id="applicationFilter"><option data-i18n="allApplications" value="">All applications</option></select>
+<select id="countryFilter"><option data-i18n="allCountries" value="">All countries</option><option>Japan</option><option>Korea</option><option>Germany</option><option>USA</option></select>
+<select id="saleFilter"><option data-i18n="allSaleTypes" value="">All sale types</option><option data-i18n="fixedPrice" value="fixed">Fixed Price</option><option data-i18n="bidding" value="bid">Bidding</option></select>
+</div>
+<div class="wrap listing-grid market" id="marketListings"></div>
+</section>
+<section class="page" id="buy">
+<div class="wrap page-head split"><div><div class="kicker">WHERE TO BUY</div><h1 data-i18n="buyTitle">Find robots you can buy online</h1><p data-i18n="buyDesc">Compare products and purchase channels in RoboQuo, then confirm the latest price, stock, lead time and warranty on the seller's website before purchasing.</p></div><div class="source-pill"><span class="pulse"></span><span data-i18n="sourceBased">Source and check date shown</span></div></div>
+<div class="wrap buy-notice"><strong data-i18n="notSellerTitle">These products are not sold directly by RoboQuo.</strong><span data-i18n="notSellerBody">Displayed prices are reference data from the last check. Confirm final price, stock, lead time and warranty terms on the seller's website.</span></div>
+<div class="wrap buy-toolbar">
+<div class="search-field"><span>⌕</span><input data-i18n-placeholder="buySearchPh" id="buySearch" placeholder="FAIRINO, DOBOT, MISUMI..."/></div>
+<select id="buyCountry"><option data-i18n="allCountries" value="">All countries</option><option>Japan</option><option>Global</option></select>
+<select id="buyMaker"><option data-i18n="allMakers" value="">All makers</option><option>FAIRINO</option><option>DOBOT</option></select>
+<select id="buyMode"><option data-i18n="allPurchaseModes" value="">All purchase modes</option><option data-i18n="buyOnlineMode" value="online">Buy Online</option><option data-i18n="officialChannels" value="official">Official Channels</option></select>
+</div>
+<div class="wrap retailer-grid" id="retailerGrid"></div>
+<div class="wrap refresh-panel">
+<div><div class="kicker">DATA FRESHNESS</div><h2 data-i18n="refreshTitle">See when price and sales status were last checked</h2><p data-i18n="refreshBody">This demo shows a last-checked date. In the live service, API/product feeds can update automatically and other sources can be checked periodically where permitted.</p></div>
+<div class="refresh-steps"><span data-i18n="refreshApi">API / Feed</span><b>→</b><span data-i18n="refreshCheck">Scheduled check</span><b>→</b><span data-i18n="refreshStamp">Last checked</span></div>
+</div>
+</section>
+<section class="page" id="events">
+<div class="wrap page-head split"><div><div class="kicker">GLOBAL ROBOTICS CALENDAR</div><h1 data-i18n="eventsTitle">Global robotics events</h1><p data-i18n="eventsDesc">Confirmed robotics and automation events sorted by date.</p></div></div>
+<div class="wrap event-toolbar"><select id="eventPhaseFilter"><option data-i18n="upcomingEvents" value="upcoming">Upcoming</option><option data-i18n="pastEvents" value="past">Past events</option><option value="">All</option></select><select id="eventCountryFilter"><option value="">All countries</option></select><select id="eventTypeFilter"><option value="">All event types</option></select></div>
+<div class="wrap event-grid" id="eventGrid"></div>
+</section>
+<section class="page" id="makers">
+<div class="wrap page-head"><div class="kicker">MANUFACTURERS &amp; ECOSYSTEM</div><h1 data-i18n="makerTitle">Start with a manufacturer</h1><p data-i18n="makerDesc">Choose a robot manufacturer to explore major models, compatible peripherals, sellers and service providers.</p></div>
+<div class="wrap maker-tabs"><button class="tab active" data-i18n="robotMakers" data-maker-tab="robot">Robot Makers</button><button class="tab" data-i18n="eoatMakers" data-maker-tab="eoat">Grippers &amp; EOAT</button></div>
+<div class="wrap maker-filterbar">
+<select id="makerRegionFilter"><option data-i18n="allRegions" value="">All regions</option><option>Japan</option><option>Korea</option><option>China</option><option>Taiwan</option><option>Europe</option><option>North America</option><option>India</option><option>Southeast Asia</option><option>Middle East</option><option>Australia</option></select>
+<select id="makerTypeFilter"><option data-i18n="allRobotTypes" value="">All robot types</option></select>
+<span class="database-count" id="makerCount"></span>
+</div>
+<div class="wrap maker-grid" id="makerGrid"></div>
+<div class="wrap compatibility-demo">
+<div><div class="kicker">COMPATIBILITY</div><h2 data-i18n="compatTitle">Connect robots and peripherals</h2><p data-i18n="compatBody">Example: select FANUC CRX to see compatible grippers, vision, tool changers and local installation companies.</p></div>
+<div class="compat-path"><span>FANUC CRX-10iA/L</span><b>→</b><span>OnRobot / Robotiq / SCHUNK</span><b>→</b><span data-i18n="localSupport">Local sales &amp; installation support</span></div>
+</div>
+<section class="wrap network-section">
+<div class="section-title-row"><div><div class="kicker">REGIONAL NETWORK</div><h2 data-i18n="regionalNetworkTitle">Manufacturer offices and dealer networks by market</h2><p data-i18n="regionalNetworkDesc">Authorized is shown only after manufacturer-source verification or a claimed profile.</p></div><button class="secondary" data-i18n="joinDealer" id="joinDealerBtn">Join as a dealer</button></div>
+<div class="network-grid" id="networkGrid"></div>
+</section>
+</section>
+<section class="page" id="companies">
+<div class="wrap page-head split"><div><div class="kicker">COMPANY DIRECTORY</div><h1 data-i18n="companyTitle">Find the right company and contact them directly</h1><p data-i18n="companyDesc">Search robot dealers, used robot dealers, SIs, EOAT suppliers, logistics and service companies by region and skill.</p></div><button class="secondary" data-i18n="registerCompany" id="registerCompanyBtn">Register Company</button></div>
+<div class="wrap market-toolbar company-tools"><div class="search-field"><span>⌕</span><input data-i18n-placeholder="companySearchPh" id="companySearch" placeholder="Company, FANUC, Yaskawa, Vision..."/></div><select id="companyTypeFilter"><option data-i18n="allCompanyTypes" value="">All company types</option><option>Manufacturer</option><option>Manufacturer Office</option><option>Dealer Network</option><option>Robot Dealer</option><option>Used Robot Dealer</option><option>System Integrator</option><option>EOAT Supplier</option><option>Logistics</option></select><select id="companyCountryFilter"><option data-i18n="allCountries" value="">All countries</option></select></div>
+<div class="wrap company-grid" id="companyGrid"></div>
+</section>
+<section class="page" id="projects">
+<div class="wrap page-head"><div class="kicker">ROBOQUO MATCH</div><h1 data-i18n="projectTitle">Post your project and receive quotes</h1><p data-i18n="projectDesc">Post teaching, installation, commissioning, PLC, vision, repair or training work and receive quotes from matched providers.</p></div>
+<div class="wrap project-layout">
+<form class="panel" id="projectForm">
+<div class="step-label">01</div><h2 data-i18n="projectDetails">Project details</h2>
+<div class="form-grid"><label><span data-i18n="workType">Work type</span><select id="projectType"><option>Robot Teaching</option><option>Installation / Commissioning</option><option>PLC Programming</option><option>Vision Setup</option><option>Repair / Troubleshooting</option><option>Training</option></select></label><label><span data-i18n="robotModel">Robot model</span><input value="Yaskawa GP12 / YRC1000"/></label><label><span data-i18n="location">Location</span><input value="Nagoya, Japan"/></label><label><span data-i18n="preferredDate">Preferred date</span><input type="date" value="2026-10-12"/></label></div>
+<label><span data-i18n="priceMethod">Pricing</span><select><option data-i18n="receiveBids">Receive quotes / bids</option><option data-i18n="setBudget">Set a budget</option></select></label>
+<label><span data-i18n="description">Description</span><textarea data-i18n-placeholder="projectPh" placeholder="Pick &amp; Place teaching, I/O setup and production start-up support" rows="5"></textarea></label>
+<button class="primary wide" data-i18n="postAndMatch" type="submit">Post and match with providers</button>
+</form>
+<div class="panel">
+<div class="step-label">02</div><h2 data-i18n="sampleBids">Example quote comparison</h2><p class="muted" data-i18n="sampleBidsDesc">Choose by experience, location and rating, not price alone.</p>
+<div class="bid-row"><div><strong>Aichi Robot Systems</strong><small>Yaskawa · 48 jobs · ★4.9</small></div><div><b>97%</b><strong>¥240,000</strong></div></div>
+<div class="bid-row"><div><strong>Takumi Automation</strong><small>YRC1000 · Vision · ★4.8</small></div><div><b>94%</b><strong>¥220,000</strong></div></div>
+<div class="bid-row"><div><strong>Engineer K.</strong><small>Yaskawa / FANUC · ★4.9</small></div><div><b>92%</b><strong>¥190,000</strong></div></div>
+</div>
+</div>
+</section>
+<section class="page" id="about">
+<div class="wrap about-hero"><div class="kicker">ABOUT ROBOQUO</div><h1 data-i18n="aboutTitle">Making robot transactions simpler and more transparent</h1><p data-i18n="aboutLead">RoboQuo aims to simplify complex robot transactions by connecting robots, peripherals, companies, experts and logistics in one place.</p></div>
+<div class="wrap name-story">
+<div><div class="kicker">WHY ROBOQUO?</div><h2>Robo + Quo</h2></div>
+<div><p data-i18n-html="nameStory1"><strong>Robo</strong> stands for Robot / Robotics.</p><p data-i18n-html="nameStory2"><strong>Quo</strong> is a brand element representing direction, connection and where robotics goes next.</p><p data-i18n-html="nameStory3">Together, <strong>RoboQuo</strong> represents a place where the robotics ecosystem comes together and moves toward the next transaction.</p></div>
+</div>
+<div class="wrap values-grid"><div class="value"><span>01</span><h3>Simple</h3><p data-i18n="valueSimple">Simple enough for people who are not robot experts.</p></div><div class="value"><span>02</span><h3>Transparent</h3><p data-i18n="valueTransparent">Clear prices, conditions and seller information.</p></div><div class="value"><span>03</span><h3>Trusted</h3><p data-i18n="valueTrusted">Stronger company verification as transactions deepen.</p></div><div class="value"><span>04</span><h3>Global</h3><p data-i18n="valueGlobal">Lower language and country barriers.</p></div></div>
+<div class="wrap language-note"><div class="kicker">GLOBAL BY DESIGN</div><h2 data-i18n="globalLanguageTitle">One RoboQuo, ten languages</h2><p data-i18n="globalLanguageBody">RoboQuo supports ten representative languages. English is the default language, while navigation and guidance adapt to your selection. User-generated content can move to dynamic translation when the database is connected.</p><div class="tag-row language-tags"><span>English</span><span>日本語</span><span>한국어</span><span>简体中文</span><span>Deutsch</span><span>Français</span><span>Español</span><span>Italiano</span><span>Português</span><span>Tiếng Việt</span></div></div>
+<div class="wrap membership-model"><div><div class="kicker">MEMBERSHIP MODEL</div><h2 data-i18n="membershipTitle">Browse first. Join when you need to.</h2><p data-i18n="membershipDesc">Browsing is open. Saving, inquiries and bidding require an email. Company details are verified when selling or entering a transaction.</p></div><div class="membership-steps"><span data-i18n="memberBrowse">Browse freely</span><b>→</b><span data-i18n="memberJoin">Join when needed</span><b>→</b><span data-i18n="memberVerify">Verify when trading</span></div></div>
 </section>
 </main>
-
-<div class="mobile-nav"><button data-route="home"><span>⌂</span><small data-i18n="home">홈</small></button><button data-route="robots"><span>⌕</span><small data-i18n="navRobots">로봇</small></button><button class="sell-mobile" data-action="sell"><span>＋</span><small data-i18n="sellShort">판매</small></button><button data-route="companies"><span>▦</span><small data-i18n="navCompanies">업체 찾기</small></button><button data-route="makers"><span>⌘</span><small data-i18n="navMakers">메이커</small></button></div>
-
-<div id="modalBackdrop" class="modal-backdrop hidden">
-  <div class="modal" id="modal"></div>
+<div class="mobile-nav"><button data-route="home"><span>⌂</span><small data-i18n="home">Home</small></button><button data-route="robots"><span>⌕</span><small data-i18n="navRobots">Robots</small></button><button class="sell-mobile" data-action="sell"><span>＋</span><small data-i18n="sellShort">Sell</small></button><button data-route="companies"><span>▦</span><small data-i18n="navCompanies">Find Companies</small></button><button data-route="makers"><span>⌘</span><small data-i18n="navMakers">Manufacturers</small></button></div>
+<div class="modal-backdrop hidden" id="modalBackdrop">
+<div class="modal" id="modal"></div>
 </div>
-<div id="toast" class="toast"></div>
-
+<div class="toast" id="toast"></div>
+<script src="supabase-config.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
