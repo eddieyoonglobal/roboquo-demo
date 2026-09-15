@@ -1,3 +1,7 @@
-RoboQuo v23
+RoboQuo v24.5
 Upload every file in this folder to the ROOT of the GitHub repository roboquo-demo.
 Do not upload the enclosing folder itself.
+
+Before testing real seller submission, run database/004_seller_marketplace.sql once
+in Supabase Dashboard > SQL Editor. The database folder is documentation/migration
+source; Vercel does not run this SQL automatically.

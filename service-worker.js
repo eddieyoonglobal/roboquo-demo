@@ -1,5 +1,5 @@
 const CACHE='roboquo-static';
-const ASSETS=['./','./index.html','./styles.css','./v24.css','./app.js','./v24.js','./supabase-config.js','./robot-model-master.js','./auth.js','./events-seed.json','./company-directory-seed.json','./purchase-channel-seed.json','./robot-directory-seed.json','./manifest.json','./icon-180.png','./icon-192.png','./icon-512.png','./icon-192.svg','./icon-512.svg','./social-preview.png'];
+const ASSETS=['./','./index.html','./styles.css','./v24.css','./app.js','./v24.js','./supabase-config.js','./robot-model-master.js','./auth.js','./seller-backend.js','./events-seed.json','./company-directory-seed.json','./purchase-channel-seed.json','./robot-directory-seed.json','./manifest.json','./icon-180.png','./icon-192.png','./icon-512.png','./icon-192.svg','./icon-512.svg','./social-preview.png'];
 const ASSET_PATHS=new Set(ASSETS.map(path=>new URL(path,self.location.href).pathname));
 
 self.addEventListener('install',event=>event.waitUntil(

@@ -26,13 +26,13 @@
   const cart = () => JSON.parse(localStorage.getItem(STORAGE)||'[]');
   const saveCart = (items) => { localStorage.setItem(STORAGE, JSON.stringify(items)); updateCartCount(); renderCartPage(); };
   const inCart = (id) => cart().includes(String(id));
-  function formatPrice(r){ return (typeof yen==='function' && r.price) ? yen(r.price) : ((r.price||0).toLocaleString ? '¥'+Number(r.price||0).toLocaleString() : 'Check seller'); }
+  function formatPrice(r){ const price=Number(r.price);if(!Number.isFinite(price)||price<=0)return tx('toBeCalculated');return typeof yen==='function'?yen(price):'¥'+price.toLocaleString(); }
   function saleLabel(r){ const fixed=r.sale!=='bid'; return fixed ? (typeof tr==='function'?tr('fixedPrice'):tx('fixedPriceListing')) : (typeof tr==='function'?tr('bidding'):tx('privateOfferFlow')); }
   function displayCountry(c){ try{return typeof countryLabel==='function'?countryLabel(c):(c||tx('global'));}catch{return c||tx('global');} }
   function displayTag(t){ try{ const rt=(typeof robotTypes!=='undefined'?robotTypes:[]).find(x=>x.id===t); if(rt)return rt.names?.[lang()]||rt.names?.en||t; const ap=(typeof applications!=='undefined'?applications:[]).find(x=>x.id===t); if(ap)return ap.names?.[lang()]||ap.names?.en||t; }catch(e){} return t; }
   function escHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
   function isDemo(r){return r?.demo===true||r?._source==='demo'||r?._source==='local-demo';}
-  function trustBadges(r){const items=[];if(isDemo(r))items.push(`<span class="neutral">${tx('demoListing')}</span>`);if(r.verified)items.push(`<span>${tx('verifiedSeller')}</span>`);else items.push(`<span class="neutral">${tx('sellerUnverified')}</span>`);if(r.media?.nameplate)items.push(`<span>${tx('nameplate')}</span>`);if(r.media?.video)items.push(`<span>${tx('video')}</span>`);if(r.photoCount)items.push(`<span class="info">${escHtml(r.photoCount)} ${tx('photosUploaded')}</span>`);return items.join('');}
+  function trustBadges(r){const items=[];if(isDemo(r))items.push(`<span class="neutral">${tx('demoListing')}</span>`);if(r.sellerCompany)items.push(`<span class="info">${escHtml(r.sellerCompany)}</span>`);if(r.verified)items.push(`<span>${tx('verifiedSeller')}</span>`);else items.push(`<span class="neutral">${tx('sellerUnverified')}</span>`);if(r.media?.nameplate)items.push(`<span>${tx('nameplate')}</span>`);if(r.media?.video)items.push(`<span>${tx('video')}</span>`);if(r.photoCount)items.push(`<span class="info">${escHtml(r.photoCount)} ${tx('photosUploaded')}</span>`);return items.join('');}
   function initials(s){ return String(s||'R').split(/\s+/).map(x=>x[0]).join('').slice(0,3).toUpperCase(); }
   function robotSvg(r, variant='main'){
     const colors=['#f5b301','#2848ff','#10b981','#ef4444','#8b5cf6','#0ea5e9'];
@@ -312,16 +312,18 @@
   function renderCard(r){
     const id=idOf(r), fixed=r.sale!=='bid';
     const title=[r.brand,r.model].filter(Boolean).join(' ')||tx('usedRobot');
+    const localDemo=r._source==='local-demo';
     const openAction=escHtml(`rqOpenProduct(${JSON.stringify(id)})`);
     const askAction=escHtml(`openAuth('inquiry',${JSON.stringify(title)})`);
     const buyAction=escHtml(fixed?`rqBuyNow(${JSON.stringify(id)})`:`openAuth('bid',${JSON.stringify(title)})`);
     const cartAction=escHtml(fixed?`rqAddToCart(${JSON.stringify(id)})`:`rqOpenProduct(${JSON.stringify(id)})`);
     const meta=[r.year, r.payload, r.location].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
     const tags=[displayTag(r.cat), ...(r.apps||[]).map(displayTag)].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
+    const photoVisual=r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}" loading="lazy">`:robotSvg(r);
     return `<article class="v24-listing-card">
-      <button aria-label="${escHtml(title)}" class="v24-photo v24-photo-button" onclick="${openAction}" type="button" ${r.photoKey?`data-rq-photo-alt="${escHtml(title)}" data-rq-photo-key="${escHtml(r.photoKey)}"`:''}>
+      <button aria-label="${escHtml(title)}" class="v24-photo v24-photo-button ${r.photoUrl?'has-uploaded-photo':''}" onclick="${openAction}" type="button" ${r.photoKey?`data-rq-photo-alt="${escHtml(title)}" data-rq-photo-key="${escHtml(r.photoKey)}"`:''}>
         <div class="photo-badges"><span class="v24-badge">${escHtml(displayCountry(r.country))}</span>${isDemo(r)?`<span class="v24-badge demo">${tx('demoBadge')}</span>`:''}<span class="v24-badge dark">${escHtml(saleLabel(r))}</span></div>
-        ${robotSvg(r)}
+        ${photoVisual}
       </button>
       <div class="v24-card-body">
         <div class="v24-card-top">
@@ -335,7 +337,7 @@
         <div class="v24-meta-row">${meta || `<span>${tx('usedRobot')}</span>`}</div>
         <div class="v24-card-tags">${tags || `<span>${tx('industrialRobot')}</span>`}</div>
         <div class="v24-actions">
-          ${isDemo(r)?`<button class="ghost" onclick="${openAction}">${tx('demoAction')}</button><button class="buy" disabled title="${escHtml(tx('demoListing'))}">${tx('demoListing')}</button>`:`<button class="ghost" onclick="${askAction}">${tx('askSeller')}</button><button class="buy" onclick="${buyAction}">${fixed?tx('buyNow'):tx('makeOffer')}</button><button class="cart" onclick="${cartAction}">${fixed?tx('addToCart'):tx('makeOffer')}</button>`}
+          ${isDemo(r)?`<button class="ghost" onclick="${openAction}">${tx('demoAction')}</button>${localDemo?`<button class="danger-button" onclick="rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="buy" disabled title="${escHtml(tx('demoListing'))}">${tx('demoListing')}</button>`}`:`<button class="ghost" onclick="${askAction}">${tx('askSeller')}</button><button class="buy" onclick="${buyAction}">${fixed?tx('buyNow'):tx('makeOffer')}</button><button class="cart" onclick="${cartAction}">${fixed?tx('addToCart'):tx('makeOffer')}</button>`}
         </div>
       </div>
     </article>`;
@@ -365,14 +367,15 @@
     const buyAction=escHtml(fixed?`rqBuyNow(${JSON.stringify(id)})`:`openAuth('bid',${JSON.stringify(title)})`);
     const cartAction=escHtml(fixed?`rqAddToCart(${JSON.stringify(id)})`:`openAuth('bid',${JSON.stringify(title)})`);
     const mainPhotoAttrs=r.photoKey?`data-rq-photo-alt="${escHtml(title)}" data-rq-photo-key="${escHtml(r.photoKey)}"`:'';
-    const nameplateThumb=r.media?.nameplate?`<button class="v24-thumb" data-view="nameplate" type="button" ${r.photoKeys?.nameplate?`data-rq-photo-alt="${escHtml(tx('nameplateLabel'))}" data-rq-photo-key="${escHtml(r.photoKeys.nameplate)}"`:''}><div>${tx('nameplateLabel')}</div></button>`:'';
-    const controllerThumb=r.media?.controller?`<button class="v24-thumb" data-view="controller" type="button" ${r.photoKeys?.ctrlOutside?`data-rq-photo-alt="${escHtml(tx('controllerLabel'))}" data-rq-photo-key="${escHtml(r.photoKeys.ctrlOutside)}"`:''}><div>${tx('controllerLabel')}</div></button>`:'';
+    const mainPhotoVisual=r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}">`:robotSvg(r,'main');
+    const nameplateThumb=r.media?.nameplate?`<button class="v24-thumb ${r.photoUrls?.nameplate?'has-uploaded-photo':''}" data-view="nameplate" type="button" ${r.photoKeys?.nameplate?`data-rq-photo-alt="${escHtml(tx('nameplateLabel'))}" data-rq-photo-key="${escHtml(r.photoKeys.nameplate)}"`:''}>${r.photoUrls?.nameplate?`<img src="${escHtml(r.photoUrls.nameplate)}" alt="${escHtml(tx('nameplateLabel'))}">`:`<div>${tx('nameplateLabel')}</div>`}</button>`:'';
+    const controllerThumb=r.media?.controller?`<button class="v24-thumb ${r.photoUrls?.ctrlOutside?'has-uploaded-photo':''}" data-view="controller" type="button" ${r.photoKeys?.ctrlOutside?`data-rq-photo-alt="${escHtml(tx('controllerLabel'))}" data-rq-photo-key="${escHtml(r.photoKeys.ctrlOutside)}"`:''}>${r.photoUrls?.ctrlOutside?`<img src="${escHtml(r.photoUrls.ctrlOutside)}" alt="${escHtml(tx('controllerLabel'))}">`:`<div>${tx('controllerLabel')}</div>`}</button>`:'';
     return `<div class="kicker">ROBOQUO · ${tx('kickerProduct')}</div>
       <div class="v24-product-layout">
         <div class="v24-gallery">
-          <div class="v24-main-image" id="v24MainImage" ${mainPhotoAttrs}>${robotSvg(r,'main')}</div>
+          <div class="v24-main-image ${r.photoUrl?'has-uploaded-photo':''}" id="v24MainImage" ${mainPhotoAttrs}>${mainPhotoVisual}</div>
           <div class="v24-thumb-row">
-            <button class="v24-thumb" data-view="robot" type="button" ${mainPhotoAttrs}>${robotSvg(r,'thumb')}</button>
+            <button class="v24-thumb ${r.photoUrl?'has-uploaded-photo':''}" data-view="robot" type="button" ${mainPhotoAttrs}>${r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}">`:robotSvg(r,'thumb')}</button>
             ${nameplateThumb}${controllerThumb}
           </div>
         </div>
@@ -381,7 +384,7 @@
           <div class="v24-price-panel"><div><small style="display:block;color:#667085;margin-bottom:6px">${fixed?tx('fixedPriceListing'):tx('negotiatedListing')}</small><strong>${formatPrice(r)}</strong></div><div class="v24-trust-row">${trustBadges(r)}</div></div>
           <div class="v24-spec-grid">
             <div><small>${tx('detailCondition')}</small><strong>${isDemo(r)?tx('demoListing'):tx('conditionUsedProduction')}</strong></div>
-            <div><small>${tx('detailSeller')}</small><strong>${r.verified?tx('verifiedCompanySeller'):tx('sellerUnverified')}</strong></div>
+            <div><small>${tx('detailSeller')}</small><strong>${escHtml(r.sellerCompany||(r.verified?tx('verifiedCompanySeller'):tx('sellerUnverified')))}</strong></div>
             <div><small>${tx('detailLocation')}</small><strong>${escHtml([r.location,displayCountry(r.country)].filter(Boolean).join(' · '))}</strong></div>
             <div><small>${tx('detailHours')}</small><strong>${escHtml(r.hours||'—')}</strong></div>
             <div><small>${tx('detailPayment')}</small><strong>${isDemo(r)?'—':tx('paymentsSupported')}</strong></div>
@@ -389,7 +392,7 @@
           </div>
           <div class="v24-note-box">${isDemo(r)?tx('demoMarketBody'):tx('productNote')}</div>
           <div class="v24-modal-actions">
-            ${isDemo(r)?`<button class="secondary" onclick="closeModal()">${tx('close')}</button><button class="primary" disabled>${tx('demoListing')}</button>`:`<button class="secondary" onclick="${askAction}">${tx('askSeller')}</button><button class="primary" onclick="${buyAction}">${fixed?tx('buyNow'):tx('makeOffer')}</button><button class="blue" onclick="${cartAction}">${fixed?tx('addToCart'):tx('makeOffer')}</button>`}
+            ${isDemo(r)?`<button class="secondary" onclick="closeModal()">${tx('close')}</button>${r._source==='local-demo'?`<button class="danger-button" onclick="closeModal();rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="primary" disabled>${tx('demoListing')}</button>`}`:`<button class="secondary" onclick="${askAction}">${tx('askSeller')}</button><button class="primary" onclick="${buyAction}">${fixed?tx('buyNow'):tx('makeOffer')}</button><button class="blue" onclick="${cartAction}">${fixed?tx('addToCart'):tx('makeOffer')}</button>`}
           </div>
         </div>
       </div>`;
@@ -404,7 +407,9 @@
     $$('.v24-thumb').forEach(thumb=>thumb.addEventListener('click',()=>{
       const v=thumb.dataset.view; const mount=$('#v24MainImage'); if(!mount) return;
       const key=v==='robot'?r.photoKey:v==='nameplate'?r.photoKeys?.nameplate:r.photoKeys?.ctrlOutside;
+      const remote=v==='robot'?r.photoUrl:v==='nameplate'?r.photoUrls?.nameplate:r.photoUrls?.ctrlOutside;
       delete mount.dataset.rqPhotoKey;mount.classList.remove('has-uploaded-photo');
+      if(remote){mount.innerHTML=`<img src="${escHtml(remote)}" alt="${escHtml(v==='robot'?title:(v==='nameplate'?tx('nameplateLabel'):tx('controllerLabel')))}">`;mount.classList.add('has-uploaded-photo');return;}
       if(key){mount.innerHTML=robotSvg(r,'main');mount.dataset.rqPhotoKey=key;mount.dataset.rqPhotoAlt=v==='robot'?title:(v==='nameplate'?tx('nameplateLabel'):tx('controllerLabel'));window.rqHydrateListingPhotos?.(modal);return;}
       if(v==='robot') mount.innerHTML=robotSvg(r,'main');
       if(v==='nameplate') mount.innerHTML=`<div class="v24-media-placeholder">${tx('nameplateLabel')}</div>`;

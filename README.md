@@ -1,6 +1,15 @@
-# RoboQuo v24.4 — Trust, photo-first UX, SEO and PWA
+# RoboQuo v24.5 — Seller accounts and real listing submission
 
 RoboQuo is a multilingual prototype for a global used-robot marketplace. The site is a static SPA deployed from GitHub to Vercel, with optional Supabase Auth and database integration.
+
+## v24.5 highlights
+
+- Added a private seller-contact step with company, contact person, business email, phone/WhatsApp, job title, website and preferred channel.
+- Added authenticated listing submission to Supabase with a `pending` moderation state.
+- Added private Supabase Storage uploads for seller photos and signed URLs for published listings.
+- Added My RoboQuo listing management and owner-only listing/photo deletion.
+- Kept personal contact details out of anonymous public queries; only the public company display name appears on a listing.
+- Added `database/004_seller_marketplace.sql` with tables, grants, RLS, storage policies and seller/admin status controls.
 
 ## v24.4 highlights
 
@@ -30,8 +39,19 @@ Then open `http://localhost:4173`.
 
 Changes pushed to the repository's `main` branch are deployed automatically by Vercel.
 
+For v24.5, apply `database/004_seller_marketplace.sql` once in the Supabase SQL Editor before testing seller submission. The migration is idempotent and does not modify the existing manufacturer, company, event, purchase-channel or legacy listing data.
+
+Recommended order:
+
+1. Open Supabase Dashboard → SQL Editor → New query.
+2. Paste and run `database/004_seller_marketplace.sql`.
+3. Upload/push the website files to GitHub and wait for the Vercel deployment.
+4. Create a test account with an email address you control, confirm the email, submit a listing, then check My RoboQuo.
+5. In Supabase Table Editor, change a reviewed listing from `pending` to `published` to make it publicly visible.
+
 ## Prototype limits
 
 - Hash routes are still used, so individual listing and manufacturer pages do not yet have indexable URLs. Dedicated routes plus SSR/static generation are the next SEO architecture step.
-- Seller photos are stored in the current browser for the prototype. Production should upload them to Supabase Storage and associate them with server-side drafts.
+- Before sign-in, seller photos and draft fields remain on the current device. After authenticated submission, they are uploaded to Supabase and the listing is stored server-side.
+- Admin moderation currently uses the Supabase dashboard. A dedicated moderator screen is a later step.
 - Payments and escrow are not implemented.

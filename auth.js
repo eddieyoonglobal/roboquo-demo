@@ -36,11 +36,12 @@
   function authRedirectUrl(){const url=new URL(`${PROD_ORIGIN}/`);const p=pending||loadPending();if(p&&['sell','publishSell'].includes(p.type))url.searchParams.set('resume','sell');return url.toString();}
   window.rqAuthSession=null;
   function esc2(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
-  function setSession(s){session=s||null;window.rqAuthSession=session;const b=document.getElementById('myRoboquoBtn');if(b&&session?.user?.email)b.title=session.user.email;}
+  function setSession(s){session=s||null;window.rqAuthSession=session;const b=document.getElementById('myRoboquoBtn');if(b&&session?.user?.email)b.title=session.user.email;document.dispatchEvent(new CustomEvent('rq:authchange',{detail:{signedIn:Boolean(session)}}));}
   function authModal(mode='login',type='generic',target='RoboQuo',savedEmail=''){
     savePending({type,target});
     const signup=mode==='signup';
-    openModal(`<div class="kicker">${esc2(tx('account'))}</div><div class="auth-switch"><button class="${!signup?'active':''}" onclick="rqShowAuth('login')" type="button">${esc2(tx('login'))}</button><button class="${signup?'active':''}" onclick="rqShowAuth('signup')" type="button">${esc2(tx('signup'))}</button></div><h2>${esc2(signup?tx('signup'):tx('login'))}</h2><p>${esc2(tx('needLogin'))}</p><form onsubmit="event.preventDefault();rqSubmitAuth('${signup?'signup':'login'}')">${signup?`<label>${esc2(tx('name'))}<input id="rqAuthName" autocomplete="name"></label>`:''}<label>${esc2(tx('email'))}<input id="rqAuthEmail" type="email" autocomplete="email" inputmode="email" value="${esc2(savedEmail)}" placeholder="name@company.com" required></label><label>${esc2(tx('password'))}<input id="rqAuthPassword" type="password" autocomplete="${signup?'new-password':'current-password'}" minlength="8" placeholder="${esc2(tx('passwordHint'))}" required></label><div aria-live="assertive" id="rqAuthError" class="auth-error" role="alert"></div><div class="modal-actions"><button class="secondary" onclick="closeModal()" type="button">${esc2(tx('close'))}</button><button class="primary" type="submit">${esc2(signup?tx('create'):tx('login'))}</button></div></form>`);
+    const seller=window.rqGetSellContact?.()||{};const email=savedEmail||seller.contactEmail||'';const name=seller.contactName||'';
+    openModal(`<div class="kicker">${esc2(tx('account'))}</div><div class="auth-switch"><button class="${!signup?'active':''}" onclick="rqShowAuth('login')" type="button">${esc2(tx('login'))}</button><button class="${signup?'active':''}" onclick="rqShowAuth('signup')" type="button">${esc2(tx('signup'))}</button></div><h2>${esc2(signup?tx('signup'):tx('login'))}</h2><p>${esc2(tx('needLogin'))}</p><form onsubmit="event.preventDefault();rqSubmitAuth('${signup?'signup':'login'}')">${signup?`<label>${esc2(tx('name'))}<input id="rqAuthName" autocomplete="name" value="${esc2(name)}" required></label>`:''}<label>${esc2(tx('email'))}<input id="rqAuthEmail" type="email" autocomplete="email" inputmode="email" value="${esc2(email)}" placeholder="name@company.com" required></label><label>${esc2(tx('password'))}<input id="rqAuthPassword" type="password" autocomplete="${signup?'new-password':'current-password'}" minlength="8" placeholder="${esc2(tx('passwordHint'))}" required></label><div aria-live="assertive" id="rqAuthError" class="auth-error" role="alert"></div><div class="modal-actions"><button class="secondary" onclick="closeModal()" type="button">${esc2(tx('close'))}</button><button class="primary" type="submit">${esc2(signup?tx('create'):tx('login'))}</button></div></form>`);
   }
   window.rqShowAuth=(mode)=>authModal(mode,pending?.type||'generic',pending?.target||'RoboQuo',(document.getElementById('rqAuthEmail')?.value||'').trim());
   function errMsg(msg){const el=document.getElementById('rqAuthError');if(el)el.textContent=msg||tx('failed');}
@@ -56,7 +57,8 @@
     errMsg('');
     try{
       if(mode==='signup'){
-        const {data,error}=await client.auth.signUp({email,password,options:{data:{display_name:name,language:lang()},emailRedirectTo:authRedirectUrl()}});
+        const seller=window.rqGetSellContact?.()||{};
+        const {data,error}=await client.auth.signUp({email,password,options:{data:{display_name:name,language:lang(),company_name:seller.companyName||'',contact_name:seller.contactName||name,phone:seller.contactPhone||''},emailRedirectTo:authRedirectUrl()}});
         if(error)throw error;
         if(data.session){setSession(data.session);localStorage.removeItem('rqUserEmail');if(window.toast)toast(tx('welcome'));await resume();}
         else {errMsg(tx('confirm'));}
@@ -70,8 +72,9 @@
   window.openAuth=(type,target)=>{if(session){savePending({type,target});return resume();}authModal('login',type,target);};
   window.rqOpenAccount=()=>{
     if(!session)return authModal('login','account','RoboQuo');
-    const email=session.user.email||'';const name=session.user.user_metadata?.display_name||'';
-    openModal(`<div class="kicker">${esc2(tx('account'))}</div><h2>${esc2(name||email||tx('member'))}</h2><p>${esc2(tx('signedIn'))}: ${esc2(email)}</p><div class="tag-row"><span>${esc2(tx('member'))}</span></div><div class="modal-actions"><button class="secondary" onclick="closeModal()">${esc2(tx('close'))}</button><button class="primary" onclick="rqSignOut()">${esc2(tx('signout'))}</button></div>`);
+    const email=session.user.email||'';const meta=session.user.user_metadata||{};const name=meta.display_name||meta.contact_name||'';
+    openModal(`<div class="kicker">${esc2(tx('account'))}</div><h2>${esc2(name||email||tx('member'))}</h2><p>${esc2(tx('signedIn'))}: ${esc2(email)}</p><div class="tag-row"><span>${esc2(tx('member'))}</span>${meta.company_name?`<span>${esc2(meta.company_name)}</span>`:''}</div><div id="rqSellerAccount" class="seller-account" aria-live="polite"></div><div class="modal-actions"><button class="secondary" onclick="closeModal()">${esc2(tx('close'))}</button><button class="primary" onclick="rqSignOut()">${esc2(tx('signout'))}</button></div>`);
+    window.rqRenderSellerAccount?.(client,session);
   };
   window.rqSignOut=async()=>{if(client)await client.auth.signOut();setSession(null);closeModal();};
   async function init(){
@@ -80,7 +83,7 @@
       pending=loadPending();
       client=window.supabase.createClient(window.RQ_SUPABASE_URL,window.RQ_SUPABASE_PUBLISHABLE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
       window.rqSupabase=client;
-      const {data}=await client.auth.getSession();setSession(data?.session||null);
+      const {data}=await client.auth.getSession();setSession(data?.session||null);document.dispatchEvent(new CustomEvent('rq:authready'));
       if(data?.session&&pending)setTimeout(()=>resume(),120);
       client.auth.onAuthStateChange((event,s)=>{setSession(s);if(s&&(event==='SIGNED_IN'||event==='USER_UPDATED')&&loadPending()){pending=loadPending();setTimeout(()=>resume(),120);}});
     }catch(e){console.warn('RoboQuo Auth init',e);}

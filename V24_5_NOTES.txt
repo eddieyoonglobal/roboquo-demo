@@ -1,0 +1,17 @@
+RoboQuo v24.5 — Seller contact, Supabase listings and owner deletion
+
+- The sell wizard now has eight steps.
+- Seller company, contact person, business email and phone/WhatsApp are required.
+- Job title, company website and preferred contact channel are also supported.
+- Contact person, email and phone are stored in a private RLS-protected table and are never returned by public listing queries.
+- Authenticated submissions upload photos to private Supabase Storage and create a pending listing for review.
+- Published listing images use short-lived signed URLs.
+- My RoboQuo lists the signed-in user's draft, pending, published, rejected and sold listings.
+- Listing deletion is owner-only and removes the database record, private contact row, photo metadata and uploaded files.
+- Existing local demo listings remain clearly labeled and can be deleted from the device.
+
+Required one-time database step:
+Run database/004_seller_marketplace.sql in the Supabase SQL Editor before testing a real listing submission.
+
+Current moderation step:
+Use the Supabase Table Editor to change an approved seller_listings row from pending to published. Normal users cannot publish or reject their own listing.

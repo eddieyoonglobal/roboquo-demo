@@ -1,0 +1,26 @@
+RoboQuo v24.5 적용 순서
+
+1. Supabase Dashboard > SQL Editor > New query를 엽니다.
+2. database/004_seller_marketplace.sql 전체를 붙여넣고 Run을 누릅니다.
+3. 이 폴더의 파일 전체를 GitHub roboquo-demo 저장소 루트에 업로드합니다.
+   database 폴더와 새 seller-backend.js도 빠뜨리지 마세요.
+4. Vercel 배포가 Ready가 될 때까지 기다립니다.
+5. Supabase Dashboard > Authentication > URL Configuration에서 확인합니다.
+   Site URL: https://roboquo.com
+   Redirect URLs: https://roboquo.com/**
+6. 본인이 확인 가능한 테스트 이메일로 회원가입하고 이메일 확인 링크를 누릅니다.
+7. 로봇 사진 1장 이상과 판매자 회사/연락처를 입력해 검수 요청합니다.
+8. My RoboQuo에서 상태가 '검수 대기'인지, 삭제가 되는지 확인합니다.
+9. 관리자 검수 후 Supabase seller_listings의 status를 published로 변경합니다.
+   일반 판매자는 자기 매물을 임의로 published/rejected로 변경할 수 없습니다.
+
+개인정보 원칙
+- 공개: 판매 회사명, 로봇/가격/지역/상태, 승인된 매물 사진
+- 비공개: 담당자명, 업무용 이메일, 전화/WhatsApp, 직책
+- 비공개 연락처는 seller_listing_contacts에 분리되며 RLS로 판매자 본인만 조회합니다.
+
+주의
+- 기존 manufacturers, companies, events, purchase_channels, listings 데이터는
+  이 SQL이 수정하거나 삭제하지 않습니다.
+- 회원가입 확인 메일이 오지 않으면 Supabase Authentication 이메일/SMTP 설정과
+  발송 제한을 확인해야 합니다.
