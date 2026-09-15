@@ -10,6 +10,7 @@ RoboQuo v24.4 — Trust, Photo-first UX, SEO and PWA
 - Canonical/social metadata, robots.txt, sitemap.xml, social preview and PNG PWA icons added.
 - Dialog focus, ARIA labeling, keyboard navigation and decorative icons improved.
 - Service-worker cache updates automatically without a hand-maintained version string.
+- v24.4.1 fixes the regional network renderer so initial loading and the Supabase live-data bridge complete normally.
 
 Known production follow-ups:
 - Replace hash routes with indexable listing/manufacturer routes.
