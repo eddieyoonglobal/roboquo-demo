@@ -1,0 +1,17 @@
+RoboQuo v24.4 — Trust, Photo-first UX, SEO and PWA
+
+- Seller onboarding now requires a real image selection before continuing.
+- Selected seller images are previewed and kept with local demo listings in IndexedDB.
+- Project form examples are placeholders instead of submitted default values.
+- Illustrative listings and quote panels are labeled DEMO and cannot be purchased.
+- Verification, media and condition claims only appear when supported by listing data.
+- Supabase authentication errors are mapped to all ten interface languages.
+- Purchase-channel checks show relative and exact freshness dates.
+- Canonical/social metadata, robots.txt, sitemap.xml, social preview and PNG PWA icons added.
+- Dialog focus, ARIA labeling, keyboard navigation and decorative icons improved.
+- Service-worker cache updates automatically without a hand-maintained version string.
+
+Known production follow-ups:
+- Replace hash routes with indexable listing/manufacturer routes.
+- Move seller drafts and images to authenticated server-side storage.
+- Add real listing moderation, verification, payments and escrow workflows.

@@ -12,31 +12,46 @@
     pt:{login:'Entrar',signup:'Criar conta',name:'Nome',email:'E-mail',password:'Senha',passwordHint:'Pelo menos 8 caracteres',account:'Meu RoboQuo',signedIn:'Conectado',signout:'Sair',create:'Criar conta',have:'Já tem uma conta?',newq:'Novo no RoboQuo?',confirm:'Enviamos um e-mail de confirmação. Abra o link para concluir o cadastro.',welcome:'Bem-vindo ao RoboQuo.',failed:'Não foi possível continuar. Verifique os dados.',pw:'A senha deve ter pelo menos 8 caracteres.',needLogin:'Entre ou crie uma conta para continuar.',member:'Membro RoboQuo',close:'Fechar'},
     vi:{login:'Đăng nhập',signup:'Tạo tài khoản',name:'Tên',email:'Email',password:'Mật khẩu',passwordHint:'Ít nhất 8 ký tự',account:'RoboQuo của tôi',signedIn:'Đã đăng nhập',signout:'Đăng xuất',create:'Tạo tài khoản',have:'Đã có tài khoản?',newq:'Mới dùng RoboQuo?',confirm:'Email xác nhận đã được gửi. Hãy mở liên kết trong email để hoàn tất đăng ký.',welcome:'Chào mừng đến với RoboQuo.',failed:'Không thể tiếp tục. Vui lòng kiểm tra thông tin.',pw:'Mật khẩu phải có ít nhất 8 ký tự.',needLogin:'Đăng nhập hoặc tạo tài khoản để tiếp tục.',member:'Thành viên RoboQuo',close:'Đóng'}
   };
+  const errorCopy={
+    en:{invalid:'Email or password is incorrect.',exists:'An account already exists for this email.',unconfirmed:'Confirm your email before signing in.',rate:'Too many attempts. Please wait and try again.',network:'Check your connection and try again.',disabled:'Account registration is currently unavailable.',email:'Enter a valid email address.',weak:'Use a stronger password with at least 8 characters.'},
+    ja:{invalid:'メールアドレスまたはパスワードが正しくありません。',exists:'このメールアドレスのアカウントはすでに存在します。',unconfirmed:'メール確認を完了してからログインしてください。',rate:'試行回数が多すぎます。しばらく待ってから再度お試しください。',network:'通信状況を確認して再度お試しください。',disabled:'現在、アカウント登録を利用できません。',email:'有効なメールアドレスを入力してください。',weak:'8文字以上のより安全なパスワードを設定してください。'},
+    ko:{invalid:'이메일 또는 비밀번호가 올바르지 않습니다.',exists:'이미 이 이메일로 만든 계정이 있습니다.',unconfirmed:'이메일 확인을 완료한 뒤 로그인해주세요.',rate:'시도 횟수가 많습니다. 잠시 후 다시 시도해주세요.',network:'인터넷 연결을 확인한 뒤 다시 시도해주세요.',disabled:'현재 회원가입을 이용할 수 없습니다.',email:'올바른 이메일 주소를 입력해주세요.',weak:'8자 이상의 더 안전한 비밀번호를 사용해주세요.'},
+    zh:{invalid:'邮箱或密码不正确。',exists:'此邮箱已注册账户。',unconfirmed:'请先完成邮箱验证后再登录。',rate:'尝试次数过多，请稍后重试。',network:'请检查网络连接后重试。',disabled:'当前无法注册账户。',email:'请输入有效的邮箱地址。',weak:'请使用至少8位的更强密码。'},
+    de:{invalid:'E-Mail oder Passwort ist falsch.',exists:'Für diese E-Mail besteht bereits ein Konto.',unconfirmed:'Bitte zuerst die E-Mail bestätigen.',rate:'Zu viele Versuche. Bitte später erneut versuchen.',network:'Verbindung prüfen und erneut versuchen.',disabled:'Die Registrierung ist derzeit nicht verfügbar.',email:'Bitte eine gültige E-Mail eingeben.',weak:'Bitte ein stärkeres Passwort mit mindestens 8 Zeichen verwenden.'},
+    fr:{invalid:'L’adresse e-mail ou le mot de passe est incorrect.',exists:'Un compte existe déjà pour cette adresse.',unconfirmed:'Confirmez votre e-mail avant de vous connecter.',rate:'Trop de tentatives. Réessayez plus tard.',network:'Vérifiez votre connexion puis réessayez.',disabled:'La création de compte est indisponible.',email:'Saisissez une adresse e-mail valide.',weak:'Utilisez un mot de passe plus robuste d’au moins 8 caractères.'},
+    es:{invalid:'El correo o la contraseña son incorrectos.',exists:'Ya existe una cuenta con este correo.',unconfirmed:'Confirma tu correo antes de iniciar sesión.',rate:'Demasiados intentos. Espera y vuelve a intentarlo.',network:'Comprueba la conexión y vuelve a intentarlo.',disabled:'El registro no está disponible actualmente.',email:'Introduce un correo válido.',weak:'Usa una contraseña más segura de al menos 8 caracteres.'},
+    it:{invalid:'E-mail o password non corretti.',exists:'Esiste già un account per questa e-mail.',unconfirmed:'Conferma l’e-mail prima di accedere.',rate:'Troppi tentativi. Riprova più tardi.',network:'Controlla la connessione e riprova.',disabled:'La registrazione non è al momento disponibile.',email:'Inserisci un indirizzo e-mail valido.',weak:'Usa una password più sicura di almeno 8 caratteri.'},
+    pt:{invalid:'E-mail ou senha incorretos.',exists:'Já existe uma conta para este e-mail.',unconfirmed:'Confirme o e-mail antes de entrar.',rate:'Muitas tentativas. Aguarde e tente novamente.',network:'Verifique a conexão e tente novamente.',disabled:'O cadastro está indisponível no momento.',email:'Digite um e-mail válido.',weak:'Use uma senha mais forte com pelo menos 8 caracteres.'},
+    vi:{invalid:'Email hoặc mật khẩu không đúng.',exists:'Email này đã có tài khoản.',unconfirmed:'Hãy xác nhận email trước khi đăng nhập.',rate:'Quá nhiều lần thử. Vui lòng đợi rồi thử lại.',network:'Kiểm tra kết nối và thử lại.',disabled:'Hiện chưa thể đăng ký tài khoản.',email:'Nhập địa chỉ email hợp lệ.',weak:'Dùng mật khẩu mạnh hơn với ít nhất 8 ký tự.'}
+  };
   const lang=()=>document.documentElement.lang||'en';
   const tx=k=>(copy[lang()]||copy.en)[k]||copy.en[k]||k;
   const PROD_ORIGIN='https://roboquo.com';
   const PENDING_KEY='rqPendingAuthV24';
   let client=null,session=null,pending=null;
-  function loadPending(){try{return JSON.parse(localStorage.getItem(PENDING_KEY)||'null')}catch(_){return null}}
-  function savePending(v){pending=v||null;if(v)localStorage.setItem(PENDING_KEY,JSON.stringify(v));else localStorage.removeItem(PENDING_KEY)}
-  function authRedirectUrl(){return `${PROD_ORIGIN}/`;}
+  function pendingFromUrl(){try{return new URLSearchParams(location.search).get('resume')==='sell'?{type:'publishSell',target:'Sell a Robot'}:null}catch(_){return null}}
+  function loadPending(){try{return JSON.parse(localStorage.getItem(PENDING_KEY)||'null')||pendingFromUrl()}catch(_){return pendingFromUrl()}}
+  function clearResumeParam(){try{const url=new URL(location.href);if(!url.searchParams.has('resume'))return;url.searchParams.delete('resume');history.replaceState({},'',url.pathname+(url.search?url.search:'')+url.hash);}catch(_){}}
+  function savePending(v){pending=v||null;if(v)localStorage.setItem(PENDING_KEY,JSON.stringify(v));else{localStorage.removeItem(PENDING_KEY);clearResumeParam();}}
+  function authRedirectUrl(){const url=new URL(`${PROD_ORIGIN}/`);const p=pending||loadPending();if(p&&['sell','publishSell'].includes(p.type))url.searchParams.set('resume','sell');return url.toString();}
   window.rqAuthSession=null;
   function esc2(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
   function setSession(s){session=s||null;window.rqAuthSession=session;const b=document.getElementById('myRoboquoBtn');if(b&&session?.user?.email)b.title=session.user.email;}
-  function authModal(mode='login',type='generic',target='RoboQuo'){
+  function authModal(mode='login',type='generic',target='RoboQuo',savedEmail=''){
     savePending({type,target});
     const signup=mode==='signup';
-    openModal(`<div class="kicker">${esc2(tx('account'))}</div><div class="auth-switch"><button class="${!signup?'active':''}" onclick="rqShowAuth('login')">${esc2(tx('login'))}</button><button class="${signup?'active':''}" onclick="rqShowAuth('signup')">${esc2(tx('signup'))}</button></div><h2>${esc2(signup?tx('signup'):tx('login'))}</h2><p>${esc2(tx('needLogin'))}</p>${signup?`<label>${esc2(tx('name'))}<input id="rqAuthName" autocomplete="name"></label>`:''}<label>${esc2(tx('email'))}<input id="rqAuthEmail" type="email" autocomplete="email" placeholder="name@company.com"></label><label>${esc2(tx('password'))}<input id="rqAuthPassword" type="password" autocomplete="${signup?'new-password':'current-password'}" placeholder="${esc2(tx('passwordHint'))}"></label><div id="rqAuthError" class="auth-error"></div><div class="modal-actions"><button class="secondary" onclick="closeModal()">${esc2(tx('close'))}</button><button class="primary" onclick="rqSubmitAuth('${signup?'signup':'login'}')">${esc2(signup?tx('create'):tx('login'))}</button></div>`);
+    openModal(`<div class="kicker">${esc2(tx('account'))}</div><div class="auth-switch"><button class="${!signup?'active':''}" onclick="rqShowAuth('login')" type="button">${esc2(tx('login'))}</button><button class="${signup?'active':''}" onclick="rqShowAuth('signup')" type="button">${esc2(tx('signup'))}</button></div><h2>${esc2(signup?tx('signup'):tx('login'))}</h2><p>${esc2(tx('needLogin'))}</p><form onsubmit="event.preventDefault();rqSubmitAuth('${signup?'signup':'login'}')">${signup?`<label>${esc2(tx('name'))}<input id="rqAuthName" autocomplete="name"></label>`:''}<label>${esc2(tx('email'))}<input id="rqAuthEmail" type="email" autocomplete="email" inputmode="email" value="${esc2(savedEmail)}" placeholder="name@company.com" required></label><label>${esc2(tx('password'))}<input id="rqAuthPassword" type="password" autocomplete="${signup?'new-password':'current-password'}" minlength="8" placeholder="${esc2(tx('passwordHint'))}" required></label><div aria-live="assertive" id="rqAuthError" class="auth-error" role="alert"></div><div class="modal-actions"><button class="secondary" onclick="closeModal()" type="button">${esc2(tx('close'))}</button><button class="primary" type="submit">${esc2(signup?tx('create'):tx('login'))}</button></div></form>`);
   }
-  window.rqShowAuth=(mode)=>authModal(mode,pending?.type||'generic',pending?.target||'RoboQuo');
+  window.rqShowAuth=(mode)=>authModal(mode,pending?.type||'generic',pending?.target||'RoboQuo',(document.getElementById('rqAuthEmail')?.value||'').trim());
   function errMsg(msg){const el=document.getElementById('rqAuthError');if(el)el.textContent=msg||tx('failed');}
+  function authErrorMessage(error){const c=errorCopy[lang()]||errorCopy.en;const code=String(error?.code||'').toLowerCase();if(!navigator.onLine||code==='network_error')return c.network;if(['invalid_credentials','invalid_grant'].includes(code))return c.invalid;if(code==='email_not_confirmed')return c.unconfirmed;if(['user_already_exists','email_exists','identity_already_exists'].includes(code))return c.exists;if(['over_email_send_rate_limit','over_request_rate_limit','too_many_requests'].includes(code)||error?.status===429)return c.rate;if(code==='signup_disabled')return c.disabled;if(['email_address_invalid','validation_failed'].includes(code))return c.email;if(code==='weak_password')return c.weak;return tx('failed');}
   async function resume(){const p=pending||loadPending();savePending(null);closeModal();if(!p)return;if(p.type==='bid'&&window.openBid)return window.openBid(p.target);if((p.type==='sell'||p.type==='publishSell')&&window.rqStartSell)return window.rqStartSell();if(window.toast)toast(`${p.target}: ${tx('welcome')}`);}
   window.rqSubmitAuth=async(mode)=>{
     if(!client)return errMsg(tx('failed'));
     const email=(document.getElementById('rqAuthEmail')?.value||'').trim();
     const password=document.getElementById('rqAuthPassword')?.value||'';
     const name=(document.getElementById('rqAuthName')?.value||'').trim();
-    if(!email.includes('@'))return errMsg(tx('failed'));
+    if(!email.includes('@'))return errMsg((errorCopy[lang()]||errorCopy.en).email);
     if(password.length<8)return errMsg(tx('pw'));
     errMsg('');
     try{
@@ -48,7 +63,7 @@
       }else{
         const {data,error}=await client.auth.signInWithPassword({email,password});if(error)throw error;setSession(data.session);localStorage.removeItem('rqUserEmail');if(window.toast)toast(tx('welcome'));await resume();
       }
-    }catch(e){console.warn('RoboQuo auth',e);errMsg(e?.message||tx('failed'));}
+    }catch(e){console.warn('RoboQuo auth',e?.code||e?.status||'error');errMsg(authErrorMessage(e));}
   };
   window.rqRequireAuth=(type='generic',target='RoboQuo')=>{if(session)return true;authModal('login',type,target);return false;};
   // Override the v22 email-only demo access modal.

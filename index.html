@@ -4,11 +4,51 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <meta content="#ffffff" name="theme-color"/>
-<title>RoboQuo v24 — Buy and sell robots worldwide</title>
+<title>RoboQuo — The global marketplace for used robots</title>
+<meta name="description" content="Buy and sell used industrial robots worldwide. Start a listing with photos, compare offers, and connect with inspection, logistics and installation partners."/>
+<meta name="robots" content="index,follow,max-image-preview:large"/>
+<link rel="canonical" href="https://roboquo.com/"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="RoboQuo"/>
+<meta property="og:title" content="RoboQuo — The global marketplace for used robots"/>
+<meta property="og:description" content="List a used robot from photos, compare offers, and connect with global buyers and service partners."/>
+<meta property="og:url" content="https://roboquo.com/"/>
+<meta property="og:image" content="https://roboquo.com/social-preview.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="RoboQuo — The global marketplace for used robots"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="RoboQuo — The global marketplace for used robots"/>
+<meta name="twitter:description" content="List a used robot from photos and connect with global buyers."/>
+<meta name="twitter:image" content="https://roboquo.com/social-preview.png"/>
 <link href="manifest.json" rel="manifest"/>
-<link href="icon-192.svg" rel="apple-touch-icon"/>
+<link href="icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
+<link href="icon-192.svg" rel="icon" type="image/svg+xml"/>
 <link href="styles.css" rel="stylesheet"/>
 <link href="v24.css" rel="stylesheet"/>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://roboquo.com/#organization",
+      "name": "RoboQuo",
+      "url": "https://roboquo.com/",
+      "email": "info@roboquo.com",
+      "description": "A global B2B marketplace for used industrial robots."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://roboquo.com/#website",
+      "url": "https://roboquo.com/",
+      "name": "RoboQuo",
+      "publisher": {"@id": "https://roboquo.com/#organization"},
+      "inLanguage": ["en", "ja", "ko", "zh", "de", "fr", "es", "it", "pt", "vi"]
+    }
+  ]
+}
+</script>
 </head>
 <body>
 <header class="site-header">
@@ -40,7 +80,7 @@
 <p class="local-headline" data-i18n="localHeadline">Buy, sell, and connect with the people who make robots work.</p>
 <p class="hero-desc" data-i18n="heroDesc">Find, buy and sell robots, then connect with peripherals, suppliers and experts in one simple flow.</p>
 <div class="hero-search">
-<div class="search-field"><span>⌕</span><input data-i18n-placeholder="searchPlaceholder" id="globalSearch" placeholder="FANUC CRX, OnRobot RG2, robot teaching..."/></div>
+<div class="search-field"><span aria-hidden="true">⌕</span><input aria-label="Search RoboQuo" data-i18n-placeholder="searchPlaceholder" id="globalSearch" placeholder="FANUC CRX, OnRobot RG2, robot teaching..."/></div>
 <button class="primary" data-i18n="search" id="searchBtn">Search</button>
 </div>
 <div class="hero-actions">
@@ -56,15 +96,15 @@
     <p data-hero-sell-body>Upload a few photos and start. You can add details later.</p>
     <div class="hero-photo-grid" aria-label="Robot photo upload examples">
       <button class="hero-photo-slot" type="button" data-action="sell">
-        <span class="hero-photo-plus">＋</span>
+        <span aria-hidden="true" class="hero-photo-plus">＋</span>
         <strong data-hero-photo-robot>Robot</strong>
       </button>
       <button class="hero-photo-slot" type="button" data-action="sell">
-        <span class="hero-photo-plus">＋</span>
+        <span aria-hidden="true" class="hero-photo-plus">＋</span>
         <strong data-hero-photo-nameplate>Nameplate</strong>
       </button>
       <button class="hero-photo-slot" type="button" data-action="sell">
-        <span class="hero-photo-plus">＋</span>
+        <span aria-hidden="true" class="hero-photo-plus">＋</span>
         <strong data-hero-photo-controller>Controller</strong>
       </button>
     </div>
@@ -194,13 +234,13 @@
 <div class="wrap project-layout">
 <form class="panel" id="projectForm">
 <div class="step-label">01</div><h2 data-i18n="projectDetails">Project details</h2>
-<div class="form-grid"><label><span data-i18n="workType">Work type</span><select id="projectType"><option>Robot Teaching</option><option>Installation / Commissioning</option><option>PLC Programming</option><option>Vision Setup</option><option>Repair / Troubleshooting</option><option>Training</option></select></label><label><span data-i18n="robotModel">Robot model</span><input value="Yaskawa GP12 / YRC1000"/></label><label><span data-i18n="location">Location</span><input value="Nagoya, Japan"/></label><label><span data-i18n="preferredDate">Preferred date</span><input type="date" value="2026-10-12"/></label></div>
+<div class="form-grid"><label><span data-i18n="workType">Work type</span><select id="projectType" name="workType" required><option>Robot Teaching</option><option>Installation / Commissioning</option><option>PLC Programming</option><option>Vision Setup</option><option>Repair / Troubleshooting</option><option>Training</option></select></label><label><span data-i18n="robotModel">Robot model</span><input data-i18n-placeholder="projectModelPh" id="projectRobotModel" name="robotModel" placeholder="e.g. Yaskawa GP12 / YRC1000" required/></label><label><span data-i18n="location">Location</span><input autocomplete="address-level2" data-i18n-placeholder="projectLocationPh" id="projectLocation" name="location" placeholder="e.g. Nagoya, Japan" required/></label><label><span data-i18n="preferredDate">Preferred date</span><input id="projectPreferredDate" name="preferredDate" type="date" required/></label></div>
 <label><span data-i18n="priceMethod">Pricing</span><select><option data-i18n="receiveBids">Receive quotes / bids</option><option data-i18n="setBudget">Set a budget</option></select></label>
-<label><span data-i18n="description">Description</span><textarea data-i18n-placeholder="projectPh" placeholder="Pick &amp; Place teaching, I/O setup and production start-up support" rows="5"></textarea></label>
+<label><span data-i18n="description">Description</span><textarea data-i18n-placeholder="projectPh" name="description" placeholder="Pick &amp; Place teaching, I/O setup and production start-up support" required rows="5"></textarea></label>
 <button class="primary wide" data-i18n="postAndMatch" type="submit">Post and match with providers</button>
 </form>
 <div class="panel">
-<div class="step-label">02</div><h2 data-i18n="sampleBids">Example quote comparison</h2><p class="muted" data-i18n="sampleBidsDesc">Choose by experience, location and rating, not price alone.</p>
+<div class="step-label">02</div><span class="demo-data-badge" data-i18n="demoDataLabel">DEMO DATA</span><h2 data-i18n="sampleBids">Example quote comparison</h2><p class="muted" data-i18n="sampleBidsDesc">Choose by experience, location and rating, not price alone.</p><p class="demo-data-note" data-i18n="demoQuoteNote">Illustrative companies, scores and prices — not live quotes.</p>
 <div class="bid-row"><div><strong>Aichi Robot Systems</strong><small>Yaskawa · 48 jobs · ★4.9</small></div><div><b>97%</b><strong>¥240,000</strong></div></div>
 <div class="bid-row"><div><strong>Takumi Automation</strong><small>YRC1000 · Vision · ★4.8</small></div><div><b>94%</b><strong>¥220,000</strong></div></div>
 <div class="bid-row"><div><strong>Engineer K.</strong><small>Yaskawa / FANUC · ★4.9</small></div><div><b>92%</b><strong>¥190,000</strong></div></div>
@@ -225,10 +265,10 @@
 
 </main>
 <div class="mobile-nav"><button data-route="home"><span>⌂</span><small data-i18n="home">Home</small></button><button data-route="robots"><span>⌕</span><small data-i18n="navRobots">Robots</small></button><button class="sell-mobile" data-action="sell"><span>＋</span><small data-i18n="sellShort">Sell</small></button><button data-route="companies"><span>▦</span><small data-i18n="navCompanies">Find Companies</small></button><button data-route="makers"><span>⌘</span><small data-i18n="navMakers">Manufacturers</small></button></div>
-<div class="modal-backdrop hidden" id="modalBackdrop">
-<div class="modal" id="modal"></div>
+<div aria-hidden="true" class="modal-backdrop hidden" id="modalBackdrop">
+<div aria-modal="true" class="modal" id="modal" role="dialog" tabindex="-1"></div>
 </div>
-<div class="toast" id="toast"></div>
+<div aria-atomic="true" aria-live="polite" class="toast" id="toast" role="status"></div>
 <script src="supabase-config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="robot-model-master.js"></script>

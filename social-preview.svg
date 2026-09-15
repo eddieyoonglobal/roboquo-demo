@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1320"/>
+      <stop offset="1" stop-color="#172554"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#6d5dfc"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <circle cx="1080" cy="90" r="230" fill="#6d5dfc" opacity=".14"/>
+  <circle cx="1030" cy="590" r="300" fill="#2563eb" opacity=".12"/>
+  <rect x="80" y="70" width="72" height="72" rx="20" fill="#ffffff"/>
+  <text x="116" y="116" font-family="Arial, sans-serif" font-size="26" font-weight="800" text-anchor="middle" fill="#0b1320">RQ</text>
+  <text x="172" y="118" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#ffffff">RoboQuo</text>
+  <text x="80" y="285" font-family="Arial, sans-serif" font-size="76" font-weight="800" fill="#ffffff">Robots.</text>
+  <text x="80" y="375" font-family="Arial, sans-serif" font-size="76" font-weight="800" fill="url(#accent)">Ready to trade.</text>
+  <text x="84" y="446" font-family="Arial, sans-serif" font-size="30" fill="#cbd5e1">The global marketplace for used robots.</text>
+  <rect x="82" y="510" width="350" height="54" rx="27" fill="#ffffff"/>
+  <text x="257" y="546" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle" fill="#0b1320">Start with robot photos</text>
+</svg>

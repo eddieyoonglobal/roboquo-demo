@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://roboquo.com/sitemap.xml
