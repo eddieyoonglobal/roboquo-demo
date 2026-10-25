@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#111922"/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
-<title>Smart Grip Studio | Gripper Control & Grip Force Analysis — RoboQuo</title>
+<title>Smart Grip Studio | Gripper Control, CAD View & Grip Analysis — RoboQuo</title>
 <meta name="description" content="Smart Grip Studio by RoboQuo: independent Windows software under development for controlled gripper testing, grip-force exploration, width and contact analysis with selected compatible OnRobot grippers."/>
 <link rel="canonical" href="https://roboquo.com/software/smart-grip-studio/"/>
 <meta property="og:type" content="website"/><meta property="og:site_name" content="RoboQuo"/>
@@ -41,16 +41,59 @@
 </div>
 <div class="hero-visual">
 <div class="visual-aura"></div><div class="app-window" aria-label="Smart Grip Studio example dashboard, illustrative only">
-<div class="window-top"><div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div><span>SMART GRIP STUDIO / GRIP ANALYSIS</span><span class="window-status"><i></i> CONCEPT PREVIEW</span></div>
-<div class="mock-ui"><aside class="mock-side"><div class="sidelabel">WORKSPACE</div><div class="sideitem active"><b>◉</b> Overview</div><div class="sideitem"><b>↔</b> Control</div><div class="sideitem"><b>≈</b> Force scan</div><div class="sideitem"><b>▤</b> Reports</div><div class="sidebox">SELECTED DEVICE<strong>RG2</strong>Demo scenario<br>Not connected</div></aside>
-<div class="mock-main"><div class="mock-heading"><strong>Gripping analysis</strong><small>SIMULATION / NOT LIVE</small></div>
-<div class="mock-stats"><div class="mock-stat"><span>GRIP FORCE</span><b>20 <small>N</small></b></div><div class="mock-stat"><span>GRIP WIDTH</span><b>48 <small>mm</small></b></div><div class="mock-stat"><span>CONTACT</span><b style="font-size:16px;color:#6ed7c3">Detected</b></div></div>
-<div class="mock-plot"><div class="mock-plot-title"><strong>Example force / width response</strong><span>TEST CYCLE</span></div><svg viewBox="0 0 480 128" role="img" aria-label="Illustrative gripper force response line chart" preserveAspectRatio="none"><defs><linearGradient id="forceFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#47c1d5" stop-opacity=".27"/><stop offset="1" stop-color="#47c1d5" stop-opacity="0"/></linearGradient></defs><path d="M0 118 L38 118 L70 115 L105 110 L140 95 L178 76 L209 69 L242 60 L280 59 L307 61 L338 59 L367 60 L398 58 L434 58 L480 57 L480 128 L0 128Z" fill="url(#forceFill)"/><path d="M0 118 L38 118 L70 115 L105 110 L140 95 L178 76 L209 69 L242 60 L280 59 L307 61 L338 59 L367 60 L398 58 L434 58 L480 57" stroke="#59d2dc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M0 36 L70 37 L135 42 L210 63 L285 83 L360 88 L480 88" stroke="#96aaf6" stroke-width="2" fill="none" stroke-dasharray="6 5" opacity=".82"/><line x1="243" y1="3" x2="243" y2="125" stroke="#e3c575" stroke-dasharray="4 5" opacity=".7"/><circle cx="243" cy="60" r="5" stroke="#e4faff" stroke-width="2" fill="#59d2dc"/></svg>
-<div class="mock-legend"><span><i style="background:#59d2dc"></i> Force</span><span><i style="background:#96aaf6"></i> Width</span><span><i style="background:#e3c575"></i> Contact</span></div></div>
-<div class="mock-bottom"><span class="mock-chip">◉ Example test complete</span><span class="mock-small-btn">Review result ↗</span></div>
-</div></div></div>
-<p class="rq-fake-note"><span data-i18n="illustrative">Illustrative dashboard using synthetic sample data — not a screenshot or live measurement.</span></p>
-<div class="mock-wide-metric"><span style="font-size:24px;color:#6ad7e6">≈</span><div><small>SMART GRIP ANALYSIS</small><b><span data-i18n="visualLabel">Compare grip settings with measured feedback</span></b></div></div>
+<div class="window-top"><div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div><span>SMART GRIP STUDIO / CONTROL + 3D</span><span class="window-status"><i></i> LAYOUT REFERENCE</span></div>
+<div class="mock-ui mock-ui-current" role="img" aria-label="Interface layout reference based on the current Smart Grip Studio design, not a software screenshot">
+  <aside class="mock-side"><div class="sidelabel">SMART GRIP</div>
+    <div class="sideitem active"><b>◉</b> Dashboard</div>
+    <div class="sideitem"><b>⌘</b> Gripper & QC</div>
+    <div class="sideitem"><b>◇</b> 3D CAD</div>
+    <div class="sideitem"><b>≈</b> Analysis</div>
+    <div class="sideitem"><b>▤</b> Session Logs</div>
+    <div class="sidebox">VIEW REFERENCE<strong>V4.21.1 UI</strong>Read-only concept<br/>Not connected</div>
+  </aside>
+  <div class="mock-main">
+    <div class="mock-heading"><strong>Smart Grip · Main Dashboard</strong><small>LAYOUT REFERENCE</small></div>
+    <div class="sg-ui-top">
+      <section class="sg-control-panel" aria-label="Gripper control summary">
+        <div class="sg-panel-title">GRIPPER STATUS <span>Single / Dual QC</span></div>
+        <div class="sg-field"><span>Width</span><strong>— <small>mm</small></strong></div>
+        <div class="sg-field"><span>Grip Force</span><strong>— <small>N</small></strong></div>
+        <div class="sg-field"><span>Object response</span><strong>Soft / Hard</strong></div>
+        <div class="sg-field"><span>Contact / Safety</span><strong>Awaiting test</strong></div>
+        <div class="sg-control-row"><span>Open</span><span>Close</span><span>Auto Test</span></div>
+        <div class="sg-hold">Hold time <b>10 s</b> <span>Apply</span></div>
+      </section>
+      <section class="sg-cad-panel" aria-label="Illustrative 3D gripper CAD area">
+        <div class="sg-panel-title">3D Gripper / Quick Changer <span>CAD Preview</span></div>
+        <svg class="sg-cad-svg" viewBox="0 0 420 280" aria-hidden="true">
+          <defs>
+            <linearGradient id="sgSteel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9e3ee"/><stop offset=".6" stop-color="#8eabbe"/><stop offset="1" stop-color="#63829a"/></linearGradient>
+            <linearGradient id="sgSteelLight" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f3f6f9"/><stop offset="1" stop-color="#a6bcc9"/></linearGradient>
+          </defs>
+          <path d="M15 242H410 M35 214H387 M80 47L345 251 M323 33L79 260" stroke="#d7e1e8" stroke-width="1" stroke-dasharray="3 8"/>
+          <ellipse cx="214" cy="245" rx="125" ry="14" fill="#dbe3ec"/>
+          <g transform="translate(0 -8)">
+            <rect x="163" y="10" width="92" height="33" rx="11" fill="#283f58"/><rect x="181" y="20" width="56" height="7" rx="3" fill="#7290a6"/>
+            <path d="M165 45H255L265 82L242 107H176L153 82Z" fill="url(#sgSteel)" stroke="#57768e" stroke-width="3"/>
+            <rect x="172" y="85" width="75" height="55" rx="13" fill="#d3dfe8" stroke="#7997a9" stroke-width="3"/>
+            <rect x="183" y="97" width="53" height="23" rx="6" fill="#fff" stroke="#9bb2c2"/><text x="209" y="113" text-anchor="middle" fill="#4a7591" font-size="12" font-weight="700">QC</text>
+            <rect x="144" y="128" width="129" height="48" rx="15" fill="#426783"/><rect x="159" y="140" width="99" height="23" rx="9" fill="#7aa4bc"/>
+            <path d="M154 169L135 169L128 214L148 229L162 204L164 169Z" fill="url(#sgSteelLight)" stroke="#7697a8" stroke-width="3"/>
+            <path d="M264 169L283 169L291 214L268 229L254 204L254 169Z" fill="url(#sgSteelLight)" stroke="#7697a8" stroke-width="3"/>
+            <rect x="171" y="181" width="75" height="54" rx="11" fill="#a0dcd9" stroke="#47b5b5" stroke-width="3"/>
+            <path d="M181 191H235M180 219H235" stroke="#6dbdbd" stroke-width="1"/>
+            <circle cx="209" cy="156" r="6" fill="#dcebf1"/><path d="M161 198H171M247 198H256" stroke="#2f9fb8" stroke-width="3" stroke-linecap="round"/>
+          </g>
+          <g fill="#647b90" font-size="10" font-weight="700"><text x="295" y="86">QUICK CHANGER</text><path d="M272 89H291" stroke="#7da2b8"/><text x="15" y="158">GRIPPER</text><path d="M74 160H141" stroke="#7da2b8"/></g>
+        </svg>
+        <div class="sg-cad-footer"><span>Illustrative CAD representation</span><span>Model geometry not verified</span></div>
+      </section>
+    </div>
+    <div class="sg-ui-bottom"><div><strong>Session summary</strong><small>Event log is empty — demo layout</small></div><div class="sg-log-pills"><span>Live Graph</span><span>Saved Tests</span><span>Full Log</span></div></div>
+  </div>
+</div></div>
+<p class="rq-fake-note"><span data-i18n="illustrative">V4.21.1 interface-layout reference based on current controls. Not a captured application screen; actual screenshot is pending.</span></p>
+<div class="mock-wide-metric"><span style="font-size:24px;color:#6ad7e6">≈</span><div><small>ROBOQUO SOFTWARE</small><b><span data-i18n="visualLabel">Gripper Control · CAD View · Grip Analysis</span></b></div></div>
 </div>
 </section>
 <div class="proof-band"><div class="proof-inner section-wrap"><span><span data-i18n="proofTitle">Product development targets · actual support is configuration-dependent</span></span><strong>RG2 <span>CHECK</span></strong><i></i><strong>RG6 <span>CHECK</span></strong><i></i><strong>2FG7 <span>CHECK</span></strong><i></i><strong>Windows <span>DESKTOP</span></strong></div></div>
