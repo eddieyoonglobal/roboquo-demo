@@ -87,6 +87,7 @@
         <a data-route="projects" href="#projects">${navLabel('projects')}</a>
         <a data-route="companies" href="#companies">${navLabel('companies')}</a>
         <a data-route="events" href="#events">${navLabel('events')}</a>
+        <a href="/software/?lang=${['en','ja','ko'].includes(lang())?lang():'en'}">${lang()==='ja'?'ソフトウェア':lang()==='ko'?'소프트웨어':'Software'}</a>
         <a data-route="about" href="#about">About</a>`;
       $$('[data-route]',nav).forEach(a=>a.addEventListener('click',e=>{e.preventDefault();route(a.dataset.route)}));
     }
