@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta name="theme-color" content="#111922"/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
-<title>Smart Grip Studio | Gripper Control, CAD View & Grip Analysis — RoboQuo</title>
-<meta name="description" content="Smart Grip Studio by RoboQuo: independent Windows software under development for controlled gripper testing, grip-force exploration, width and contact analysis with selected compatible OnRobot grippers."/>
+<title>Smart Grip Studio V4.21.2 | Dual Gripper 3D Simulation — RoboQuo</title>
+<meta name="description" content="Smart Grip Studio V4.21.2 by RoboQuo: Windows gripper control, dual-gripper 3D simulation, gripper settings and real-time force/width monitoring for selected compatible grippers. Preview and compatibility inquiry."/>
 <link rel="canonical" href="https://roboquo.com/software/smart-grip-studio/"/>
 <meta property="og:type" content="website"/><meta property="og:site_name" content="RoboQuo"/>
 <meta property="og:title" content="Smart Grip Studio — Developed by RoboQuo"/>
@@ -39,63 +39,67 @@
 <div class="hero-buttons"><a href="mailto:info@roboquo.com?subject=Smart%20Grip%20Studio%20-%20Evaluation%20Inquiry&body=Device%20model%3A%0ARobot%20and%20controller%3A%0ACompute%20Box%20or%20connection%3A%0AApplication%3A%0ACountry%3A" class="button button-primary button-large"><span data-i18n="heroTrial">Request evaluation details</span> <span aria-hidden="true">↗</span></a><a class="button button-outline button-large" href="#features"><span data-i18n="heroFeatures">Explore features</span> <span aria-hidden="true">↓</span></a></div>
 <div class="hero-points"><span>✓ <span data-i18n="heroPoint1">Target models: RG2 / RG6 / 2FG7</span></span><span>✓ <span data-i18n="heroPoint2">Force / width / contact analysis</span></span><span>✓ <span data-i18n="heroPoint3">Developed by RoboQuo</span></span></div>
 </div>
-<div class="hero-visual">
-<div class="visual-aura"></div><div class="app-window" aria-label="Smart Grip Studio example dashboard, illustrative only">
-<div class="window-top"><div class="window-dots" aria-hidden="true"><span></span><span></span><span></span></div><span>SMART GRIP STUDIO / CONTROL + 3D</span><span class="window-status"><i></i> LAYOUT REFERENCE</span></div>
-<div class="mock-ui mock-ui-current" role="img" aria-label="Interface layout reference based on the current Smart Grip Studio design, not a software screenshot">
-  <aside class="mock-side"><div class="sidelabel">SMART GRIP</div>
-    <div class="sideitem active"><b>◉</b> Dashboard</div>
-    <div class="sideitem"><b>⌘</b> Gripper & QC</div>
-    <div class="sideitem"><b>◇</b> 3D CAD</div>
-    <div class="sideitem"><b>≈</b> Analysis</div>
-    <div class="sideitem"><b>▤</b> Session Logs</div>
-    <div class="sidebox">VIEW REFERENCE<strong>V4.21.1 UI</strong>Read-only concept<br/>Not connected</div>
-  </aside>
-  <div class="mock-main">
-    <div class="mock-heading"><strong>Smart Grip · Main Dashboard</strong><small>LAYOUT REFERENCE</small></div>
-    <div class="sg-ui-top">
-      <section class="sg-control-panel" aria-label="Gripper control summary">
-        <div class="sg-panel-title">GRIPPER STATUS <span>Single / Dual QC</span></div>
-        <div class="sg-field"><span>Width</span><strong>— <small>mm</small></strong></div>
-        <div class="sg-field"><span>Grip Force</span><strong>— <small>N</small></strong></div>
-        <div class="sg-field"><span>Object response</span><strong>Soft / Hard</strong></div>
-        <div class="sg-field"><span>Contact / Safety</span><strong>Awaiting test</strong></div>
-        <div class="sg-control-row"><span>Open</span><span>Close</span><span>Auto Test</span></div>
-        <div class="sg-hold">Hold time <b>10 s</b> <span>Apply</span></div>
-      </section>
-      <section class="sg-cad-panel" aria-label="Illustrative 3D gripper CAD area">
-        <div class="sg-panel-title">3D Gripper / Quick Changer <span>CAD Preview</span></div>
-        <svg class="sg-cad-svg" viewBox="0 0 420 280" aria-hidden="true">
-          <defs>
-            <linearGradient id="sgSteel" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#d9e3ee"/><stop offset=".6" stop-color="#8eabbe"/><stop offset="1" stop-color="#63829a"/></linearGradient>
-            <linearGradient id="sgSteelLight" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f3f6f9"/><stop offset="1" stop-color="#a6bcc9"/></linearGradient>
-          </defs>
-          <path d="M15 242H410 M35 214H387 M80 47L345 251 M323 33L79 260" stroke="#d7e1e8" stroke-width="1" stroke-dasharray="3 8"/>
-          <ellipse cx="214" cy="245" rx="125" ry="14" fill="#dbe3ec"/>
-          <g transform="translate(0 -8)">
-            <rect x="163" y="10" width="92" height="33" rx="11" fill="#283f58"/><rect x="181" y="20" width="56" height="7" rx="3" fill="#7290a6"/>
-            <path d="M165 45H255L265 82L242 107H176L153 82Z" fill="url(#sgSteel)" stroke="#57768e" stroke-width="3"/>
-            <rect x="172" y="85" width="75" height="55" rx="13" fill="#d3dfe8" stroke="#7997a9" stroke-width="3"/>
-            <rect x="183" y="97" width="53" height="23" rx="6" fill="#fff" stroke="#9bb2c2"/><text x="209" y="113" text-anchor="middle" fill="#4a7591" font-size="12" font-weight="700">QC</text>
-            <rect x="144" y="128" width="129" height="48" rx="15" fill="#426783"/><rect x="159" y="140" width="99" height="23" rx="9" fill="#7aa4bc"/>
-            <path d="M154 169L135 169L128 214L148 229L162 204L164 169Z" fill="url(#sgSteelLight)" stroke="#7697a8" stroke-width="3"/>
-            <path d="M264 169L283 169L291 214L268 229L254 204L254 169Z" fill="url(#sgSteelLight)" stroke="#7697a8" stroke-width="3"/>
-            <rect x="171" y="181" width="75" height="54" rx="11" fill="#a0dcd9" stroke="#47b5b5" stroke-width="3"/>
-            <path d="M181 191H235M180 219H235" stroke="#6dbdbd" stroke-width="1"/>
-            <circle cx="209" cy="156" r="6" fill="#dcebf1"/><path d="M161 198H171M247 198H256" stroke="#2f9fb8" stroke-width="3" stroke-linecap="round"/>
-          </g>
-          <g fill="#647b90" font-size="10" font-weight="700"><text x="295" y="86">QUICK CHANGER</text><path d="M272 89H291" stroke="#7da2b8"/><text x="15" y="158">GRIPPER</text><path d="M74 160H141" stroke="#7da2b8"/></g>
-        </svg>
-        <div class="sg-cad-footer"><span>Illustrative CAD representation</span><span>Model geometry not verified</span></div>
-      </section>
-    </div>
-    <div class="sg-ui-bottom"><div><strong>Session summary</strong><small>Event log is empty — demo layout</small></div><div class="sg-log-pills"><span>Live Graph</span><span>Saved Tests</span><span>Full Log</span></div></div>
-  </div>
-</div></div>
-<p class="rq-fake-note"><span data-i18n="illustrative">V4.21.1 interface-layout reference based on current controls. Not a captured application screen; actual screenshot is pending.</span></p>
-<div class="mock-wide-metric"><span style="font-size:24px;color:#6ad7e6">≈</span><div><small>ROBOQUO SOFTWARE</small><b><span data-i18n="visualLabel">Gripper Control · CAD View · Grip Analysis</span></b></div></div>
+<div class="hero-visual sg-actual-reference">
+<div class="sg-screen-frame" aria-label="Smart Grip Studio V4.21.2 screenshot-based interface reference">
+<div class="sg-screen-titlebar"><span>▣ Smart Grip Studio V4.21.2 | Windows</span><span>— ▣ ×</span></div>
+<div class="sg-screen-menubar"><div><strong>SMART GRIP STUDIO</strong><small><span data-i18n="uiSoftwareSubtitle">Grip control · 3D simulation · realtime visualization</span></small><span class="sg-device-off">○ <span data-i18n="uiNotConnected">Not connected</span></span></div>
+<div class="sg-screen-menu"><span><span data-i18n="uiLangDisplay">English</span></span><span><span data-i18n="uiManual">Manual control</span></span><span><span data-i18n="uiDetail">Detail</span></span><span><span data-i18n="uiDisplay">View</span> ▾</span><span><span data-i18n="uiAdmin">Admin</span> ▾</span></div></div>
+<div class="sg-screen-main">
+<aside class="sg-screen-sidebar">
+<div class="sg-screen-start"><b><span data-i18n="uiStartup">Startup conditions</span></b><div><span data-i18n="uiSafetyCheck">☐ Site safety check completed</span></div><div class="sg-start-btn">1/4 <span data-i18n="uiStartupCheck">Check startup conditions</span></div></div>
+<div class="sg-screen-settings"><h3><span data-i18n="uiSmartAuto">Smart automatic settings</span></h3><p><span data-i18n="uiSingleDual">Single / Dual configuration</span></p>
+<label><span data-i18n="uiChanger">Quick Changer</span></label><div class="sg-screen-chip-row"><span>Dual ▾</span><b><span data-i18n="uiConnect">Connect</span></b></div>
+<div class="sg-screen-chip-row"><b><span data-i18n="uiRescan">Rescan grippers</span></b><span><span data-i18n="uiConfirm">Verify connected grippers</span></span></div>
+<label><span data-i18n="uiMode">Execution mode</span></label><div class="sg-screen-select"><span data-i18n="uiModeValue">Smart automatic demo</span> ▾</div>
+<label><span data-i18n="uiTarget">Target grippers</span></label><div class="sg-screen-select"><span data-i18n="uiSequence">All tools in sequence</span> ▾</div>
+<div class="sg-order"><strong><span data-i18n="uiOrder">Motion order</span> : 2FG7 → RG2</strong></div>
+<label><span data-i18n="uiHold">Holding time</span></label><div class="sg-screen-chip-row"><span>8 s</span><b><span data-i18n="uiApply">Apply</span></b></div>
+<label><span data-i18n="uiPriority">Grip force priority</span></label><div class="sg-radio-list"><span>○ <span data-i18n="uiSoft">1. Soft</span></span><span>◉ <span data-i18n="uiBalance">2. Balance</span></span><span>○ <span data-i18n="uiHard">3. Hard</span></span><span>○ <span data-i18n="uiMax">4. Maximum</span></span></div>
+<div class="sg-small-explain"><span data-i18n="uiMockNotice">Illustrative controls; no hardware is connected.</span></div>
+</div></aside>
+<div class="sg-screen-work"><div class="sg-screen-work-title"><strong><span data-i18n="uiDisplayTitle">3D simulation / realtime display</span></strong><small><span data-i18n="uiWaiting">Standby</span></small></div>
+<div class="sg-screen-devices"><section class="sg-device-pane">
+<div class="sg-device-title"><strong>2FG7</strong><span class="sg-disconnected">◯ <span data-i18n="uiNotConnected">Device not connected</span></span></div>
+<div class="sg-device-stage"><div class="sg-device-data"><div class="sg-data-head"><span data-i18n="uiJudging">Awaiting judgment</span> <b><span data-i18n="uiCriteria">Criteria</span></b></div><div><span><span data-i18n="uiWidth">Opening width</span></span>—</div><div><span><span data-i18n="uiForceActual">Grip force (actual)</span></span>—</div><div><span><span data-i18n="uiStatus">Status</span></span><span data-i18n="uiNotConnected">Not connected</span></div></div>
+<svg viewBox="0 0 450 370" class="sg-gripper-svg" aria-hidden="true">
+<defs><linearGradient id="onMetal27" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#f5f8fa"/><stop offset=".35" stop-color="#cbd5dc"/><stop offset=".75" stop-color="#96a7b3"/><stop offset="1" stop-color="#b4c1ca"/></linearGradient><linearGradient id="onDark27" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#0b1b2e"/><stop offset="1" stop-color="#2f3c4e"/></linearGradient></defs>
+<ellipse cx="220" cy="338" rx="165" ry="20" fill="#d4e4f0"/>
+<g transform="translate(0,1)"><path d="M111 94L325 94 347 135 317 285 290 330 149 330 118 285 90 143Z" fill="url(#onMetal27)" stroke="#8ea4b1" stroke-width="2"/>
+<path d="M96 137L344 137 319 160 117 160Z" fill="#e8eef3" stroke="#a7b8c3"/><path d="M119 164L319 164 306 290 278 329 154 329 134 287Z" fill="#a5b6c3" opacity=".38"/>
+<path d="M149 232L291 232 284 318 161 318Z" fill="#c1cdd6" stroke="#9aaebc"/><path d="M174 309V327M190 301V329M206 308V328M224 299V326M242 302V329M260 301V327" stroke="#889faf" stroke-width="2"/>
+<path d="M101 94H337V135H101Z" fill="#dce5eb" stroke="#94a7b5" stroke-width="2"/><path d="M109 104H329M118 115H324M122 125H317" stroke="#abbec9" stroke-width="3"/>
+<path d="M131 100V26Q131 19 140 17L173 11Q183 14 185 28L187 107 131 110Z" fill="url(#onDark27)" stroke="#162437" stroke-width="3"/>
+<path d="M247 106L248 28Q248 15 261 12L293 22Q301 28 300 36V110Z" fill="url(#onDark27)" stroke="#14263a" stroke-width="3"/>
+<path d="M131 103L186 101 191 136 132 136Z" fill="#101e2c"/><path d="M248 102L302 105 307 136 248 136Z" fill="#101e2c"/><rect x="193" y="132" width="49" height="9" rx="2" fill="#9cb3c0"/>
+<path d="M146 103V36M265 34V105" stroke="#637486" stroke-width="2" opacity=".3"/></g></svg>
+<div class="sg-device-overlay"><span><span data-i18n="uiViewOnly">View only</span></span><span>−</span><span>+</span></div>
 </div>
-</section>
+<div class="sg-device-chart"><div class="sg-chart-head"><strong><span data-i18n="uiLiveGraph">Realtime graph</span></strong><span><span data-i18n="uiGraphAxes">Width (mm) / Grip force (N)</span></span></div><svg viewBox="0 0 580 98" preserveAspectRatio="none" aria-hidden="true"><g stroke="#e5edf5" stroke-width="1"><path d="M0 20H580M0 39H580M0 58H580M0 77H580"/><path d="M70 0V97M150 0V97M230 0V97M310 0V97M390 0V97M470 0V97M550 0V97"/></g><path d="M0 3V94H580" fill="none" stroke="#c3d5e6" stroke-width="1.4"/><path d="M0 94H580" stroke="#57a9db" stroke-width="1" stroke-dasharray="3 5" opacity=".45"/></svg></div>
+</section><section class="sg-device-pane">
+<div class="sg-device-title"><strong>RG2</strong><span class="sg-disconnected">◯ <span data-i18n="uiNotConnected">Device not connected</span></span></div>
+<div class="sg-device-stage"><div class="sg-device-data"><div class="sg-data-head"><span data-i18n="uiJudging">Awaiting judgment</span> <b><span data-i18n="uiCriteria">Criteria</span></b></div><div><span><span data-i18n="uiWidth">Opening width</span></span>—</div><div><span><span data-i18n="uiForceCommand">Grip force (command)</span></span>—</div><div><span><span data-i18n="uiStatus">Status</span></span><span data-i18n="uiNotConnected">Not connected</span></div></div>
+<svg viewBox="0 0 450 370" class="sg-gripper-svg" aria-hidden="true">
+<defs><linearGradient id="rgMetal21" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#e9eff3"/><stop offset=".46" stop-color="#9eacb8"/><stop offset="1" stop-color="#c9d3dd"/></linearGradient><linearGradient id="rgMetal22" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#98aab8"/><stop offset="1" stop-color="#627485"/></linearGradient></defs>
+<ellipse cx="220" cy="341" rx="165" ry="19" fill="#d4e4f0"/>
+<g transform="translate(0,8)"><path d="M157 205Q150 179 163 161L200 149 239 149 282 181 276 240 268 318 178 318Z" fill="url(#rgMetal21)" stroke="#9caebb" stroke-width="3"/>
+<path d="M166 246L275 241 260 321 182 321Z" fill="#b5c4ce" stroke="#9daebb"/><path d="M165 195L197 164 230 171 254 201 250 240 171 235Z" fill="#c0ccd3"/>
+<path d="M157 177L110 139 92 108 115 94 175 148Z" fill="url(#rgMetal22)" stroke="#657b8b" stroke-width="3"/>
+<path d="M278 178L323 131 342 104 322 94 255 148Z" fill="url(#rgMetal22)" stroke="#657b8b" stroke-width="3"/>
+<path d="M91 111L72 78 95 62 119 101 114 115Z" fill="#aebbc6" stroke="#5d7384" stroke-width="4"/>
+<path d="M342 110L361 80 339 63 317 96 320 114Z" fill="#aebbc6" stroke="#5d7384" stroke-width="4"/>
+<rect x="54" y="42" width="38" height="103" rx="12" transform="rotate(-10 54 42)" fill="#111e2a"/>
+<rect x="355" y="43" width="38" height="103" rx="12" transform="rotate(10 355 43)" fill="#111e2a"/>
+<circle cx="116" cy="106" r="12" fill="#a8b9c5" stroke="#657b89" stroke-width="4"/><circle cx="116" cy="106" r="4" fill="#445969"/>
+<circle cx="320" cy="107" r="12" fill="#a8b9c5" stroke="#657b89" stroke-width="4"/><circle cx="320" cy="107" r="4" fill="#445969"/>
+<path d="M180 260Q215 245 265 264L258 302 191 311Z" fill="#d2dce4"/><path d="M174 314L263 315 259 329 185 329Z" fill="#7f939e"/>
+<circle cx="205" cy="188" r="3" fill="#607789"/><circle cx="236" cy="194" r="3" fill="#607789"/></g></svg>
+<div class="sg-device-overlay"><span><span data-i18n="uiViewOnly">View only</span></span><span>−</span><span>+</span></div>
+</div>
+<div class="sg-device-chart"><div class="sg-chart-head"><strong><span data-i18n="uiLiveGraph">Realtime graph</span></strong><span><span data-i18n="uiGraphAxes">Width (mm) / Grip force (N)</span></span></div><svg viewBox="0 0 580 98" preserveAspectRatio="none" aria-hidden="true"><g stroke="#e5edf5" stroke-width="1"><path d="M0 20H580M0 39H580M0 58H580M0 77H580"/><path d="M70 0V97M150 0V97M230 0V97M310 0V97M390 0V97M470 0V97M550 0V97"/></g><path d="M0 3V94H580" fill="none" stroke="#c3d5e6" stroke-width="1.4"/><path d="M0 94H580" stroke="#57a9db" stroke-width="1" stroke-dasharray="3 5" opacity=".45"/></svg></div>
+</section></div><div class="sg-screen-footer"><span data-i18n="uiFooter">Real-time width / force monitoring · Dual gripper view · Ready for demo configuration</span></div></div>
+</div></div>
+<p class="rq-fake-note"><span data-i18n="illustrative">Screen-layout illustration based on the supplied Smart Grip Studio V4.21.2 screenshot. It is not an exact image of the application; the reference shows disconnected equipment.</span></p>
+</div></section>
 <div class="proof-band"><div class="proof-inner section-wrap"><span><span data-i18n="proofTitle">Product development targets · actual support is configuration-dependent</span></span><strong>RG2 <span>CHECK</span></strong><i></i><strong>RG6 <span>CHECK</span></strong><i></i><strong>2FG7 <span>CHECK</span></strong><i></i><strong>Windows <span>DESKTOP</span></strong></div></div>
 <section id="features" class="features-section section-wrap"><div class="section-head"><div><div class="eyebrow">01 / CAPABILITIES</div><h2><span data-i18n="featuresTitle">Gripper insight, from motion to grasp.</span></h2></div><p><span data-i18n="featuresIntro">Designed to help engineers understand gripper behavior through repeatable, supervised experiments instead of trial-and-error alone. Features are under development and validation.</span></p></div><div class="feature-grid"><article class="feature-card"><span class="feature-no">01 / SMART GRIP</span><span class="feature-icon" aria-hidden="true" style="font-size:36px;font-weight:450">◉</span><h3><span data-i18n="feature1">Gripper control</span></h3><p><span data-i18n="feature1Desc">Run manual open/close commands and structured test sequences in a supported configuration.</span></p></article>
 <article class="feature-card"><span class="feature-no">02 / SMART GRIP</span><span class="feature-icon" aria-hidden="true" style="font-size:36px;font-weight:450">≈</span><h3><span data-i18n="feature2">Force exploration</span></h3><p><span data-i18n="feature2Desc">Compare candidate grip-force settings through controlled test cycles rather than guessing.</span></p></article>
