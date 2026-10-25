@@ -2,7 +2,7 @@
 (() => {
   const translations = {
     en: {
-      market:"Marketplace",software:"Software",preview:"Product preview",developed:"Developed by RoboQuo", learn:"Explore product", inquire:"Request information", inquireTrial:"Ask about trial access",
+      market:"Marketplace",software:"Software",preview:"Product preview",developed:"Developed by RoboQuo", learn:"Explore product", viewProducts:"Explore products", inquire:"Request information", inquireTrial:"Ask about trial access",
       homeEyebrow:"ROBOQUO SOFTWARE",homeTitle:"Tools for better robot applications.",homeLead:"Independent desktop tools for gripper analysis and force/torque diagnostics. Explore the products being prepared by RoboQuo.",
       homeSubtitle:"Two focused tools. One robotics workspace.",homeSublead:"Practical software for engineers, automation teams and technical support professionals.",
       smartTag:"Gripper control & analysis",hexTag:"Force/torque diagnostics",
@@ -32,7 +32,7 @@
       footer:"RoboQuo Software — independent tools for robotics workflows"
     },
     ja: {
-      market:"ロボット市場",software:"ソフトウェア",preview:"製品プレビュー",developed:"RoboQuoが独自開発",learn:"製品を見る",inquire:"お問い合わせ",inquireTrial:"トライアルについて問い合わせ",
+      market:"ロボット市場",software:"ソフトウェア",preview:"製品プレビュー",developed:"RoboQuoが独自開発",learn:"製品を見る",viewProducts:"製品一覧を見る",inquire:"お問い合わせ",inquireTrial:"トライアルについて問い合わせ",
       homeEyebrow:"ROBOQUO SOFTWARE",homeTitle:"ロボット活用を支える専門ツール。",homeLead:"グリッパーの解析と力・トルク診断を支援する独立開発のデスクトップソフトウェア。RoboQuoが準備中の製品をご紹介します。",
       homeSubtitle:"2つの専門ツールを、1つのプラットフォームに。",homeSublead:"エンジニア、システムインテグレーター、技術サポート担当者向けの実務ソフトウェア。",
       smartTag:"グリッパー制御・解析",hexTag:"力・トルク診断",
@@ -62,7 +62,7 @@
       footer:"RoboQuo Software — ロボット活用のための独立開発ツール"
     },
     ko: {
-      market:"로봇 마켓",software:"소프트웨어",preview:"제품 미리보기",developed:"RoboQuo 독립 개발",learn:"제품 자세히 보기",inquire:"문의하기",inquireTrial:"체험판 문의",
+      market:"로봇 마켓",software:"소프트웨어",preview:"제품 미리보기",developed:"RoboQuo 독립 개발",learn:"제품 자세히 보기",viewProducts:"제품 보기",inquire:"문의하기",inquireTrial:"체험판 문의",
       homeEyebrow:"ROBOQUO SOFTWARE",homeTitle:"로봇 활용을 위한 전문 소프트웨어.",homeLead:"그리퍼 분석과 힘·토크 진단을 지원하는 독립 개발 데스크톱 소프트웨어입니다. RoboQuo가 준비 중인 제품을 소개합니다.",
       homeSubtitle:"두 가지 전문 도구, 하나의 플랫폼.",homeSublead:"엔지니어와 자동화 담당자, 기술지원 전문가를 위한 실무 도구입니다.",
       smartTag:"그리퍼 제어 및 분석",hexTag:"힘·토크 진단",
