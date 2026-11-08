@@ -33,7 +33,16 @@
   function loadPending(){try{return JSON.parse(localStorage.getItem(PENDING_KEY)||'null')||pendingFromUrl()}catch(_){return pendingFromUrl()}}
   function clearResumeParam(){try{const url=new URL(location.href);if(!url.searchParams.has('resume'))return;url.searchParams.delete('resume');history.replaceState({},'',url.pathname+(url.search?url.search:'')+url.hash);}catch(_){}}
   function savePending(v){pending=v||null;if(v)localStorage.setItem(PENDING_KEY,JSON.stringify(v));else{localStorage.removeItem(PENDING_KEY);clearResumeParam();}}
-  function authRedirectUrl(){const url=new URL(`${PROD_ORIGIN}/`);const p=pending||loadPending();if(p&&['sell','publishSell'].includes(p.type))url.searchParams.set('resume','sell');return url.toString();}
+  function authRedirectUrl(){
+    // Send email confirmations back to the site that initiated signup.
+    // Otherwise a Preview signup unexpectedly lands on the production site.
+    // The Preview origin must be allow-listed under Supabase Auth Redirect URLs.
+    const safeOrigin=location.protocol==='https:'||['localhost','127.0.0.1'].includes(location.hostname)?location.origin:PROD_ORIGIN;
+    const url=new URL('/',safeOrigin);
+    const p=pending||loadPending();
+    if(p&&['sell','publishSell'].includes(p.type))url.searchParams.set('resume','sell');
+    return url.toString();
+  }
   window.rqAuthSession=null;
   function esc2(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
   function setSession(s){session=s||null;window.rqAuthSession=session;const b=document.getElementById('myRoboquoBtn');if(b&&session?.user?.email)b.title=session.user.email;document.dispatchEvent(new CustomEvent('rq:authchange',{detail:{signedIn:Boolean(session)}}));}
