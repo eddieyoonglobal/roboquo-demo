@@ -421,7 +421,7 @@
       '',
       'Company / name:',
       'Email / phone:'
-    ].join('\\n');
+    ].join('\n');
     const href='mailto:sales@roboquo.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
     openModal(`<div class="kicker">ROBOQUO · ${tx('contactRoboquo')}</div><h2>${escHtml(title)}</h2><p>${tx('contactExplanation')}</p><p><strong>${tx('listingReference')}:</strong> ${escHtml(reference)}</p><p><strong>sales@roboquo.com</strong></p><div class="modal-actions"><button class="secondary" onclick="closeModal()">${tx('close')}</button><a class="primary" href="${escHtml(href)}">${tx('openEmail')}</a></div>`);
   };
