@@ -305,7 +305,7 @@
       note.className='v24-market-note';
       $('#robots .market-toolbar')?.insertAdjacentElement('afterend', note);
     }
-    const hasLive=all().some(r=>r._source==='supabase');
+    const hasLive=all().some(r=>r._source==='supabase'||r._source==='seller-supabase');
     note.innerHTML=`<div><strong>${hasLive?tx('marketNoticeTitle'):tx('demoMarketTitle')}</strong><p>${hasLive?tx('marketNoticeBody'):tx('demoMarketBody')}</p></div><button class="secondary" data-action="sell">${tx('heroSecondary')}</button>`;
     $('[data-action="sell"]', note)?.addEventListener('click',()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow()));
   }
@@ -472,6 +472,18 @@
   }
 
   function init(){
+    // The authenticated seller feed arrives asynchronously after the initial
+    // page render. Refresh the market notice when published listings arrive.
+    const originalSetLive=window.rqSetSellerLiveListings;
+    if(typeof originalSetLive==='function'&&!originalSetLive.__v24sync){
+      const setLiveAndRefresh=rows=>{
+        const result=originalSetLive(rows);
+        patchRobotsPage();
+        return result;
+      };
+      setLiveAndRefresh.__v24sync=true;
+      window.rqSetSellerLiveListings=setLiveAndRefresh;
+    }
     hookApplyLang();
     document.addEventListener('rq:languagechange',()=>requestAnimationFrame(refresh));
     const languageSelect=document.getElementById('languageSelect');
