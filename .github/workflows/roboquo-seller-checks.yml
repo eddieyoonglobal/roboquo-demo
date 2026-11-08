@@ -1,0 +1,40 @@
+name: RoboQuo seller marketplace checks
+on:
+  push:
+    branches:
+      - codex/roboquo-marketplace-fixes-20261109
+  pull_request:
+    paths:
+      - 'app.js'
+      - 'auth.js'
+      - 'seller-backend.js'
+      - 'v24.js'
+      - 'supabase-config.js'
+      - 'tests/**'
+      - '.github/workflows/roboquo-seller-checks.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  seller-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.js
+          node --check auth.js
+          node --check seller-backend.js
+          node --check v24.js
+          node --check supabase-config.js
+      - name: Test seller submission and market state
+        run: node tests/seller-marketplace-regression.cjs
+      - name: Test transaction integrity and auth return URL
+        run: node tests/transaction-integrity-regression.cjs
+      - name: Test Preview database isolation
+        run: node tests/preview-isolation-regression.cjs
