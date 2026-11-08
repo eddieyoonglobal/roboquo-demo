@@ -352,7 +352,23 @@
     const sale = $('#saleFilter')?.value||'';
     const items = all().filter(r => (!search || `${r.brand} ${r.model} ${r.location} ${r.country}`.toLowerCase().includes(search)) && (!cat || r.cat===cat) && (!app || (r.apps||[]).includes(app)) && (!country || r.country===country) && (!sale || r.sale===sale));
     const market=$('#marketListings'); if(market) market.innerHTML = items.map(renderCard).join('') || `<p>${tx('noResults')}</p>`;
-    const home=$('#homeListings'); if(home) home.innerHTML = all().slice(0,3).map(renderCard).join('');
+    const home=$('#homeListings');
+    if(home){
+      const sorted=all().slice().sort((a,b)=>Number(isDemo(a))-Number(isDemo(b)));
+      home.innerHTML=sorted.slice(0,4).map(renderCard).join('')||`<div class="rq-market-empty">${tx('noResults')} <button type="button" class="primary" data-action="sell">${tx('heroSecondary')}</button></div>`;
+      const note=$('#rqHomeMarketStatus');
+      if(note){
+        const liveCount=sorted.filter(r=>!isDemo(r)).length;
+        const messages={
+          en:liveCount?`${liveCount} seller listing(s) · demo cards are marked`:'No live seller listings yet · example items are not for sale',
+          ja:liveCount?`販売者の出品 ${liveCount}件・デモは別表示`:'現在販売者の出品はありません・デモ品は販売対象外です',
+          ko:liveCount?`실제 판매자 매물 ${liveCount}건 · 데모 별도 표시`:'현재 실제 판매자 매물 없음 · 데모는 판매 상품이 아닙니다',
+          zh:liveCount?`卖家商品 ${liveCount} 件・演示另有标识`:'暂无真实卖家商品・演示商品不出售'
+        };
+        note.textContent=messages[lang()]||messages.en;
+      }
+      home.querySelector('[data-action="sell"]')?.addEventListener('click',()=>window.rqStartSell?.());
+    }
     const buyable=all().filter(r=>r.sale!=='bid'&&!isDemo(r));
     const featuredItems=buyable.length?buyable:all().filter(r=>r.sale!=='bid').slice(0,4);
     const featured=$('#featuredCommerceGrid'); if(featured) featured.innerHTML = featuredItems.slice(0,4).map(renderCard).join('');
