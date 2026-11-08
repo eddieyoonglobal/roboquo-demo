@@ -58,6 +58,7 @@
   async function resume(){const p=pending||loadPending();savePending(null);closeModal();if(!p)return;if(p.type==='bid'&&window.openBid)return window.openBid(p.target);if((p.type==='sell'||p.type==='publishSell')&&window.rqStartSell)return window.rqStartSell();if(window.toast)toast(`${p.target}: ${tx('welcome')}`);}
   window.rqSubmitAuth=async(mode)=>{
     if(!client)return errMsg(tx('failed'));
+    if(mode==='signup'&&window.rqCanWriteSupabase?.()===false)return errMsg(window.rqPreviewReadOnlyMessage?.()||tx('failed'));
     const email=(document.getElementById('rqAuthEmail')?.value||'').trim();
     const password=document.getElementById('rqAuthPassword')?.value||'';
     const name=(document.getElementById('rqAuthName')?.value||'').trim();
