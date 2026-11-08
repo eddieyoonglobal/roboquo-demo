@@ -407,7 +407,20 @@ window.rqSellPrev=()=>{rqSellStep=Math.max(1,rqSellStep-1);rqSellDraft.step=rqSe
 window.rqGetSellDraft=()=>({...rqSellDraft});
 window.rqGetSellContact=()=>({companyName:rqSellDraft.companyName||'',contactName:rqSellDraft.contactName||'',contactEmail:rqSellDraft.contactEmail||'',contactPhone:rqSellDraft.contactPhone||'',jobTitle:rqSellDraft.jobTitle||'',companyWebsite:rqSellDraft.companyWebsite||'',preferredContact:rqSellDraft.preferredContact||'email'});
 window.rqGetSellerPhotoRecords=async()=>{const records=[];for(const slot of Object.keys(rqSellDraft).filter(k=>k.endsWith('_photo')&&rqSellDraft[k]).map(k=>k.slice(0,-6))){const record=await rqReadPhoto(rqDraftPhotoKey(slot));if(record?.blob)records.push({slot,...record});}return records;};
-window.rqClearSellerDraft=async()=>{for(const item of await window.rqGetSellerPhotoRecords())await rqDeletePhoto(rqDraftPhotoKey(item.slot));rqSellDraft={_version:RQ_SELL_DRAFT_VERSION};localStorage.removeItem('rqSellDraftV22');rqSellStep=1;};
+window.rqClearSellerDraft=async()=>{
+  // After Supabase confirms the submission, clear the draft even if local
+  // IndexedDB/photo cleanup fails. A cleanup error must not suggest that the
+  // seller should submit the same listing again.
+  let photos=[];
+  try{photos=await window.rqGetSellerPhotoRecords()}catch(err){console.warn('RoboQuo draft photo list cleanup',err?.name||'error');}
+  rqSellDraft={_version:RQ_SELL_DRAFT_VERSION};
+  rqSellStep=1;
+  try{localStorage.removeItem('rqSellDraftV22')}catch(err){console.warn('RoboQuo local draft cleanup',err?.name||'error');}
+  for(const item of photos){
+    try{await rqDeletePhoto(rqDraftPhotoKey(item.slot))}
+    catch(err){console.warn('RoboQuo local photo cleanup',err?.name||'error');}
+  }
+};
 async function rqSaveLocalDemoListing(){const id=String(Date.now());const photoKeys=await rqPromoteSellerPhotos(id);const preferred=['overall','nameplate','ctrlOutside','side','pendant'];const mainPhoto=preferred.find(k=>photoKeys[k]);const arr=JSON.parse(localStorage.getItem('rqListings')||'[]');arr.unshift({id,brand:rqSellDraft.maker||'Robot',model:rqSellDraft.model||'Used Robot',year:+rqSellDraft.year||'',payload:'—',country:rqSellDraft.country||'Japan',location:rqSellDraft.country||'Japan',price:+rqSellDraft.price||0,sale:rqSellDraft.sale||'bid',cat:'industrial',apps:[],sellerCompany:rqSellDraft.companyName||'',verified:false,media:{nameplate:!!photoKeys.nameplate,controller:!!photoKeys.ctrlOutside,video:false},photoKey:mainPhoto?photoKeys[mainPhoto]:'',photoKeys,photoCount:Object.keys(photoKeys).length,demo:true,_source:'local-demo'});localStorage.setItem('rqListings',JSON.stringify(arr));rqSellDraft={_version:RQ_SELL_DRAFT_VERSION};localStorage.removeItem('rqSellDraftV22');return id;}
 window.rqDeleteLocalListing=async id=>{if(!window.confirm(rqw('deleteListingConfirm')))return;const arr=JSON.parse(localStorage.getItem('rqListings')||'[]');const found=arr.find(x=>String(x.id)===String(id));for(const key of Object.values(found?.photoKeys||{}))await rqDeletePhoto(key);localStorage.setItem('rqListings',JSON.stringify(arr.filter(x=>String(x.id)!==String(id))));renderListings();toast(rqw('localListingDeleted'));};
 window.rqPublishSell=async()=>{if(!rqSellerContactReady()){rqSellStep=7;rqSellDraft.step=7;rqPersistSell();renderSellWizard();toast(rqw('contactRequired'));return;}if(!rqSellDraft.declared){toast(rqw('sellerDeclaration'));return;}if(window.rqRequireAuth&&!window.rqAuthSession){rqSellDraft.step=8;rqPersistSell();window.rqRequireAuth('publishSell',rqw('sellTitle'));return;}const button=document.querySelector('#modal .modal-actions .primary');if(button){button.disabled=true;button.textContent=rqw('submitting');}try{if(typeof window.rqSubmitSellerListing!=='function')throw Object.assign(new Error('Seller backend unavailable'),{code:'SELLER_BACKEND_UNAVAILABLE'});await window.rqSubmitSellerListing({...rqSellDraft});await window.rqClearSellerDraft();closeModal();toast(rqw('submittedReview'));setTimeout(()=>window.rqOpenAccount?.(),350);}catch(err){console.warn('RoboQuo seller submission',err?.code||err?.message||'error');if(button){button.disabled=false;button.textContent=rqw('submitReview');}toast(rqw('submitFailed'));}};
