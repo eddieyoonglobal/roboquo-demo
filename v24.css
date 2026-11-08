@@ -176,3 +176,22 @@
 
 /* RoboQuo Software showcase — isolated from the existing marketplace UI */
 .rq-software-promo{margin:10px auto 10px;padding-top:55px;padding-bottom:55px}.rq-software-header{display:flex;align-items:end;justify-content:space-between;gap:25px}.rq-software-header h2{font-size:clamp(28px,3vw,38px);letter-spacing:-.04em;line-height:1.14;margin:4px 0 12px}.rq-software-header p{font-size:14px;color:#667085;max-width:660px;line-height:1.7}.rq-software-link{white-space:nowrap;text-decoration:none;font-size:13px;font-weight:850;border:1px solid #cbd5e1;border-radius:10px;padding:11px 17px;background:#fff;color:#101828}.rq-software-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;margin-top:23px}.rq-software-cards article{background:linear-gradient(143deg,#fff,#f8faff);border:1px solid #dde4ee;border-radius:19px;padding:23px;display:flex;gap:17px;align-items:flex-start;min-height:196px}.rq-sw-icon{display:grid;place-items:center;flex-shrink:0;width:50px;height:50px;background:#eaf0ff;color:#3b55ca;border-radius:14px;font-size:25px;font-weight:800}.rq-sw-hex{color:#087c69;background:#e4f7f0}.rq-sw-eyebrow{font-size:10px;font-weight:900;letter-spacing:.13em;color:#667085}.rq-software-cards h3{font-size:20px;margin:5px 0 6px;color:#101828;letter-spacing:-.02em}.rq-software-cards p{font-size:13px;line-height:1.65;color:#667085;margin:0 0 12px}.rq-software-cards a{text-decoration:none;color:#344fd8;font-size:12px;font-weight:850}.rq-software-disclaimer{margin:17px 0 0;font-size:11px;color:#758295}@media(max-width:720px){.rq-software-header{display:block}.rq-software-link{display:inline-block;margin-top:5px}.rq-software-cards{grid-template-columns:1fr}.rq-software-cards article{min-height:0}.rq-software-promo{padding-top:35px;padding-bottom:35px}}
+/* Trade-first homepage preview: existing market and seller handlers are reused. */
+#home .rq-photo-market-intro{margin:22px auto 8px}
+.rq-photo-market-intro{background:#fff;border:1px solid #e6eaf0;border-radius:23px;padding:22px 25px}
+.rq-intro-head{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.rq-intro-eyebrow{display:block;font-size:11px;font-weight:900;color:#5268a0;letter-spacing:.12em}
+.rq-intro-head h2{font-size:clamp(23px,3vw,31px);letter-spacing:-.04em;line-height:1.18;margin:6px 0}
+.rq-intro-head p,.rq-home-market-caption{font-size:13px;color:#67758b;line-height:1.55;margin:4px 0}
+.rq-intro-categories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px;margin-top:18px}
+.rq-intro-categories button{background:#f8faff;border:1px solid #e4eaf6;border-radius:14px;padding:16px 12px;min-height:65px;text-align:left;font-size:16px;cursor:pointer}
+.rq-intro-categories button span{display:block;font-weight:750;font-size:12px;color:#243750;margin-top:6px}
+.rq-intro-categories button:hover,.rq-intro-categories button:focus-visible{background:#edf4ff;border-color:#94b6e8}
+#home .rq-home-market-section{margin-top:18px;margin-bottom:26px}
+#home .rq-home-market-section .listing-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+#home .rq-home-market-section .v24-photo{height:auto;aspect-ratio:4/3;min-height:170px}
+#home .rq-home-market-section .v24-photo img{width:100%;height:100%;object-fit:cover}
+#home .rq-home-market-section .v24-listing-card{min-width:0;border-radius:16px}
+.rq-market-empty{grid-column:1/-1;border:1px dashed #cbd5e1;border-radius:16px;padding:25px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;color:#4b5b72}
+@media(max-width:1000px){#home .rq-home-market-section .listing-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:660px){.rq-photo-market-intro{padding:16px}.rq-intro-categories{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.rq-intro-categories button{padding:12px;min-height:58px}.rq-intro-head .primary{width:100%}#home .rq-home-market-section .listing-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}#home .rq-home-market-section .v24-card-body{padding:11px}#home .rq-home-market-section .v24-photo{min-height:110px}#home .rq-home-market-section .v24-card-title{font-size:13px}}
