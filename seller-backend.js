@@ -68,14 +68,15 @@
 
   window.rqSubmitSellerListing=async draft=>{
     const api=client(),account=user();if(!api||!account)throw Object.assign(new Error('Authentication required'),{code:'AUTH_REQUIRED'});
+    // Validate client-side photo records before writing any seller/contact data.
+    const photos=await window.rqGetSellerPhotoRecords?.()||[];
+    if(!photos.length)throw Object.assign(new Error('At least one photo is required'),{code:'PHOTO_REQUIRED'});
     let listingId='';const uploaded=[];
     try{
       const created=await api.from('seller_listings').insert(listingPayload(draft,account.id)).select('id').single();
       if(created.error)throw created.error;listingId=created.data.id;
       const contact=await api.from('seller_listing_contacts').insert(contactPayload(draft,listingId,account.id));
       if(contact.error)throw contact.error;
-      const photos=await window.rqGetSellerPhotoRecords?.()||[];
-      if(!photos.length)throw Object.assign(new Error('At least one photo is required'),{code:'PHOTO_REQUIRED'});
       for(let i=0;i<photos.length;i++){
         const record=photos[i];const path=`${account.id}/${listingId}/${String(i+1).padStart(2,'0')}-${record.slot}${extension(record)}`;
         const uploadedPhoto=await api.storage.from(BUCKET).upload(path,record.blob,{cacheControl:'3600',contentType:record.type||'image/jpeg',upsert:false});
@@ -83,12 +84,17 @@
         const photoRow=await api.from('seller_listing_photos').insert({listing_id:listingId,owner_id:account.id,slot:record.slot,storage_path:path,file_name:record.name||null,mime_type:record.type||null,file_size:record.size||null,sort_order:i});
         if(photoRow.error)throw photoRow.error;
       }
-      const submitted=await api.from('seller_listings').update({status:'pending',submitted_at:new Date().toISOString()}).eq('id',listingId).eq('owner_id',account.id);
+      // An UPDATE can affect zero rows without returning an error under RLS.
+      // Require a returned row before claiming a listing was submitted.
+      const submitted=await api.from('seller_listings').update({status:'pending',submitted_at:new Date().toISOString()}).eq('id',listingId).eq('owner_id',account.id).select('id,status').single();
       if(submitted.error)throw submitted.error;
+      if(submitted.data?.id!==listingId||submitted.data?.status!=='pending')
+        throw Object.assign(new Error('Listing status was not confirmed'),{code:'SUBMISSION_UNCONFIRMED'});
       return {id:listingId,status:'pending'};
     }catch(error){
-      if(listingId)await api.from('seller_listings').delete().eq('id',listingId).eq('owner_id',account.id);
-      if(uploaded.length)await api.storage.from(BUCKET).remove(uploaded);
+      // Cleanup failures must never hide the original upload/submission error.
+      if(uploaded.length)try{await api.storage.from(BUCKET).remove(uploaded)}catch(_){}
+      if(listingId)try{await api.from('seller_listings').delete().eq('id',listingId).eq('owner_id',account.id)}catch(_){}
       throw error;
     }
   };
