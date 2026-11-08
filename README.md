@@ -55,3 +55,37 @@ Recommended order:
 - Before sign-in, seller photos and draft fields remain on the current device. After authenticated submission, they are uploaded to Supabase and the listing is stored server-side.
 - Admin moderation currently uses the Supabase dashboard. A dedicated moderator screen is a later step.
 - Payments and escrow are not implemented.
+
+## November 2026 seller-flow verification (development branch only)
+
+The seller marketplace uses the Supabase project configured in `supabase-config.js`.
+In the current configuration this is the **live database**. Development URLs
+(including Vercel Preview and localhost) are intentionally **read-only for new
+account creation and seller submissions** while they point at that live database.
+This is a browser-side guard to avoid accidental test records, not an access
+control substitute; Supabase RLS remains authoritative.
+
+To run isolated registration and upload tests, first configure a **separate
+staging Supabase project** with the seller schema, private `listing-photos`
+bucket and matching published/owner RLS policies, then change the browser
+publishable URL/key in the staging build only. Allow-list the staging site's
+URL under **Authentication → URL Configuration → Redirect URLs**.
+
+No test accounts, listings, seller contact data, storage uploads or production
+database changes are required for the following mocked checks:
+
+```sh
+node tests/seller-marketplace-regression.cjs
+node tests/transaction-integrity-regression.cjs
+node tests/preview-isolation-regression.cjs
+```
+
+Before promoting any changes: verify signup email confirmation, photo upload,
+`draft → pending` submission, moderator publication, signed photo display,
+owner-only deletion, condition labels and buyer inquiry on the staging project.
+The checkout and invoice views are **informational only**; RoboQuo does not yet
+process payment, issue invoices or operate escrow. Do not present cart subtotal
+as a payable amount or advertise a platform fee without approved terms.
+
+For production readiness, review Supabase Security Advisor notices and assess
+database function permissions using an authorized database administrator.
