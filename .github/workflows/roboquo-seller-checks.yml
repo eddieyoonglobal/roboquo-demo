@@ -38,3 +38,5 @@ jobs:
         run: node tests/transaction-integrity-regression.cjs
       - name: Test Preview database isolation
         run: node tests/preview-isolation-regression.cjs
+      - name: Test buyer inquiry fallback
+        run: node tests/buyer-inquiry-regression.cjs
