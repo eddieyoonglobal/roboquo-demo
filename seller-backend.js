@@ -67,6 +67,8 @@
   }
 
   window.rqSubmitSellerListing=async draft=>{
+    // Do not submit test listings into the live database from a Preview URL.
+    if(window.rqCanWriteSupabase?.()===false)throw Object.assign(new Error('Preview is read-only'),{code:'PREVIEW_READ_ONLY'});
     const api=client(),account=user();if(!api||!account)throw Object.assign(new Error('Authentication required'),{code:'AUTH_REQUIRED'});
     // Validate client-side photo records before writing any seller/contact data.
     const photos=await window.rqGetSellerPhotoRecords?.()||[];
