@@ -78,6 +78,7 @@ database changes are required for the following mocked checks:
 node tests/seller-marketplace-regression.cjs
 node tests/transaction-integrity-regression.cjs
 node tests/preview-isolation-regression.cjs
+node tests/buyer-inquiry-regression.cjs
 ```
 
 Before promoting any changes: verify signup email confirmation, photo upload,
@@ -89,3 +90,5 @@ as a payable amount or advertise a platform fee without approved terms.
 
 For production readiness, review Supabase Security Advisor notices and assess
 database function permissions using an authorized database administrator.
+
+Buyer inquiries currently open a prefilled email to `sales@roboquo.com` with the listing reference. The site itself does **not** transmit an inquiry or payment. A formal buyer-to-seller messaging workflow requires a separate reviewed backend and privacy policy.
