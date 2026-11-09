@@ -5,13 +5,13 @@
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <meta content="#ffffff" name="theme-color"/>
 <title>RoboQuo — The global marketplace for used robots</title>
-<meta name="description" content="Buy and sell used industrial robots worldwide. Start a listing with photos, compare offers, and connect with inspection, logistics and installation partners."/>
+<meta name="description" content="Buy and sell new and used robots, grippers and automation parts. Post real product photos, search by category and country, and message sellers directly on RoboQuo."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <link rel="canonical" href="https://roboquo.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="RoboQuo"/>
 <meta property="og:title" content="RoboQuo — The global marketplace for used robots"/>
-<meta property="og:description" content="List a used robot from photos, compare offers, and connect with global buyers and service partners."/>
+<meta property="og:description" content="New and used robots, grippers and parts. Photo-first listings and direct buyer-seller messages."/>
 <meta property="og:url" content="https://roboquo.com/"/>
 <meta property="og:image" content="https://roboquo.com/social-preview.png"/>
 <meta property="og:image:width" content="1200"/>
@@ -19,7 +19,7 @@
 <meta property="og:image:alt" content="RoboQuo — The global marketplace for used robots"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="RoboQuo — The global marketplace for used robots"/>
-<meta name="twitter:description" content="List a used robot from photos and connect with global buyers."/>
+<meta name="twitter:description" content="New and used robots and automation parts. List, browse and chat with sellers."/>
 <meta name="twitter:image" content="https://roboquo.com/social-preview.png"/>
 <link href="manifest.json" rel="manifest"/>
 <link href="icon-180.png" rel="apple-touch-icon" sizes="180x180"/>
@@ -179,13 +179,13 @@
 <div class="wrap category-grid application-grid" id="applicationGrid"></div>
 </section>
 <section class="page" id="robots">
-<div class="wrap page-head split"><div><div class="kicker">ROBOQUO MARKET</div><h1 data-i18n="marketTitle">Robot Marketplace</h1><p data-i18n="marketDesc">Search new and used robots listed by companies, contact sellers, or submit a price offer.</p></div><button class="primary" data-action="sell" data-i18n="sellRobot">Post an item</button></div>
+<div class="wrap page-head split"><div><div class="kicker">ROBOQUO MARKET</div><h1 data-i18n="marketTitle">Robots & Parts Marketplace</h1><p data-i18n="marketDesc">Find new and used robots, grippers and parts. Message sellers directly.</p></div><button class="primary" data-action="sell" data-i18n="sellRobot">Post an item</button></div>
 <div class="wrap market-toolbar">
 <div class="search-field"><span>⌕</span><input data-i18n-placeholder="marketSearchPh" id="marketSearch" placeholder="Search maker, model or location"/></div>
 <select id="categoryFilter"><option data-i18n="allCategories" value="">All categories</option></select>
 <select id="applicationFilter"><option data-i18n="allApplications" value="">All applications</option></select>
-<select id="countryFilter"><option data-i18n="allCountries" value="">All countries</option><option>Japan</option><option>Korea</option><option>Germany</option><option>USA</option></select>
-<select id="saleFilter"><option data-i18n="allSaleTypes" value="">All sale types</option><option data-i18n="fixedPrice" value="fixed">Fixed Price</option><option data-i18n="bidding" value="bid">Bidding</option></select>
+<select id="countryFilter" aria-label="Country"><option value="">All countries</option><option>Japan</option><option>Korea</option><option>China</option><option>Taiwan</option><option>USA</option><option>Germany</option><option>Other</option></select>
+<select id="conditionFilter" aria-label="Condition"><option value="">All conditions</option><option value="new">New</option><option value="used">Used</option><option value="refurbished">Refurbished</option><option value="for_parts">For parts</option></select>
 </div>
 <div class="wrap listing-grid market" id="marketListings"></div>
 </section>
