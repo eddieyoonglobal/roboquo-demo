@@ -238,6 +238,24 @@
 <span class="database-count" id="makerCount"></span>
 </div>
 <div class="wrap maker-grid" id="makerGrid"></div>
+<section class="wrap rq-model-compare" id="rqCobotCompare" aria-labelledby="rqCompareTitle">
+ <div class="rq-compare-intro">
+  <div><div class="kicker">OFFICIAL ROBOT SPECS</div><h2 id="rqCompareTitle">Compare collaborative robots</h2><p id="rqCompareDescription">Compare manufacturer-sourced payload, reach and axes. This is not a list of available stock.</p></div>
+  <span class="rq-compare-count" id="rqCompareCount" role="status" aria-live="polite"></span>
+ </div>
+ <div class="rq-compare-filters">
+  <label><span id="rqCompareBrandLabel">Manufacturer</span><select id="rqCompareBrand"><option value="">All manufacturers</option></select></label>
+  <label><span id="rqComparePayloadLabel">Minimum payload</span><select id="rqComparePayload"><option value="0">Any payload</option><option value="5">5 kg+</option><option value="10">10 kg+</option><option value="15">15 kg+</option><option value="20">20 kg+</option></select></label>
+  <label><span id="rqCompareSortLabel">Sort</span><select id="rqCompareSort"><option value="brand">Brand</option><option value="payload-desc">Highest payload</option><option value="reach-desc">Longest reach</option></select></label>
+ </div>
+ <div class="rq-compare-models" id="rqCompareModels"></div>
+ <div class="rq-compare-selection" id="rqCompareSelection">
+  <div class="rq-compare-selection-head"><strong id="rqCompareSelectionTitle">Select up to 3 robots to compare</strong><button type="button" id="rqCompareClear">Clear selection</button></div>
+  <div class="rq-compare-table-scroll" id="rqCompareTableScroll"></div>
+ </div>
+ <p class="rq-compare-safety" id="rqCompareDisclaimer">Check application conditions, tool mass, center of gravity and safety assessment against official documentation before robot selection.</p>
+</section>
+
 <div class="wrap compatibility-demo">
 <div><div class="kicker">COMPATIBILITY</div><h2 data-i18n="compatTitle">Connect robots and peripherals</h2><p data-i18n="compatBody">Example: select FANUC CRX to see compatible grippers, vision, tool changers and local installation companies.</p></div>
 <div class="compat-path"><span>FANUC CRX-10iA/L</span><b>→</b><span>OnRobot / Robotiq / SCHUNK</span><b>→</b><span data-i18n="localSupport">Local sales &amp; installation support</span></div>
@@ -300,5 +318,6 @@
 <script src="seller-backend.js"></script>
 <script src="v24.js"></script>
 <script src="marketplace-v2.js"></script>
+<script src="cobot-compare.js"></script>
 </body>
 </html>
