@@ -103,7 +103,7 @@
         <button aria-label="${escHtml(tx('sell'))}" class="sell-mobile" data-action="sell"><span aria-hidden="true">＋</span><small>${tx('sell')}</small></button>
         <button aria-label="${lang()==='ko'?'내 채팅':lang()==='ja'?'メッセージ':'Messages'}" class="rq-mobile-messages"><span aria-hidden="true">💬</span><small>${lang()==='ko'?'채팅':lang()==='ja'?'チャット':'Chat'}</small></button>
         <button aria-label="${escHtml(tx('events'))}" data-route="events"><span aria-hidden="true">◷</span><small>${tx('events')}</small></button>`;
-      $('[data-route]',mobile).forEach(a=>a.addEventListener('click',()=>route(a.dataset.route)));
+      $$('[data-route]',mobile).forEach(a=>a.addEventListener('click',()=>route(a.dataset.route)));
       $('.rq-mobile-messages',mobile)?.addEventListener('click',()=>window.rqOpenMarketInbox?.());
       $('[data-action="sell"]',mobile)?.addEventListener('click',()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow()));
     }
