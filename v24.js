@@ -83,32 +83,33 @@
   }
 
   function patchNav(){
+    const locale=lang();
+    const navCopy={
+      ko:{find:'상품 찾기',post:'상품 등록',help:'이용 안내',chat:'채팅'},
+      ja:{find:'商品を探す',post:'出品する',help:'ご利用ガイド',chat:'チャット'},
+      en:{find:'Browse items',post:'Post an item',help:'How it works',chat:'Messages'}
+    };
+    const copy=navCopy[locale]||navCopy.en;
     const nav=$('.desktop-nav');
     if(nav){
       nav.innerHTML=`
-        <a data-route="robots" href="#robots">${navLabel('robots')}</a>
-        <a data-route="categories" href="#categories">${navLabel('categories')}</a>
-        <a data-route="projects" href="#projects">${navLabel('projects')}</a>
-        <a data-route="companies" href="#companies">${navLabel('companies')}</a>
-        <a data-route="events" href="#events">${navLabel('events')}</a>
-        <a href="/software/?lang=${['en','ja','ko'].includes(lang())?lang():'en'}">${lang()==='ja'?'ソフトウェア':lang()==='ko'?'소프트웨어':'Software'}</a>
-        <a data-route="about" href="#about">About</a>`;
+        <a data-route="robots" href="#robots">${copy.find}</a>
+        <button type="button" data-action="sell">${copy.post}</button>
+        <a data-route="about" href="#about">${copy.help}</a>`;
       $$('[data-route]',nav).forEach(a=>a.addEventListener('click',e=>{e.preventDefault();route(a.dataset.route)}));
+      const post=$('[data-action="sell"]',nav);if(post){post.dataset.v24sell='1';post.addEventListener('click',()=>window.rqStartSell?.());}
     }
     const mobile=$('.mobile-nav');
     if(mobile){
       mobile.innerHTML=`
-        <button aria-label="${escHtml(typeof tr==='function'?tr('home'):'Home')}" data-route="home"><span aria-hidden="true">⌂</span><small>${typeof tr==='function'?tr('home'):'Home'}</small></button>
-        <button aria-label="${escHtml(tx('buy'))}" data-route="robots"><span aria-hidden="true">⌕</span><small>${tx('buy')}</small></button>
-        <button aria-label="${escHtml(tx('sell'))}" class="sell-mobile" data-action="sell"><span aria-hidden="true">＋</span><small>${tx('sell')}</small></button>
-        <button aria-label="${lang()==='ko'?'내 채팅':lang()==='ja'?'メッセージ':'Messages'}" class="rq-mobile-messages"><span aria-hidden="true">💬</span><small>${lang()==='ko'?'채팅':lang()==='ja'?'チャット':'Chat'}</small></button>
-        <button aria-label="${escHtml(tx('events'))}" data-route="events"><span aria-hidden="true">◷</span><small>${tx('events')}</small></button>`;
+        <button data-route="robots" aria-label="${copy.find}"><span aria-hidden="true">⌕</span><small>${copy.find}</small></button>
+        <button class="sell-mobile" data-action="sell" aria-label="${copy.post}"><span aria-hidden="true">＋</span><small>${copy.post}</small></button>
+        <button class="rq-mobile-messages" aria-label="${copy.chat}"><span aria-hidden="true">💬</span><small>${copy.chat}</small></button>`;
       $$('[data-route]',mobile).forEach(a=>a.addEventListener('click',()=>route(a.dataset.route)));
+      const post=$('[data-action="sell"]',mobile);if(post){post.dataset.v24sell='1';post.addEventListener('click',()=>window.rqStartSell?.());}
       $('.rq-mobile-messages',mobile)?.addEventListener('click',()=>window.rqOpenMarketInbox?.());
-      $('[data-action="sell"]',mobile)?.addEventListener('click',()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow()));
     }
   }
-
   function patchHero(){
     const title=$('#home .hero-copy h1'); if(title) title.innerHTML='Robots.<br><span>Ready to trade.</span>'; // Brand headline stays English in every locale
     const lead=$('#home .local-headline'); if(lead) lead.textContent=tx('heroLead');
