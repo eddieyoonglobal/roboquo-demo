@@ -73,6 +73,35 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.evaluate(()=>route('makers'));
   await page.waitForFunction(()=>document.querySelectorAll('#makerGrid .maker-card').length>=40,{timeout:15000});
   assert.equal(await page.locator('#makerTypeFilter').inputValue(),'collaborative','manufacturer catalog starts with cobots');
+
+  // Manufacturer-sourced cobot specs: no fabricated catalog entries, sales stock or database writes.
+  await page.waitForFunction(()=>document.querySelectorAll('#rqCompareModels .rq-spec-card').length===10,{timeout:15000});
+  assert.equal(await page.locator('#rqCompareModels .rq-spec-card').count(),10,'ten official-source cobot models loaded');
+  assert.match(await page.locator('#rqCompareDescription').innerText(),/No live inventory/i);
+  const fanucSpec=page.locator('#rqCompareModels .rq-spec-card').filter({hasText:'CRX-10iA'});
+  assert.match(await fanucSpec.innerText(),/10 kg/,'FANUC payload recorded');
+  assert.match(await fanucSpec.innerText(),/1249 mm/,'FANUC reach recorded');
+  assert.match(await fanucSpec.locator('a.rq-spec-source').getAttribute('href'),/^https:\/\//,'real official specification links required');
+  await fanucSpec.locator('button.rq-compare-toggle').click();
+  await page.locator('#rqCompareModels .rq-spec-card').filter({hasText:'UR5e'}).locator('button.rq-compare-toggle').click();
+  assert.equal(await page.locator('#rqCompareTableScroll table').count(),1,'side-by-side table appears after selecting two models');
+  assert.match(await page.locator('#rqCompareTableScroll').innerText(),/FANUC.*CRX-10iA|CRX-10iA/,'comparison table preserves manufacturer and model');
+  await page.locator('#rqCompareModels .rq-spec-card').filter({hasText:'M0609'}).locator('button.rq-compare-toggle').click();
+  assert.equal(await page.locator('#rqCompareTableScroll thead th').count(),4,'comparison limited to three model columns');
+  assert(await page.locator('#rqCompareModels .rq-spec-card').filter({hasText:'Zu7'}).locator('button.rq-compare-toggle').isDisabled(),'fourth model cannot be selected');
+  await page.locator('#rqCompareClear').click();
+  assert.equal(await page.locator('#rqCompareTableScroll table').count(),0,'clear comparison resets table');
+  await page.locator('#rqCompareBrand').selectOption('JAKA Robotics');
+  assert.equal(await page.locator('#rqCompareModels .rq-spec-card').count(),3,'manufacturer filter returns only verified JAKA models');
+  await page.locator('#rqComparePayload').selectOption('10');
+  assert.equal(await page.locator('#rqCompareModels .rq-spec-card').count(),1,'minimum payload filter removes smaller JAKA models');
+  assert.match(await page.locator('#rqCompareModels .rq-spec-card').innerText(),/Zu12/);
+  await page.locator('#rqCompareBrand').selectOption('');
+  await page.locator('#rqComparePayload').selectOption('0');
+  await page.locator('#rqCompareSort').selectOption('reach-desc');
+  assert.match(await page.locator('#rqCompareModels .rq-spec-card').first().innerText(),/UR20-1750/,'longest reach sorting puts UR20 first');
+  await page.locator('#rqCompareSort').selectOption('brand');
+
   assert.equal(await page.locator('#makerGrid .maker-card').count(),40,'curated cobot list contains 40 brands');
   assert.match(await page.locator('#rqCobotTitle').innerText(),/collaborative robot brands/i);
   for(const maker of ['UFACTORY','RealMan Robotics','DUCO Robots','Productive Robotics','OMRON Robotics','Kawasaki Robotics']){
