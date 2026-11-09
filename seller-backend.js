@@ -46,6 +46,9 @@
       price:price!==null&&price>=0?price:null,
       currency:'JPY',
       listing_type:draft.sale==='bid'?'private_offer':'fixed',
+      item_category:['robot','gripper','controller','vision','part','accessory','other'].includes(draft.itemCategory)?draft.itemCategory:'robot',
+      item_condition:['new','used','refurbished','for_parts'].includes(draft.itemCondition)?draft.itemCondition:'used',
+      description_text:String(draft.description||'').trim()||null,
       seller_company_name:String(draft.companyName||'').trim(),
       declaration_accepted:Boolean(draft.declared),
       status:'draft'
@@ -66,12 +69,12 @@
     };
   }
 
-  window.rqSubmitSellerListing=async draft=>{
+  window.rqSubmitSellerListing=async(draft,options={})=>{
     // Do not submit test listings into the live database from a Preview URL.
     if(window.rqCanWriteSupabase?.()===false)throw Object.assign(new Error('Preview is read-only'),{code:'PREVIEW_READ_ONLY'});
     const api=client(),account=user();if(!api||!account)throw Object.assign(new Error('Authentication required'),{code:'AUTH_REQUIRED'});
     // Validate client-side photo records before writing any seller/contact data.
-    const photos=await window.rqGetSellerPhotoRecords?.()||[];
+    const photos=options.photos||await window.rqGetSellerPhotoRecords?.()||[];
     if(!photos.length)throw Object.assign(new Error('At least one photo is required'),{code:'PHOTO_REQUIRED'});
     const allowedTypes=new Set(['image/jpeg','image/png','image/webp','image/heic','image/heif']);
     for(const record of photos){
@@ -95,11 +98,12 @@
       }
       // An UPDATE can affect zero rows without returning an error under RLS.
       // Require a returned row before claiming a listing was submitted.
-      const submitted=await api.from('seller_listings').update({status:'pending',submitted_at:new Date().toISOString()}).eq('id',listingId).eq('owner_id',account.id).select('id,status').single();
+      const submitted=await api.from('seller_listings').update({status:'published',submitted_at:new Date().toISOString()}).eq('id',listingId).eq('owner_id',account.id).select('id,status').single();
       if(submitted.error)throw submitted.error;
-      if(submitted.data?.id!==listingId||submitted.data?.status!=='pending')
-        throw Object.assign(new Error('Listing status was not confirmed'),{code:'SUBMISSION_UNCONFIRMED'});
-      return {id:listingId,status:'pending'};
+      if(submitted.data?.id!==listingId||submitted.data?.status!=='published')
+        throw Object.assign(new Error('Published status was not confirmed'),{code:'SUBMISSION_UNCONFIRMED'});
+      await loadPublished();
+      return {id:listingId,status:'published'};
     }catch(error){
       // Cleanup failures must never hide the original upload/submission error.
       if(uploaded.length)try{await api.storage.from(BUCKET).remove(uploaded)}catch(_){}
@@ -141,7 +145,7 @@
     const api=client();if(!api)return;
     const request=++publishedRequest;
     try{
-      const query=await api.from('seller_listings').select('id,manufacturer,model,manufacture_year,country,location_text,operating_hours_text,operating_status,price,currency,listing_type,seller_company_name,status,published_at,seller_listing_photos(slot,storage_path,sort_order)').eq('status','published').order('published_at',{ascending:false});
+      const query=await api.from('seller_listings').select('id,manufacturer,model,manufacture_year,country,location_text,operating_hours_text,operating_status,price,currency,listing_type,item_category,item_condition,description_text,seller_company_name,status,published_at,seller_listing_photos(slot,storage_path,sort_order)').eq('status','published').order('published_at',{ascending:false});
       if(request!==publishedRequest)return;
       if(query.error){
         if(!missingSchema(query.error))console.warn('RoboQuo published seller listings',query.error.code||'query_failed');
@@ -155,7 +159,7 @@
         if(request!==publishedRequest)return;
         const preferred=['overall','nameplate','ctrlOutside','side','pendant'];
         const first=preferred.find(k=>urls[k])||Object.keys(urls)[0];
-        mapped.push({id:`seller:${row.id}`,backendId:row.id,brand:row.manufacturer||'Robot',model:row.model||'Used Robot',year:row.manufacture_year||'',payload:'—',country:row.country||'',location:row.location_text||row.country||'',price:Number(row.price||0),currency:row.currency||'JPY',sale:row.listing_type==='private_offer'?'bid':'fixed',cat:'industrial',apps:[],hours:row.operating_hours_text||'',operatingStatus:row.operating_status||'unknown',sellerCompany:row.seller_company_name||'',verified:false,media:{nameplate:Boolean(urls.nameplate),controller:Boolean(urls.ctrlOutside),video:false},photoUrl:first?urls[first]:'',photoUrls:urls,photoCount:Object.keys(urls).length,demo:false,_source:'seller-supabase'});
+        mapped.push({id:`seller:${row.id}`,backendId:row.id,brand:row.manufacturer||'Robot',model:row.model||'Used Robot',year:row.manufacture_year||'',payload:'—',country:row.country||'',location:row.location_text||row.country||'',price:Number(row.price||0),currency:row.currency||'JPY',itemCategory:row.item_category||'robot',itemCondition:row.item_condition||'used',description:row.description_text||'',sale:row.listing_type==='private_offer'?'bid':'fixed',cat:'industrial',apps:[],hours:row.operating_hours_text||'',operatingStatus:row.operating_status||'unknown',sellerCompany:row.seller_company_name||'',verified:false,media:{nameplate:Boolean(urls.nameplate),controller:Boolean(urls.ctrlOutside),video:false},photoUrl:first?urls[first]:'',photoUrls:urls,photoCount:Object.keys(urls).length,demo:false,_source:'seller-supabase'});
       }
       if(request===publishedRequest)window.rqSetSellerLiveListings?.(mapped);
     }catch(error){
@@ -176,7 +180,7 @@
 
   function accountHtml(rows){
     if(!rows.length)return `<div class="seller-account-head"><h3>${esc(tx('title'))}</h3><p>${esc(tx('empty'))}</p></div>`;
-    return `<div class="seller-account-head"><h3>${esc(tx('title'))}</h3><span>${rows.length}</span></div><div class="seller-account-list">${rows.map(row=>`<article><div><strong>${esc([row.manufacturer,row.model].filter(Boolean).join(' ')||'Robot')}</strong><small>${esc(row.seller_company_name||'')} · ${esc(statusLabel(row.status))}</small></div><button class="danger-button" type="button" onclick="rqDeleteSellerListing('${esc(row.id)}')">${esc(tx('remove'))}</button></article>`).join('')}</div>`;
+    return `<div class="seller-account-head"><h3>${esc(tx('title'))}</h3><span>${rows.length}</span></div><div class="seller-account-list">${rows.map(row=>`<article><div><strong>${esc([row.manufacturer,row.model].filter(Boolean).join(' ')||'Robot')}</strong><small>${esc(row.seller_company_name||'')} · ${esc(statusLabel(row.status))}</small></div>${row.status==='published'?'<button class="secondary" type="button" onclick="window.rqMarkListingSold(\''+esc(row.id)+'\').catch(()=>window.toast?.(\''+esc(tx('failed'))+'\'))">SOLD</button>':''}<button class="danger-button" type="button" onclick="rqDeleteSellerListing('${esc(row.id)}')">${esc(tx('remove'))}</button></article>`).join('')}</div>`;
   }
 
   window.rqRenderSellerAccount=async()=>{
@@ -185,6 +189,19 @@
     const result=await api.from('seller_listings').select('id,manufacturer,model,seller_company_name,status,created_at').eq('owner_id',account.id).order('created_at',{ascending:false});
     if(result.error){mount.innerHTML=`<div class="seller-account-error">${esc(missingSchema(result.error)?tx('setup'):tx('failed'))}</div>`;return;}
     mount.innerHTML=accountHtml(result.data||[]);
+  };
+
+  window.rqMarkListingSold=async listingId=>{
+    if(window.rqCanWriteSupabase?.()===false)throw Object.assign(new Error('Preview is read-only'),{code:'PREVIEW_READ_ONLY'});
+    const api=client(),account=user();
+    if(!api||!account)throw Object.assign(new Error('Login required'),{code:'AUTH_REQUIRED'});
+    const updated=await api.from('seller_listings').update({status:'sold'})
+      .eq('id',listingId).eq('owner_id',account.id).eq('status','published')
+      .select('id,status').single();
+    if(updated.error||updated.data?.status!=='sold')
+      throw updated.error||new Error('Could not confirm sold status');
+    await Promise.all([loadPublished(),window.rqRenderSellerAccount?.()]);
+    return updated.data;
   };
 
   window.rqDeleteSellerListing=async listingId=>{
