@@ -111,6 +111,46 @@ function updateFirstActions(){
  const search=$('#marketSearch');
  if(search){const placeholders={ko:'상품명·브랜드 검색',ja:'商品名・メーカーを検索',zh:'搜索商品或品牌',de:'Artikel oder Marke suchen',fr:'Rechercher un article ou une marque',es:'Buscar artículo o marca',it:'Cerca articolo o marchio',pt:'Pesquisar item ou marca',vi:'Tìm sản phẩm hoặc thương hiệu'};search.placeholder=placeholders[lang()]||'Search item or brand';}
 }
+// Buyer feedback is based only on actual seller listings passed by v24.js.
+let marketCounts={visible:0,total:0};
+function updateMarketFeedback(visible=marketCounts.visible,total=marketCounts.total){
+ marketCounts={visible:Number(visible)||0,total:Number(total)||0};
+ const count=$('#rqMarketResultCount'),clear=$('#rqMarketReset');
+ const v=marketCounts.visible,t=marketCounts.total;
+ const messages={
+  en:`Showing ${v} of ${t} listings`,ja:`全${t}件中${v}件を表示`,ko:`전체 ${t}건 중 ${v}건 표시`,
+  zh:`显示 ${v} / ${t} 条商品`,de:`${v} von ${t} Angeboten`,fr:`${v} annonces sur ${t}`,
+  es:`${v} de ${t} anuncios`,it:`${v} annunci su ${t}`,pt:`${v} de ${t} anúncios`,vi:`Hiển thị ${v} / ${t} tin đăng`
+ };
+ const clearCopy={en:'Clear filters',ja:'絞り込みを解除',ko:'필터 초기화',zh:'清除筛选',de:'Filter löschen',
+  fr:'Effacer les filtres',es:'Borrar filtros',it:'Azzera filtri',pt:'Limpar filtros',vi:'Xóa bộ lọc'};
+ if(count)count.textContent=messages[lang()]||messages.en;
+ if(clear){
+  clear.textContent=clearCopy[lang()]||clearCopy.en;
+  clear.hidden=!['marketSearch','categoryFilter','countryFilter','conditionFilter'].some(id=>String(document.getElementById(id)?.value||'').trim());
+ }
+}
+function installMarketFeedback(){
+ let row=$('#rqMarketFeedback');
+ if(!row){
+  const toolbar=$('#rqMarketSearchArea');if(!toolbar)return;
+  row=document.createElement('div');row.id='rqMarketFeedback';row.className='wrap rq-market-feedback';
+  row.innerHTML='<span id="rqMarketResultCount" role="status" aria-live="polite"></span><button type="button" id="rqMarketReset" class="rq-market-reset" hidden></button>';
+  toolbar.insertAdjacentElement('afterend',row);
+  $('#rqMarketReset').addEventListener('click',()=>{
+   for(const id of ['marketSearch','categoryFilter','countryFilter','conditionFilter']){
+    const field=document.getElementById(id);if(field)field.value='';
+   }
+   if(typeof window.rqRenderMarketplace==='function')window.rqRenderMarketplace();
+   else $('#marketSearch')?.dispatchEvent(new Event('input',{bubbles:true}));
+   categoryTiles();
+   updateMarketFeedback();
+  });
+ }
+ const cardCount=$('#marketListings')?.querySelectorAll('.v24-listing-card').length||0;
+ if(marketCounts.total===0&&cardCount>0)marketCounts={visible:cardCount,total:cardCount};
+ updateMarketFeedback();
+}
 function putMarketActions(){
  updateFirstActions();
  const buy=$('#rqBrowseShortcut'),sell=$('#rqSellShortcut');
@@ -137,6 +177,7 @@ function putMarketActions(){
  }
  categoryTiles();
  patchMarketFilters();
+ installMarketFeedback();
 }
 function showSell(initialCat){
  files=[];
@@ -300,6 +341,7 @@ async function openThread(id){
  });
 }
 function init(){
+ window.rqMarketResultsChanged=updateMarketFeedback;
  window.rqStartSell=showSell;
  window.rqContactAboutListing=askSeller;
  window.rqOpenMarketInbox=openInbox;
