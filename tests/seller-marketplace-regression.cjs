@@ -14,7 +14,7 @@ assert(expression,'market notice live-source detector exists');
 const hasLive=new Function('all','return '+expression[1]);
 assert.equal(hasLive(()=>[{_source:'demo'}]),false);
 assert.equal(hasLive(()=>[{_source:'seller-supabase'}]),true);
-assert.equal(hasLive(()=>[{_source:'supabase'}]),true);
+assert.equal(hasLive(()=>[{_source:'supabase'}]),false);
 assert.match(market,/setLiveAndRefresh/,'live-data updates refresh marketplace status');
 const publish=app.slice(app.indexOf('window.rqPublishSell='),app.indexOf('function sellFlow()',app.indexOf('window.rqPublishSell=')));
 assert.match(publish,/SELLER_BACKEND_UNAVAILABLE/);
@@ -22,9 +22,9 @@ assert.doesNotMatch(publish,/await rqSaveLocalDemoListing\(/,'failed live submis
 function setup(photoRecords,changeStatus){
  const actions=[];
  const q=(table,method)=>{
-   const item={eq(){return this},select(){return this},
+   const item={eq(){return this},select(){return this},order(){return Promise.resolve({data:[],error:null})},
      single:async()=>method==='insert'?{data:{id:'listing-1'},error:null}:
-       changeStatus==='missing'?{data:null,error:null}:{data:{id:'listing-1',status:'pending'},error:null},
+       changeStatus==='missing'?{data:null,error:null}:{data:{id:'listing-1',status:'published'},error:null},
      then(resolve,reject){return Promise.resolve({error:null}).then(resolve,reject)}};
    return item;
  };
@@ -38,7 +38,7 @@ function setup(photoRecords,changeStatus){
  })}};
  const window={rqSupabase:api,rqAuthSession:{user:{id:'user-1'}},rqGetSellerPhotoRecords:async()=>photoRecords};
  const document={documentElement:{lang:'en'},readyState:'loading',addEventListener(){}};
- vm.runInNewContext(seller,{window,document,setTimeout,console});
+ vm.runInNewContext(seller,{window,document,setTimeout:()=>0,clearTimeout:()=>{},Date,console});
  return {submit:window.rqSubmitSellerListing,actions};
 }
 (async()=>{
@@ -57,11 +57,11 @@ function setup(photoRecords,changeStatus){
  const photo=[{slot:'overall',blob:{},name:'test.jpg',type:'image/jpeg',size:100}];
  const valid=setup(photo);
  const result=await valid.submit({companyName:'Test Ltd',declared:true,maker:'FANUC',model:'CRX'});
- assert.equal(result.status,'pending');
+ assert.equal(result.status,'published');
  assert(valid.actions.some(([kind])=>kind==='upload'));
  assert(valid.actions.some(([kind])=>kind==='update'));
  const missing=setup(photo,'missing');
  await assert.rejects(missing.submit({companyName:'Test Ltd',declared:true}),e=>e.code==='SUBMISSION_UNCONFIRMED');
  assert(missing.actions.some(([kind])=>kind==='delete'),'unconfirmed submission is cleaned up');
- console.log('PASS RoboQuo seller: live badge, no demo fallback, required photo, pending confirmation');
+ console.log('PASS RoboQuo real listings: photo validation, immediate publish confirmation and failure cleanup');
 })().catch(e=>{console.error(e);process.exitCode=1});
