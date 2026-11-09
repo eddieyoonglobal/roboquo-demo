@@ -47,6 +47,11 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.match(demo,/DEMO/i,'illustrative listings must be clearly marked');
   assert.equal(await page.locator('#marketListings .v24-listing-card .buy:not([disabled])').count(),0,'demo listings cannot be purchased');
   assert.equal(await page.evaluate(()=>window.rqCanWriteSupabase()),false,'localhost must not write to live DB');
+  const screenshotDir=path.join(root,'test-artifacts');
+  if(process.env.CI){
+    fs.mkdirSync(screenshotDir,{recursive:true});
+    await page.screenshot({path:path.join(screenshotDir,'roboquo-home-desktop.png'),fullPage:true});
+  }
   await page.evaluate(()=>route('robots'));
   await page.locator('#marketSearch').fill('FANUC');
   assert((await page.locator('#marketListings .v24-listing-card').count())>=1,'known robot search should find a card');
@@ -78,7 +83,13 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   const mailto=await page.locator('#modal a[href^="mailto:"]').getAttribute('href');
   assert(mailto&&mailto.includes('browser-fixture-001'),'inquiry draft includes the listing reference');
   assert(mailto.includes('sales@roboquo.com'),'buyer inquiry opens a draft addressed to RoboQuo');
+  if(process.env.CI)await page.screenshot({path:path.join(screenshotDir,'roboquo-buyer-inquiry-desktop.png'),fullPage:true});
   await page.evaluate(()=>window.closeModal());
+  if(process.env.CI){
+    await page.screenshot({path:path.join(screenshotDir,'roboquo-market-desktop.png'),fullPage:true});
+    await page.setViewportSize({width:390,height:844});
+    await page.screenshot({path:path.join(screenshotDir,'roboquo-market-mobile.png'),fullPage:true});
+  }
   await page.evaluate(()=>window.rqStartSell());
   assert(await page.locator('#modal').isVisible(),'seller photo-first wizard should open');
   assert.equal(errors.length,0,'uncaught runtime errors: '+errors.join(' | '));
