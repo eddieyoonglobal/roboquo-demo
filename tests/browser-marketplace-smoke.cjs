@@ -54,7 +54,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.evaluate(()=>route('robots'));
   assert.equal(await page.locator('#rqMarketCategoryChips button').count(),8,'robot/part category shortcuts render');
   await page.evaluate(()=>window.rqSetSellerLiveListings([
-    {id:'seller:robot-fixture',backendId:'robot-fixture',brand:'FANUC',model:'CRX TEST',year:2024,location:'Tokyo',country:'Japan',
+    {id:'seller:robot-fixture',backendId:'robot-fixture',brand:'FANUC',model:'CRX TEST',year:2024,location:'Shanghai',country:'China',
       price:19000,currency:'CNY',sale:'fixed',cat:'industrial',itemCategory:'robot',itemCondition:'new',sellerType:'business',description:'New robot from Chinese dealer',
       apps:[],hours:'—',operatingStatus:'stored',sellerCompany:'Fixture Company',verified:false,demo:false,_source:'seller-supabase',
       media:{nameplate:false,controller:false,video:false},
@@ -68,8 +68,6 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),2,'only 2 real seller fixtures are visible');
   assert.equal(await page.locator('#marketListings .v24-badge.demo').count(),0,'no DEMO cards shown');
   await page.locator('#rqMarketCategoryChips button[data-filter="gripper"]').click();
-  const filterDebug=await page.evaluate(()=>({value:document.querySelector('#categoryFilter')?.value,options:[...document.querySelector('#categoryFilter').options].map(o=>o.value),hasRender:typeof window.rqRenderMarketplace,items:allRobotListings().filter(x=>x._source==='seller-supabase').map(x=>({id:x.id,category:x.itemCategory}))}));
-  console.log('MARKET_FILTER_DEBUG',JSON.stringify({...filterDebug,errors,renderFn:await page.evaluate(()=>typeof renderListings)}));
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'gripper category works');
   await page.locator('#categoryFilter').evaluate(el=>{el.value='';el.dispatchEvent(new Event('change',{bubbles:true}));});
   await page.locator('#conditionFilter').selectOption('new');
