@@ -69,9 +69,10 @@
 
   function ensureCartButton(){
     let btn=$('.header-actions > .cart-btn');
-    if(!btn){btn=document.createElement('button');btn.className='cart-btn';btn.addEventListener('click',()=>route('cart'));$('.header-actions')?.insertBefore(btn,$('.header-actions').firstElementChild);}
-    btn.setAttribute('aria-label',tx('cart'));
-    btn.innerHTML=`<span aria-hidden="true">🛒</span> <span>${tx('cart')}</span> <span class="cart-count">${cart().map(findListing).filter(r=>r&&!isDemo(r)).length}</span>`;
+    if(!btn){btn=document.createElement('button');btn.className='cart-btn';btn.addEventListener('click',()=>window.rqOpenMarketInbox?window.rqOpenMarketInbox():route('robots'));$('.header-actions')?.insertBefore(btn,$('.header-actions').firstElementChild);}
+    const messageLabel=lang()==='ko'?'내 채팅':lang()==='ja'?'メッセージ':'Messages';
+    btn.setAttribute('aria-label',messageLabel);
+    btn.innerHTML=`<span aria-hidden="true">💬</span> <span>${messageLabel}</span>`;
   }
 
   function enhanceAccessibility(){
@@ -100,9 +101,10 @@
         <button aria-label="${escHtml(typeof tr==='function'?tr('home'):'Home')}" data-route="home"><span aria-hidden="true">⌂</span><small>${typeof tr==='function'?tr('home'):'Home'}</small></button>
         <button aria-label="${escHtml(tx('buy'))}" data-route="robots"><span aria-hidden="true">⌕</span><small>${tx('buy')}</small></button>
         <button aria-label="${escHtml(tx('sell'))}" class="sell-mobile" data-action="sell"><span aria-hidden="true">＋</span><small>${tx('sell')}</small></button>
-        <button aria-label="${escHtml(tx('cart'))}" data-route="cart"><span aria-hidden="true">🛒</span><small>${tx('cart')}</small></button>
+        <button aria-label="${lang()==='ko'?'내 채팅':lang()==='ja'?'メッセージ':'Messages'}" class="rq-mobile-messages"><span aria-hidden="true">💬</span><small>${lang()==='ko'?'채팅':lang()==='ja'?'チャット':'Chat'}</small></button>
         <button aria-label="${escHtml(tx('events'))}" data-route="events"><span aria-hidden="true">◷</span><small>${tx('events')}</small></button>`;
-      $$('[data-route]',mobile).forEach(a=>a.addEventListener('click',()=>route(a.dataset.route)));
+      $('[data-route]',mobile).forEach(a=>a.addEventListener('click',()=>route(a.dataset.route)));
+      $('.rq-mobile-messages',mobile)?.addEventListener('click',()=>window.rqOpenMarketInbox?.());
       $('[data-action="sell"]',mobile)?.addEventListener('click',()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow()));
     }
   }
