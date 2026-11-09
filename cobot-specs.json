@@ -1,0 +1,108 @@
+{
+  "version": "2026-11-10-official-first",
+  "lastReviewed": "2026-11-10",
+  "purpose": "Manufacturer-sourced cobot specifications. Directory reference only; not real listings or product stock.",
+  "disclaimer": "Payload values are manufacturer nominal/rated or baseline maximum values under normal conditions, not including gripper/tool mass unless the manufacturer's own definition states otherwise. Verify configuration, duty cycle, center of gravity, safety assessment and installation before selecting a robot.",
+  "models": [
+    {
+      "id": "cobot-001",
+      "maker": "Universal Robots",
+      "model": "UR5e",
+      "payloadKg": 5,
+      "reachMm": 850,
+      "axes": 6,
+      "sourceUrl": "https://www.universal-robots.com/manuals/EN/HTML/SW10_8/Content/prod-usr-man/complianceUR5e/H_g5_sections/appendix_g5/tech_spec_sheet.htm",
+      "notes": "e-Series reference; distinguish model generations."
+    },
+    {
+      "id": "cobot-002",
+      "maker": "Universal Robots",
+      "model": "UR20-1750 (UR20)",
+      "payloadKg": 20,
+      "reachMm": 1750,
+      "axes": 6,
+      "sourceUrl": "https://www.universal-robots.com/manuals/EN/HTML/SW5_26/Content/prod-usr-man/complianceUR20/H_g5_sections/appendix_g5/tech_spec_UR20.htm",
+      "notes": "UR20 was renamed UR20-1750 with the 2026 Generation 7 platform. Up to 25 kg only under specific boundary conditions, so baseline shown as 20 kg."
+    },
+    {
+      "id": "cobot-003",
+      "maker": "FANUC",
+      "model": "CRX-10iA",
+      "payloadKg": 10,
+      "reachMm": 1249,
+      "axes": 6,
+      "sourceUrl": "https://www.fanuc.co.jp/ja/product/robot/model/crx/lineup/crx-10ia.html",
+      "notes": "CRX-10iA / CRX/10-12A on FANUC Japan page."
+    },
+    {
+      "id": "cobot-004",
+      "maker": "Doosan Robotics",
+      "model": "M0609",
+      "payloadKg": 6,
+      "reachMm": 900,
+      "axes": 6,
+      "sourceUrl": "https://www.doosanrobotics.com/jp/product-solutions/product/m-series/m0609/",
+      "notes": "Nominal specified payload and reach."
+    },
+    {
+      "id": "cobot-005",
+      "maker": "Doosan Robotics",
+      "model": "M1013",
+      "payloadKg": 10,
+      "reachMm": 1300,
+      "axes": 6,
+      "sourceUrl": "https://www.doosanrobotics.com/jp/product-solutions/product/m-series/m1013/",
+      "notes": "Nominal specified payload and reach."
+    },
+    {
+      "id": "cobot-006",
+      "maker": "OMRON Robotics",
+      "model": "TM5-900",
+      "payloadKg": 4,
+      "reachMm": 900,
+      "axes": 6,
+      "sourceUrl": "https://robotics.omron.com/products/collaborative-robots/tm-series/tm5-900/",
+      "notes": "TM Series (not the later TM S series), built-in vision."
+    },
+    {
+      "id": "cobot-007",
+      "maker": "JAKA Robotics",
+      "model": "Zu5",
+      "payloadKg": 5,
+      "reachMm": 954,
+      "axes": 6,
+      "sourceUrl": "https://www.jaka.com/profile/upload/2026/02/06/20260206103645A024.pdf",
+      "notes": "Manufacturer Japanese technical specification table, Zu5 column."
+    },
+    {
+      "id": "cobot-008",
+      "maker": "JAKA Robotics",
+      "model": "Zu7",
+      "payloadKg": 7,
+      "reachMm": 819,
+      "axes": 6,
+      "sourceUrl": "https://www.jaka.com/jp/productDetails/JAKA_Zu7",
+      "notes": "Manufacturer Japan official Zu7 product page."
+    },
+    {
+      "id": "cobot-009",
+      "maker": "JAKA Robotics",
+      "model": "Zu12",
+      "payloadKg": 12,
+      "reachMm": 1327,
+      "axes": 6,
+      "sourceUrl": "https://www.jaka.com/profile/upload/2026/02/06/20260206103645A024.pdf",
+      "notes": "Manufacturer Japanese technical specification table, Zu12 column."
+    },
+    {
+      "id": "cobot-010",
+      "maker": "FAIRINO",
+      "model": "FR5",
+      "payloadKg": 5,
+      "reachMm": 922,
+      "axes": 6,
+      "sourceUrl": "https://jp.fairino.com/FR/4.html",
+      "notes": "Manufacturer specifies nominal payload 5 kg and maximum 7 kg; only nominal is compared."
+    }
+  ]
+}
