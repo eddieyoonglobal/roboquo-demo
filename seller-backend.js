@@ -126,7 +126,7 @@
     // while allowing background tabs to defer network calls.
     publishedRefreshTimer=setTimeout(()=>{
       if(document.hidden){schedulePublishedRefresh();return;}
-      loadPublished();
+      return loadPublished();
     },PUBLISHED_REFRESH_MS);
   }
 
