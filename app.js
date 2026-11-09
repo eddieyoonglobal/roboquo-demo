@@ -465,7 +465,7 @@ function allRobotListings(){return [...rqSellerLiveListings,...listings,...JSON.
 function resultGroup(title,items,routeId){if(!items.length)return '';return `<section class="search-group"><div class="search-group-head"><div><h2>${esc(title)}</h2><span>${items.length}</span></div>${routeId?`<button class="link-btn" onclick="route('${routeId}')">${esc(tr('viewSection'))} →</button>`:''}</div><div class="search-result-grid">${items.join('')}</div></section>`}
 function renderGlobalSearch(raw){const input=document.getElementById('searchPageInput');if(input&&input.value!==raw)input.value=raw;const q=norm(raw.trim());const out=document.getElementById('globalSearchResults');const summary=document.getElementById('searchSummary');if(!q){summary.textContent=tr('searchHint');out.innerHTML='';return}
  const lang=document.documentElement.lang||'en';
- const robotHits=allRobotListings().filter(r=>matchQuery([r.brand,r.model,r.year,r.payload,r.country,r.location,r.cat,r.apps],q)).slice(0,12);
+ const robotHits=allRobotListings().filter(r=>r._source==='seller-supabase'&&matchQuery([r.brand,r.model,r.year,r.country,r.location,r.itemCategory,r.description],q)).slice(0,12);
  const makerHits=[...(makers.robot||[]),...(makers.eoat||[])].filter(m=>matchQuery(makerSearchText(m),q)).slice(0,16);
  const companyPool=[...companies,...regionalNetwork.filter(n=>!companies.some(c=>c.name===n.name))];
  const companyHits=companyPool.filter(c=>matchQuery([c.name,c.type,c.country,c.region,c.skills||c.makers,c.status],q)).slice(0,16);
