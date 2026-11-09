@@ -92,3 +92,14 @@ For production readiness, review Supabase Security Advisor notices and assess
 database function permissions using an authorized database administrator.
 
 Buyer inquiries currently open a prefilled email to `sales@roboquo.com` with the listing reference. The site itself does **not** transmit an inquiry or payment. A formal buyer-to-seller messaging workflow requires a separate reviewed backend and privacy policy.
+
+## Seller schema verification and moderation hardening (2026-11-09)
+
+- `database/004_seller_marketplace.sql` is the original seller schema.
+- `database/005_seller_moderation_integrity.sql` is a **proposed forward-only patch** that prevents sellers from editing reviewed listings or removing approved media, requires contact and photo metadata before draft-to-pending submission, and restricts Storage uploads to an owner's draft listing folder.
+- **005 is committed only to this development branch. It has NOT been applied to the operating Supabase database.** Test it on a properly isolated staging database and review seller deletion, moderation and storage behavior before any production migration.
+- As of November 9, 2026, the connected operating Supabase project reported **zero tracked migrations** and no staging branches. The repository only contains a seller-specific baseline (004), not the full directory/event/company database baseline. Simply branching Supabase would not reliably recreate the entire application. Avoid incurring development branch compute charges until a complete migration history is established.
+- GitHub Actions runs both SQL files against an **ephemeral PostgreSQL 17 service** with simulated Supabase roles and storage policies. It verifies public listings, private contacts, seller status restrictions and approved photo protection without writing to Supabase.
+- `tests/pg-supabase-bootstrap.sql` and `tests/pg-seller-marketplace-smoke.sql` are CI fixtures, **not** production database bootstrap or real Supabase Auth tests.
+- The complete signed-up user → photo upload → moderator approval flow still requires a separate staging Supabase environment and an allow-listed Preview auth redirect URL. The frontend Preview guard prevents accidental production write actions but is **not server-side authorization**.
+
