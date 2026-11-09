@@ -29,7 +29,7 @@
   const cart = () => JSON.parse(localStorage.getItem(STORAGE)||'[]');
   const saveCart = (items) => { localStorage.setItem(STORAGE, JSON.stringify(items)); updateCartCount(); renderCartPage(); };
   const inCart = (id) => cart().includes(String(id));
-  function formatPrice(r){ const price=Number(r.price);if(!Number.isFinite(price)||price<=0)return tx('toBeCalculated');return typeof yen==='function'?yen(price):'¥'+price.toLocaleString(); }
+  function formatPrice(r){ const price=Number(r.price);if(!Number.isFinite(price)||price<=0)return tx('toBeCalculated');const currency=['JPY','KRW','CNY','USD','EUR'].includes(r.currency)?r.currency:'JPY';const prefix={JPY:'¥',KRW:'₩',CNY:'CN¥',USD:'US$',EUR:'€'}[currency];return prefix+price.toLocaleString('en-US',{maximumFractionDigits:2}); }
   function saleLabel(r){ const fixed=r.sale!=='bid'; return fixed ? (typeof tr==='function'?tr('fixedPrice'):tx('fixedPriceListing')) : (typeof tr==='function'?tr('bidding'):tx('privateOfferFlow')); }
   function displayCountry(c){ try{return typeof countryLabel==='function'?countryLabel(c):(c||tx('global'));}catch{return c||tx('global');} }
   function displayTag(t){ try{ const rt=(typeof robotTypes!=='undefined'?robotTypes:[]).find(x=>x.id===t); if(rt)return rt.names?.[lang()]||rt.names?.en||t; const ap=(typeof applications!=='undefined'?applications:[]).find(x=>x.id===t); if(ap)return ap.names?.[lang()]||ap.names?.en||t; }catch(e){} return t; }
@@ -302,7 +302,7 @@
   }
 
   function patchRobotsPage(){
-    const titles={ko:'중고 로봇·부품 마켓',ja:'中古ロボット・部品マーケット',en:'Used robots & parts marketplace'};
+    const titles={ko:'로봇·부품 마켓',ja:'ロボット・部品マーケット',en:'Robots & parts marketplace'};
     const head=$('#robots .page-head h1'); if(head) head.textContent=titles[lang()]||titles.en;
     const descriptions={ko:'실제 판매자가 올린 로봇과 그리퍼·부품을 사진으로 보고 판매자와 직접 이야기하세요.',ja:'実際の出品からロボットやグリッパー・部品を探し、出品者へ直接メッセージできます。',en:'Find genuine seller-posted robots, grippers and parts. Message the seller directly.'};
     const desc=$('#robots .page-head p'); if(desc) desc.textContent=descriptions[lang()]||descriptions.en;
@@ -397,13 +397,13 @@
     const search=($('#marketSearch')?.value||'').trim().toLowerCase();
     const category=$('#categoryFilter')?.value||'';
     const country=$('#countryFilter')?.value||'';
-    const sale=$('#saleFilter')?.value||'';
+    const condition=$('#conditionFilter')?.value||'';
     const actual=all().filter(r=>r._source==='seller-supabase'&&!isDemo(r));
     const items=actual.filter(r=>
       (!search||[r.brand,r.model,r.location,r.country,r.description,r.itemCategory].join(' ').toLowerCase().includes(search)) &&
       (!category||(r.itemCategory||'robot')===category) &&
       (!country||r.country===country) &&
-      (!sale||r.sale===sale)
+      (!condition||r.itemCondition===condition)
     );
     const market=$('#marketListings');if(market)market.innerHTML=items.map(renderCard).join('')||marketplaceEmpty();
     const home=$('#homeListings');if(home)home.innerHTML=actual.slice(0,3).map(renderCard).join('')||marketplaceEmpty();
@@ -543,8 +543,8 @@
       if(el.dataset.v24sell) return; el.dataset.v24sell='1';
       el.addEventListener('click',()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow()));
     });
-    ['marketSearch','categoryFilter','applicationFilter','countryFilter','saleFilter'].forEach(id=>document.getElementById(id)?.addEventListener('input',renderListingsV24));
-    ['categoryFilter','applicationFilter','countryFilter','saleFilter'].forEach(id=>document.getElementById(id)?.addEventListener('change',renderListingsV24));
+    ['marketSearch','categoryFilter','applicationFilter','countryFilter','conditionFilter'].forEach(id=>document.getElementById(id)?.addEventListener('input',renderListingsV24));
+    ['categoryFilter','applicationFilter','countryFilter','conditionFilter'].forEach(id=>document.getElementById(id)?.addEventListener('change',renderListingsV24));
   }
 
   function init(){
