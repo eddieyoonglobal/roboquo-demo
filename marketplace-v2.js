@@ -20,6 +20,16 @@ const CONDITIONS={
  ko:{used:'중고',new:'신품',refurbished:'정비·리퍼',for_parts:'부품용·고장'},
  ja:{used:'中古',new:'新品',refurbished:'整備済み',for_parts:'部品取り・故障'}
 };
+const MARKET_WORDS={
+ ko:{country:'판매 국가',currency:'가격 통화',sellerType:'판매자',sellerIndividual:'개인',sellerBusiness:'업체·대리점',conditionAll:'전체 상태',countryAll:'전체 국가',itemStatus:'상품 상태',allItems:'전체 상품'},
+ ja:{country:'出品国',currency:'通貨',sellerType:'出品者',sellerIndividual:'個人',sellerBusiness:'販売店・企業',conditionAll:'すべての状態',countryAll:'すべての国',itemStatus:'商品状態',allItems:'すべての商品'},
+ en:{country:'Seller country',currency:'Currency',sellerType:'Seller',sellerIndividual:'Individual',sellerBusiness:'Company / dealer',conditionAll:'All conditions',countryAll:'All countries',itemStatus:'Condition',allItems:'All items'}
+};
+Object.entries(MARKET_WORDS).forEach(([code,words])=>Object.assign(L[code],words));
+const COUNTRIES={Japan:{ko:'일본',ja:'日本',en:'Japan'},Korea:{ko:'한국',ja:'韓国',en:'Korea'},China:{ko:'중국',ja:'中国',en:'China'},Taiwan:{ko:'대만',ja:'台湾',en:'Taiwan'},USA:{ko:'미국',ja:'米国',en:'USA'},Germany:{ko:'독일',ja:'ドイツ',en:'Germany'},Other:{ko:'기타 국가',ja:'その他',en:'Other'}};
+const countryName=key=>COUNTRIES[key]?.[lang()]||COUNTRIES[key]?.en||key;
+const currForCountry={Japan:'JPY',Korea:'KRW',China:'CNY',Taiwan:'USD',USA:'USD',Germany:'EUR',Other:'USD'};
+const CURRENCIES={JPY:'¥ JPY',KRW:'₩ KRW',CNY:'¥ CNY',USD:'$ USD',EUR:'€ EUR'};
 const tr=k=>(L[lang()]||L.en)[k]||L.en[k]||k;
 const cat=k=>(C[lang()]||C.en)[k]||C.en[k]||k;
 const esc=t=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','"':'&quot;',"'":'&#39;'}[c]));
@@ -41,8 +51,9 @@ function categoryTiles(){
   container=document.createElement('nav');container.id='rqMarketCategoryChips';container.className='rq-market-chips';
   const toolbar=$('#robots .market-toolbar');if(toolbar)toolbar.insertAdjacentElement('beforebegin',container);
  }
- container.innerHTML='<button type="button" data-filter="" class="active">'+esc(tr('all'))+'</button>'+
-   Object.keys(C.en).map(k=>'<button type="button" data-filter="'+k+'">'+esc(cat(k))+'</button>').join('');
+ const active=$('#categoryFilter')?.value||'';
+ container.innerHTML='<button type="button" data-filter="" class="'+(!active?'active':'')+'">'+esc(tr('all'))+'</button>'+
+   Object.keys(C.en).map(k=>'<button type="button" data-filter="'+k+'" class="'+(active===k?'active':'')+'">'+esc(cat(k))+'</button>').join('');
  container.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{
   const filter=$('#categoryFilter');
   window.rqRenderMarketplace?.(); // restore the classifieds options if legacy code rebuilt the select
@@ -54,6 +65,25 @@ function categoryTiles(){
   container.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));
  }));
 }
+function patchMarketFilters(){
+ const country=$('#countryFilter');
+ if(country){
+  const current=country.value;
+  country.innerHTML='<option value="">'+esc(tr('countryAll'))+'</option>'+
+   Object.keys(COUNTRIES).map(code=>'<option value="'+code+'">'+esc(countryName(code))+'</option>').join('');
+  if(Object.keys(COUNTRIES).includes(current))country.value=current;
+  country.setAttribute('aria-label',tr('country'));
+ }
+ const condition=$('#conditionFilter');
+ if(condition){
+  const current=condition.value;
+  condition.innerHTML='<option value="">'+esc(tr('conditionAll'))+'</option>'+
+    Object.entries(CONDITIONS[lang()]||CONDITIONS.en).map(([code,text])=>
+     '<option value="'+code+'">'+esc(text)+'</option>').join('');
+  if(Object.keys(CONDITIONS.en).includes(current))condition.value=current;
+  condition.setAttribute('aria-label',tr('itemStatus'));
+ }
+}
 function putMarketActions(){
  let head=$('#robots .page-head');
  if(head&&!$('#rqMarketInboxBtn')){
@@ -64,6 +94,7 @@ function putMarketActions(){
   const p=document.createElement('p');p.id='rqMarketInfo';p.className='rq-market-subtitle';p.textContent=tr('priceHint');head.insertAdjacentElement('afterend',p);
  }
  categoryTiles();
+ patchMarketFilters();
 }
 function showSell(initialCat){
  files=[];
@@ -77,6 +108,8 @@ function showSell(initialCat){
  '<div class="rq-cl-columns">',
  '<label class="rq-cl-field"><span>'+esc(tr('category'))+' *</span><select name="itemCategory" required>'+choices(C[lang()]||C.en,initial)+'</select></label>',
  '<label class="rq-cl-field"><span>'+esc(tr('condition'))+' *</span><select name="itemCondition" required>'+choices(CONDITIONS[lang()]||CONDITIONS.en,'used')+'</select></label>',
+ '<label class="rq-cl-field"><span>'+esc(tr('country'))+' *</span><select name="country" id="rqClCountry" required>'+choices(Object.fromEntries(Object.keys(COUNTRIES).map(k=>[k,countryName(k)])),'Japan')+'</select></label>',
+ '<label class="rq-cl-field"><span>'+esc(tr('currency'))+' *</span><select name="currency" id="rqClCurrency" required>'+choices(CURRENCIES,'JPY')+'</select></label>',
  field(tr('title'),'model',{required:true,placeholder:'FANUC CRX-10iA / RG2 / R-30iB'}),
  field(tr('brand'),'maker',{placeholder:'FANUC / OnRobot'}),
  field(tr('price'),'price',{type:'number',min:'0',placeholder:'250000'}),
@@ -84,6 +117,7 @@ function showSell(initialCat){
  '</div>',
  '<label class="rq-cl-field"><span>'+esc(tr('description'))+' *</span><textarea name="description" required rows="4" maxlength="5000"></textarea></label>',
  '<div class="rq-cl-columns">',
+ '<label class="rq-cl-field"><span>'+esc(tr('sellerType'))+' *</span><select name="sellerType" required>'+choices({individual:tr('sellerIndividual'),business:tr('sellerBusiness')},'individual')+'</select></label>',
  field(tr('name'),'companyName',{required:true,value:meta.company_name||meta.display_name||''}),
  field(tr('email'),'contactEmail',{required:true,type:'email',value:account?.email||''}),
  field(tr('phone'),'contactPhone',{required:true,type:'tel',value:meta.phone||''}),
@@ -97,6 +131,9 @@ function showSell(initialCat){
  modal(html);
  const form=$('#rqQuickSellForm');
  $('#rqClCancel')?.addEventListener('click',()=>window.closeModal?.());
+ $('#rqClCountry')?.addEventListener('change',e=>{
+  const select=$('#rqClCurrency');if(select)select.value=currForCountry[e.target.value]||'USD';
+ });
  $('#rqClPhotos')?.addEventListener('change',e=>{
   files=[...(e.target.files||[])];
   const previews=$('#rqClPreview');previews.replaceChildren();
@@ -125,7 +162,7 @@ async function submitListing(event){
  if(authRequired()){status.textContent=tr('none');return}
  busy=true;btn.disabled=true;btn.textContent=tr('publishing');
  try{
-  const draft={...data,contactName:data.companyName,country:'Japan',sale:'fixed',working:'unknown',declared:true};
+  const draft={...data,contactName:data.companyName,sale:'fixed',working:'unknown',declared:true};
   await window.rqSubmitSellerListing(draft,{photos});
   window.closeModal?.();
   notice(tr('published'));
@@ -233,7 +270,7 @@ function init(){
  // The classifieds feed is the product's primary landing page; the former
  // multi-service demo home remains accessible through the Home navigation.
  if(!location.hash||location.hash==='#robots')route('robots');
- document.addEventListener('rq:languagechange',()=>{putMarketActions();categoryTiles();const btn=$('#rqMarketInboxBtn');if(btn)btn.textContent=tr('inbox');const hint=$('#rqMarketInfo');if(hint)hint.textContent=tr('priceHint')});
+ document.addEventListener('rq:languagechange',()=>{putMarketActions();categoryTiles();patchMarketFilters();const btn=$('#rqMarketInboxBtn');if(btn)btn.textContent=tr('inbox');const hint=$('#rqMarketInfo');if(hint)hint.textContent=tr('priceHint')});
  // Stop legacy handlers from launching the eight-step robot-only wizard.
  document.addEventListener('click',e=>{
   const trigger=e.target.closest('[data-action="sell"]');
