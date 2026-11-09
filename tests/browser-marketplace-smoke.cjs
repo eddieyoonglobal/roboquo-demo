@@ -68,6 +68,8 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),2,'only 2 real seller fixtures are visible');
   assert.equal(await page.locator('#marketListings .v24-badge.demo').count(),0,'no DEMO cards shown');
   await page.locator('#rqMarketCategoryChips button[data-filter="gripper"]').click();
+  const filterDebug=await page.evaluate(()=>({value:document.querySelector('#categoryFilter')?.value,options:[...document.querySelector('#categoryFilter').options].map(o=>o.value),hasRender:typeof window.rqRenderMarketplace,items:allRobotListings().filter(x=>x._source==='seller-supabase').map(x=>({id:x.id,category:x.itemCategory}))}));
+  console.log('MARKET_FILTER_DEBUG',JSON.stringify(filterDebug));
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'gripper category works');
   await page.locator('#marketSearch').fill('NONEXISTENT-ROBOT-000');
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),0,'search filters real listings');
