@@ -78,6 +78,11 @@
     const photoGrid=$('.hero-photo-grid');if(photoGrid)photoGrid.setAttribute('aria-label',tx('sellCardBody'));
   }
 
+  const RQ_HOME_COPY={"en":{"eyebrow":"BUY & SELL ROBOTS","title":"Explore by category","body":"Live seller listings appear first. Demo items are not for sale.","sell":"+ Sell an item","industrial":"Industrial robots","collaborative":"Collaborative robots","grippers":"Grippers & EOAT","vision":"Vision & accessories"},"ja":{"eyebrow":"ロボット・周辺機器の売買","title":"カテゴリーから探す","body":"販売者の実際の出品を優先表示。デモ品は販売対象外です。","sell":"+ 商品を出品","industrial":"産業用ロボット","collaborative":"協働ロボット","grippers":"グリッパー・EOAT","vision":"ビジョン・周辺機器"},"ko":{"eyebrow":"로봇·주변기기 거래","title":"카테고리로 쉽게 찾기","body":"실제 판매자 매물부터 보여드립니다. 데모 상품은 판매하지 않습니다.","sell":"+ 상품 등록","industrial":"산업용 로봇","collaborative":"협동로봇","grippers":"그리퍼·EOAT","vision":"비전·주변기기"},"zh":{"eyebrow":"机器人及周边设备交易","title":"按类别查找商品","body":"优先展示真实卖家商品。演示商品不出售。","sell":"+ 发布商品","industrial":"工业机器人","collaborative":"协作机器人","grippers":"夹爪与EOAT","vision":"视觉与配件"},"de":{"eyebrow":"ROBOTER KAUFEN & VERKAUFEN","title":"Nach Kategorie suchen","body":"Echte Angebote zuerst. Demoartikel stehen nicht zum Verkauf.","sell":"+ Artikel anbieten","industrial":"Industrieroboter","collaborative":"Cobots","grippers":"Greifer & EOAT","vision":"Bildverarbeitung & Zubehör"},"fr":{"eyebrow":"ACHAT ET VENTE DE ROBOTS","title":"Explorer par catégorie","body":"Annonces réelles en premier. Les démos ne sont pas en vente.","sell":"+ Déposer une annonce","industrial":"Robots industriels","collaborative":"Robots collaboratifs","grippers":"Préhenseurs & EOAT","vision":"Vision & accessoires"},"es":{"eyebrow":"COMPRAR Y VENDER ROBOTS","title":"Explorar por categoría","body":"Primero anuncios reales. Los artículos demo no están en venta.","sell":"+ Publicar producto","industrial":"Robots industriales","collaborative":"Robots colaborativos","grippers":"Pinzas y EOAT","vision":"Visión y accesorios"},"it":{"eyebrow":"ACQUISTA E VENDI ROBOT","title":"Esplora per categoria","body":"Prima gli annunci reali. Le demo non sono in vendita.","sell":"+ Pubblica un articolo","industrial":"Robot industriali","collaborative":"Robot collaborativi","grippers":"Pinze ed EOAT","vision":"Visione e accessori"},"pt":{"eyebrow":"COMPRA E VENDA DE ROBÔS","title":"Explorar por categoria","body":"Anúncios reais primeiro. Itens de demonstração não estão à venda.","sell":"+ Anunciar item","industrial":"Robôs industriais","collaborative":"Robôs colaborativos","grippers":"Garras e EOAT","vision":"Visão e acessórios"},"vi":{"eyebrow":"MUA BÁN ROBOT","title":"Tìm theo danh mục","body":"Tin đăng thật hiển thị trước. Hàng demo không được bán.","sell":"+ Đăng bán","industrial":"Robot công nghiệp","collaborative":"Robot cộng tác","grippers":"Kẹp và EOAT","vision":"Thị giác và phụ kiện"}};
+  function patchTradeHomepage(){
+    const strings=RQ_HOME_COPY[lang()]||RQ_HOME_COPY.en;
+    $('[data-rq-home-copy]').forEach(el=>{const value=strings[el.dataset.rqHomeCopy];if(value)el.textContent=value});
+  }
   function patchNav(){
     const nav=$('.desktop-nav');
     if(nav){
@@ -350,7 +355,7 @@
     const app = $('#applicationFilter')?.value||'';
     const country = $('#countryFilter')?.value||'';
     const sale = $('#saleFilter')?.value||'';
-    const items = all().filter(r => (!search || `${r.brand} ${r.model} ${r.location} ${r.country}`.toLowerCase().includes(search)) && (!cat || r.cat===cat) && (!app || (r.apps||[]).includes(app)) && (!country || r.country===country) && (!sale || r.sale===sale));
+    const items = all().filter(r => (!search || `${r.brand} ${r.model} ${r.location} ${r.country} ${r.itemCategory||''} ${r.cat||''} ${(r.apps||[]).join(' ')} ${r.description||''}`.toLowerCase().includes(search)) && (!cat || r.cat===cat) && (!app || (r.apps||[]).includes(app)) && (!country || r.country===country) && (!sale || r.sale===sale));
     const market=$('#marketListings'); if(market) market.innerHTML = items.map(renderCard).join('') || `<p>${tx('noResults')}</p>`;
     const home=$('#homeListings');
     if(home){
@@ -468,7 +473,7 @@
   }
 
   function refresh(){
-    ensureCartButton(); patchNav(); patchHero(); injectCommerceSections(); patchStaticLabels(); patchRobotsPage(); ensureFooter(); enhanceAccessibility(); updateCartCount(); renderListingsV24(); renderCartPage();
+    ensureCartButton(); patchNav(); patchHero(); patchTradeHomepage(); injectCommerceSections(); patchStaticLabels(); patchRobotsPage(); ensureFooter(); enhanceAccessibility(); updateCartCount(); renderListingsV24(); renderCartPage();
     const cartHead=$('#cart .page-head h1'); if(cartHead) cartHead.textContent=tx('cartTitle');
     const cartDesc=$('#cart .page-head p'); if(cartDesc) cartDesc.textContent=tx('cartPageDesc');
     const cartBtn=$('#cart .page-head button'); if(cartBtn) cartBtn.textContent=tx('continueShopping');
@@ -482,6 +487,17 @@
     $$('[data-action="sell"]').forEach(el=>{
       if(el.dataset.v24sell) return; el.dataset.v24sell='1';
       el.addEventListener('click',()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow()));
+    });
+    $('.rq-intro-categories [data-market-category], .rq-intro-categories [data-market-query]').forEach(button=>{
+      if(button.dataset.rqFilterBound)return;button.dataset.rqFilterBound='1';
+      button.addEventListener('click',()=>{
+        const category=button.dataset.marketCategory||'';
+        const keyword=button.dataset.marketQuery||'';
+        const input=$('#marketSearch'),filter=$('#categoryFilter');
+        if(input)input.value=keyword||(!filter?.querySelector('option[value="'+category+'"]')?category:'');
+        if(filter)filter.value=category&&filter.querySelector('option[value="'+category+'"]')?category:'';
+        renderListingsV24();
+      });
     });
     ['marketSearch','categoryFilter','applicationFilter','countryFilter','saleFilter'].forEach(id=>document.getElementById(id)?.addEventListener('input',renderListingsV24));
     ['categoryFilter','applicationFilter','countryFilter','saleFilter'].forEach(id=>document.getElementById(id)?.addEventListener('change',renderListingsV24));
