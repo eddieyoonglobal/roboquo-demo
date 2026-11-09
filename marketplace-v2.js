@@ -44,7 +44,13 @@ function categoryTiles(){
  container.innerHTML='<button type="button" data-filter="" class="active">'+esc(tr('all'))+'</button>'+
    Object.keys(C.en).map(k=>'<button type="button" data-filter="'+k+'">'+esc(cat(k))+'</button>').join('');
  container.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>{
-  const filter=$('#categoryFilter');if(filter){filter.value=b.dataset.filter;filter.dispatchEvent(new Event('change',{bubbles:true}));}
+  const filter=$('#categoryFilter');
+  window.rqRenderMarketplace?.(); // restore the classifieds options if legacy code rebuilt the select
+  if(filter){
+   filter.value=b.dataset.filter;
+   filter.dispatchEvent(new Event('change',{bubbles:true}));
+   window.rqRenderMarketplace?.();
+  }
   container.querySelectorAll('button').forEach(x=>x.classList.toggle('active',x===b));
  }));
 }
