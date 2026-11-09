@@ -103,3 +103,61 @@ Buyer inquiries currently open a prefilled email to `sales@roboquo.com` with the
 - `tests/pg-supabase-bootstrap.sql` and `tests/pg-seller-marketplace-smoke.sql` are CI fixtures, **not** production database bootstrap or real Supabase Auth tests.
 - The complete signed-up user → photo upload → moderator approval flow still requires a separate staging Supabase environment and an allow-listed Preview auth redirect URL. The frontend Preview guard prevents accidental production write actions but is **not server-side authorization**.
 
+
+## Real used robots & parts marketplace MVP — November 9, 2026
+
+**Direction:** RoboQuo is now being rebuilt as a real classifieds marketplace,
+not a sample robot catalog. Browse and search shows **seller-posted listings
+only**; illustrative demo cards are excluded from market, featured and global
+product-search results. No products or seller prices are invented.
+
+### Buyer journey
+1. Search real used robots, grippers, EOAT, controllers, vision equipment, robot
+   spare parts and other accessories by type, brand, model or location.
+2. Open an actual listing to see its seller-provided photos, price, condition
+   and description.
+3. Sign in, send a private message or negotiate a price with the seller.
+4. Reopen conversations from **Messages / 내 채팅 / 取引メッセージ**.
+5. Agree on payment, inspection and shipping **outside RoboQuo** for now.
+   **RoboQuo does not process payments, hold deposits, operate escrow, or
+   guarantee seller identity or item condition.**
+
+### Seller journey
+1. Open **Post an item / 상품 등록 / 商品を出品**.
+2. Select robot or part category and condition; add 1–8 original photos, model,
+   maker, price, location, description and private seller contact information.
+3. Authenticate and confirm ownership. On a migrated production/staging DB,
+   the listing is **published immediately after valid photo upload**.
+4. Buyers can message the seller privately. The seller can mark the item **sold**
+   or delete it from their account page.
+
+### Database rollout required before any live release
+The application code and new SQL are committed **only to the development
+branch**, not applied to the operating Supabase project.
+
+- Apply `database/004_seller_marketplace.sql` and
+  `database/005_seller_moderation_integrity.sql` on a **new isolated staging
+  environment**, followed by
+  `database/006_real_classifieds_marketplace.sql`.
+- The live Supabase project has an existing 004 schema but does not yet contain
+  the 006 category/description/chat tables. Do **not** merge/deploy this release
+  before applying and verifying the migration.
+- CI tests all three SQL files in ephemeral PostgreSQL; it verifies immediate
+  publication of a synthetic gripper listing and private buyer-to-seller
+  messages, including outsider denial.
+- For staging browser test, use a separate Supabase publishable URL and key
+  configured in the staging build, plus approved Auth redirect URL(s).
+  The current development Preview intentionally blocks all **write operations
+  against the operating Supabase database**.
+- Review anti-spam controls, moderation/reporting, image content safety,
+  seller terms, transaction disputes and legal requirements before an open
+  public marketplace launch.
+- This first release is a **direct-message classifieds service**, not a
+  payment-enabled e-commerce storefront. Do not call it an integrated checkout
+  or escrow service.
+
+### Automated tests
+The GitHub Actions workflow runs JavaScript checks, headless Chromium
+marketplace/search/posting smoke tests and PostgreSQL RLS tests, with isolated
+in-memory test listings. CI screenshots are kept for seven days.
+
