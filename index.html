@@ -219,8 +219,20 @@
 </section>
 <section class="page" id="makers">
 <div class="wrap page-head"><div class="kicker">MANUFACTURERS &amp; ECOSYSTEM</div><h1 data-i18n="makerTitle">Start with a manufacturer</h1><p data-i18n="makerDesc">Choose a robot manufacturer to explore major models, compatible peripherals, sellers and service providers.</p></div>
+<section class="wrap rq-cobot-focus" id="rqCobotFocus" aria-labelledby="rqCobotTitle">
+  <div class="rq-cobot-head">
+    <div><div class="kicker">COBOT BRAND DIRECTORY</div><h2 id="rqCobotTitle">Collaborative robot makers around the world</h2><p id="rqCobotDescription">Browse brands and their official product catalogs. Listings and dealer verification are separate.</p></div>
+    <div class="rq-cobot-mode" aria-label="Manufacturer category">
+      <button id="rqCobotOnly" type="button" aria-pressed="true">Collaborative robots</button>
+      <button id="rqAllRobotMakers" type="button" aria-pressed="false">All robot makers</button>
+    </div>
+  </div>
+  <div class="rq-maker-region-links" id="rqMakerRegionLinks" aria-label="Filter robot makers by region"></div>
+  <p class="rq-maker-catalog-note" id="rqMakerCatalogNote">Manufacturer directory, not available inventory or authorized dealership claims.</p>
+</section>
 <div class="wrap maker-tabs"><button class="tab active" data-i18n="robotMakers" data-maker-tab="robot">Robot Makers</button><button class="tab" data-i18n="eoatMakers" data-maker-tab="eoat">Grippers &amp; EOAT</button></div>
 <div class="wrap maker-filterbar">
+<div class="search-field rq-maker-search"><span aria-hidden="true">⌕</span><input id="makerSearch" aria-label="Search manufacturer brands" placeholder="Search brand or product series" autocomplete="off"/></div>
 <select id="makerRegionFilter"><option data-i18n="allRegions" value="">All regions</option><option>Japan</option><option>Korea</option><option>China</option><option>Taiwan</option><option>Europe</option><option>North America</option><option>India</option><option>Southeast Asia</option><option>Middle East</option><option>Australia</option></select>
 <select id="makerTypeFilter"><option data-i18n="allRobotTypes" value="">All robot types</option></select>
 <span class="database-count" id="makerCount"></span>
