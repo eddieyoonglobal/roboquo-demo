@@ -42,47 +42,42 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
    return route.abort();
   });
   await page.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:30000});
-  await page.waitForFunction(()=>document.querySelectorAll('#marketListings .v24-listing-card').length>=3,null,{timeout:15000});
-  const demo=await page.locator('#marketListings').innerText();
-  assert.match(demo,/DEMO/i,'illustrative listings must be clearly marked');
-  assert.equal(await page.locator('#marketListings .v24-listing-card .buy:not([disabled])').count(),0,'demo listings cannot be purchased');
-  assert.equal(await page.evaluate(()=>window.rqCanWriteSupabase()),false,'localhost must not write to live DB');
+  await page.waitForFunction(()=>Boolean(document.querySelector('#marketListings .rq-market-empty')),{timeout:15000});
+  assert.equal(await page.locator('#marketListings .v24-listing-card').count(),0,'no fake robot inventory is displayed');
+  assert.equal(await page.locator('#homeListings .v24-listing-card').count(),0,'homepage contains real listings only');
+  assert.equal(await page.evaluate(()=>window.rqCanWriteSupabase()),false,'Preview stays read-only against production');
   const screenshotDir=path.join(root,'test-artifacts');
   if(process.env.CI){
     fs.mkdirSync(screenshotDir,{recursive:true});
     await page.screenshot({path:path.join(screenshotDir,'roboquo-home-desktop.png'),fullPage:true});
   }
   await page.evaluate(()=>route('robots'));
-  await page.locator('#marketSearch').fill('FANUC');
-  assert((await page.locator('#marketListings .v24-listing-card').count())>=1,'known robot search should find a card');
-  await page.locator('#marketSearch').fill('NO_SUCH_ROBOT_MODEL_ZZZ_1234');
-  assert.equal(await page.locator('#marketListings .v24-listing-card').count(),0,'unknown model should show no results');
-  await page.locator('#marketSearch').fill('');
-  // Inject a clearly synthetic published seller listing into the browser
-  // presentation only. No Supabase insert or sign-in is performed.
-  await page.evaluate(()=>{
-    window.rqSetSellerLiveListings([{
-      id:'seller:browser-fixture-001',backendId:'browser-fixture-001',
-      brand:'FANUC',model:'CRX-10iA (TEST FIXTURE)',
-      year:2024,location:'Tokyo',country:'Japan',price:123456,
-      currency:'JPY',sale:'fixed',cat:'industrial',apps:[],hours:'—',
-      operatingStatus:'stored',sellerCompany:'Fixture Company',
-      verified:false,demo:false,_source:'seller-supabase',
+  assert.equal(await page.locator('#rqMarketCategoryChips button').count(),8,'robot/part category shortcuts render');
+  await page.evaluate(()=>window.rqSetSellerLiveListings([
+    {id:'seller:robot-fixture',backendId:'robot-fixture',brand:'FANUC',model:'CRX TEST',year:2024,location:'Tokyo',country:'Japan',
+      price:2250000,currency:'JPY',sale:'fixed',cat:'industrial',itemCategory:'robot',itemCondition:'used',description:'Real robot fixture',
+      apps:[],hours:'—',operatingStatus:'stored',sellerCompany:'Fixture Company',verified:false,demo:false,_source:'seller-supabase',
       media:{nameplate:false,controller:false,video:false},
-      photoUrl:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20"%3E%3C/svg%3E',
-      photoUrls:{},photoCount:1
-    }]);
-  });
-  const live=page.locator('#marketListings .v24-listing-card').filter({hasText:'TEST FIXTURE'});
-  assert.equal(await live.count(),1,'published seller listing renders alongside demo records');
-  assert.equal(await live.locator('.v24-badge.demo').count(),0,'published listing cannot have demo badge');
-  assert.equal(await live.locator('img').count(),1,'signed remote picture renders in the card');
-  await live.locator('.v24-photo-button').click();
-  assert.match(await page.locator('#modal').innerText(),/Stored \(seller reported\)/,'condition must be seller-reported, not invented');
-  await page.locator('#modal .v24-modal-actions button').filter({hasText:'Contact RoboQuo'}).click();
-  const mailto=await page.locator('#modal a[href^="mailto:"]').getAttribute('href');
-  assert(mailto&&mailto.includes('browser-fixture-001'),'inquiry draft includes the listing reference');
-  assert(mailto.includes('sales@roboquo.com'),'buyer inquiry opens a draft addressed to RoboQuo');
+      photoUrl:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20"%3E%3C/svg%3E',photoUrls:{},photoCount:1},
+    {id:'seller:gripper-fixture',backendId:'gripper-fixture',brand:'OnRobot',model:'RG2 GRIPPER TEST',location:'Osaka',country:'Japan',
+      price:48000,currency:'JPY',sale:'fixed',cat:'gripper',itemCategory:'gripper',itemCondition:'used',description:'Actual used gripper fixture',
+      apps:[],hours:'—',operatingStatus:'unknown',sellerCompany:'Parts Fixture Seller',verified:false,demo:false,_source:'seller-supabase',
+      media:{nameplate:false,controller:false,video:false},
+      photoUrl:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20"%3E%3C/svg%3E',photoUrls:{},photoCount:1}
+  ]));
+  assert.equal(await page.locator('#marketListings .v24-listing-card').count(),2,'only 2 real seller fixtures are visible');
+  assert.equal(await page.locator('#marketListings .v24-badge.demo').count(),0,'no DEMO cards shown');
+  await page.locator('#rqMarketCategoryChips button[data-filter="gripper"]').click();
+  assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'gripper category works');
+  await page.locator('#marketSearch').fill('NONEXISTENT-ROBOT-000');
+  assert.equal(await page.locator('#marketListings .v24-listing-card').count(),0,'search filters real listings');
+  await page.locator('#marketSearch').fill('RG2');
+  const grip=page.locator('#marketListings .v24-listing-card');
+  assert.equal(await grip.count(),1);
+  await grip.locator('.v24-photo-button').click();
+  assert.match(await page.locator('#modal').innerText(),/RG2 GRIPPER TEST/);
+  await page.evaluate(()=>window.rqContactAboutListing('seller:gripper-fixture','offer'));
+  assert(await page.locator('#rqAskForm textarea').isVisible(),'buyer can compose a real in-app message');
   if(process.env.CI)await page.screenshot({path:path.join(screenshotDir,'roboquo-buyer-inquiry-desktop.png'),fullPage:true});
   await page.evaluate(()=>window.closeModal());
   if(process.env.CI){
@@ -90,9 +85,21 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     await page.setViewportSize({width:390,height:844});
     await page.screenshot({path:path.join(screenshotDir,'roboquo-market-mobile.png'),fullPage:true});
   }
-  await page.evaluate(()=>window.rqStartSell());
-  assert(await page.locator('#modal').isVisible(),'seller photo-first wizard should open');
+  await page.evaluate(()=>window.rqStartSell('part'));
+  assert(await page.locator('#rqQuickSellForm').isVisible(),'short photo-first sell form opens');
+  assert.equal(await page.locator('#rqQuickSellForm select[name="itemCategory"]').inputValue(),'part');
+  const png=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScL/nwAAAABJRU5ErkJggg==','base64');
+  await page.locator('#rqClPhotos').setInputFiles({name:'part.png',mimeType:'image/png',buffer:png});
+  await page.locator('#rqQuickSellForm [name=model]').fill('FANUC gear TEST');
+  await page.locator('#rqQuickSellForm [name=location]').fill('Tokyo');
+  await page.locator('#rqQuickSellForm [name=description]').fill('Real spare part with serial number, photos and condition');
+  await page.locator('#rqQuickSellForm [name=companyName]').fill('Fixture Seller');
+  await page.locator('#rqQuickSellForm [name=contactEmail]').fill('fixture@example.invalid');
+  await page.locator('#rqQuickSellForm [name=contactPhone]').fill('+81 90 1234 5678');
+  await page.locator('#rqQuickSellForm [name=declared]').check();
+  await page.locator('#rqClSubmit').click();
+  assert.match(await page.locator('#rqClStatus').innerText(),/Preview|preview|live database/i,'Preview upload must remain blocked before production');
   assert.equal(errors.length,0,'uncaught runtime errors: '+errors.join(' | '));
-  console.log('PASS browser smoke: demo listing, local search, protected preview, sell wizard, no JS errors');
+  console.log('PASS marketplace: real robots+parts, category/search, buyer chat form, photo upload preview guard');
  }finally{await browser.close()}
 })().catch(e=>{console.error(e);process.exitCode=1}).finally(closeServer);
