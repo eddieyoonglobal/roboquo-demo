@@ -101,20 +101,71 @@
     }
   };
 
+  const PHOTO_URL_LIFETIME_SECONDS=3600;
+  const PUBLISHED_REFRESH_MS=45*60*1000;
+  let publishedRequest=0,publishedRefreshTimer=null,lastPublishedAttempt=0;
+
   async function signedPhotoUrls(api,photos){
     const result={};
-    for(const photo of photos||[]){const signed=await api.storage.from(BUCKET).createSignedUrl(photo.storage_path,3600);if(!signed.error&&signed.data?.signedUrl)result[photo.slot]=signed.data.signedUrl;}
+    for(const photo of photos||[]){
+      if(!photo?.storage_path)continue;
+      try{
+        const signed=await api.storage.from(BUCKET).createSignedUrl(photo.storage_path,PHOTO_URL_LIFETIME_SECONDS);
+        if(!signed.error&&signed.data?.signedUrl)result[photo.slot]=signed.data.signedUrl;
+      }catch(error){
+        // One missing or unavailable picture must not hide every published robot.
+        console.warn('RoboQuo public listing image unavailable',error?.code||'request_failed');
+      }
+    }
     return result;
+  }
+
+  function schedulePublishedRefresh(){
+    if(publishedRefreshTimer!==null)clearTimeout(publishedRefreshTimer);
+    // Signed URLs are valid for one hour. Reissue them before they expire,
+    // while allowing background tabs to defer network calls.
+    publishedRefreshTimer=setTimeout(()=>{
+      if(document.hidden){schedulePublishedRefresh();return;}
+      loadPublished();
+    },PUBLISHED_REFRESH_MS);
   }
 
   async function loadPublished(){
     const api=client();if(!api)return;
-    const query=await api.from('seller_listings').select('id,manufacturer,model,manufacture_year,country,location_text,operating_hours_text,operating_status,price,currency,listing_type,seller_company_name,status,published_at,seller_listing_photos(slot,storage_path,sort_order)').eq('status','published').order('published_at',{ascending:false});
-    if(query.error){if(!missingSchema(query.error))console.warn('RoboQuo published seller listings',query.error.code||query.error.message);window.rqSetSellerLiveListings?.([]);return;}
-    const mapped=[];
-    for(const row of query.data||[]){const photos=[...(row.seller_listing_photos||[])].sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));const urls=await signedPhotoUrls(api,photos);const preferred=['overall','nameplate','ctrlOutside','side','pendant'];const first=preferred.find(k=>urls[k])||Object.keys(urls)[0];mapped.push({id:`seller:${row.id}`,backendId:row.id,brand:row.manufacturer||'Robot',model:row.model||'Used Robot',year:row.manufacture_year||'',payload:'—',country:row.country||'',location:row.location_text||row.country||'',price:Number(row.price||0),currency:row.currency||'JPY',sale:row.listing_type==='private_offer'?'bid':'fixed',cat:'industrial',apps:[],hours:row.operating_hours_text||'',operatingStatus:row.operating_status||'unknown',sellerCompany:row.seller_company_name||'',verified:false,media:{nameplate:Boolean(urls.nameplate),controller:Boolean(urls.ctrlOutside),video:false},photoUrl:first?urls[first]:'',photoUrls:urls,photoCount:Object.keys(urls).length,demo:false,_source:'seller-supabase'});}
-    window.rqSetSellerLiveListings?.(mapped);
+    const request=++publishedRequest;
+    try{
+      const query=await api.from('seller_listings').select('id,manufacturer,model,manufacture_year,country,location_text,operating_hours_text,operating_status,price,currency,listing_type,seller_company_name,status,published_at,seller_listing_photos(slot,storage_path,sort_order)').eq('status','published').order('published_at',{ascending:false});
+      if(request!==publishedRequest)return;
+      if(query.error){
+        if(!missingSchema(query.error))console.warn('RoboQuo published seller listings',query.error.code||'query_failed');
+        window.rqSetSellerLiveListings?.([]);
+        return;
+      }
+      const mapped=[];
+      for(const row of query.data||[]){
+        const photos=[...(row.seller_listing_photos||[])].sort((a,b)=>(a.sort_order||0)-(b.sort_order||0));
+        const urls=await signedPhotoUrls(api,photos);
+        if(request!==publishedRequest)return;
+        const preferred=['overall','nameplate','ctrlOutside','side','pendant'];
+        const first=preferred.find(k=>urls[k])||Object.keys(urls)[0];
+        mapped.push({id:`seller:${row.id}`,backendId:row.id,brand:row.manufacturer||'Robot',model:row.model||'Used Robot',year:row.manufacture_year||'',payload:'—',country:row.country||'',location:row.location_text||row.country||'',price:Number(row.price||0),currency:row.currency||'JPY',sale:row.listing_type==='private_offer'?'bid':'fixed',cat:'industrial',apps:[],hours:row.operating_hours_text||'',operatingStatus:row.operating_status||'unknown',sellerCompany:row.seller_company_name||'',verified:false,media:{nameplate:Boolean(urls.nameplate),controller:Boolean(urls.ctrlOutside),video:false},photoUrl:first?urls[first]:'',photoUrls:urls,photoCount:Object.keys(urls).length,demo:false,_source:'seller-supabase'});
+      }
+      if(request===publishedRequest)window.rqSetSellerLiveListings?.(mapped);
+    }catch(error){
+      if(request===publishedRequest){
+        console.warn('RoboQuo published listing refresh failed',error?.code||'request_failed');
+        window.rqSetSellerLiveListings?.([]);
+      }
+    }finally{
+      if(request===publishedRequest){
+        lastPublishedAttempt=Date.now();
+        schedulePublishedRefresh();
+      }
+    }
   }
+  document.addEventListener('visibilitychange',()=>{
+    if(!document.hidden&&Date.now()-lastPublishedAttempt>=PUBLISHED_REFRESH_MS)loadPublished();
+  });
 
   function accountHtml(rows){
     if(!rows.length)return `<div class="seller-account-head"><h3>${esc(tx('title'))}</h3><p>${esc(tx('empty'))}</p></div>`;
