@@ -45,3 +45,12 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright@1.56.1
           node tests/browser-marketplace-smoke.cjs
+
+      - name: Attach fixture-only browser screenshots
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # upload-artifact v4
+        with:
+          name: roboquo-browser-preview
+          path: test-artifacts/*.png
+          if-no-files-found: ignore
+          retention-days: 7
