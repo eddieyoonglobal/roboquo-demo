@@ -148,7 +148,13 @@ function rqCheckedStamp(value){if(!value)return {text:tr('checkLatest'),exact:''
 function renderPurchaseChannels(){const box=document.getElementById('retailerGrid');if(!box)return;const q=(document.getElementById('buySearch')?.value||'').toLowerCase();const country=document.getElementById('buyCountry')?.value||'';const maker=document.getElementById('buyMaker')?.value||'';const mode=document.getElementById('buyMode')?.value||'';const list=purchaseChannels.filter(x=>(!q||`${x.retailer} ${x.maker} ${x.product}`.toLowerCase().includes(q))&&(!country||x.country===country)&&(!maker||x.maker===maker)&&(!mode||x.mode===mode));box.innerHTML=list.map(x=>{const checked=rqCheckedStamp(x.checked);return `<article class="retailer-card"><div class="retailer-top"><span class="retailer-status ${x.status==='Official'?'official':''}">${x.status==='Official'?tr('official'):tr('retailer')}</span><span>${esc(x.country)}</span></div><div class="retailer-brand">${esc(x.maker)}</div><h3>${esc(x.product)}</h3><p class="retailer-name">${esc(x.retailer)}</p><div class="retailer-data"><div><small>${tr('sourcePrice')}</small><strong>${esc(x.price)}</strong></div><div><small>${tr('availability')}</small><strong>${esc(x.availability)}</strong></div></div><p class="retailer-note">${esc(x.note)}</p><div class="checked-row"><span class="${checked.stale?'stale':''}" title="${esc(checked.exact)}">✓ ${esc(checked.text)}</span><a href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${tr('checkLatest')} ↗</a></div><a class="store-button" href="${esc(x.url)}" target="_blank" rel="noopener noreferrer">${tr('visitStore')} →</a></article>`}).join('')||`<p>${tr('noBuyResults')}</p>`}
 ['buySearch','buyCountry','buyMaker','buyMode'].forEach(id=>document.getElementById(id)?.addEventListener('input',renderPurchaseChannels));
 let makerTab='robot';
-function renderMakerTypeFilter(){const lang=document.documentElement.lang||'en';const s=document.getElementById('makerTypeFilter');if(!s)return;s.innerHTML=`<option value="">${tr('allRobotTypes')}</option>`+robotTypes.map(c=>`<option value="${c.id}">${c.names[lang]||c.names.en}</option>`).join('')}
+function renderMakerTypeFilter(){
+ const lang=document.documentElement.lang||'en',s=document.getElementById('makerTypeFilter');if(!s)return;
+ const previous=s.dataset.rqInitialized==='1'?s.value:'collaborative';
+ s.innerHTML=`<option value="">${tr('allRobotTypes')}</option>`+robotTypes.map(c=>`<option value="${c.id}">${c.names[lang]||c.names.en}</option>`).join('');
+ if([...s.options].some(o=>o.value===previous))s.value=previous;
+ if([...s.options].some(o=>o.value==='collaborative'))s.dataset.rqInitialized='1';
+}
 
 function eventStatus(e){const now=new Date();now.setHours(0,0,0,0);const end=new Date(e.end+'T23:59:59');return end>=now?'upcoming':'past'}
 function localeCode(){return {ja:'ja-JP',ko:'ko-KR',zh:'zh-CN',de:'de-DE',fr:'fr-FR',es:'es-ES',it:'it-IT',pt:'pt-BR',vi:'vi-VN',en:'en-US'}[currentLang]||'en-US'}
@@ -266,8 +272,81 @@ function populateEventFilters(){
  if(y){const current=y.value;const years=[...new Set(events.map(e=>String(e.start||'').slice(0,4)).filter(Boolean))].sort();y.innerHTML=`<option value="">${tr('eventYear')}</option>`+years.map(x=>`<option value="${x}">${x}</option>`).join('');if(years.includes(current))y.value=current;}
 }
 
-function renderMakers(){const region=document.getElementById('makerRegionFilter')?.value||'';const type=document.getElementById('makerTypeFilter')?.value||'';let list=makers[makerTab]||[];if(makerTab==='robot')list=list.filter(m=>(!region||m.region===region)&&(!type||m.types.includes(type)));else list=list.filter(m=>(!region||m.region===region));document.getElementById('makerCount').textContent=`${list.length} ${tr('makerCountLabel')}`;document.getElementById('makerGrid').innerHTML=list.map(m=>{const secondary=makerSecondary(m);return `<article class="maker-card"><div class="maker-mark">${esc(makerBrand(m))}</div><div class="maker-origin">${esc(makerOriginText(m))}</div><h3>${esc(makerPrimary(m))}</h3>${secondary?`<div class="maker-english">${esc(secondary)}</div>`:''}<p>${esc(m.series)}</p><div class="tag-row">${m.types.slice(0,4).map(t=>`<span>${esc(t)}</span>`).join('')}</div><div class="maker-status">${m.status==='official-source'?`✓ ${esc(tr('officialSource'))}`:esc(tr('directorySeed'))}</div><button class="card-btn" onclick="showMaker('${m.name.replaceAll("'","\\'")}')">${esc(tr('explore'))}</button></article>`}).join('')}
+
+const RQ_MAKER_FOCUS_COPY={
+ en:{title:'Explore collaborative robot brands worldwide',desc:'Browse manufacturers, model families and official product pages. Listings and dealer authorization are separate.',cobot:'Collaborative robots',all:'All robot makers',search:'Search brand or product series',note:'Manufacturer reference only · No stock or authorized dealer status implied',empty:'No manufacturer matches these filters.',brands:'brands'},
+ ja:{title:'世界の協働ロボットメーカーを探す',desc:'メーカー・主要シリーズ・公式製品ページを国や地域別に確認。実際の出品とは別の情報です。',cobot:'協働ロボット',all:'すべてのロボットメーカー',search:'メーカー名・シリーズ名で検索',note:'メーカー参考情報です。在庫や正規販売店資格を保証するものではありません。',empty:'条件に一致するメーカーはありません。',brands:'社'},
+ ko:{title:'전 세계 협동로봇 브랜드 살펴보기',desc:'국가별 제조사, 주요 시리즈, 공식 제품 페이지를 비교하세요. 실제 판매 매물과는 별도입니다.',cobot:'협동로봇',all:'전체 로봇 제조사',search:'브랜드 또는 제품 시리즈 검색',note:'제조사 참고 정보입니다. 판매 재고 및 공식 대리점 자격을 의미하지 않습니다.',empty:'검색 조건에 맞는 제조사가 없습니다.',brands:'개 브랜드'},
+ zh:{title:'全球协作机器人品牌目录',desc:'按国家或地区查找制造商、产品系列和官方网站。与实际商品出售分开显示。',cobot:'协作机器人',all:'所有机器人制造商',search:'搜索品牌或产品系列',note:'仅供制造商信息参考，不代表有库存或经销商授权。',empty:'没有符合筛选条件的制造商。',brands:'个品牌'},
+ de:{title:'Kollaborative Robotermarken weltweit',desc:'Hersteller, Produktreihen und offizielle Seiten nach Region durchsuchen.',cobot:'Cobots',all:'Alle Roboterhersteller',search:'Marke oder Produktreihe suchen',note:'Herstellerverzeichnis, keine Bestands- oder Händlerbestätigung.',empty:'Keine passenden Hersteller.',brands:'Marken'},
+ fr:{title:'Marques de robots collaboratifs dans le monde',desc:'Trouvez les fabricants, les gammes et les pages officielles par région.',cobot:'Robots collaboratifs',all:'Tous les fabricants',search:'Marque ou gamme de produits',note:'Annuaire de référence, sans garantie de stock ou de distributeur agréé.',empty:'Aucun fabricant ne correspond.',brands:'marques'},
+ es:{title:'Marcas de robots colaborativos del mundo',desc:'Fabricantes, gamas y páginas oficiales por región.',cobot:'Robots colaborativos',all:'Todos los fabricantes',search:'Buscar marca o serie',note:'Directorio de referencia, sin garantía de stock ni distribuidores autorizados.',empty:'No hay fabricantes coincidentes.',brands:'marcas'},
+ it:{title:'Marchi di robot collaborativi nel mondo',desc:'Produttori, serie e pagine ufficiali per area geografica.',cobot:'Robot collaborativi',all:'Tutti i produttori',search:'Cerca marchio o serie',note:'Elenco informativo, non conferma scorte o distributori autorizzati.',empty:'Nessun produttore corrispondente.',brands:'marchi'},
+ pt:{title:'Marcas globais de robôs colaborativos',desc:'Fabricantes, séries e páginas oficiais por região.',cobot:'Robôs colaborativos',all:'Todos os fabricantes',search:'Buscar marca ou série',note:'Diretório informativo, sem garantia de estoque ou revendedores autorizados.',empty:'Nenhum fabricante encontrado.',brands:'marcas'},
+ vi:{title:'Thương hiệu robot cộng tác toàn cầu',desc:'Tìm hãng, dòng sản phẩm và trang chính thức theo khu vực.',cobot:'Robot cộng tác',all:'Tất cả nhà sản xuất',search:'Tìm hãng hoặc dòng sản phẩm',note:'Danh mục tham khảo, không xác nhận hàng có sẵn hay đại lý được ủy quyền.',empty:'Không có nhà sản xuất phù hợp.',brands:'thương hiệu'}
+};
+function rqMakerUi(){return RQ_MAKER_FOCUS_COPY[currentLang]||RQ_MAKER_FOCUS_COPY.en}
+const RQ_MAKER_REGIONS=['Japan','Korea','China','Taiwan','Europe','North America','Southeast Asia','India','Australia','Middle East'];
+function renderMakers(){
+ const region=document.getElementById('makerRegionFilter')?.value||'';
+ const type=document.getElementById('makerTypeFilter')?.value||'';
+ const query=(document.getElementById('makerSearch')?.value||'').normalize('NFKC').toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);
+ const allMakers=makers[makerTab]||[];
+ let list=allMakers.filter(m=>(!region||m.region===region)&&
+  (makerTab!=='robot'||!type||(Array.isArray(m.types)&&m.types.includes(type)))&&
+  (!query.length||query.every(q=>JSON.stringify(makerSearchText(m)).normalize('NFKC').toLocaleLowerCase().includes(q))));
+ const ui=rqMakerUi();
+ const heading=document.getElementById('rqCobotTitle'),desc=document.getElementById('rqCobotDescription'),note=document.getElementById('rqMakerCatalogNote');
+ const intro=document.getElementById('rqCobotFocus'),search=document.getElementById('makerSearch');
+ if(heading)heading.textContent=ui.title;
+ if(desc)desc.textContent=ui.desc;
+ if(note)note.textContent=ui.note;
+ if(intro)intro.hidden=makerTab!=='robot';
+ if(search){search.placeholder=ui.search;search.setAttribute('aria-label',ui.search);}
+ const cobot=document.getElementById('rqCobotOnly'),other=document.getElementById('rqAllRobotMakers');
+ if(cobot){cobot.textContent=ui.cobot;cobot.setAttribute('aria-pressed',String(type==='collaborative'))}
+ if(other){other.textContent=ui.all;other.setAttribute('aria-pressed',String(type!== 'collaborative'))}
+ const counts=document.getElementById('rqMakerRegionLinks');
+ if(counts){
+  const base=allMakers.filter(m=>makerTab!=='robot'||!type||m.types?.includes(type));
+  const regions=[...RQ_MAKER_REGIONS].filter(r=>base.some(m=>m.region===r));
+  const choices=['',...regions];
+  counts.innerHTML=choices.map(r=>{
+   const number=r?base.filter(m=>m.region===r).length:base.length;
+   const text=r?regionLabel(r):tr('allRegions');
+   return `<button type="button" data-rq-maker-region="${esc(r)}" aria-pressed="${String(region===r)}">${esc(text)} <span>${number}</span></button>`;
+  }).join('');
+ }
+ const count=document.getElementById('makerCount');
+ if(count)count.textContent=`${list.length} / ${allMakers.length} ${ui.brands}`;
+ const grid=document.getElementById('makerGrid');if(!grid)return;
+ if(makerTab==='robot'){
+  const order=new Map(RQ_MAKER_REGIONS.map((x,i)=>[x,i]));
+  list=list.slice().sort((a,b)=>(order.get(a.region)??999)-(order.get(b.region)??999)||a.name.localeCompare(b.name));
+ }
+ let lastRegion='',html='';
+ const regionCounts=Object.fromEntries([...new Set(list.map(m=>m.region))].map(r=>[r,list.filter(m=>m.region===r).length]));
+ for(const m of list){
+  if(makerTab==='robot'&&!region&&lastRegion!==m.region){
+   lastRegion=m.region;
+   html+=`<h3 class="rq-maker-region-heading">${esc(regionLabel(m.region)||m.region)} <small>${regionCounts[m.region]}</small></h3>`;
+  }
+  const secondary=makerSecondary(m);
+  const makerUrl=/^https:\/\//i.test(m.url||'')?m.url:'';
+  const officialLink=makerUrl?`<a class="rq-maker-official-link" href="${esc(makerUrl)}" target="_blank" rel="noopener noreferrer">${esc(currentLang==='ja'?'メーカー公式サイト':currentLang==='ko'?'제조사 공식 사이트':'Manufacturer website')} ↗</a>`:'';
+  html+=`<article class="maker-card"><div class="maker-mark">${esc(makerBrand(m))}</div><div class="maker-origin">${esc(makerOriginText(m))}</div><h3>${esc(makerPrimary(m))}</h3>${secondary?`<div class="maker-english">${esc(secondary)}</div>`:''}<p>${esc(m.series)}</p><div class="tag-row">${(m.types||[]).slice(0,4).map(t=>`<span>${esc(t)}</span>`).join('')}</div><div class="maker-status">${m.status==='official-source'?`✓ ${esc(tr('officialSource'))}`:esc(tr('directorySeed'))}</div><button class="card-btn" onclick="showMaker('${m.name.replaceAll("'","\\'")}')">${esc(tr('explore'))}</button>${officialLink}</article>`;
+ }
+ grid.innerHTML=html||`<p class="rq-maker-empty">${esc(ui.empty)}</p>`;
+}
 ['makerRegionFilter','makerTypeFilter'].forEach(id=>document.getElementById(id)?.addEventListener('change',renderMakers));
+document.getElementById('makerSearch')?.addEventListener('input',renderMakers);
+document.getElementById('rqCobotOnly')?.addEventListener('click',()=>{const s=document.getElementById('makerTypeFilter');if(s){s.value='collaborative';renderMakers()}});
+document.getElementById('rqAllRobotMakers')?.addEventListener('click',()=>{const s=document.getElementById('makerTypeFilter');if(s){s.value='';renderMakers()}});
+document.getElementById('rqMakerRegionLinks')?.addEventListener('click',e=>{
+ const button=e.target.closest('button[data-rq-maker-region]');if(!button)return;
+ const sel=document.getElementById('makerRegionFilter');if(sel){sel.value=button.dataset.rqMakerRegion;renderMakers()}
+});
+
 document.querySelectorAll('[data-maker-tab]').forEach(b=>b.addEventListener('click',()=>{makerTab=b.dataset.makerTab;document.querySelectorAll('[data-maker-tab]').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById('makerTypeFilter').disabled=makerTab==='eoat';renderMakers()}));
 window.showMaker=function(name){const m=(makers.robot||[]).concat(makers.eoat||[]).find(x=>x.name===name);if(!m)return;const secondary=makerSecondary(m);openModal(`<div class="kicker">${esc(tr('navMakers'))}</div><h2>${esc(makerPrimary(m))}</h2>${secondary?`<p class="maker-modal-en">${esc(secondary)}</p>`:''}<p>${esc(m.series)}</p><div class="tag-row"><span>${esc(makerOriginText(m))}</span>${m.types.map(t=>`<span>${esc(t)}</span>`).join('')}</div><p>${m.status==='official-source'?esc(tr('officialSource')):esc(tr('directorySeed'))}</p><p>${esc(tr('dealerRule'))}</p><div class="modal-actions"><button class="secondary" onclick="closeModal()">${esc(tr('close'))}</button><button class="primary" onclick="openAuth('maker','${m.name.replaceAll("'","\\'")}')">${esc(tr('requestQuote'))}</button></div>`)}
 function renderNetwork(){const box=document.getElementById('networkGrid');if(!box)return;box.innerHTML=regionalNetwork.map(n=>`<article class="network-card"><div class="network-top"><strong>${esc(n.country)}</strong><span>${esc(n.status)}</span></div><h3>${esc(n.name)}</h3><p>${esc(n.type)} · ${esc(n.region)}</p><div class="tag-row">${(n.makers||n.skills||[]).map(m=>`<span>${esc(m)}</span>`).join('')}</div><button class="card-btn main" onclick="openAuth('company','${n.name.replaceAll("'","\\'")}')">${tr('requestQuote')}</button></article>`).join('')}
