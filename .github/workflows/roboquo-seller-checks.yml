@@ -19,7 +19,7 @@ permissions:
 jobs:
   seller-regressions:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 12
     steps:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
@@ -40,3 +40,8 @@ jobs:
         run: node tests/preview-isolation-regression.cjs
       - name: Test buyer inquiry fallback
         run: node tests/buyer-inquiry-regression.cjs
+
+      - name: Browser smoke test (fixtures only; no production API writes)
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          node tests/browser-marketplace-smoke.cjs
