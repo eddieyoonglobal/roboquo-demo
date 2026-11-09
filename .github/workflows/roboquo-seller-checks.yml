@@ -1,0 +1,102 @@
+name: RoboQuo seller marketplace checks
+on:
+  push:
+    branches:
+      - codex/roboquo-marketplace-fixes-20261109
+  pull_request:
+    paths:
+      - 'app.js'
+      - 'auth.js'
+      - 'seller-backend.js'
+      - 'v24.js'
+      - 'supabase-config.js'
+      - 'tests/**'
+      - '.github/workflows/roboquo-seller-checks.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  seller-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.js
+          node --check auth.js
+          node --check seller-backend.js
+          node --check v24.js
+          node --check supabase-config.js
+          node --check marketplace-v2.js
+      - name: Test seller submission and market state
+        run: node tests/seller-marketplace-regression.cjs
+      - name: Test transaction integrity and auth return URL
+        run: node tests/transaction-integrity-regression.cjs
+      - name: Test published listings and signed photo refresh
+        run: node tests/published-listing-resilience.cjs
+      - name: Test Preview database isolation
+        run: node tests/preview-isolation-regression.cjs
+      - name: Test buyer inquiry fallback
+        run: node tests/buyer-inquiry-regression.cjs
+
+      - name: Browser smoke test (fixtures only; no production API writes)
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          node tests/browser-marketplace-smoke.cjs
+
+      - name: Attach fixture-only browser screenshots
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # upload-artifact v4
+        with:
+          name: roboquo-browser-preview
+          path: test-artifacts/*.png
+          if-no-files-found: ignore
+          retention-days: 7
+
+  postgres-schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ci-only-password
+          POSTGRES_DB: roboquo_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d roboquo_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: ci-only-password
+      PGDATABASE: roboquo_test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Ensure PostgreSQL client
+        run: command -v psql || (sudo apt-get update && sudo apt-get install -y postgresql-client)
+      - name: Bootstrap isolated Supabase roles and storage
+        run: psql -v ON_ERROR_STOP=1 -f tests/pg-supabase-bootstrap.sql
+      - name: Apply production-equivalent seller schema in isolation
+        run: psql -v ON_ERROR_STOP=1 -f database/004_seller_marketplace.sql
+      - name: Apply draft-only seller moderation hardening in isolation
+        run: psql -v ON_ERROR_STOP=1 -f database/005_seller_moderation_integrity.sql
+      - name: Apply real classifieds schema and private conversations
+        run: psql -v ON_ERROR_STOP=1 -f database/006_real_classifieds_marketplace.sql
+      - name: Test anonymous catalog, seller moderation and photo policies
+        run: psql -v ON_ERROR_STOP=1 -f tests/pg-seller-marketplace-smoke.sql
+      - name: Test real parts listing and private buyer-seller messages
+        run: psql -v ON_ERROR_STOP=1 -f tests/pg-real-classifieds-trade.sql

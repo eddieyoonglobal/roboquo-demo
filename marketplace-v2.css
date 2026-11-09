@@ -1,0 +1,73 @@
+/* RoboQuo real classifieds — lightweight responsive marketplace */
+#robots .page-head {align-items:center}
+.rq-market-subtitle{max-width:1100px;margin:0 auto 12px;color:var(--muted,#64748b);padding:0 22px;font-size:13px}
+.rq-market-chips{display:flex;gap:9px;overflow-x:auto;max-width:1200px;margin:16px auto;padding:4px 22px 18px;scrollbar-width:thin}
+.rq-market-chips button{flex:0 0 auto;border:1px solid #d5dae3;color:#475569;background:#fff;border-radius:99px;padding:10px 17px;font-size:13px;font-weight:700;cursor:pointer}
+.rq-market-chips button.active,.rq-market-chips button:hover{background:#172d52;border-color:#172d52;color:white}
+#robots #applicationFilter[hidden]{display:none!important}
+#robots .market-toolbar{margin-top:2px}
+#robots .listing-grid.market{grid-template-columns:repeat(auto-fill,minmax(245px,1fr));align-items:stretch}
+#homeListings,#featuredCommerceGrid{align-items:stretch}
+.rq-market-empty{grid-column:1/-1;display:flex;align-items:center;flex-direction:column;justify-content:center;gap:11px;text-align:center;padding:55px 20px;border:1px dashed #c7d0db;background:#fafbfe;border-radius:16px;width:100%}
+.rq-market-empty h3{margin:0;color:#192b43;font-size:20px}
+.rq-market-empty p{margin:0 0 8px;color:#68788c;font-size:14px;max-width:480px;line-height:1.65}
+.rq-market-empty .primary{cursor:pointer}
+#rqMarketInboxBtn{white-space:nowrap}
+.rq-classifieds-modal{max-width:720px;margin:0 auto;padding:8px 3px 16px;text-align:left;color:#1f2937}
+.rq-classifieds-modal h2{font-size:24px;line-height:1.35;margin:0 0 10px}
+.rq-classifieds-modal p{line-height:1.6}
+.rq-cl-head p{margin:0 0 22px;color:#64748b}
+.rq-classifieds-form{display:flex;flex-direction:column;gap:17px}
+.rq-cl-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.rq-cl-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.rq-cl-field span{font-size:13px;font-weight:700;color:#34455c}
+.rq-cl-field input,.rq-cl-field select,.rq-cl-field textarea,.rq-cl-reply textarea{width:100%;min-height:43px;padding:11px 12px;border-radius:9px;border:1px solid #cdd5df;background:white;color:#172334;font:inherit;box-sizing:border-box}
+.rq-cl-field textarea,.rq-cl-reply textarea{line-height:1.6;resize:vertical}
+.rq-cl-field input:focus-visible,.rq-cl-field select:focus-visible,.rq-cl-field textarea:focus-visible{outline:2px solid #1764e8;outline-offset:1px}
+.rq-cl-pictures{padding:15px;border:1px dashed #aebbd0;background:#f8faff;border-radius:12px}
+.rq-cl-pictures>label{display:flex;flex-direction:column;font-size:13px;font-weight:700;gap:10px}
+.rq-cl-pictures input{max-width:100%;font:inherit;color:#34455c}
+.rq-cl-pictures-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:12px}
+.rq-cl-pictures-grid img{width:100%;height:96px;border-radius:9px;object-fit:cover;background:#e2e8f0}
+.rq-cl-consent{display:flex;align-items:flex-start;gap:9px;font-size:12px;color:#556479;line-height:1.6}
+.rq-cl-consent input{margin-top:4px}
+.rq-cl-disclaimer{padding:11px 13px;background:#f0f4f8;border-radius:9px;font-size:12px;color:#4c627c}
+.rq-cl-actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:3px}
+.rq-cl-actions button{min-height:42px;padding:8px 17px}
+#rqClStatus:not(:empty){border-left:3px solid #e5a400;padding:10px 12px;background:#fffbeb;font-size:13px;color:#794e00}
+.rq-cl-thread{display:flex;flex-direction:column;gap:15px;min-width:260px}
+.rq-cl-messages{display:flex;flex-direction:column;gap:11px;max-height:420px;overflow:auto;padding:14px;background:#f3f6fb;border-radius:12px}
+.rq-cl-bubble{align-self:flex-start;max-width:80%;padding:12px 15px;background:#fff;border:1px solid #dbe3ec;border-radius:13px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px}
+.rq-cl-bubble.mine{align-self:flex-end;background:#e6efff;border-color:#b8cef7}
+.rq-cl-bubble small{display:block;margin-top:9px;color:#748397;font-size:10px}
+.rq-cl-reply{display:flex;flex-direction:column;gap:9px}
+.rq-cl-reply button{align-self:flex-end}
+.rq-cl-thread-link{display:flex;width:100%;align-items:center;justify-content:space-between;gap:14px;border:1px solid #e1e6ed;background:#fff;padding:16px;text-align:left;border-radius:10px;margin-bottom:8px;cursor:pointer;color:#1d2e46}
+.rq-cl-thread-link:hover{background:#f5f8fc;border-color:#9eb7de}
+.rq-cl-thread-link small{font-size:11px;color:#8291a6}
+#rqClInbox{max-height:450px;overflow:auto;margin-top:18px}
+@media(max-width:720px){.rq-cl-columns{grid-template-columns:1fr}.rq-classifieds-modal h2{font-size:21px}.rq-cl-pictures-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.rq-cl-pictures-grid img{height:84px}.rq-market-chips{padding:2px 13px 13px}.rq-market-subtitle{padding:0 15px}#rqMarketInboxBtn{font-size:12px;padding:8px 10px}}
+
+/* Simple classifieds navigation and search — three decisions only */
+body,button,input,select,textarea{
+  font-family:"Noto Sans JP","Yu Gothic","Hiragino Kaku Gothic ProN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+#robots .market-toolbar{display:grid;grid-template-columns:minmax(210px,2fr) minmax(130px,1fr) minmax(130px,1fr);gap:12px;align-items:stretch}
+#robots .market-toolbar #categoryFilter,
+#robots .market-toolbar #applicationFilter{display:none!important}
+#robots .market-toolbar #countryFilter,
+#robots .market-toolbar #conditionFilter{display:block;min-width:0;width:100%;min-height:46px;border:1px solid #d5dce6;border-radius:10px;background:#fff;padding:8px 12px;color:#26374e;font-weight:600}
+#robots .market-toolbar .search-field{min-width:0}
+#robots .market-toolbar .search-field input{min-width:0;width:100%}
+.desktop-nav>button[data-action="sell"]{background:transparent;border:0;color:inherit;font-size:inherit;font-weight:inherit;padding:0;cursor:pointer}
+.desktop-nav>button[data-action="sell"]:hover{color:#1764e8}
+.rq-product-description{margin:12px 0;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7;font-size:14px;color:#445269}
+.rq-classifieds-modal .rq-cl-field select{cursor:pointer}
+.rq-classifieds-modal .rq-cl-currency-hint{font-size:11px;color:#7c889c}
+@media(max-width:720px){
+ #robots .market-toolbar{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding-inline:13px}
+ #robots .market-toolbar .search-field{grid-column:1/-1}
+ #robots .market-toolbar #countryFilter,#robots .market-toolbar #conditionFilter{font-size:13px;min-height:42px}
+ .rq-market-chips{margin-top:8px}
+ .mobile-nav{justify-content:space-around}
+}

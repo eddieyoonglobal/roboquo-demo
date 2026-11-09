@@ -14,6 +14,9 @@
     vi:{demoBadge:'DEMO',demoAction:'Xem bản demo',demoListing:'Tin minh họa — không phải hàng đang bán',demoMarketTitle:'Chợ giao dịch bản mẫu',demoMarketBody:'Thẻ DEMO dùng sản phẩm, giá và người bán minh họa. Tin từ cơ sở dữ liệu trực tiếp được hiển thị riêng.',demoFeaturedTitle:'Ví dụ tin đăng robot',sellerUnverified:'Người bán chưa xác minh',photosUploaded:'Đã tải ảnh'}
   };
   Object.keys(V24_4).forEach(k=>Object.assign(V24[k],V24_4[k]));
+  // Transaction copy is intentionally conservative: payment/escrow are not implemented.
+  const SAFE_TRANSACTION_COPY={"en":{"trust3":"Payment methods not enabled yet","buyNowEligible":"Purchase inquiry available","buyNow":"Ask to purchase","checkout":"Payment information","requestInvoice":"Invoice information","checkoutTitle":"Online payments are not enabled","checkoutBody":"RoboQuo does not currently charge payments, reserve inventory, issue invoices or provide escrow. Confirm price, fees and delivery with the seller.","cartPageDesc":"Choose listings to compare or discuss. No order or payment is placed here.","conditionUnverified":"Operating condition not verified","operatingInUse":"In use (seller reported)","operatingStored":"Stored (seller reported)","paymentNotEnabled":"Payment not enabled","shippingUnverified":"Shipping terms unconfirmed","indicativeTotal":"Indicative listing subtotal","contactRoboquo":"Chat with seller","contactExplanation":"Buyer inquiries are not yet sent through the website. Open an email draft addressed to RoboQuo sales and send it yourself; the listing reference is included.","openEmail":"Open email draft","listingReference":"Listing reference","makeOffer":"Ask / make offer"},"ja":{"trust3":"オンライン決済は未対応","buyNowEligible":"購入について問い合わせ","buyNow":"購入を問い合わせる","checkout":"決済状況のご案内","requestInvoice":"請求書のご案内","checkoutTitle":"オンライン決済は未対応です","checkoutBody":"RoboQuoでは現在、決済・在庫確保・請求書発行・エスクローは行っていません。価格・手数料・配送条件は販売者にご確認ください。","cartPageDesc":"商品情報の確認用です。ここでは注文・決済は確定しません。","conditionUnverified":"稼働状態未確認","operatingInUse":"稼働中（出品者申告）","operatingStored":"保管中（出品者申告）","paymentNotEnabled":"オンライン決済未対応","shippingUnverified":"配送条件未確認","indicativeTotal":"掲載価格の参考合計","contactRoboquo":"出品者にチャット","contactExplanation":"サイト内での問い合わせ送信はまだ利用できません。出品番号入りのメール下書きを開き、ご自身で送信してください。","openEmail":"メール下書きを開く","listingReference":"出品番号","makeOffer":"価格相談・交渉"},"ko":{"trust3":"온라인 결제는 준비 중입니다","buyNowEligible":"구매 문의 가능","buyNow":"구매 문의","checkout":"결제 안내","requestInvoice":"인보이스 안내","checkoutTitle":"온라인 결제를 지원하지 않습니다","checkoutBody":"현재 RoboQuo에서는 결제·재고 예약·인보이스 발행·에스크로를 제공하지 않습니다. 실제 가격·수수료·배송 조건은 판매자와 확인해야 합니다.","cartPageDesc":"선택한 상품을 검토하는 화면입니다. 여기서 주문·결제가 확정되지 않습니다.","conditionUnverified":"작동 상태 미확인","operatingInUse":"사용 중(판매자 신고)","operatingStored":"보관 중(판매자 신고)","paymentNotEnabled":"온라인 결제 미지원","shippingUnverified":"배송 조건 미확인","indicativeTotal":"상품 표시가격 참고 합계","contactRoboquo":"판매자 채팅","contactExplanation":"사이트에서 문의가 자동 접수되지는 않습니다. 매물 번호가 포함된 이메일 초안을 열어 직접 보내주세요.","openEmail":"이메일 초안 열기","listingReference":"매물 번호","makeOffer":"가격 제안·문의"},"zh":{"trust3":"暂不支持在线支付","buyNowEligible":"可咨询购买","buyNow":"咨询购买","checkout":"支付说明","requestInvoice":"发票说明","checkoutTitle":"暂不支持在线支付","checkoutBody":"RoboQuo目前不处理付款、库存预留、发票或托管。请与卖家确认价格、费用和物流。","cartPageDesc":"此处仅供核对商品，不会完成订单或付款。","conditionUnverified":"运行状态未核实","operatingInUse":"使用中（卖家申报）","operatingStored":"存放中（卖家申报）","paymentNotEnabled":"暂不支持在线支付","shippingUnverified":"物流条款未确认","indicativeTotal":"商品标价参考合计","contactRoboquo":"联系卖家","contactExplanation":"网站尚不能自动发送询问。请打开包含商品编号的邮件草稿并自行发送。","openEmail":"打开邮件草稿","listingReference":"商品编号","makeOffer":"询价 / 议价"},"de":{"trust3":"Online-Zahlungen noch nicht verfügbar","buyNowEligible":"Kaufanfrage möglich","buyNow":"Kauf anfragen","checkout":"Zahlungsinfo","requestInvoice":"Rechnungsinfo","checkoutTitle":"Online-Zahlung nicht verfügbar","checkoutBody":"RoboQuo verarbeitet derzeit keine Zahlungen, Reservierungen, Rechnungen oder Treuhandzahlungen. Preise, Gebühren und Versand direkt mit dem Anbieter klären.","cartPageDesc":"Nur zur Prüfung; hier wird keine Bestellung oder Zahlung ausgelöst.","conditionUnverified":"Betriebszustand ungeprüft","operatingInUse":"Im Einsatz (Verkäuferangabe)","operatingStored":"Eingelagert (Verkäuferangabe)","paymentNotEnabled":"Zahlung nicht verfügbar","shippingUnverified":"Versandbedingungen offen","indicativeTotal":"Unverbindliche Preissumme","contactRoboquo":"Verkäufer kontaktieren","contactExplanation":"Anfragen werden noch nicht über die Website versendet. Öffnen und versenden Sie den E-Mail-Entwurf selbst; die Angebotsnummer ist enthalten.","openEmail":"E-Mail-Entwurf öffnen","listingReference":"Anzeigenreferenz","makeOffer":"Preis anfragen"},"fr":{"trust3":"Paiement en ligne indisponible","buyNowEligible":"Demande d'achat possible","buyNow":"Demander l'achat","checkout":"Infos paiement","requestInvoice":"Infos facture","checkoutTitle":"Paiement en ligne indisponible","checkoutBody":"RoboQuo ne traite pas encore les paiements, réservations, factures ou séquestres. Confirmez prix, frais et livraison avec le vendeur.","cartPageDesc":"Écran de consultation : aucune commande ni paiement n'est effectué.","conditionUnverified":"État de fonctionnement non vérifié","operatingInUse":"En service (déclaré par le vendeur)","operatingStored":"Stocké (déclaré par le vendeur)","paymentNotEnabled":"Paiement indisponible","shippingUnverified":"Livraison à confirmer","indicativeTotal":"Sous-total indicatif","contactRoboquo":"Contacter le vendeur","contactExplanation":"Le site n'envoie pas encore les demandes. Ouvrez le brouillon avec la référence de l'annonce puis envoyez-le vous-même.","openEmail":"Ouvrir le brouillon","listingReference":"Référence de l'annonce","makeOffer":"Faire une offre"},"es":{"trust3":"Pago en línea aún no disponible","buyNowEligible":"Consulta de compra disponible","buyNow":"Consultar compra","checkout":"Información de pago","requestInvoice":"Información de factura","checkoutTitle":"Pago en línea no disponible","checkoutBody":"RoboQuo no procesa pagos, reservas, facturas ni depósitos en garantía. Confirma precio, cargos y envío con el vendedor.","cartPageDesc":"Solo para consultar; no se realiza pedido ni pago.","conditionUnverified":"Estado operativo sin verificar","operatingInUse":"En uso (según vendedor)","operatingStored":"Almacenado (según vendedor)","paymentNotEnabled":"Pago no disponible","shippingUnverified":"Envío por confirmar","indicativeTotal":"Subtotal orientativo","contactRoboquo":"Chatear con vendedor","contactExplanation":"El sitio aún no envía consultas. Abre el borrador con la referencia del anuncio y envíalo tú mismo.","openEmail":"Abrir borrador","listingReference":"Referencia del anuncio","makeOffer":"Consultar precio"},"it":{"trust3":"Pagamento online non disponibile","buyNowEligible":"Richiesta d'acquisto disponibile","buyNow":"Richiedi acquisto","checkout":"Info pagamento","requestInvoice":"Info fattura","checkoutTitle":"Pagamento online non disponibile","checkoutBody":"RoboQuo non gestisce pagamenti, prenotazioni, fatture o depositi vincolati. Verifica prezzo, costi e spedizione con il venditore.","cartPageDesc":"Solo anteprima: nessun ordine o pagamento viene effettuato.","conditionUnverified":"Stato operativo non verificato","operatingInUse":"In uso (dichiarato dal venditore)","operatingStored":"In deposito (dichiarato dal venditore)","paymentNotEnabled":"Pagamento non disponibile","shippingUnverified":"Spedizione da confermare","indicativeTotal":"Subtotale indicativo","contactRoboquo":"Contatta venditore","contactExplanation":"Il sito non invia ancora richieste. Apri la bozza con il riferimento dell'annuncio e inviala personalmente.","openEmail":"Apri bozza email","listingReference":"Riferimento annuncio","makeOffer":"Chiedi un prezzo"},"pt":{"trust3":"Pagamento online indisponível","buyNowEligible":"Consulta de compra disponível","buyNow":"Consultar compra","checkout":"Informações de pagamento","requestInvoice":"Informações de fatura","checkoutTitle":"Pagamento online indisponível","checkoutBody":"A RoboQuo ainda não processa pagamentos, reservas, faturas ou custódia. Confirme preço, taxas e frete com o vendedor.","cartPageDesc":"Apenas para análise; nenhum pedido ou pagamento é realizado.","conditionUnverified":"Condição operacional não verificada","operatingInUse":"Em uso (informado pelo vendedor)","operatingStored":"Armazenado (informado pelo vendedor)","paymentNotEnabled":"Pagamento indisponível","shippingUnverified":"Frete a confirmar","indicativeTotal":"Subtotal indicativo","contactRoboquo":"Falar com vendedor","contactExplanation":"O site ainda não envia consultas. Abra o rascunho com a referência do anúncio e envie você mesmo.","openEmail":"Abrir rascunho","listingReference":"Referência do anúncio","makeOffer":"Consultar preço"},"vi":{"trust3":"Chưa hỗ trợ thanh toán trực tuyến","buyNowEligible":"Có thể hỏi mua","buyNow":"Liên hệ mua","checkout":"Thông tin thanh toán","requestInvoice":"Thông tin hóa đơn","checkoutTitle":"Chưa hỗ trợ thanh toán trực tuyến","checkoutBody":"RoboQuo hiện chưa xử lý thanh toán, giữ hàng, xuất hóa đơn hay ký quỹ. Hãy xác nhận giá, phí và vận chuyển với người bán.","cartPageDesc":"Chỉ để xem lại sản phẩm; chưa đặt hàng hoặc thanh toán.","conditionUnverified":"Chưa xác minh tình trạng vận hành","operatingInUse":"Đang sử dụng (theo người bán)","operatingStored":"Đang lưu kho (theo người bán)","paymentNotEnabled":"Chưa hỗ trợ thanh toán","shippingUnverified":"Chưa xác nhận vận chuyển","indicativeTotal":"Tạm tính giá niêm yết","contactRoboquo":"Nhắn người bán","contactExplanation":"Trang web chưa tự gửi yêu cầu. Hãy mở bản nháp email có mã tin đăng và tự gửi.","openEmail":"Mở bản nháp email","listingReference":"Mã tin đăng","makeOffer":"Hỏi giá"}};
+  Object.keys(SAFE_TRANSACTION_COPY).forEach(k=>Object.assign(V24[k],SAFE_TRANSACTION_COPY[k]));
   const FALLBACK='en';
   const STORAGE='rqCartV24';
   const $=(s,r=document)=>r.querySelector(s);
@@ -26,7 +29,7 @@
   const cart = () => JSON.parse(localStorage.getItem(STORAGE)||'[]');
   const saveCart = (items) => { localStorage.setItem(STORAGE, JSON.stringify(items)); updateCartCount(); renderCartPage(); };
   const inCart = (id) => cart().includes(String(id));
-  function formatPrice(r){ const price=Number(r.price);if(!Number.isFinite(price)||price<=0)return tx('toBeCalculated');return typeof yen==='function'?yen(price):'¥'+price.toLocaleString(); }
+  function formatPrice(r){ const price=Number(r.price);if(!Number.isFinite(price)||price<=0)return tx('toBeCalculated');const currency=['JPY','KRW','CNY','USD','EUR'].includes(r.currency)?r.currency:'JPY';const prefix={JPY:'¥',KRW:'₩',CNY:'CN¥',USD:'US$',EUR:'€'}[currency];return prefix+price.toLocaleString('en-US',{maximumFractionDigits:2}); }
   function saleLabel(r){ const fixed=r.sale!=='bid'; return fixed ? (typeof tr==='function'?tr('fixedPrice'):tx('fixedPriceListing')) : (typeof tr==='function'?tr('bidding'):tx('privateOfferFlow')); }
   function displayCountry(c){ try{return typeof countryLabel==='function'?countryLabel(c):(c||tx('global'));}catch{return c||tx('global');} }
   function displayTag(t){ try{ const rt=(typeof robotTypes!=='undefined'?robotTypes:[]).find(x=>x.id===t); if(rt)return rt.names?.[lang()]||rt.names?.en||t; const ap=(typeof applications!=='undefined'?applications:[]).find(x=>x.id===t); if(ap)return ap.names?.[lang()]||ap.names?.en||t; }catch(e){} return t; }
@@ -66,9 +69,10 @@
 
   function ensureCartButton(){
     let btn=$('.header-actions > .cart-btn');
-    if(!btn){btn=document.createElement('button');btn.className='cart-btn';btn.addEventListener('click',()=>route('cart'));$('.header-actions')?.insertBefore(btn,$('.header-actions').firstElementChild);}
-    btn.setAttribute('aria-label',tx('cart'));
-    btn.innerHTML=`<span aria-hidden="true">🛒</span> <span>${tx('cart')}</span> <span class="cart-count">${cart().map(findListing).filter(r=>r&&!isDemo(r)).length}</span>`;
+    if(!btn){btn=document.createElement('button');btn.className='cart-btn';btn.addEventListener('click',()=>window.rqOpenMarketInbox?window.rqOpenMarketInbox():route('robots'));$('.header-actions')?.insertBefore(btn,$('.header-actions').firstElementChild);}
+    const messageLabel=lang()==='ko'?'내 채팅':lang()==='ja'?'メッセージ':'Messages';
+    btn.setAttribute('aria-label',messageLabel);
+    btn.innerHTML=`<span aria-hidden="true">💬</span> <span>${messageLabel}</span>`;
   }
 
   function enhanceAccessibility(){
@@ -79,31 +83,33 @@
   }
 
   function patchNav(){
+    const locale=lang();
+    const navCopy={
+      ko:{find:'상품 찾기',post:'상품 등록',help:'이용 안내',chat:'채팅'},
+      ja:{find:'商品を探す',post:'出品する',help:'ご利用ガイド',chat:'チャット'},
+      en:{find:'Browse items',post:'Post an item',help:'How it works',chat:'Messages'}
+    };
+    const copy=navCopy[locale]||navCopy.en;
     const nav=$('.desktop-nav');
     if(nav){
       nav.innerHTML=`
-        <a data-route="robots" href="#robots">${navLabel('robots')}</a>
-        <a data-route="categories" href="#categories">${navLabel('categories')}</a>
-        <a data-route="projects" href="#projects">${navLabel('projects')}</a>
-        <a data-route="companies" href="#companies">${navLabel('companies')}</a>
-        <a data-route="events" href="#events">${navLabel('events')}</a>
-        <a href="/software/?lang=${['en','ja','ko'].includes(lang())?lang():'en'}">${lang()==='ja'?'ソフトウェア':lang()==='ko'?'소프트웨어':'Software'}</a>
-        <a data-route="about" href="#about">About</a>`;
+        <a data-route="robots" href="#robots">${copy.find}</a>
+        <button type="button" data-action="sell">${copy.post}</button>
+        <a data-route="about" href="#about">${copy.help}</a>`;
       $$('[data-route]',nav).forEach(a=>a.addEventListener('click',e=>{e.preventDefault();route(a.dataset.route)}));
+      const post=$('[data-action="sell"]',nav);if(post){post.dataset.v24sell='1';post.addEventListener('click',()=>window.rqStartSell?.());}
     }
     const mobile=$('.mobile-nav');
     if(mobile){
       mobile.innerHTML=`
-        <button aria-label="${escHtml(typeof tr==='function'?tr('home'):'Home')}" data-route="home"><span aria-hidden="true">⌂</span><small>${typeof tr==='function'?tr('home'):'Home'}</small></button>
-        <button aria-label="${escHtml(tx('buy'))}" data-route="robots"><span aria-hidden="true">⌕</span><small>${tx('buy')}</small></button>
-        <button aria-label="${escHtml(tx('sell'))}" class="sell-mobile" data-action="sell"><span aria-hidden="true">＋</span><small>${tx('sell')}</small></button>
-        <button aria-label="${escHtml(tx('cart'))}" data-route="cart"><span aria-hidden="true">🛒</span><small>${tx('cart')}</small></button>
-        <button aria-label="${escHtml(tx('events'))}" data-route="events"><span aria-hidden="true">◷</span><small>${tx('events')}</small></button>`;
+        <button data-route="robots" aria-label="${copy.find}"><span aria-hidden="true">⌕</span><small>${copy.find}</small></button>
+        <button class="sell-mobile" data-action="sell" aria-label="${copy.post}"><span aria-hidden="true">＋</span><small>${copy.post}</small></button>
+        <button class="rq-mobile-messages" aria-label="${copy.chat}"><span aria-hidden="true">💬</span><small>${copy.chat}</small></button>`;
       $$('[data-route]',mobile).forEach(a=>a.addEventListener('click',()=>route(a.dataset.route)));
-      $('[data-action="sell"]',mobile)?.addEventListener('click',()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow()));
+      const post=$('[data-action="sell"]',mobile);if(post){post.dataset.v24sell='1';post.addEventListener('click',()=>window.rqStartSell?.());}
+      $('.rq-mobile-messages',mobile)?.addEventListener('click',()=>window.rqOpenMarketInbox?.());
     }
   }
-
   function patchHero(){
     const title=$('#home .hero-copy h1'); if(title) title.innerHTML='Robots.<br><span>Ready to trade.</span>'; // Brand headline stays English in every locale
     const lead=$('#home .local-headline'); if(lead) lead.textContent=tx('heroLead');
@@ -297,16 +303,24 @@
   }
 
   function patchRobotsPage(){
-    const head=$('#robots .page-head h1'); if(head) head.textContent=tx('marketPageTitle');
-    const desc=$('#robots .page-head p'); if(desc) desc.textContent=tx('marketPageDesc');
+    const titles={ko:'로봇·부품 마켓',ja:'ロボット・部品マーケット',en:'Robots & parts marketplace'};
+    const head=$('#robots .page-head h1'); if(head) head.textContent=titles[lang()]||titles.en;
+    const descriptions={ko:'신품·중고를 사진으로 보고, 판매자와 바로 채팅하세요.',ja:'新品も中古も、写真で探して出品者に直接チャット。',en:'New or used. Browse photos and chat with sellers.'};
+    const desc=$('#robots .page-head p'); if(desc) desc.textContent=descriptions[lang()]||descriptions.en;
     let note=$('#robots .v24-market-note');
     if(!note){
       note=document.createElement('div');
       note.className='v24-market-note';
       $('#robots .market-toolbar')?.insertAdjacentElement('afterend', note);
     }
-    const hasLive=all().some(r=>r._source==='supabase');
-    note.innerHTML=`<div><strong>${hasLive?tx('marketNoticeTitle'):tx('demoMarketTitle')}</strong><p>${hasLive?tx('marketNoticeBody'):tx('demoMarketBody')}</p></div><button class="secondary" data-action="sell">${tx('heroSecondary')}</button>`;
+    const hasLive=all().some(r=>r._source==='seller-supabase');
+    const msg={
+      ko:['신품·중고 로봇·부품 거래','실제 판매자가 올린 상품만 표시합니다. 채팅으로 거래 조건을 확인하세요.'],
+      ja:['新品・中古ロボット・部品','実際の出品のみ表示します。取引条件は出品者とのチャットで確認。'],
+      en:['New & used robots and parts','Only seller-posted listings. Confirm item details and terms in chat.']
+    };
+    const copy=msg[lang()]||msg.en;
+    note.innerHTML=`<div><strong>${copy[0]}</strong><p>${copy[1]}</p></div><button class="secondary" data-action="sell">${tx('heroSecondary')}</button>`;
     $('[data-action="sell"]', note)?.addEventListener('click',()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow()));
   }
 
@@ -315,15 +329,15 @@
     const title=[r.brand,r.model].filter(Boolean).join(' ')||tx('usedRobot');
     const localDemo=r._source==='local-demo';
     const openAction=escHtml(`rqOpenProduct(${JSON.stringify(id)})`);
-    const askAction=escHtml(`openAuth('inquiry',${JSON.stringify(title)})`);
-    const buyAction=escHtml(fixed?`rqBuyNow(${JSON.stringify(id)})`:`openAuth('bid',${JSON.stringify(title)})`);
+    const askAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},'question')`);
+    const buyAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},${fixed?"'purchase'":"'offer'"})`);
     const cartAction=escHtml(fixed?`rqAddToCart(${JSON.stringify(id)})`:`rqOpenProduct(${JSON.stringify(id)})`);
-    const meta=[r.year, r.payload, r.location].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
-    const tags=[displayTag(r.cat), ...(r.apps||[]).map(displayTag)].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
+    const meta=[r.year, r.payload==='—'?'':r.payload, r.location].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
+    const tags=[(categoryCopy()[r.itemCategory]||displayTag(r.cat)), ...(r.apps||[]).map(displayTag)].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
     const photoVisual=r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}" loading="lazy">`:robotSvg(r);
     return `<article class="v24-listing-card">
       <button aria-label="${escHtml(title)}" class="v24-photo v24-photo-button ${r.photoUrl?'has-uploaded-photo':''}" onclick="${openAction}" type="button" ${r.photoKey?`data-rq-photo-alt="${escHtml(title)}" data-rq-photo-key="${escHtml(r.photoKey)}"`:''}>
-        <div class="photo-badges"><span class="v24-badge">${escHtml(displayCountry(r.country))}</span>${isDemo(r)?`<span class="v24-badge demo">${tx('demoBadge')}</span>`:''}<span class="v24-badge dark">${escHtml(saleLabel(r))}</span></div>
+        <div class="photo-badges"><span class="v24-badge">${escHtml(displayCountry(r.country))}</span>${isDemo(r)?`<span class="v24-badge demo">${tx('demoBadge')}</span>`:''}<span class="v24-badge dark">${escHtml(conditionCopy()[r.itemCondition]||tx('conditionUnverified'))}</span></div>
         ${photoVisual}
       </button>
       <div class="v24-card-body">
@@ -338,25 +352,64 @@
         <div class="v24-meta-row">${meta || `<span>${tx('usedRobot')}</span>`}</div>
         <div class="v24-card-tags">${tags || `<span>${tx('industrialRobot')}</span>`}</div>
         <div class="v24-actions">
-          ${isDemo(r)?`<button class="ghost" onclick="${openAction}">${tx('demoAction')}</button>${localDemo?`<button class="danger-button" onclick="rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="buy" disabled title="${escHtml(tx('demoListing'))}">${tx('demoListing')}</button>`}`:`<button class="ghost" onclick="${askAction}">${tx('askSeller')}</button><button class="buy" onclick="${buyAction}">${fixed?tx('buyNow'):tx('makeOffer')}</button><button class="cart" onclick="${cartAction}">${fixed?tx('addToCart'):tx('makeOffer')}</button>`}
+          ${isDemo(r)?`<button class="ghost" onclick="${openAction}">${tx('demoAction')}</button>${localDemo?`<button class="danger-button" onclick="rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="buy" disabled title="${escHtml(tx('demoListing'))}">${tx('demoListing')}</button>`}`:`<button class="buy" onclick="${askAction}">${tx('contactRoboquo')}</button>`}
         </div>
       </div>
     </article>`;
   }
 
+  const MARKET_CATEGORIES={
+    en:{all:'All items',robot:'Robots',gripper:'Grippers / EOAT',controller:'Controllers',vision:'Vision / Sensors',part:'Robot parts',accessory:'Accessories',other:'Other'},
+    ja:{all:'すべて',robot:'ロボット本体',gripper:'グリッパー・EOAT',controller:'コントローラー',vision:'ビジョン・センサー',part:'ロボット部品',accessory:'周辺機器',other:'その他'},
+    ko:{all:'전체',robot:'로봇 본체',gripper:'그리퍼·EOAT',controller:'컨트롤러',vision:'비전·센서',part:'로봇 부품',accessory:'주변기기',other:'기타'}
+  };
+  const categoryCopy=()=>MARKET_CATEGORIES[lang()]||MARKET_CATEGORIES.en;
+  const MARKET_CONDITIONS={
+    ko:{new:'신품',used:'중고',refurbished:'리퍼·정비',for_parts:'부품용·고장'},
+    ja:{new:'新品',used:'中古',refurbished:'整備済み',for_parts:'部品取り・故障'},
+    en:{new:'New',used:'Used',refurbished:'Refurbished',for_parts:'For parts'}
+  };
+  const conditionCopy=()=>MARKET_CONDITIONS[lang()]||MARKET_CONDITIONS.en;
+  function patchMarketCategoryFilter(){
+    const select=$('#categoryFilter');if(!select)return;
+    const value=select.value;
+    const labels=categoryCopy();
+    const keys=Object.keys(labels);
+    const expectedKeys=keys.map(k=>k==='all'?'':k).join('|');
+    const currentKeys=[...select.options].map(o=>o.value).join('|');
+    if(currentKeys===expectedKeys && select.dataset.marketLang===lang())return;
+    select.innerHTML=keys.map(k=>`<option value="${k==='all'?'':k}">${escHtml(labels[k])}</option>`).join('');
+    select.dataset.marketLang=lang();
+    if(keys.includes(value))select.value=value;
+    // Robot application tags belong in the knowledge directory, not the classifieds.
+    const applications=$('#applicationFilter');if(applications)applications.hidden=true;
+  }
+  function marketplaceEmpty(){
+    const translated={
+      ko:['아직 등록된 로봇·부품이 없습니다.','신품과 중고 모두 판매자가 직접 등록합니다. 첫 상품을 올려보세요.','상품 등록하기'],
+      ja:['現在、出品はありません。','新品・中古のロボットや部品を自由に出品できます。','出品する'],
+      en:['No listings yet.','Sellers can post new and used robots, grippers and parts here.','Post an item']
+    };
+    const [head,body,action]=translated[lang()]||translated.en;
+    return `<div class="rq-market-empty"><h3>${head}</h3><p>${body}</p><button type="button" class="primary" onclick="window.rqStartSell?.()">${action}</button></div>`;
+  }
   function renderListingsV24(){
-    const search = ($('#marketSearch')?.value||'').toLowerCase();
-    const cat = $('#categoryFilter')?.value||'';
-    const app = $('#applicationFilter')?.value||'';
-    const country = $('#countryFilter')?.value||'';
-    const sale = $('#saleFilter')?.value||'';
-    const items = all().filter(r => (!search || `${r.brand} ${r.model} ${r.location} ${r.country}`.toLowerCase().includes(search)) && (!cat || r.cat===cat) && (!app || (r.apps||[]).includes(app)) && (!country || r.country===country) && (!sale || r.sale===sale));
-    const market=$('#marketListings'); if(market) market.innerHTML = items.map(renderCard).join('') || `<p>${tx('noResults')}</p>`;
-    const home=$('#homeListings'); if(home) home.innerHTML = all().slice(0,3).map(renderCard).join('');
-    const buyable=all().filter(r=>r.sale!=='bid'&&!isDemo(r));
-    const featuredItems=buyable.length?buyable:all().filter(r=>r.sale!=='bid').slice(0,4);
-    const featured=$('#featuredCommerceGrid'); if(featured) featured.innerHTML = featuredItems.slice(0,4).map(renderCard).join('');
-    const featuredTitle=$('#v24CommerceBlock .v24-products-section h2');if(featuredTitle)featuredTitle.textContent=buyable.length?tx('featuredTitle'):tx('demoFeaturedTitle');
+    patchMarketCategoryFilter();
+    const search=($('#marketSearch')?.value||'').trim().toLowerCase();
+    const category=$('#categoryFilter')?.value||'';
+    const country=$('#countryFilter')?.value||'';
+    const condition=$('#conditionFilter')?.value||'';
+    const actual=all().filter(r=>r._source==='seller-supabase'&&!isDemo(r));
+    const items=actual.filter(r=>
+      (!search||[r.brand,r.model,r.location,r.country,r.description,r.itemCategory].join(' ').toLowerCase().includes(search)) &&
+      (!category||(r.itemCategory||'robot')===category) &&
+      (!country||r.country===country) &&
+      (!condition||r.itemCondition===condition)
+    );
+    const market=$('#marketListings');if(market)market.innerHTML=items.map(renderCard).join('')||marketplaceEmpty();
+    const home=$('#homeListings');if(home)home.innerHTML=actual.slice(0,3).map(renderCard).join('')||marketplaceEmpty();
+    const featured=$('#featuredCommerceGrid');if(featured)featured.innerHTML=actual.filter(r=>r.sale!=='bid').slice(0,4).map(renderCard).join('')||marketplaceEmpty();
+    const featuredTitle=$('#v24CommerceBlock .v24-products-section h2');if(featuredTitle)featuredTitle.textContent=tx('featuredTitle');
     window.rqHydrateListingPhotos?.(document);
   }
 
@@ -364,9 +417,9 @@
     const fixed=r.sale!=='bid';
     const title=[r.brand,r.model].filter(Boolean).join(' ')||tx('usedRobot');
     const id=idOf(r);
-    const askAction=escHtml(`openAuth('inquiry',${JSON.stringify(title)})`);
-    const buyAction=escHtml(fixed?`rqBuyNow(${JSON.stringify(id)})`:`openAuth('bid',${JSON.stringify(title)})`);
-    const cartAction=escHtml(fixed?`rqAddToCart(${JSON.stringify(id)})`:`openAuth('bid',${JSON.stringify(title)})`);
+    const askAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},'question')`);
+    const buyAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},${fixed?"'purchase'":"'offer'"})`);
+    const cartAction=escHtml(fixed?`rqAddToCart(${JSON.stringify(id)})`:`rqContactAboutListing(${JSON.stringify(id)},'offer')`);
     const mainPhotoAttrs=r.photoKey?`data-rq-photo-alt="${escHtml(title)}" data-rq-photo-key="${escHtml(r.photoKey)}"`:'';
     const mainPhotoVisual=r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}">`:robotSvg(r,'main');
     const nameplateThumb=r.media?.nameplate?`<button class="v24-thumb ${r.photoUrls?.nameplate?'has-uploaded-photo':''}" data-view="nameplate" type="button" ${r.photoKeys?.nameplate?`data-rq-photo-alt="${escHtml(tx('nameplateLabel'))}" data-rq-photo-key="${escHtml(r.photoKeys.nameplate)}"`:''}>${r.photoUrls?.nameplate?`<img src="${escHtml(r.photoUrls.nameplate)}" alt="${escHtml(tx('nameplateLabel'))}">`:`<div>${tx('nameplateLabel')}</div>`}</button>`:'';
@@ -384,20 +437,45 @@
           <div class="v24-detail-head"><h2>${escHtml(title)}</h2><p>${escHtml([r.location,displayCountry(r.country)].filter(Boolean).join(' · '))} · ${escHtml(saleLabel(r))}</p></div>
           <div class="v24-price-panel"><div><small style="display:block;color:#667085;margin-bottom:6px">${fixed?tx('fixedPriceListing'):tx('negotiatedListing')}</small><strong>${formatPrice(r)}</strong></div><div class="v24-trust-row">${trustBadges(r)}</div></div>
           <div class="v24-spec-grid">
-            <div><small>${tx('detailCondition')}</small><strong>${isDemo(r)?tx('demoListing'):tx('conditionUsedProduction')}</strong></div>
+            <div><small>${tx('detailCondition')}</small><strong>${r.itemCondition?escHtml(conditionCopy()[r.itemCondition]||r.itemCondition):r.operatingStatus==='in_use'?tx('operatingInUse'):r.operatingStatus==='stored'?tx('operatingStored'):tx('conditionUnverified')}</strong></div>
             <div><small>${tx('detailSeller')}</small><strong>${escHtml(r.sellerCompany||(r.verified?tx('verifiedCompanySeller'):tx('sellerUnverified')))}</strong></div>
             <div><small>${tx('detailLocation')}</small><strong>${escHtml([r.location,displayCountry(r.country)].filter(Boolean).join(' · '))}</strong></div>
             <div><small>${tx('detailHours')}</small><strong>${escHtml(r.hours||'—')}</strong></div>
-            <div><small>${tx('detailPayment')}</small><strong>${isDemo(r)?'—':tx('paymentsSupported')}</strong></div>
-            <div><small>${tx('detailShipping')}</small><strong>${isDemo(r)?'—':tx('shippingSupport')}</strong></div>
+            <div><small>${tx('detailPayment')}</small><strong>${isDemo(r)?'—':tx('paymentNotEnabled')}</strong></div>
+            <div><small>${tx('detailShipping')}</small><strong>${isDemo(r)?'—':tx('shippingUnverified')}</strong></div>
           </div>
+          ${r.description?'<p class="rq-product-description">'+escHtml(r.description)+'</p>':''}
           <div class="v24-note-box">${isDemo(r)?tx('demoMarketBody'):tx('productNote')}</div>
           <div class="v24-modal-actions">
-            ${isDemo(r)?`<button class="secondary" onclick="closeModal()">${tx('close')}</button>${r._source==='local-demo'?`<button class="danger-button" onclick="closeModal();rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="primary" disabled>${tx('demoListing')}</button>`}`:`<button class="secondary" onclick="${askAction}">${tx('askSeller')}</button><button class="primary" onclick="${buyAction}">${fixed?tx('buyNow'):tx('makeOffer')}</button><button class="blue" onclick="${cartAction}">${fixed?tx('addToCart'):tx('makeOffer')}</button>`}
+            ${isDemo(r)?`<button class="secondary" onclick="closeModal()">${tx('close')}</button>${r._source==='local-demo'?`<button class="danger-button" onclick="closeModal();rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="primary" disabled>${tx('demoListing')}</button>`}`:`<button class="primary" onclick="${askAction}">${tx('contactRoboquo')}</button>`}
           </div>
         </div>
       </div>`;
   }
+
+  // Mailto is an honest interim buyer path, not an in-app inquiry or seller relay.
+  // Do not reveal private seller contact fields from Supabase.
+  window.rqContactAboutListing=(id,intent='question')=>{
+    const item=findListing(id);if(!item||isDemo(item))return;
+    const reference=String(item.backendId||idOf(item));
+    const title=[item.brand,item.model].filter(Boolean).join(' ')||tx('usedRobot');
+    const purpose=['purchase','offer','question'].includes(intent)?intent:'question';
+    const subject='RoboQuo '+purpose+' inquiry: '+title;
+    const body=[
+      'Hello RoboQuo Sales,',
+      '',
+      'I would like to inquire about this listing.',
+      'Reference: '+reference,
+      'Item: '+title,
+      'Purpose: '+purpose,
+      'Please confirm availability, condition, price, fees and shipping.',
+      '',
+      'Company / name:',
+      'Email / phone:'
+    ].join('\n');
+    const href='mailto:sales@roboquo.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+    openModal(`<div class="kicker">ROBOQUO · ${tx('contactRoboquo')}</div><h2>${escHtml(title)}</h2><p>${tx('contactExplanation')}</p><p><strong>${tx('listingReference')}:</strong> ${escHtml(reference)}</p><p><strong>sales@roboquo.com</strong></p><div class="modal-actions"><button class="secondary" onclick="closeModal()">${tx('close')}</button><a class="primary" href="${escHtml(href)}">${tx('openEmail')}</a></div>`);
+  };
 
   window.rqOpenProduct = (id) => {
     const r=findListing(id); if(!r) return;
@@ -426,19 +504,18 @@
   window.rqRemoveFromCart = (id) => {
     saveCart(cart().filter(x=>x!==String(id))); if(typeof toast==='function') toast(tx('removed'));
   };
-  window.rqBuyNow = (id) => { const item=findListing(id);if(!item||isDemo(item))return window.rqOpenProduct(id);window.rqAddToCart(id);route('cart'); };
+  window.rqBuyNow = (id) => window.rqContactAboutListing(id,'purchase');
   window.rqCheckoutPreview = () => {
-    openModal(`<div class="kicker">ROBOQUO · ${tx('kickerCheckout')}</div><h2>${tx('checkoutTitle')}</h2><p>${tx('checkoutBody')}</p><div class="v24-payment-methods"><span>${tx('creditCard')}</span><span>${tx('bankTransfer')}</span><span>${tx('invoicePO')}</span><span>${tx('depositBalance')}</span></div><div class="modal-actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">${tx('close')}</button><button class="primary" onclick="closeModal();route('projects')">${tx('services')}</button></div>`);
+    openModal(`<div class="kicker">ROBOQUO · ${tx('kickerCheckout')}</div><h2>${tx('checkoutTitle')}</h2><p>${tx('checkoutBody')}</p><div class="v24-note-box">${tx('paymentNotEnabled')}</div><div class="modal-actions" style="margin-top:18px"><button class="secondary" onclick="closeModal()">${tx('close')}</button><button class="primary" onclick="closeModal();route('projects')">${tx('services')}</button></div>`);
   };
 
   function cartHtml(){
     const items=cart().map(findListing).filter(r=>r&&!isDemo(r));
     if(!items.length) return `<div class="v24-empty-cart"><h2>${tx('emptyCart')}</h2><p>${tx('emptyCartBody')}</p><button class="primary" onclick="route('robots')">${tx('goToMarket')}</button></div>`;
     const subtotal=items.reduce((sum,r)=>sum+Number(r.price||0),0);
-    const fee=Math.round(subtotal*0.02);
     return `<div class="v24-cart-layout">
       <div class="v24-cart-list">${items.map(r=>`<article class="v24-cart-item"><div class="v24-cart-item-photo" ${r.photoKey?`data-rq-photo-alt="${escHtml([r.brand,r.model].join(' '))}" data-rq-photo-key="${escHtml(r.photoKey)}"`:''}>${robotSvg(r,'thumb')}</div><div><h3>${escHtml([r.brand,r.model].join(' '))}</h3><p>${escHtml([r.location,displayCountry(r.country)].filter(Boolean).join(' · '))}<br/>${escHtml(r.year||'')} ${r.payload?('· '+escHtml(r.payload)):''}</p><div class="v24-trust-row">${trustBadges(r)}</div><div class="v24-card-tags" style="margin-top:8px"><span>${escHtml(saleLabel(r))}</span><span>${escHtml(displayTag(r.cat)||tx('solutionRobot'))}</span></div></div><div><div class="price">${formatPrice(r)}</div><button class="card-btn" style="margin-top:14px" onclick="rqRemoveFromCart('${idOf(r).replace(/'/g,"\\'")}')">${tx('remove')}</button></div></article>`).join('')}</div>
-      <aside class="v24-cart-summary"><h3>${tx('cartTitle')}</h3><div class="v24-summary-rows"><div><span>${tx('subtotal')}</span><strong>${typeof yen==='function'?yen(subtotal):('¥'+subtotal.toLocaleString())}</strong></div><div><span>${tx('serviceFee')}</span><strong>${typeof yen==='function'?yen(fee):('¥'+fee.toLocaleString())}</strong></div><div><span>${tx('shipping')}</span><strong>${tx('toBeCalculated')}</strong></div><div class="total"><span>${tx('total')}</span><strong>${typeof yen==='function'?yen(subtotal+fee):('¥'+(subtotal+fee).toLocaleString())} ${tx('plusShipping')}</strong></div></div><div class="v24-checkout-buttons"><button class="primary" onclick="rqCheckoutPreview()">${tx('checkout')}</button><button class="blue" onclick="rqCheckoutPreview()">${tx('requestInvoice')}</button><button onclick="route('robots')">${tx('continueShopping')}</button></div><div class="v24-payment-methods"><span>${tx('creditCard')}</span><span>${tx('bankTransfer')}</span><span>${tx('invoicePO')}</span><span>${tx('depositBalance')}</span></div><div class="v24-note-box" style="margin-top:16px">${tx('marketNoticeBody')}</div></aside>
+      <aside class="v24-cart-summary"><h3>${tx('cartTitle')}</h3><div class="v24-summary-rows"><div><span>${tx('subtotal')}</span><strong>${typeof yen==='function'?yen(subtotal):('¥'+subtotal.toLocaleString())}</strong></div><div><span>${tx('serviceFee')}</span><strong>${tx('toBeCalculated')}</strong></div><div><span>${tx('shipping')}</span><strong>${tx('toBeCalculated')}</strong></div><div class="total"><span>${tx('indicativeTotal')}</span><strong>${typeof yen==='function'?yen(subtotal):('¥'+subtotal.toLocaleString())}</strong></div></div><div class="v24-checkout-buttons"><button class="primary" onclick="rqCheckoutPreview()">${tx('checkout')}</button><button class="blue" onclick="rqCheckoutPreview()">${tx('requestInvoice')}</button><button onclick="route('robots')">${tx('continueShopping')}</button></div><div class="v24-note-box">${tx('paymentNotEnabled')}</div><div class="v24-note-box" style="margin-top:16px">${tx('marketNoticeBody')}</div></aside>
     </div>`;
   }
   function renderCartPage(){ const mount=$('#cartPageMount'); if(mount){mount.innerHTML=cartHtml();window.rqHydrateListingPhotos?.(mount);} }
@@ -467,11 +544,23 @@
       if(el.dataset.v24sell) return; el.dataset.v24sell='1';
       el.addEventListener('click',()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow()));
     });
-    ['marketSearch','categoryFilter','applicationFilter','countryFilter','saleFilter'].forEach(id=>document.getElementById(id)?.addEventListener('input',renderListingsV24));
-    ['categoryFilter','applicationFilter','countryFilter','saleFilter'].forEach(id=>document.getElementById(id)?.addEventListener('change',renderListingsV24));
+    ['marketSearch','categoryFilter','applicationFilter','countryFilter','conditionFilter'].forEach(id=>document.getElementById(id)?.addEventListener('input',renderListingsV24));
+    ['categoryFilter','applicationFilter','countryFilter','conditionFilter'].forEach(id=>document.getElementById(id)?.addEventListener('change',renderListingsV24));
   }
 
   function init(){
+    // The authenticated seller feed arrives asynchronously after the initial
+    // page render. Refresh the market notice when published listings arrive.
+    const originalSetLive=window.rqSetSellerLiveListings;
+    if(typeof originalSetLive==='function'&&!originalSetLive.__v24sync){
+      const setLiveAndRefresh=rows=>{
+        const result=originalSetLive(rows);
+        patchRobotsPage();
+        return result;
+      };
+      setLiveAndRefresh.__v24sync=true;
+      window.rqSetSellerLiveListings=setLiveAndRefresh;
+    }
     hookApplyLang();
     document.addEventListener('rq:languagechange',()=>requestAnimationFrame(refresh));
     const languageSelect=document.getElementById('languageSelect');
@@ -483,6 +572,7 @@
       window.__v24CloseWrapped = true;
     }
     refresh();
+    window.rqRenderMarketplace=renderListingsV24;
     bindRoutes();
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
