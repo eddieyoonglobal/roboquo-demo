@@ -73,6 +73,9 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.evaluate(()=>route('makers'));
   await page.waitForFunction(()=>document.querySelectorAll('#makerGrid .maker-card').length>=40,{timeout:15000});
   assert.equal(await page.locator('#makerTypeFilter').inputValue(),'collaborative','manufacturer catalog starts with cobots');
+  assert.match(await page.locator('#rqJumpCompare').innerText(),/Compare verified model specs/);
+  await page.locator('#rqJumpCompare').click();
+  assert(await page.locator('#rqCobotCompare').isVisible(),'model comparison jump reaches a visible section');
 
   // Manufacturer-sourced cobot specs: no fabricated catalog entries, sales stock or database writes.
   await page.waitForFunction(()=>document.querySelectorAll('#rqCompareModels .rq-spec-card').length===10,{timeout:15000});
@@ -131,6 +134,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#makerGrid .maker-card').count(),40,'cobot shortcut returns to collaborative brand list');
   await page.locator('#languageSelect').selectOption('ja');
   await page.waitForFunction(()=>document.querySelector('#rqCobotOnly')?.textContent==='協働ロボット');
+  assert.match(await page.locator('#rqJumpCompare').innerText(),/公式仕様で機種を比較/,'comparison shortcut localizes to Japanese');
   assert.equal(await page.locator('#makerTypeFilter').inputValue(),'collaborative','language change preserves cobot selection');
   await page.locator('#languageSelect').selectOption('en');
   await page.evaluate(()=>route('robots'));
