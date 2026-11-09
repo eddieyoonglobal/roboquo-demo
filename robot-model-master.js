@@ -1,6 +1,6 @@
 window.RQ_ROBOT_MODEL_MASTER = {
-  "version": "2026-09-12-v24.2",
-  "note": "Manufacturer selector includes the global RoboQuo directory. Model lists are seeded for major new/used robot brands and are designed to be expanded from official catalogs. If a model is not listed, choose Other / Not listed and enter it manually.",
+  "version": "2026-11-10-cobot-directory",
+  "note": "RoboQuo reference manufacturer and model selector, updated from selected official robot product pages on 2026-11-10. This is not an exhaustive model list, proof of availability, safety validation, or authorized sales status. For missing models use Other / Not listed.",
   "manufacturers": [
     "FANUC",
     "Yaskawa Motoman",
@@ -60,7 +60,6 @@ window.RQ_ROBOT_MODEL_MASTER = {
     "HD Hyundai Robotics",
     "Wonik Robotics",
     "TES Robotics",
-    "Tesollo",
     "Han's Robot",
     "GSK CNC Equipment",
     "QKM Technology",
@@ -68,7 +67,6 @@ window.RQ_ROBOT_MODEL_MASTER = {
     "HCFA Robotics",
     "Peitian Robotics",
     "Borunte",
-    "Cobot (Cobot.cn)",
     "Pudu Robotics",
     "Quicktron",
     "Hikrobot",
@@ -144,7 +142,14 @@ window.RQ_ROBOT_MODEL_MASTER = {
     "FBR",
     "Universal Field Robots",
     "Caja Robotics",
-    "BionicHIVE"
+    "BionicHIVE",
+    "UFACTORY",
+    "Flexiv",
+    "RealMan Robotics",
+    "DUCO Robots",
+    "Elephant Robotics",
+    "Productive Robotics",
+    "Standard Bots"
   ],
   "models": {
     "FANUC": [
@@ -519,7 +524,8 @@ window.RQ_ROBOT_MODEL_MASTER = {
       "SC50F",
       "SC300F",
       "ST166",
-      "ST210"
+      "ST210",
+      "CZ10"
     ],
     "Epson Robots": [
       "GX4",
@@ -691,7 +697,15 @@ window.RQ_ROBOT_MODEL_MASTER = {
       "LD-90",
       "LD-250",
       "MD-650",
-      "MD-900"
+      "MD-900",
+      "TM5S",
+      "TM6S",
+      "TM7S",
+      "TM12S",
+      "TM14S",
+      "TM20S",
+      "TM25S",
+      "TM30S"
     ],
     "Rainbow Robotics": [
       "RB3-730",
@@ -743,6 +757,47 @@ window.RQ_ROBOT_MODEL_MASTER = {
       "KR1205",
       "KR1410",
       "KR1805"
+    ],
+    "UFACTORY": [
+      "xArm 5",
+      "xArm 6",
+      "xArm 7",
+      "UFACTORY 850"
+    ],
+    "Flexiv": [
+      "Rizon 4",
+      "Rizon 4S",
+      "Rizon 10"
+    ],
+    "RealMan Robotics": [
+      "RM65",
+      "RM75",
+      "RML63",
+      "ECO65",
+      "GEN62"
+    ],
+    "DUCO Robots": [
+      "GCR3-618",
+      "GCR5-910",
+      "GCR7-910",
+      "GCR10-1300",
+      "GCR12-1300",
+      "GCR20-1400"
+    ],
+    "Elephant Robotics": [
+      "myCobot 280 M5"
+    ],
+    "Productive Robotics": [
+      "OB7",
+      "OB7 Stretch",
+      "OB7 Max 8",
+      "OB7 Max 12",
+      "OB7 Max 16"
+    ],
+    "Standard Bots": [
+      "Spark",
+      "Core",
+      "Thor"
     ]
   },
   "aliases": {
