@@ -32,6 +32,7 @@ jobs:
           node --check seller-backend.js
           node --check v24.js
           node --check supabase-config.js
+          node --check marketplace-v2.js
       - name: Test seller submission and market state
         run: node tests/seller-marketplace-regression.cjs
       - name: Test transaction integrity and auth return URL
@@ -93,5 +94,7 @@ jobs:
         run: psql -v ON_ERROR_STOP=1 -f database/004_seller_marketplace.sql
       - name: Apply draft-only seller moderation hardening in isolation
         run: psql -v ON_ERROR_STOP=1 -f database/005_seller_moderation_integrity.sql
+      - name: Apply real classifieds schema and private conversations
+        run: psql -v ON_ERROR_STOP=1 -f database/006_real_classifieds_marketplace.sql
       - name: Test anonymous catalog, seller moderation and photo policies
         run: psql -v ON_ERROR_STOP=1 -f tests/pg-seller-marketplace-smoke.sql
