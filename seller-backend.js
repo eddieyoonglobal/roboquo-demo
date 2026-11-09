@@ -73,6 +73,13 @@
     // Validate client-side photo records before writing any seller/contact data.
     const photos=await window.rqGetSellerPhotoRecords?.()||[];
     if(!photos.length)throw Object.assign(new Error('At least one photo is required'),{code:'PHOTO_REQUIRED'});
+    const allowedTypes=new Set(['image/jpeg','image/png','image/webp','image/heic','image/heif']);
+    for(const record of photos){
+      const type=String(record.type||record.blob?.type||'').toLowerCase();
+      const size=Number(record.size??record.blob?.size);
+      if(!record.blob||!allowedTypes.has(type)||!Number.isFinite(size)||size<=0||size>15728640)
+        throw Object.assign(new Error('Unsupported or oversized photo'),{code:'PHOTO_INVALID'});
+    }
     let listingId='';const uploaded=[];
     try{
       const created=await api.from('seller_listings').insert(listingPayload(draft,account.id)).select('id').single();
