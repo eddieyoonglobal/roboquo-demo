@@ -44,7 +44,8 @@
       export_available:Boolean(draft.export),
       shipping_mode:String(draft.shipping||'seller'),
       price:price!==null&&price>=0?price:null,
-      currency:'JPY',
+      currency:['JPY','KRW','CNY','USD','EUR'].includes(draft.currency)?draft.currency:'JPY',
+      seller_type:draft.sellerType==='business'?'business':'individual',
       listing_type:draft.sale==='bid'?'private_offer':'fixed',
       item_category:['robot','gripper','controller','vision','part','accessory','other'].includes(draft.itemCategory)?draft.itemCategory:'robot',
       item_condition:['new','used','refurbished','for_parts'].includes(draft.itemCondition)?draft.itemCondition:'used',
@@ -145,7 +146,7 @@
     const api=client();if(!api)return;
     const request=++publishedRequest;
     try{
-      const query=await api.from('seller_listings').select('id,manufacturer,model,manufacture_year,country,location_text,operating_hours_text,operating_status,price,currency,listing_type,item_category,item_condition,description_text,seller_company_name,status,published_at,seller_listing_photos(slot,storage_path,sort_order)').eq('status','published').order('published_at',{ascending:false});
+      const query=await api.from('seller_listings').select('id,manufacturer,model,manufacture_year,country,location_text,operating_hours_text,operating_status,price,currency,listing_type,item_category,item_condition,description_text,seller_type,seller_company_name,status,published_at,seller_listing_photos(slot,storage_path,sort_order)').eq('status','published').order('published_at',{ascending:false});
       if(request!==publishedRequest)return;
       if(query.error){
         if(!missingSchema(query.error))console.warn('RoboQuo published seller listings',query.error.code||'query_failed');
@@ -159,7 +160,7 @@
         if(request!==publishedRequest)return;
         const preferred=['overall','nameplate','ctrlOutside','side','pendant'];
         const first=preferred.find(k=>urls[k])||Object.keys(urls)[0];
-        mapped.push({id:`seller:${row.id}`,backendId:row.id,brand:row.manufacturer||'Robot',model:row.model||'Used Robot',year:row.manufacture_year||'',payload:'—',country:row.country||'',location:row.location_text||row.country||'',price:Number(row.price||0),currency:row.currency||'JPY',itemCategory:row.item_category||'robot',itemCondition:row.item_condition||'used',description:row.description_text||'',sale:row.listing_type==='private_offer'?'bid':'fixed',cat:'industrial',apps:[],hours:row.operating_hours_text||'',operatingStatus:row.operating_status||'unknown',sellerCompany:row.seller_company_name||'',verified:false,media:{nameplate:Boolean(urls.nameplate),controller:Boolean(urls.ctrlOutside),video:false},photoUrl:first?urls[first]:'',photoUrls:urls,photoCount:Object.keys(urls).length,demo:false,_source:'seller-supabase'});
+        mapped.push({id:`seller:${row.id}`,backendId:row.id,brand:row.manufacturer||'Robot',model:row.model||'Used Robot',year:row.manufacture_year||'',payload:'—',country:row.country||'',location:row.location_text||row.country||'',price:Number(row.price||0),currency:row.currency||'JPY',itemCategory:row.item_category||'robot',itemCondition:row.item_condition||'used',sellerType:row.seller_type||'individual',description:row.description_text||'',sale:row.listing_type==='private_offer'?'bid':'fixed',cat:'industrial',apps:[],hours:row.operating_hours_text||'',operatingStatus:row.operating_status||'unknown',sellerCompany:row.seller_company_name||'',verified:false,media:{nameplate:Boolean(urls.nameplate),controller:Boolean(urls.ctrlOutside),video:false},photoUrl:first?urls[first]:'',photoUrls:urls,photoCount:Object.keys(urls).length,demo:false,_source:'seller-supabase'});
       }
       if(request===publishedRequest)window.rqSetSellerLiveListings?.(mapped);
     }catch(error){
