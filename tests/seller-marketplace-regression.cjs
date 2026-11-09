@@ -45,6 +45,15 @@ function setup(photoRecords,changeStatus){
  const empty=setup([]);
  await assert.rejects(empty.submit({companyName:'Test Ltd',declared:true}),e=>e.code==='PHOTO_REQUIRED');
  assert.deepEqual(empty.actions,[],'no database writes before photo validation');
+ for(const invalid of [
+   {slot:'overall',blob:{},type:'image/gif',name:'unsupported.gif',size:100},
+   {slot:'overall',blob:{},type:'image/jpeg',name:'oversized.jpg',size:15728641},
+   {slot:'overall',blob:{},type:'image/jpeg',name:'empty.jpg',size:0}
+ ]){
+   const reject=setup([invalid]);
+   await assert.rejects(reject.submit({companyName:'Test Ltd',declared:true}),e=>e.code==='PHOTO_INVALID');
+   assert.deepEqual(reject.actions,[],'invalid photos must not generate seller/contact records');
+ }
  const photo=[{slot:'overall',blob:{},name:'test.jpg',type:'image/jpeg',size:100}];
  const valid=setup(photo);
  const result=await valid.submit({companyName:'Test Ltd',declared:true,maker:'FANUC',model:'CRX'});
