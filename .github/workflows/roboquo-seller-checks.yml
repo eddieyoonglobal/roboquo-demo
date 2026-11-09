@@ -56,3 +56,40 @@ jobs:
           path: test-artifacts/*.png
           if-no-files-found: ignore
           retention-days: 7
+
+  postgres-schema:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: ci-only-password
+          POSTGRES_DB: roboquo_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres -d roboquo_test"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 10
+    env:
+      PGHOST: 127.0.0.1
+      PGPORT: 5432
+      PGUSER: postgres
+      PGPASSWORD: ci-only-password
+      PGDATABASE: roboquo_test
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Ensure PostgreSQL client
+        run: command -v psql || (sudo apt-get update && sudo apt-get install -y postgresql-client)
+      - name: Bootstrap isolated Supabase roles and storage
+        run: psql -v ON_ERROR_STOP=1 -f tests/pg-supabase-bootstrap.sql
+      - name: Apply production-equivalent seller schema in isolation
+        run: psql -v ON_ERROR_STOP=1 -f database/004_seller_marketplace.sql
+      - name: Test anonymous catalog, seller moderation and photo policies
+        run: psql -v ON_ERROR_STOP=1 -f tests/pg-seller-marketplace-smoke.sql
