@@ -381,13 +381,25 @@
     // Robot application tags belong in the knowledge directory, not the classifieds.
     const applications=$('#applicationFilter');if(applications)applications.hidden=true;
   }
-  function marketplaceEmpty(){
-    const translated={
-      ko:['아직 등록된 로봇·부품이 없습니다.','신품과 중고 모두 판매자가 직접 등록합니다. 첫 상품을 올려보세요.','상품 등록하기'],
-      ja:['現在、出品はありません。','新品・中古のロボットや部品を自由に出品できます。','出品する'],
-      en:['No listings yet.','Sellers can post new and used robots, grippers and parts here.','Post an item']
+  function marketplaceEmpty(filtered=false){
+    const blank={
+      ko:['아직 등록된 로봇·부품이 없습니다.','신품과 중고 모두 판매자가 직접 등록합니다. 첫 상품을 올려보세요.'],
+      ja:['現在、出品はありません。','新品・中古のロボットや部品を出品できます。'],
+      en:['No listings yet.','Sellers can post new and used robots, grippers and parts here.']
     };
-    const [head,body]=translated[lang()]||translated.en;
+    const noMatch={
+      en:['No matching listings','Try another keyword, category, country or condition, or clear your filters.'],
+      ja:['条件に一致する出品はありません','キーワード・カテゴリー・国・商品の状態を変更するか、絞り込みを解除してください。'],
+      ko:['검색 조건에 맞는 매물이 없습니다','검색어·카테고리·국가·상품 상태를 바꾸거나 필터를 초기화해 보세요.'],
+      zh:['没有符合条件的商品','请更改关键词、类别、国家或商品状态，或清除筛选条件。'],
+      de:['Keine passenden Angebote','Ändern Sie Suchbegriff, Kategorie, Land oder Zustand oder löschen Sie die Filter.'],
+      fr:['Aucune annonce correspondante','Modifiez la recherche, la catégorie, le pays ou l’état, ou effacez les filtres.'],
+      es:['No hay anuncios coincidentes','Cambie la búsqueda, la categoría, el país o el estado, o borre los filtros.'],
+      it:['Nessun annuncio corrispondente','Modifica la ricerca, la categoria, il paese o la condizione, oppure azzera i filtri.'],
+      pt:['Nenhum anúncio encontrado','Altere a busca, a categoria, o país ou o estado, ou limpe os filtros.'],
+      vi:['Không có tin đăng phù hợp','Thử từ khóa, danh mục, quốc gia hoặc tình trạng khác, hoặc xóa bộ lọc.']
+    };
+    const [head,body]=(filtered?noMatch:blank)[lang()]||(filtered?noMatch:blank).en;
     return `<div class="rq-market-empty"><h3>${head}</h3><p>${body}</p></div>`;
   }
   function renderListingsV24(){
@@ -403,7 +415,8 @@
       (!country||r.country===country) &&
       (!condition||r.itemCondition===condition)
     );
-    const market=$('#marketListings');if(market)market.innerHTML=items.map(renderCard).join('')||marketplaceEmpty();
+    const market=$('#marketListings');if(market)market.innerHTML=items.map(renderCard).join('')||marketplaceEmpty(Boolean(search||category||country||condition));
+    window.rqMarketResultsChanged?.(items.length,actual.length);
     const home=$('#homeListings');if(home)home.innerHTML=actual.slice(0,3).map(renderCard).join('')||marketplaceEmpty();
     const featured=$('#featuredCommerceGrid');if(featured)featured.innerHTML=actual.filter(r=>r.sale!=='bid').slice(0,4).map(renderCard).join('')||marketplaceEmpty();
     const featuredTitle=$('#v24CommerceBlock .v24-products-section h2');if(featuredTitle)featuredTitle.textContent=tx('featuredTitle');
