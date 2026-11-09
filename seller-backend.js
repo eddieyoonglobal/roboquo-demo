@@ -130,6 +130,12 @@
   };
 
   window.rqDeleteSellerListing=async listingId=>{
+    // Account management can read production data from Preview, but must not
+    // delete a real seller's listing or photos from a non-production origin.
+    if(window.rqCanWriteSupabase?.()===false){
+      window.toast?.(window.rqPreviewReadOnlyMessage?.()||tx('deleteFailed'));
+      return;
+    }
     if(!window.confirm(tx('confirm')))return;
     const api=client(),account=user();if(!api||!account)return;
     const photoResult=await api.from('seller_listing_photos').select('storage_path').eq('listing_id',listingId).eq('owner_id',account.id);
