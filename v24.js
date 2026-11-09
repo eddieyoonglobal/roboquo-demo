@@ -336,7 +336,7 @@
     const photoVisual=r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}" loading="lazy">`:robotSvg(r);
     return `<article class="v24-listing-card">
       <button aria-label="${escHtml(title)}" class="v24-photo v24-photo-button ${r.photoUrl?'has-uploaded-photo':''}" onclick="${openAction}" type="button" ${r.photoKey?`data-rq-photo-alt="${escHtml(title)}" data-rq-photo-key="${escHtml(r.photoKey)}"`:''}>
-        <div class="photo-badges"><span class="v24-badge">${escHtml(displayCountry(r.country))}</span>${isDemo(r)?`<span class="v24-badge demo">${tx('demoBadge')}</span>`:''}<span class="v24-badge dark">${escHtml(saleLabel(r))}</span></div>
+        <div class="photo-badges"><span class="v24-badge">${escHtml(displayCountry(r.country))}</span>${isDemo(r)?`<span class="v24-badge demo">${tx('demoBadge')}</span>`:''}<span class="v24-badge dark">${escHtml(conditionCopy()[r.itemCondition]||tx('conditionUnverified'))}</span></div>
         ${photoVisual}
       </button>
       <div class="v24-card-body">
@@ -351,7 +351,7 @@
         <div class="v24-meta-row">${meta || `<span>${tx('usedRobot')}</span>`}</div>
         <div class="v24-card-tags">${tags || `<span>${tx('industrialRobot')}</span>`}</div>
         <div class="v24-actions">
-          ${isDemo(r)?`<button class="ghost" onclick="${openAction}">${tx('demoAction')}</button>${localDemo?`<button class="danger-button" onclick="rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="buy" disabled title="${escHtml(tx('demoListing'))}">${tx('demoListing')}</button>`}`:`<button class="ghost" onclick="${askAction}">${tx('contactRoboquo')}</button><button class="buy" onclick="${buyAction}">${tx('makeOffer')}</button>`}
+          ${isDemo(r)?`<button class="ghost" onclick="${openAction}">${tx('demoAction')}</button>${localDemo?`<button class="danger-button" onclick="rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="buy" disabled title="${escHtml(tx('demoListing'))}">${tx('demoListing')}</button>`}`:`<button class="buy" onclick="${askAction}">${tx('contactRoboquo')}</button>`}
         </div>
       </div>
     </article>`;
@@ -446,7 +446,7 @@
           ${r.description?'<p class="rq-product-description">'+escHtml(r.description)+'</p>':''}
           <div class="v24-note-box">${isDemo(r)?tx('demoMarketBody'):tx('productNote')}</div>
           <div class="v24-modal-actions">
-            ${isDemo(r)?`<button class="secondary" onclick="closeModal()">${tx('close')}</button>${r._source==='local-demo'?`<button class="danger-button" onclick="closeModal();rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="primary" disabled>${tx('demoListing')}</button>`}`:`<button class="secondary" onclick="${askAction}">${tx('contactRoboquo')}</button><button class="primary" onclick="${buyAction}">${tx('makeOffer')}</button>`}
+            ${isDemo(r)?`<button class="secondary" onclick="closeModal()">${tx('close')}</button>${r._source==='local-demo'?`<button class="danger-button" onclick="closeModal();rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="primary" disabled>${tx('demoListing')}</button>`}`:`<button class="primary" onclick="${askAction}">${tx('contactRoboquo')}</button>`}
           </div>
         </div>
       </div>`;
