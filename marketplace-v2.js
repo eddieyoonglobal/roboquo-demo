@@ -84,14 +84,42 @@ function patchMarketFilters(){
   condition.setAttribute('aria-label',tr('itemStatus'));
  }
 }
+const MARKET_FIRST_ACTIONS={
+ ko:{buy:'상품 찾기',buyHint:'로봇·그리퍼·부품 둘러보기',sell:'상품 팔기',sellHint:'사진 올리고 가격 입력'},
+ ja:{buy:'商品を探す',buyHint:'ロボット・グリッパー・部品',sell:'商品を売る',sellHint:'写真を選んで価格を入力'},
+ en:{buy:'Find an item',buyHint:'Robots, grippers and parts',sell:'Sell an item',sellHint:'Add photos and your price'}
+};
+function updateFirstActions(){
+ const copy=MARKET_FIRST_ACTIONS[lang()]||MARKET_FIRST_ACTIONS.en;
+ const buy=$('#rqBrowseShortcut'),sell=$('#rqSellShortcut');
+ if(buy){buy.querySelector('strong').textContent=copy.buy;buy.querySelector('small').textContent=copy.buyHint}
+ if(sell){sell.querySelector('strong').textContent=copy.sell;sell.querySelector('small').textContent=copy.sellHint}
+ const search=$('#marketSearch');
+ if(search)search.placeholder=lang()==='ko'?'상품명·브랜드 검색':lang()==='ja'?'商品名・メーカーを検索':'Search item or brand';
+}
 function putMarketActions(){
- let head=$('#robots .page-head');
- if(head&&!$('#rqMarketInboxBtn')){
-  const btn=document.createElement('button');btn.id='rqMarketInboxBtn';btn.type='button';btn.className='secondary';btn.textContent=tr('inbox');btn.addEventListener('click',openInbox);
-  head.appendChild(btn);
+ updateFirstActions();
+ const buy=$('#rqBrowseShortcut'),sell=$('#rqSellShortcut');
+ if(buy&&!buy.dataset.marketBound){
+  buy.dataset.marketBound='1';
+  buy.addEventListener('click',()=>{
+   const search=$('#marketSearch');
+   search?.focus();
+   search?.scrollIntoView({behavior:'smooth',block:'center'});
+  });
  }
- if(head&&!$('#rqMarketInfo')){
-  const p=document.createElement('p');p.id='rqMarketInfo';p.className='rq-market-subtitle';p.textContent=tr('priceHint');head.insertAdjacentElement('afterend',p);
+ if(sell&&!sell.dataset.marketBound){
+  sell.dataset.marketBound='1';
+  sell.addEventListener('click',()=>showSell());
+ }
+ if(!$('#rqMarketInfo')){
+  const list=$('#marketListings');
+  if(list){
+   const p=document.createElement('p');
+   p.id='rqMarketInfo';p.className='rq-market-subtitle';
+   p.textContent=tr('priceHint');
+   list.insertAdjacentElement('afterend',p);
+  }
  }
  categoryTiles();
  patchMarketFilters();
@@ -270,7 +298,10 @@ function init(){
  // The classifieds feed is the product's primary landing page; the former
  // multi-service demo home remains accessible through the Home navigation.
  if(!location.hash||location.hash==='#robots')route('robots');
- document.addEventListener('rq:languagechange',()=>{putMarketActions();categoryTiles();patchMarketFilters();const btn=$('#rqMarketInboxBtn');if(btn)btn.textContent=tr('inbox');const hint=$('#rqMarketInfo');if(hint)hint.textContent=tr('priceHint')});
+ document.addEventListener('rq:languagechange',()=>{
+  putMarketActions();
+  const hint=$('#rqMarketInfo');if(hint)hint.textContent=tr('priceHint');
+});
  // Stop legacy handlers from launching the eight-step robot-only wizard.
  document.addEventListener('click',e=>{
   const trigger=e.target.closest('[data-action="sell"]');

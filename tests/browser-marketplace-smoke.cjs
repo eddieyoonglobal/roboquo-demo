@@ -43,6 +43,18 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   });
   await page.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>Boolean(document.querySelector('#marketListings .rq-market-empty')),{timeout:15000});
+  assert(await page.locator('#robots').isVisible(),'marketplace must be first page');
+  assert(await page.locator('#rqBrowseShortcut').isVisible(),'first screen offers a visible Buy action');
+  assert(await page.locator('#rqSellShortcut').isVisible(),'first screen offers a visible Sell action');
+  assert.match(await page.locator('#rqBrowseShortcut').innerText(),/Find an item/);
+  assert.match(await page.locator('#rqSellShortcut').innerText(),/Sell an item/);
+  assert.equal(await page.locator('#robots .v24-market-note').count(),0,'duplicated market notice removed');
+  await page.locator('#rqBrowseShortcut').click();
+  assert.equal(await page.evaluate(()=>document.activeElement?.id),'marketSearch','Buy should focus item search');
+  await page.locator('#rqSellShortcut').click();
+  assert(await page.locator('#rqQuickSellForm').isVisible(),'Sell shortcut must open photo-first listing form');
+  await page.evaluate(()=>window.closeModal());
+
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),0,'no fake robot inventory is displayed');
   assert.equal(await page.locator('#homeListings .v24-listing-card').count(),0,'homepage contains real listings only');
   assert.equal(await page.evaluate(()=>window.rqCanWriteSupabase()),false,'Preview stays read-only against production');
@@ -95,6 +107,8 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   if(process.env.CI){
     await page.screenshot({path:path.join(screenshotDir,'roboquo-market-desktop.png'),fullPage:true});
     await page.setViewportSize({width:390,height:844});
+    assert(await page.locator('#rqBrowseShortcut').isVisible(),'mobile Buy shortcut must be visible');
+    assert(await page.locator('#rqSellShortcut').isVisible(),'mobile Sell shortcut must be visible');
     await page.screenshot({path:path.join(screenshotDir,'roboquo-market-mobile.png'),fullPage:true});
   }
   await page.evaluate(()=>window.rqStartSell('part'));

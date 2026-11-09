@@ -4,21 +4,21 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
 <meta content="#ffffff" name="theme-color"/>
-<title>RoboQuo — The global marketplace for used robots</title>
+<title>RoboQuo — Buy & Sell Robots, Parts & Automation Equipment</title>
 <meta name="description" content="Buy and sell new and used robots, grippers and automation parts. Post real product photos, search by category and country, and message sellers directly on RoboQuo."/>
 <meta name="robots" content="index,follow,max-image-preview:large"/>
 <link rel="canonical" href="https://roboquo.com/"/>
 <meta property="og:type" content="website"/>
 <meta property="og:site_name" content="RoboQuo"/>
-<meta property="og:title" content="RoboQuo — The global marketplace for used robots"/>
+<meta property="og:title" content="RoboQuo — Buy & Sell Robots and Parts"/>
 <meta property="og:description" content="New and used robots, grippers and parts. Photo-first listings and direct buyer-seller messages."/>
 <meta property="og:url" content="https://roboquo.com/"/>
 <meta property="og:image" content="https://roboquo.com/social-preview.png"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
-<meta property="og:image:alt" content="RoboQuo — The global marketplace for used robots"/>
+<meta property="og:image:alt" content="RoboQuo — Robots and Parts Marketplace"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:title" content="RoboQuo — The global marketplace for used robots"/>
+<meta name="twitter:title" content="RoboQuo — Buy & Sell Robots and Parts"/>
 <meta name="twitter:description" content="New and used robots and automation parts. List, browse and chat with sellers."/>
 <meta name="twitter:image" content="https://roboquo.com/social-preview.png"/>
 <link href="manifest.json" rel="manifest"/>
@@ -53,7 +53,7 @@
 </head>
 <body>
 <header class="site-header">
-<a aria-label="RoboQuo home" class="brand" data-route="home" href="#home"><span class="rq">RQ</span><span>RoboQuo</span></a>
+<a aria-label="RoboQuo marketplace" class="brand" data-route="robots" href="#robots"><span class="rq">RQ</span><span>RoboQuo</span></a>
 <nav class="desktop-nav">
 <a data-i18n="navRobots" data-route="robots" href="#robots">Robots</a>
 <a data-i18n="navCategories" data-route="categories" href="#categories">Categories</a>
@@ -179,8 +179,16 @@
 <div class="wrap category-grid application-grid" id="applicationGrid"></div>
 </section>
 <section class="page" id="robots">
-<div class="wrap page-head split"><div><div class="kicker">ROBOQUO MARKET</div><h1 data-i18n="marketTitle">Robots & Parts Marketplace</h1><p data-i18n="marketDesc">Find new and used robots, grippers and parts. Message sellers directly.</p></div><button class="primary" data-action="sell" data-i18n="sellRobot">Post an item</button></div>
-<div class="wrap market-toolbar">
+<div class="wrap page-head rq-market-heading"><div class="kicker">ROBOQUO MARKETPLACE</div><h1 data-i18n="marketTitle">Buy &amp; sell robots and parts</h1><p data-i18n="marketDesc">New or used. Find an item or post yours in a few steps.</p></div>
+<div class="wrap rq-market-quickstart" id="rqMarketQuickStart" aria-label="Buy or sell">
+  <button type="button" id="rqBrowseShortcut" class="rq-market-choice rq-market-choice-buy">
+    <span class="rq-choice-symbol" aria-hidden="true">⌕</span><span class="rq-choice-content"><strong>Find an item</strong><small>Browse new and used robots &amp; parts</small></span><span class="rq-choice-arrow" aria-hidden="true">→</span>
+  </button>
+  <button type="button" id="rqSellShortcut" class="rq-market-choice rq-market-choice-sell">
+    <span class="rq-choice-symbol" aria-hidden="true">＋</span><span class="rq-choice-content"><strong>Sell an item</strong><small>Upload photos and set your price</small></span><span class="rq-choice-arrow" aria-hidden="true">→</span>
+  </button>
+</div>
+<div class="wrap market-toolbar" id="rqMarketSearchArea">
 <div class="search-field"><span>⌕</span><input data-i18n-placeholder="marketSearchPh" id="marketSearch" placeholder="Search maker, model or location"/></div>
 <select id="categoryFilter"><option data-i18n="allCategories" value="">All categories</option></select>
 <select id="applicationFilter"><option data-i18n="allApplications" value="">All applications</option></select>
