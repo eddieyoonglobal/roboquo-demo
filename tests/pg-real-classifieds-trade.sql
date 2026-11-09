@@ -58,7 +58,7 @@ set request.jwt.claim.role='authenticated';
 set request.jwt.claim.sub='11111111-1111-4111-8111-111111111111';
 do $$
 begin
- if (select count(*) from public.marketplace_messages where conversation_id=:'conversation_id'::uuid)<>1 then
+ if (select count(*) from public.marketplace_messages where conversation_id=(select id from public.marketplace_conversations where listing_id=(select id from public.seller_listings where model='RG2 TEST')))<>1 then
   raise exception 'FAIL: seller cannot see buyer message';
  end if;
 end $$;
@@ -85,7 +85,7 @@ set request.jwt.claim.role='authenticated';
 set request.jwt.claim.sub='22222222-2222-4222-8222-222222222222';
 do $$
 begin
- if (select count(*) from public.marketplace_messages where conversation_id=:'conversation_id'::uuid)<>2 then
+ if (select count(*) from public.marketplace_messages where conversation_id=(select id from public.marketplace_conversations where listing_id=(select id from public.seller_listings where model='RG2 TEST')))<>2 then
   raise exception 'FAIL: buyer cannot read seller reply';
  end if;
 end $$;
