@@ -374,7 +374,9 @@
     const value=select.value;
     const labels=categoryCopy();
     const keys=Object.keys(labels);
-    if(select.options.length===keys.length && select.dataset.marketLang===lang())return;
+    const expectedKeys=keys.map(k=>k==='all'?'':k).join('|');
+    const currentKeys=[...select.options].map(o=>o.value).join('|');
+    if(currentKeys===expectedKeys && select.dataset.marketLang===lang())return;
     select.innerHTML=keys.map(k=>`<option value="${k==='all'?'':k}">${escHtml(labels[k])}</option>`).join('');
     select.dataset.marketLang=lang();
     if(keys.includes(value))select.value=value;
