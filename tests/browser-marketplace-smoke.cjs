@@ -55,12 +55,12 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#rqMarketCategoryChips button').count(),8,'robot/part category shortcuts render');
   await page.evaluate(()=>window.rqSetSellerLiveListings([
     {id:'seller:robot-fixture',backendId:'robot-fixture',brand:'FANUC',model:'CRX TEST',year:2024,location:'Tokyo',country:'Japan',
-      price:2250000,currency:'JPY',sale:'fixed',cat:'industrial',itemCategory:'robot',itemCondition:'used',description:'Real robot fixture',
+      price:19000,currency:'CNY',sale:'fixed',cat:'industrial',itemCategory:'robot',itemCondition:'new',sellerType:'business',description:'New robot from Chinese dealer',
       apps:[],hours:'—',operatingStatus:'stored',sellerCompany:'Fixture Company',verified:false,demo:false,_source:'seller-supabase',
       media:{nameplate:false,controller:false,video:false},
       photoUrl:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20"%3E%3C/svg%3E',photoUrls:{},photoCount:1},
     {id:'seller:gripper-fixture',backendId:'gripper-fixture',brand:'OnRobot',model:'RG2 GRIPPER TEST',location:'Osaka',country:'Japan',
-      price:48000,currency:'JPY',sale:'fixed',cat:'gripper',itemCategory:'gripper',itemCondition:'used',description:'Actual used gripper fixture',
+      price:48000,currency:'JPY',sale:'fixed',cat:'gripper',itemCategory:'gripper',itemCondition:'used',sellerType:'individual',description:'Actual used gripper fixture',
       apps:[],hours:'—',operatingStatus:'unknown',sellerCompany:'Parts Fixture Seller',verified:false,demo:false,_source:'seller-supabase',
       media:{nameplate:false,controller:false,video:false},
       photoUrl:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20"%3E%3C/svg%3E',photoUrls:{},photoCount:1}
@@ -71,6 +71,18 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   const filterDebug=await page.evaluate(()=>({value:document.querySelector('#categoryFilter')?.value,options:[...document.querySelector('#categoryFilter').options].map(o=>o.value),hasRender:typeof window.rqRenderMarketplace,items:allRobotListings().filter(x=>x._source==='seller-supabase').map(x=>({id:x.id,category:x.itemCategory}))}));
   console.log('MARKET_FILTER_DEBUG',JSON.stringify({...filterDebug,errors,renderFn:await page.evaluate(()=>typeof renderListings)}));
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'gripper category works');
+  await page.locator('#categoryFilter').evaluate(el=>{el.value='';el.dispatchEvent(new Event('change',{bubbles:true}));});
+  await page.locator('#conditionFilter').selectOption('new');
+  assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'new goods filter must exclude used grippers');
+  assert.match(await page.locator('#marketListings .v24-listing-card').first().innerText(),/CN¥19,000/,'China listings show CNY price not JPY');
+  await page.locator('#countryFilter').selectOption('China');
+  assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'China-only filter works');
+  await page.locator('#countryFilter').selectOption('Japan');
+  assert.equal(await page.locator('#marketListings .v24-listing-card').count(),0,'country and condition combine');
+  await page.locator('#conditionFilter').selectOption('used');
+  assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'used Japanese parts filter works');
+  await page.locator('#countryFilter').selectOption('');
+  await page.locator('#categoryFilter').selectOption('gripper');
   await page.locator('#marketSearch').fill('NONEXISTENT-ROBOT-000');
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),0,'search filters real listings');
   await page.locator('#marketSearch').fill('RG2');
@@ -90,6 +102,11 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.evaluate(()=>window.rqStartSell('part'));
   assert(await page.locator('#rqQuickSellForm').isVisible(),'short photo-first sell form opens');
   assert.equal(await page.locator('#rqQuickSellForm select[name="itemCategory"]').inputValue(),'part');
+  await page.locator('#rqClCountry').selectOption('China');
+  assert.equal(await page.locator('#rqClCurrency').inputValue(),'CNY','China seller currency should follow country');
+  await page.locator('#rqQuickSellForm [name="sellerType"]').selectOption('business');
+  await page.locator('#rqClCountry').selectOption('Japan');
+  assert.equal(await page.locator('#rqClCurrency').inputValue(),'JPY','Japan seller currency should follow country');
   const png=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScL/nwAAAABJRU5ErkJggg==','base64');
   await page.locator('#rqClPhotos').setInputFiles({name:'part.png',mimeType:'image/png',buffer:png});
   await page.locator('#rqQuickSellForm [name=model]').fill('FANUC gear TEST');
