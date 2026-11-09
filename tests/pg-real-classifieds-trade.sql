@@ -5,10 +5,10 @@ set role authenticated;
 set request.jwt.claim.role='authenticated';
 set request.jwt.claim.sub='11111111-1111-4111-8111-111111111111';
 
-insert into public.seller_listings(owner_id,manufacturer,model,item_category,item_condition,
+insert into public.seller_listings(owner_id,manufacturer,model,item_category,item_condition,country,currency,seller_type,
   description_text,price,seller_company_name,declaration_accepted,status)
-values(auth.uid(),'OnRobot','RG2 TEST','gripper','used',
-  'Seller-owned demonstration fixture, stored in CI only',48000,'Fixture Seller',true,'draft')
+values(auth.uid(),'OnRobot','RG2 TEST','gripper','new','China','CNY','business',
+  'New gripper listing fixture, stored in CI only',48000,'Fixture Seller',true,'draft')
 returning id as classified_id \gset
 
 insert into public.seller_listing_contacts(listing_id,owner_id,company_name,contact_name,business_email,phone)
@@ -25,7 +25,8 @@ set status='published' where id=:'classified_id'::uuid and owner_id=auth.uid();
 do $$
 begin
  if (select count(*) from public.seller_listings
-     where model='RG2 TEST' and status='published' and item_category='gripper')<>1 then
+     where model='RG2 TEST' and status='published' and item_category='gripper'
+       and item_condition='new' and country='China' and currency='CNY' and seller_type='business')<>1 then
    raise exception 'FAIL: real gripper listing not published';
  end if;
 end $$;
