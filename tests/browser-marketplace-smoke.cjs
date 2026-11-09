@@ -53,6 +53,32 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.locator('#marketSearch').fill('NO_SUCH_ROBOT_MODEL_ZZZ_1234');
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),0,'unknown model should show no results');
   await page.locator('#marketSearch').fill('');
+  // Inject a clearly synthetic published seller listing into the browser
+  // presentation only. No Supabase insert or sign-in is performed.
+  await page.evaluate(()=>{
+    window.rqSetSellerLiveListings([{
+      id:'seller:browser-fixture-001',backendId:'browser-fixture-001',
+      brand:'FANUC',model:'CRX-10iA (TEST FIXTURE)',
+      year:2024,location:'Tokyo',country:'Japan',price:123456,
+      currency:'JPY',sale:'fixed',cat:'industrial',apps:[],hours:'—',
+      operatingStatus:'stored',sellerCompany:'Fixture Company',
+      verified:false,demo:false,_source:'seller-supabase',
+      media:{nameplate:false,controller:false,video:false},
+      photoUrl:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20"%3E%3C/svg%3E',
+      photoUrls:{},photoCount:1
+    }]);
+  });
+  const live=page.locator('#marketListings .v24-listing-card').filter({hasText:'TEST FIXTURE'});
+  assert.equal(await live.count(),1,'published seller listing renders alongside demo records');
+  assert.equal(await live.locator('.v24-badge.demo').count(),0,'published listing cannot have demo badge');
+  assert.equal(await live.locator('img').count(),1,'signed remote picture renders in the card');
+  await live.locator('.v24-photo-button').click();
+  assert.match(await page.locator('#modal').innerText(),/Stored \(seller reported\)/,'condition must be seller-reported, not invented');
+  await page.locator('#modal .v24-modal-actions button').filter({hasText:'Contact RoboQuo'}).click();
+  const mailto=await page.locator('#modal a[href^="mailto:"]').getAttribute('href');
+  assert(mailto&&mailto.includes('browser-fixture-001'),'inquiry draft includes the listing reference');
+  assert(mailto.includes('sales@roboquo.com'),'buyer inquiry opens a draft addressed to RoboQuo');
+  await page.evaluate(()=>window.closeModal());
   await page.evaluate(()=>window.rqStartSell());
   assert(await page.locator('#modal').isVisible(),'seller photo-first wizard should open');
   assert.equal(errors.length,0,'uncaught runtime errors: '+errors.join(' | '));
