@@ -303,25 +303,22 @@
   }
 
   function patchRobotsPage(){
-    const titles={ko:'로봇·부품 마켓',ja:'ロボット・部品マーケット',en:'Robots & parts marketplace'};
-    const head=$('#robots .page-head h1'); if(head) head.textContent=titles[lang()]||titles.en;
-    const descriptions={ko:'신품·중고를 사진으로 보고, 판매자와 바로 채팅하세요.',ja:'新品も中古も、写真で探して出品者に直接チャット。',en:'New or used. Browse photos and chat with sellers.'};
-    const desc=$('#robots .page-head p'); if(desc) desc.textContent=descriptions[lang()]||descriptions.en;
-    let note=$('#robots .v24-market-note');
-    if(!note){
-      note=document.createElement('div');
-      note.className='v24-market-note';
-      $('#robots .market-toolbar')?.insertAdjacentElement('afterend', note);
-    }
-    const hasLive=all().some(r=>r._source==='seller-supabase');
-    const msg={
-      ko:['신품·중고 로봇·부품 거래','실제 판매자가 올린 상품만 표시합니다. 채팅으로 거래 조건을 확인하세요.'],
-      ja:['新品・中古ロボット・部品','実際の出品のみ表示します。取引条件は出品者とのチャットで確認。'],
-      en:['New & used robots and parts','Only seller-posted listings. Confirm item details and terms in chat.']
+    const locale=lang();
+    const titles={
+      ko:'로봇·부품, 쉽고 간단하게 사고팔기',
+      ja:'ロボット・部品を、かんたんに売買',
+      en:'Buy and sell robots & parts'
     };
-    const copy=msg[lang()]||msg.en;
-    note.innerHTML=`<div><strong>${copy[0]}</strong><p>${copy[1]}</p></div><button class="secondary" data-action="sell">${tx('heroSecondary')}</button>`;
-    $('[data-action="sell"]', note)?.addEventListener('click',()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow()));
+    const descriptions={
+      ko:'신품도 중고도, 상품을 찾거나 사진을 올려 판매해보세요.',
+      ja:'新品も中古も。商品を探す、写真を撮って出品する。',
+      en:'New or used. Browse listings or post yours with photos.'
+    };
+    const title=$('#robots .page-head h1');
+    const desc=$('#robots .page-head p');
+    if(title)title.textContent=titles[locale]||titles.en;
+    if(desc)desc.textContent=descriptions[locale]||descriptions.en;
+    $('#robots .v24-market-note')?.remove();
   }
 
   function renderCard(r){
@@ -390,8 +387,8 @@
       ja:['現在、出品はありません。','新品・中古のロボットや部品を自由に出品できます。','出品する'],
       en:['No listings yet.','Sellers can post new and used robots, grippers and parts here.','Post an item']
     };
-    const [head,body,action]=translated[lang()]||translated.en;
-    return `<div class="rq-market-empty"><h3>${head}</h3><p>${body}</p><button type="button" class="primary" onclick="window.rqStartSell?.()">${action}</button></div>`;
+    const [head,body]=translated[lang()]||translated.en;
+    return `<div class="rq-market-empty"><h3>${head}</h3><p>${body}</p></div>`;
   }
   function renderListingsV24(){
     patchMarketCategoryFilter();
