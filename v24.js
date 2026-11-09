@@ -571,6 +571,7 @@
       window.__v24CloseWrapped = true;
     }
     refresh();
+    window.rqRenderMarketplace=renderListingsV24;
     bindRoutes();
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',init); else init();
