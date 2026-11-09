@@ -224,6 +224,9 @@ function init(){
   wrapped.__classifieds=true;window.rqSetSellerLiveListings=wrapped;
  }
  putMarketActions();
+ // The classifieds feed is the product's primary landing page; the former
+ // multi-service demo home remains accessible through the Home navigation.
+ if(!location.hash||location.hash==='#robots')route('robots');
  document.addEventListener('rq:languagechange',()=>{putMarketActions();categoryTiles();const btn=$('#rqMarketInboxBtn');if(btn)btn.textContent=tr('inbox');const hint=$('#rqMarketInfo');if(hint)hint.textContent=tr('priceHint')});
  // Stop legacy handlers from launching the eight-step robot-only wizard.
  document.addEventListener('click',e=>{
