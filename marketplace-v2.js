@@ -32,6 +32,8 @@ Object.assign(MARKET_WORDS,{"zh":{"country":"卖家所在国家","currency":"货
  // Other seller-form labels intentionally fall back to English until translated.
  Object.entries(MARKET_WORDS).forEach(([code,words])=>Object.assign(L[code]||(L[code]={}),words));
  const COUNTRIES={Japan:{ko:'일본',ja:'日本',en:'Japan'},Korea:{ko:'한국',ja:'韓国',en:'Korea'},China:{ko:'중국',ja:'中国',en:'China'},Taiwan:{ko:'대만',ja:'台湾',en:'Taiwan'},USA:{ko:'미국',ja:'米国',en:'USA'},Germany:{ko:'독일',ja:'ドイツ',en:'Germany'},Other:{ko:'기타 국가',ja:'その他',en:'Other'}};
+// Localized country option names for every supported marketplace language.
+Object.entries({"Japan":{"zh":"日本","de":"Japan","fr":"Japon","es":"Japón","it":"Giappone","pt":"Japão","vi":"Nhật Bản"},"Korea":{"zh":"韩国","de":"Südkorea","fr":"Corée du Sud","es":"Corea del Sur","it":"Corea del Sud","pt":"Coreia do Sul","vi":"Hàn Quốc"},"China":{"zh":"中国","de":"China","fr":"Chine","es":"China","it":"Cina","pt":"China","vi":"Trung Quốc"},"Taiwan":{"zh":"台湾","de":"Taiwan","fr":"Taïwan","es":"Taiwán","it":"Taiwan","pt":"Taiwan","vi":"Đài Loan"},"USA":{"zh":"美国","de":"USA","fr":"États-Unis","es":"EE. UU.","it":"Stati Uniti","pt":"EUA","vi":"Hoa Kỳ"},"Germany":{"zh":"德国","de":"Deutschland","fr":"Allemagne","es":"Alemania","it":"Germania","pt":"Alemanha","vi":"Đức"},"Other":{"zh":"其他","de":"Sonstige","fr":"Autre","es":"Otro","it":"Altro","pt":"Outros","vi":"Khác"}}).forEach(([country,labels])=>Object.assign(COUNTRIES[country],labels));
 const countryName=key=>COUNTRIES[key]?.[lang()]||COUNTRIES[key]?.en||key;
 const currForCountry={Japan:'JPY',Korea:'KRW',China:'CNY',Taiwan:'USD',USA:'USD',Germany:'EUR',Other:'USD'};
 const CURRENCIES={JPY:'¥ JPY',KRW:'₩ KRW',CNY:'¥ CNY',USD:'$ USD',EUR:'€ EUR'};

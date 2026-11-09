@@ -50,11 +50,12 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.match(await page.locator('#rqSellShortcut').innerText(),/Sell an item/);
 
   // All available locale selectors must localize the actual Buy/Sell entry points.
-  for(const [language,buy,sell,gripper,countryAll] of [
-    ['ko','상품 찾기','상품 팔기','그리퍼·EOAT','전체 국가'],
-    ['ja','商品を探す','商品を売る','グリッパー・EOAT','すべての国'],
-    ['zh','查找商品','发布商品','夹爪与EOAT','所有国家'],
-    ['de','Artikel finden','Artikel verkaufen','Greifer / EOAT','Alle Länder']
+  for(const [language,buy,sell,gripper,countryAll,japanName] of [
+    ['ko','상품 찾기','상품 팔기','그리퍼·EOAT','전체 국가','일본'],
+    ['ja','商品を探す','商品を売る','グリッパー・EOAT','すべての国','日本'],
+    ['zh','查找商品','发布商品','夹爪与EOAT','所有国家','日本'],
+    ['de','Artikel finden','Artikel verkaufen','Greifer / EOAT','Alle Länder','Japan'],
+    ['fr','Trouver un article','Vendre un article','Préhenseur / EOAT','Tous pays','Japon']
   ]){
     await page.locator('#languageSelect').selectOption(language);
     await page.waitForFunction(([expected])=>document.querySelector('#rqBrowseShortcut strong')?.textContent===expected,[buy]);
@@ -62,6 +63,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     await page.evaluate(()=>route('robots'));
     assert.match(await page.locator('#rqMarketCategoryChips').innerText(),new RegExp(gripper));
     assert.equal((await page.locator('#countryFilter option').first().textContent()).trim(),countryAll,'localized country filter '+language);
+    assert.equal((await page.locator('#countryFilter option[value="Japan"]').textContent()).trim(),japanName,'localized Japan option '+language);
   }
   await page.locator('#languageSelect').selectOption('en');
   await page.waitForFunction(()=>document.querySelector('#rqBrowseShortcut strong')?.textContent==='Find an item');
