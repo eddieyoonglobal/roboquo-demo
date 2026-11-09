@@ -402,6 +402,36 @@
     const [head,body]=(filtered?noMatch:blank)[lang()]||(filtered?noMatch:blank).en;
     return `<div class="rq-market-empty"><h3>${head}</h3><p>${body}</p></div>`;
   }
+  // Match seller-provided model text as well as multilingual industrial product terms.
+  // This lookup is client-side; it never translates or changes seller-provided descriptions.
+  const MARKET_SEARCH_TERMS={
+    robot:'robot robots ロボット ロボ트 로봇 机器人 roboter robots robô',
+    gripper:'gripper grippers eoat end-effector endeffector gripping グリッパー グリッパ 그리퍼 그립퍼 夹爪 greifer préhenseur pinza pinze garra kẹp',
+    controller:'controller control cabinet 控制器 コントローラー 制御盤 제어기 컨트롤러 steuerung contrôleur controlador',
+    vision:'vision camera sensor machine vision ビジョン カメラ センサー 비전 카메라 센서 视觉 传感器 bildverarbeitung capteur visión visione',
+    part:'part parts spare replacement 部品 交換部品 부품 수리부품 配件 零件 ersatzteil pièce pieza ricambio phụ tùng',
+    accessory:'accessory accessories peripheral 周辺機器 주변기기 액세서리 外围设备 zubehör accessoire accesorio acessórios',
+    other:'other その他 기타 其他',
+    used:'used secondhand preowned second-hand 中古 중고 二手 gebraucht occasion usado usato đã qua sử dụng',
+    new:'new brand-new 新品 신품 새제품 全新 neuf nuevo nuovo novo mới',
+    refurbished:'refurbished reconditioned overhauled 整備済み 리퍼 재정비 翻新 überholt reconditionné reacondicionado ricondizionato',
+    for_parts:'faulty broken for-parts 部品取り 故障 고장 부품용 拆件 defekt averiado guasto'
+  };
+  const MARKET_SEARCH_INDEX={
+    robot:['robot'],gripper:['gripper'],controller:['controller'],vision:['vision'],
+    part:['part'],accessory:['accessory'],other:['other'],
+    used:['used'],new:['new'],refurbished:['refurbished'],for_parts:['for_parts']
+  };
+  function marketSearchMatches(row,rawQuery){
+    const normalized=value=>String(value??'').normalize('NFKC').toLocaleLowerCase();
+    const fields=[row.brand,row.model,row.location,row.country,row.description,row.itemCategory,row.itemCondition,row.sellerCompany];
+    const category=String(row.itemCategory||'robot'),condition=String(row.itemCondition||'');
+    const aliases=[...(MARKET_SEARCH_INDEX[category]||[]),...(MARKET_SEARCH_INDEX[condition]||[])]
+      .map(key=>MARKET_SEARCH_TERMS[key]||'');
+    const haystack=normalized([...fields,...aliases].join(' '));
+    const query=normalized(rawQuery).trim();
+    return !query||query.split(/\s+/u).every(word=>haystack.includes(word));
+  }
   function renderListingsV24(){
     patchMarketCategoryFilter();
     const search=($('#marketSearch')?.value||'').trim().toLowerCase();
@@ -410,7 +440,7 @@
     const condition=$('#conditionFilter')?.value||'';
     const actual=all().filter(r=>r._source==='seller-supabase'&&!isDemo(r));
     const items=actual.filter(r=>
-      (!search||[r.brand,r.model,r.location,r.country,r.description,r.itemCategory].join(' ').toLowerCase().includes(search)) &&
+      marketSearchMatches(r,search) &&
       (!category||(r.itemCategory||'robot')===category) &&
       (!country||r.country===country) &&
       (!condition||r.itemCondition===condition)
