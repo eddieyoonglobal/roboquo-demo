@@ -172,3 +172,20 @@ body,button,input,select,textarea{
  #robots .rq-market-subtitle{margin:10px auto 24px}
 }
 @media(prefers-reduced-motion:reduce){#robots .rq-market-choice{transition:none}#robots .rq-market-choice:hover{transform:none}}
+
+/* Buyer search feedback — clear state and reset on every screen size. */
+#robots .rq-market-feedback{
+ display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+ margin:-3px auto 15px;font-size:13px;font-weight:650;color:#526680;
+}
+#robots .rq-market-reset{
+ border:1px solid #cbd5e1;background:#fff;color:#214d80;border-radius:99px;
+ padding:7px 13px;font:inherit;font-size:12px;font-weight:700;cursor:pointer;
+}
+#robots .rq-market-reset:hover{background:#edf4fc;border-color:#7aa4d6}
+#robots .rq-market-reset:focus-visible{outline:3px solid #1d65c1;outline-offset:2px}
+#robots .rq-market-reset[hidden]{display:none!important}
+@media(max-width:720px){
+ #robots .rq-market-feedback{padding:0 13px;margin:0 auto 12px;gap:6px;font-size:12px}
+ #robots .rq-market-reset{padding:7px 10px;font-size:11px}
+}
