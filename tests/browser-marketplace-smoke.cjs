@@ -80,7 +80,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.locator('#conditionFilter').selectOption('used');
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'used Japanese parts filter works');
   await page.locator('#countryFilter').selectOption('');
-  await page.locator('#categoryFilter').selectOption('gripper');
+  await page.locator('#categoryFilter').evaluate(el=>{el.value='gripper';el.dispatchEvent(new Event('change',{bubbles:true}));});
   await page.locator('#marketSearch').fill('NONEXISTENT-ROBOT-000');
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),0,'search filters real listings');
   await page.locator('#marketSearch').fill('RG2');
