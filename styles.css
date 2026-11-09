@@ -136,3 +136,8 @@ html[lang="zh"] button,html[lang="zh"] input,html[lang="zh"] select,html[lang="z
  #makers .rq-compare-selection{padding:12px}
  #makers .rq-compare-selection-head{align-items:flex-start}
 }
+
+#makers .rq-jump-compare{margin:1px 0 12px;padding:9px 14px;border:1px solid #174b86;border-radius:10px;background:#174b86;color:#fff;font-weight:800;font-size:12px;cursor:pointer}
+#makers .rq-jump-compare:hover{background:#103c71}
+#makers .rq-jump-compare:focus-visible{outline:3px solid #4b92ec;outline-offset:3px}
+#makers .rq-model-compare{scroll-margin-top:85px}
