@@ -26,6 +26,9 @@ const MARKET_WORDS={
  en:{country:'Seller country',currency:'Currency',sellerType:'Seller',sellerIndividual:'Individual',sellerBusiness:'Company / dealer',conditionAll:'All conditions',countryAll:'All countries',itemStatus:'Condition',allItems:'All items'}
 };
 Object.entries(MARKET_WORDS).forEach(([code,words])=>Object.assign(L[code],words));
+Object.assign(C,{"zh":{"robot":"机器人本体","gripper":"夹爪与EOAT","controller":"控制器","vision":"视觉与传感器","part":"机器人配件","accessory":"外围设备","other":"其他"},"de":{"robot":"Roboter","gripper":"Greifer / EOAT","controller":"Steuerung","vision":"Bildverarbeitung / Sensor","part":"Roboterteil","accessory":"Zubehör","other":"Sonstiges"},"fr":{"robot":"Robot","gripper":"Préhenseur / EOAT","controller":"Contrôleur","vision":"Vision / capteur","part":"Pièce robot","accessory":"Accessoire","other":"Autre"},"es":{"robot":"Robot","gripper":"Pinza / EOAT","controller":"Controlador","vision":"Visión / sensor","part":"Pieza de robot","accessory":"Accesorio","other":"Otros"},"it":{"robot":"Robot","gripper":"Pinza / EOAT","controller":"Controller","vision":"Visione / sensore","part":"Ricambio robot","accessory":"Accessori","other":"Altro"},"pt":{"robot":"Robô","gripper":"Garra / EOAT","controller":"Controlador","vision":"Visão / sensor","part":"Peça de robô","accessory":"Acessórios","other":"Outros"},"vi":{"robot":"Robot","gripper":"Kẹp / EOAT","controller":"Bộ điều khiển","vision":"Thị giác / cảm biến","part":"Phụ tùng robot","accessory":"Thiết bị ngoại vi","other":"Khác"}});
+Object.assign(CONDITIONS,{"zh":{"used":"二手","new":"全新","refurbished":"翻新","for_parts":"拆件 / 故障"},"de":{"used":"Gebraucht","new":"Neu","refurbished":"Überholt","for_parts":"Ersatzteile / Defekt"},"fr":{"used":"Occasion","new":"Neuf","refurbished":"Reconditionné","for_parts":"Pièces / Défectueux"},"es":{"used":"Usado","new":"Nuevo","refurbished":"Reacondicionado","for_parts":"Para piezas / Averiado"},"it":{"used":"Usato","new":"Nuovo","refurbished":"Ricondizionato","for_parts":"Per ricambi / Guasto"},"pt":{"used":"Usado","new":"Novo","refurbished":"Recondicionado","for_parts":"Para peças / Com defeito"},"vi":{"used":"Đã qua sử dụng","new":"Mới","refurbished":"Tân trang","for_parts":"Lấy linh kiện / Hỏng"}});
+Object.assign(MARKET_WORDS,{"zh":{"country":"卖家所在国家","currency":"货币","sellerType":"卖家","sellerIndividual":"个人","sellerBusiness":"企业 / 经销商","conditionAll":"全部状态","countryAll":"所有国家","itemStatus":"商品状态","allItems":"全部商品"},"de":{"country":"Land","currency":"Währung","sellerType":"Anbieter","sellerIndividual":"Privat","sellerBusiness":"Firma / Händler","conditionAll":"Alle Zustände","countryAll":"Alle Länder","itemStatus":"Artikelzustand","allItems":"Alle Artikel"},"fr":{"country":"Pays","currency":"Devise","sellerType":"Vendeur","sellerIndividual":"Particulier","sellerBusiness":"Entreprise / Revendeur","conditionAll":"Tous états","countryAll":"Tous pays","itemStatus":"État de l'article","allItems":"Tous les articles"},"es":{"country":"País","currency":"Moneda","sellerType":"Vendedor","sellerIndividual":"Particular","sellerBusiness":"Empresa / Distribuidor","conditionAll":"Todos los estados","countryAll":"Todos los países","itemStatus":"Estado del artículo","allItems":"Todos los artículos"},"it":{"country":"Paese","currency":"Valuta","sellerType":"Venditore","sellerIndividual":"Privato","sellerBusiness":"Azienda / Rivenditore","conditionAll":"Tutte le condizioni","countryAll":"Tutti i paesi","itemStatus":"Condizione","allItems":"Tutti gli articoli"},"pt":{"country":"País","currency":"Moeda","sellerType":"Vendedor","sellerIndividual":"Particular","sellerBusiness":"Empresa / Revendedor","conditionAll":"Todas condições","countryAll":"Todos os países","itemStatus":"Condição","allItems":"Todos os itens"},"vi":{"country":"Quốc gia","currency":"Tiền tệ","sellerType":"Người bán","sellerIndividual":"Cá nhân","sellerBusiness":"Công ty / Đại lý","conditionAll":"Mọi tình trạng","countryAll":"Tất cả quốc gia","itemStatus":"Tình trạng","allItems":"Tất cả sản phẩm"}});
 const COUNTRIES={Japan:{ko:'일본',ja:'日本',en:'Japan'},Korea:{ko:'한국',ja:'韓国',en:'Korea'},China:{ko:'중국',ja:'中国',en:'China'},Taiwan:{ko:'대만',ja:'台湾',en:'Taiwan'},USA:{ko:'미국',ja:'米国',en:'USA'},Germany:{ko:'독일',ja:'ドイツ',en:'Germany'},Other:{ko:'기타 국가',ja:'その他',en:'Other'}};
 const countryName=key=>COUNTRIES[key]?.[lang()]||COUNTRIES[key]?.en||key;
 const currForCountry={Japan:'JPY',Korea:'KRW',China:'CNY',Taiwan:'USD',USA:'USD',Germany:'EUR',Other:'USD'};
@@ -87,7 +90,14 @@ function patchMarketFilters(){
 const MARKET_FIRST_ACTIONS={
  ko:{buy:'상품 찾기',buyHint:'로봇·그리퍼·부품 둘러보기',sell:'상품 팔기',sellHint:'사진 올리고 가격 입력'},
  ja:{buy:'商品を探す',buyHint:'ロボット・グリッパー・部品',sell:'商品を売る',sellHint:'写真を選んで価格を入力'},
- en:{buy:'Find an item',buyHint:'Robots, grippers and parts',sell:'Sell an item',sellHint:'Add photos and your price'}
+ en:{buy:'Find an item',buyHint:'Robots, grippers and parts',sell:'Sell an item',sellHint:'Add photos and your price'},
+ zh:{"buy":"查找商品","buyHint":"机器人、夹爪与配件","sell":"发布商品","sellHint":"上传实物照片及价格"},
+ de:{"buy":"Artikel finden","buyHint":"Roboter, Greifer und Teile","sell":"Artikel verkaufen","sellHint":"Fotos und Preis hinzufügen"},
+ fr:{"buy":"Trouver un article","buyHint":"Robots, préhenseurs et pièces","sell":"Vendre un article","sellHint":"Ajouter photos et prix"},
+ es:{"buy":"Buscar un artículo","buyHint":"Robots, pinzas y piezas","sell":"Vender un artículo","sellHint":"Añadir fotos y precio"},
+ it:{"buy":"Cerca un articolo","buyHint":"Robot, pinze e ricambi","sell":"Vendi un articolo","sellHint":"Aggiungi foto e prezzo"},
+ pt:{"buy":"Encontrar item","buyHint":"Robôs, garras e peças","sell":"Vender item","sellHint":"Adicione fotos e preço"},
+ vi:{"buy":"Tìm sản phẩm","buyHint":"Robot, kẹp và phụ tùng","sell":"Đăng bán","sellHint":"Thêm ảnh và giá"}
 };
 function updateFirstActions(){
  const copy=MARKET_FIRST_ACTIONS[lang()]||MARKET_FIRST_ACTIONS.en;
@@ -95,7 +105,7 @@ function updateFirstActions(){
  if(buy){buy.querySelector('strong').textContent=copy.buy;buy.querySelector('small').textContent=copy.buyHint}
  if(sell){sell.querySelector('strong').textContent=copy.sell;sell.querySelector('small').textContent=copy.sellHint}
  const search=$('#marketSearch');
- if(search)search.placeholder=lang()==='ko'?'상품명·브랜드 검색':lang()==='ja'?'商品名・メーカーを検索':'Search item or brand';
+ if(search){const placeholders={ko:'상품명·브랜드 검색',ja:'商品名・メーカーを検索',zh:'搜索商品或品牌',de:'Artikel oder Marke suchen',fr:'Rechercher un article ou une marque',es:'Buscar artículo o marca',it:'Cerca articolo o marchio',pt:'Pesquisar item ou marca',vi:'Tìm sản phẩm hoặc thương hiệu'};search.placeholder=placeholders[lang()]||'Search item or brand';}
 }
 function putMarketActions(){
  updateFirstActions();
