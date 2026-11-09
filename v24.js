@@ -304,7 +304,7 @@
   function patchRobotsPage(){
     const titles={ko:'로봇·부품 마켓',ja:'ロボット・部品マーケット',en:'Robots & parts marketplace'};
     const head=$('#robots .page-head h1'); if(head) head.textContent=titles[lang()]||titles.en;
-    const descriptions={ko:'실제 판매자가 올린 로봇과 그리퍼·부품을 사진으로 보고 판매자와 직접 이야기하세요.',ja:'実際の出品からロボットやグリッパー・部品を探し、出品者へ直接メッセージできます。',en:'Find genuine seller-posted robots, grippers and parts. Message the seller directly.'};
+    const descriptions={ko:'신품·중고를 사진으로 보고, 판매자와 바로 채팅하세요.',ja:'新品も中古も、写真で探して出品者に直接チャット。',en:'New or used. Browse photos and chat with sellers.'};
     const desc=$('#robots .page-head p'); if(desc) desc.textContent=descriptions[lang()]||descriptions.en;
     let note=$('#robots .v24-market-note');
     if(!note){
@@ -314,9 +314,9 @@
     }
     const hasLive=all().some(r=>r._source==='seller-supabase');
     const msg={
-      ko:['실제 중고 로봇·부품 거래','판매자가 직접 등록한 매물만 표시합니다. 가격·상태·배송은 거래 전 확인하세요.'],
-      ja:['中古ロボット・部品の実物取引','販売者が登録した実在の出品のみを表示します。状態・価格・配送条件は取引前に確認してください。'],
-      en:['Real used robots & parts','Only genuine seller-submitted listings appear here. Confirm condition, price and shipping before trading.']
+      ko:['신품·중고 로봇·부품 거래','실제 판매자가 올린 상품만 표시합니다. 채팅으로 거래 조건을 확인하세요.'],
+      ja:['新品・中古ロボット・部品','実際の出品のみ表示します。取引条件は出品者とのチャットで確認。'],
+      en:['New & used robots and parts','Only seller-posted listings. Confirm item details and terms in chat.']
     };
     const copy=msg[lang()]||msg.en;
     note.innerHTML=`<div><strong>${copy[0]}</strong><p>${copy[1]}</p></div><button class="secondary" data-action="sell">${tx('heroSecondary')}</button>`;
@@ -385,9 +385,9 @@
   }
   function marketplaceEmpty(){
     const translated={
-      ko:['아직 등록된 중고 로봇·부품이 없습니다.','판매자가 직접 올린 매물이 이곳에 표시됩니다. 첫 상품을 등록해보세요.','상품 등록하기'],
-      ja:['現在、出品はありません。','販売者が登録した中古ロボット・部品がここに表示されます。','出品する'],
-      en:['No live listings yet.','Real seller-posted robots and parts will appear here. Be the first seller.','Post an item']
+      ko:['아직 등록된 로봇·부품이 없습니다.','신품과 중고 모두 판매자가 직접 등록합니다. 첫 상품을 올려보세요.','상품 등록하기'],
+      ja:['現在、出品はありません。','新品・中古のロボットや部品を自由に出品できます。','出品する'],
+      en:['No listings yet.','Sellers can post new and used robots, grippers and parts here.','Post an item']
     };
     const [head,body,action]=translated[lang()]||translated.en;
     return `<div class="rq-market-empty"><h3>${head}</h3><p>${body}</p><button type="button" class="primary" onclick="window.rqStartSell?.()">${action}</button></div>`;
