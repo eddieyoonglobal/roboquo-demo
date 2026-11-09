@@ -47,3 +47,27 @@
 .rq-cl-thread-link small{font-size:11px;color:#8291a6}
 #rqClInbox{max-height:450px;overflow:auto;margin-top:18px}
 @media(max-width:720px){.rq-cl-columns{grid-template-columns:1fr}.rq-classifieds-modal h2{font-size:21px}.rq-cl-pictures-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.rq-cl-pictures-grid img{height:84px}.rq-market-chips{padding:2px 13px 13px}.rq-market-subtitle{padding:0 15px}#rqMarketInboxBtn{font-size:12px;padding:8px 10px}}
+
+/* Simple classifieds navigation and search — three decisions only */
+body,button,input,select,textarea{
+  font-family:"Noto Sans JP","Yu Gothic","Hiragino Kaku Gothic ProN",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+#robots .market-toolbar{display:grid;grid-template-columns:minmax(210px,2fr) minmax(130px,1fr) minmax(130px,1fr);gap:12px;align-items:stretch}
+#robots .market-toolbar #categoryFilter,
+#robots .market-toolbar #applicationFilter{display:none!important}
+#robots .market-toolbar #countryFilter,
+#robots .market-toolbar #conditionFilter{display:block;min-width:0;width:100%;min-height:46px;border:1px solid #d5dce6;border-radius:10px;background:#fff;padding:8px 12px;color:#26374e;font-weight:600}
+#robots .market-toolbar .search-field{min-width:0}
+#robots .market-toolbar .search-field input{min-width:0;width:100%}
+.desktop-nav>button[data-action="sell"]{background:transparent;border:0;color:inherit;font-size:inherit;font-weight:inherit;padding:0;cursor:pointer}
+.desktop-nav>button[data-action="sell"]:hover{color:#1764e8}
+.rq-product-description{margin:12px 0;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.7;font-size:14px;color:#445269}
+.rq-classifieds-modal .rq-cl-field select{cursor:pointer}
+.rq-classifieds-modal .rq-cl-currency-hint{font-size:11px;color:#7c889c}
+@media(max-width:720px){
+ #robots .market-toolbar{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;padding-inline:13px}
+ #robots .market-toolbar .search-field{grid-column:1/-1}
+ #robots .market-toolbar #countryFilter,#robots .market-toolbar #conditionFilter{font-size:13px;min-height:42px}
+ .rq-market-chips{margin-top:8px}
+ .mobile-nav{justify-content:space-around}
+}
