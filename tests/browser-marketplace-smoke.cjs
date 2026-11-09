@@ -68,6 +68,44 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.locator('#languageSelect').selectOption('en');
   await page.waitForFunction(()=>document.querySelector('#rqBrowseShortcut strong')?.textContent==='Find an item');
   assert.equal(await page.locator('#robots .v24-market-note').count(),0,'duplicated market notice removed');
+
+  // Manufacturer data uses reviewed static seed only; no live DB writes.
+  await page.evaluate(()=>route('makers'));
+  await page.waitForFunction(()=>document.querySelectorAll('#makerGrid .maker-card').length>=40,{timeout:15000});
+  assert.equal(await page.locator('#makerTypeFilter').inputValue(),'collaborative','manufacturer catalog starts with cobots');
+  assert.equal(await page.locator('#makerGrid .maker-card').count(),40,'curated cobot list contains 40 brands');
+  assert.match(await page.locator('#rqCobotTitle').innerText(),/collaborative robot brands/i);
+  for(const maker of ['UFACTORY','RealMan Robotics','DUCO Robots','Productive Robotics','OMRON Robotics','Kawasaki Robotics']){
+    assert(await page.locator('#makerGrid .maker-card').filter({hasText:maker}).count()>0,'cobot brand included: '+maker);
+  }
+  assert.equal(await page.locator('#makerGrid .maker-card').filter({hasText:'Tesollo'}).count(),0,'gripper maker must not appear as cobot OEM');
+  assert.equal(await page.locator('#makerGrid .maker-card').filter({hasText:'Vention'}).count(),0,'automation platform must not appear as cobot OEM');
+  await page.locator('#rqMakerRegionLinks button[data-rq-maker-region="China"]').click();
+  assert.equal(await page.locator('#makerRegionFilter').inputValue(),'China','regional chips synchronize with filter');
+  assert.equal(await page.locator('#makerGrid .maker-card').count(),13,'Chinese collaborative brands filtered');
+  await page.locator('#makerSearch').fill('xArm');
+  assert.equal(await page.locator('#makerGrid .maker-card').count(),1,'series search finds UFACTORY');
+  assert.match(await page.locator('#makerGrid .maker-card').first().innerText(),/UFACTORY/);
+  assert.match(await page.locator('#makerGrid .rq-maker-official-link').first().getAttribute('href'),/^https:\/\//,'manufacturer cards link to official website');
+  await page.locator('#makerSearch').fill('does-not-exist-cobot');
+  assert.match(await page.locator('#makerGrid .rq-maker-empty').innerText(),/No manufacturer matches/);
+  await page.locator('#makerSearch').fill('');
+  await page.locator('#rqAllRobotMakers').click();
+  assert.equal(await page.locator('#makerTypeFilter').inputValue(),'','all-brands action resets only robot type');
+  assert.equal(await page.locator('#makerGrid .maker-card').count(),45,'all China robot makers including additional verified brands');
+  await page.locator('#makerRegionFilter').selectOption('');
+  assert.equal(await page.locator('#makerGrid .maker-card').count(),148,'full robot manufacturer directory loads without duplicates');
+  await page.locator('[data-maker-tab="eoat"]').click();
+  assert.equal(await page.locator('#makerGrid .maker-card').filter({hasText:'Tesollo'}).count(),1,'Tesollo appears in end effector maker directory');
+  await page.locator('[data-maker-tab="robot"]').click();
+  await page.locator('#rqCobotOnly').click();
+  assert.equal(await page.locator('#makerGrid .maker-card').count(),40,'cobot shortcut returns to collaborative brand list');
+  await page.locator('#languageSelect').selectOption('ja');
+  await page.waitForFunction(()=>document.querySelector('#rqCobotOnly')?.textContent==='協働ロボット');
+  assert.equal(await page.locator('#makerTypeFilter').inputValue(),'collaborative','language change preserves cobot selection');
+  await page.locator('#languageSelect').selectOption('en');
+  await page.evaluate(()=>route('robots'));
+
   await page.locator('#rqBrowseShortcut').click();
   assert.equal(await page.evaluate(()=>document.activeElement?.id),'marketSearch','Buy should focus item search');
   await page.locator('#rqSellShortcut').click();
