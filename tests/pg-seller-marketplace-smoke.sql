@@ -66,7 +66,7 @@ set request.jwt.claim.sub='11111111-1111-4111-8111-111111111111';
 insert into public.seller_listings(owner_id,manufacturer,model,seller_company_name,declaration_accepted,status)
 values(auth.uid(),'Test','NO CONTACT / PHOTO','CI Fixture Seller',true,'draft');
 
-do $
+do $$
 declare blocked boolean:=false;
         affected integer:=0;
 begin
@@ -91,13 +91,13 @@ begin
   delete from storage.objects where bucket_id='listing-photos';
   get diagnostics affected=row_count;
   if affected<>0 then raise exception 'FAIL: seller removed reviewed photo object'; end if;
-end $;
+end $$;
 
 update public.seller_listings set status='sold'
 where id=:'listing_id'::uuid and owner_id=auth.uid() and status='published';
 
 reset role;
-do $
+do $$
 begin
   if (select public from storage.buckets where id='listing-photos') is distinct from false then
     raise exception 'FAIL: listing-photos bucket must remain private';
