@@ -30,6 +30,9 @@ const w={
   rqCanWriteSupabase:()=>false,
   rqSupabase:{from(){actionLog.push('database accessed');throw Error('unexpected production access')}},
   rqAuthSession:{user:{id:'test-owner'}},
+  toast:()=>{},
+  confirm:()=>{throw Error('should not offer destructive confirmation in Preview')},
+  rqPreviewReadOnlyMessage:()=> 'Preview is read-only',
   rqGetSellerPhotoRecords:async()=>[{blob:{},slot:'overall'}]
 };
 const document={documentElement:{lang:'ko'},readyState:'loading',addEventListener(){}};
@@ -37,5 +40,7 @@ vm.runInNewContext(seller,{window:w,document,setTimeout,console});
 (async()=>{
  await assert.rejects(w.rqSubmitSellerListing({companyName:'Test'}),e=>e.code==='PREVIEW_READ_ONLY');
  assert.deepEqual(actionLog,[],'no production database request made');
- console.log('PASS Preview read-only guard for production Supabase, isolated test database allowed');
+ await assert.doesNotReject(w.rqDeleteSellerListing('production-listing-1'));
+ assert.deepEqual(actionLog,[],'Preview must never delete a production listing');
+ console.log('PASS Preview read-only guard for production Supabase signup, submit and deletion');
 })().catch(e=>{console.error(e);process.exitCode=1});
