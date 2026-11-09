@@ -98,3 +98,5 @@ jobs:
         run: psql -v ON_ERROR_STOP=1 -f database/006_real_classifieds_marketplace.sql
       - name: Test anonymous catalog, seller moderation and photo policies
         run: psql -v ON_ERROR_STOP=1 -f tests/pg-seller-marketplace-smoke.sql
+      - name: Test real parts listing and private buyer-seller messages
+        run: psql -v ON_ERROR_STOP=1 -f tests/pg-real-classifieds-trade.sql
