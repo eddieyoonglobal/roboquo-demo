@@ -36,6 +36,8 @@ jobs:
         run: node tests/seller-marketplace-regression.cjs
       - name: Test transaction integrity and auth return URL
         run: node tests/transaction-integrity-regression.cjs
+      - name: Test published listings and signed photo refresh
+        run: node tests/published-listing-resilience.cjs
       - name: Test Preview database isolation
         run: node tests/preview-isolation-regression.cjs
       - name: Test buyer inquiry fallback
