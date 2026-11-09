@@ -5,13 +5,18 @@ begin;
 alter table public.seller_listings
   add column if not exists item_category text not null default 'robot',
   add column if not exists item_condition text not null default 'used',
-  add column if not exists description_text text;
+  add column if not exists description_text text,
+  add column if not exists seller_type text not null default 'individual';
 
 do $$
 begin
  if not exists (select 1 from pg_constraint where conname='rq_seller_item_category_check') then
   alter table public.seller_listings add constraint rq_seller_item_category_check
     check (item_category in ('robot','gripper','controller','vision','part','accessory','other'));
+ end if;
+ if not exists (select 1 from pg_constraint where conname='rq_seller_type_check') then
+  alter table public.seller_listings add constraint rq_seller_type_check
+    check (seller_type in ('individual','business'));
  end if;
  if not exists (select 1 from pg_constraint where conname='rq_seller_item_condition_check') then
   alter table public.seller_listings add constraint rq_seller_item_condition_check
@@ -20,7 +25,7 @@ begin
 end $$;
 
 -- Supabase REST's public SELECT requires column grants, even with RLS.
-grant select (item_category,item_condition,description_text) on public.seller_listings to anon;
+grant select (item_category,item_condition,description_text,seller_type) on public.seller_listings to anon;
 create index if not exists rq_marketplace_category_idx
  on public.seller_listings(item_category,published_at desc) where status='published';
 
