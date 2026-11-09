@@ -47,6 +47,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.match(demo,/DEMO/i,'illustrative listings must be clearly marked');
   assert.equal(await page.locator('#marketListings .v24-listing-card .buy:not([disabled])').count(),0,'demo listings cannot be purchased');
   assert.equal(await page.evaluate(()=>window.rqCanWriteSupabase()),false,'localhost must not write to live DB');
+  await page.evaluate(()=>route('robots'));
   await page.locator('#marketSearch').fill('FANUC');
   assert((await page.locator('#marketListings .v24-listing-card').count())>=1,'known robot search should find a card');
   await page.locator('#marketSearch').fill('NO_SUCH_ROBOT_MODEL_ZZZ_1234');
