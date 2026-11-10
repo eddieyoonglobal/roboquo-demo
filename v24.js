@@ -467,7 +467,9 @@
     const fixed=r.sale!=='bid';
     const title=[r.brand,r.model].filter(Boolean).join(' ')||tx('usedRobot');
     const id=idOf(r);
-    const askAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},'question')`);
+    const isPrivateQuote=r.sale==='bid'&&r._source==='seller-supabase';
+    const askAction=escHtml(isPrivateQuote?`rqOpenBuyerOffer(${JSON.stringify(id)})`:`rqContactAboutListing(${JSON.stringify(id)},'question')`);
+    const quoteLabel=lang()==='ja'?'買取価格を提案':lang()==='ko'?'매입가격 제안':'Send private quote';
     const buyAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},${fixed?"'purchase'":"'offer'"})`);
     const cartAction=escHtml(fixed?`rqAddToCart(${JSON.stringify(id)})`:`rqContactAboutListing(${JSON.stringify(id)},'offer')`);
     const mainPhotoAttrs=r.photoKey?`data-rq-photo-alt="${escHtml(title)}" data-rq-photo-key="${escHtml(r.photoKey)}"`:'';
