@@ -8,6 +8,11 @@
 #robots .rq-featured-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:100%}
 #robots .rq-featured-product{min-width:0;background:#fff;border:1px solid #dbe6ef;border-radius:15px;overflow:hidden;display:flex;flex-direction:column}
 #robots .rq-featured-card{border:0;background:#fff;color:#18395c;cursor:pointer;display:flex;flex-direction:column;text-align:left;padding:0;min-width:0;width:100%;flex:1}
+#robots .rq-featured-brand-mark{position:absolute;z-index:1;left:9px;top:9px;display:inline-flex;align-items:center;justify-content:center;padding:5px 8px;min-height:29px;background:rgba(255,255,255,.95);border-radius:8px;box-shadow:0 2px 8px rgba(18,41,65,.16)}
+#robots .rq-featured-card{position:relative}
+#robots .rq-featured-brand-mark img{width:auto!important;height:20px!important;max-width:95px!important;max-height:20px!important;object-fit:contain!important;border:0!important;padding:0!important;background:transparent!important;display:block!important;flex:none!important}
+#robots .rq-featured-brand-mark--text{font-size:11px;font-weight:850;color:#174f7d;letter-spacing:-.015em}
+
 #robots .rq-featured-card img{display:block;width:100%;height:155px;object-fit:cover;object-position:center 42%;background:#e9f2fa;flex-shrink:0}
 #robots .rq-featured-card[data-rq-featured-maker="FANUC"] img{object-position:center 41%}
 #robots .rq-featured-card[data-rq-featured-maker="ABB Robotics"] img{object-position:center 58%}
