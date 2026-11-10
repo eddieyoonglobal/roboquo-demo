@@ -14,7 +14,7 @@ const phrases={
 const t=k=>(phrases[lang()]||phrases.en)[k]||phrases.en[k]||k;
 const api=()=>window.rqSupabase||null;
 const user=()=>window.rqAuthSession?.user||null;
-const protectedWrite=()=>typeof window.rqCanWriteSupabase!=='function'||window.rqCanWriteSupabase()!==false;
+const protectedWrite=()=>typeof window.rqCanWriteSupabase==='function'&&window.rqCanWriteSupabase()===true;
 const notify=msg=>window.toast?window.toast(msg):window.alert(msg);
 const model=r=>[r?.brand||r?.seller_listings?.manufacturer,r?.model||r?.seller_listings?.model].filter(Boolean).join(' ')||'Robot / EOAT';
 const money=(number,currency)=>new Intl.NumberFormat(lang()==='ja'?'ja-JP':'en-US',{style:'currency',currency:currency||'JPY',maximumFractionDigits:2}).format(Number(number));
@@ -81,6 +81,7 @@ async function renderPanel(role){
    .eq(column,user().id).order('created_at',{ascending:false}).limit(100);
   if(result.error)throw result.error;
   const rows=result.data||[];
+  if(role==='seller')rows.sort((a,b)=>Number(b.amount)-Number(a.amount));
   if(!rows.length){feed.textContent=t('noOffers');return;}
   feed.innerHTML=rows.map(row=>{
    const title=esc([row.seller_listings?.manufacturer,row.seller_listings?.model].filter(Boolean).join(' ')||'Robot / EOAT');
@@ -88,6 +89,8 @@ async function renderPanel(role){
    const amount=esc(money(row.amount,row.currency));
    const info='<div class="rq-quote-offer-title"><strong>'+title+'</strong><strong>'+amount+'</strong></div>'+
     '<div class="rq-quote-stage">'+esc(t('status'))+': '+state+'</div>'+
+    '<p>'+esc(t('pickup'))+': '+esc(row.pickup_terms==='buyer_collects'?t('collect'):row.pickup_terms==='seller_arranges'?t('sellerTransport'):t('discuss'))+'</p>'+ 
+    (row.visit_at?'<p>'+esc(t('visit'))+': '+esc(new Date(row.visit_at).toLocaleString())+'</p>':'')+
     (row.buyer_note?'<p>'+esc(row.buyer_note)+'</p>':'')+
     '<small>'+esc(new Date(row.created_at).toLocaleString())+'</small>';
    let actions='';
