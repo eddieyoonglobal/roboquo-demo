@@ -30,7 +30,7 @@
   const saveCart = (items) => { localStorage.setItem(STORAGE, JSON.stringify(items)); updateCartCount(); renderCartPage(); };
   const inCart = (id) => cart().includes(String(id));
   function formatPrice(r){ const price=Number(r.price);if(!Number.isFinite(price)||price<=0)return tx('toBeCalculated');const currency=['JPY','KRW','CNY','USD','EUR'].includes(r.currency)?r.currency:'JPY';const prefix={JPY:'¥',KRW:'₩',CNY:'CN¥',USD:'US$',EUR:'€'}[currency];return prefix+price.toLocaleString('en-US',{maximumFractionDigits:2}); }
-  function saleLabel(r){ const fixed=r.sale!=='bid'; return fixed ? (typeof tr==='function'?tr('fixedPrice'):tx('fixedPriceListing')) : (typeof tr==='function'?tr('bidding'):tx('privateOfferFlow')); }
+  function saleLabel(r){ const fixed=r.sale!=='bid';return fixed?(typeof tr==='function'?tr('fixedPrice'):tx('fixedPriceListing')):lang()==='ja'?'非公開の買取見積もり':lang()==='ko'?'비공개 매입 견적':'Private buyer offers'; }
   function displayCountry(c){ try{return typeof countryLabel==='function'?countryLabel(c):(c||tx('global'));}catch{return c||tx('global');} }
   function displayTag(t){ try{ const rt=(typeof robotTypes!=='undefined'?robotTypes:[]).find(x=>x.id===t); if(rt)return rt.names?.[lang()]||rt.names?.en||t; const ap=(typeof applications!=='undefined'?applications:[]).find(x=>x.id===t); if(ap)return ap.names?.[lang()]||ap.names?.en||t; }catch(e){} return t; }
   function escHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
@@ -326,7 +326,9 @@
     const title=[r.brand,r.model].filter(Boolean).join(' ')||tx('usedRobot');
     const localDemo=r._source==='local-demo';
     const openAction=escHtml(`rqOpenProduct(${JSON.stringify(id)})`);
-    const askAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},'question')`);
+    const isPrivateQuote=r.sale==='bid'&&r._source==='seller-supabase';
+    const askAction=escHtml(isPrivateQuote?`rqOpenBuyerOffer(${JSON.stringify(id)})`:`rqContactAboutListing(${JSON.stringify(id)},'question')`);
+    const quoteLabel=lang()==='ja'?'買取価格を提案':lang()==='ko'?'매입가격 제안':'Send private quote';
     const buyAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},${fixed?"'purchase'":"'offer'"})`);
     const cartAction=escHtml(fixed?`rqAddToCart(${JSON.stringify(id)})`:`rqOpenProduct(${JSON.stringify(id)})`);
     const meta=[r.year, r.payload==='—'?'':r.payload, r.location].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
@@ -349,7 +351,7 @@
         <div class="v24-meta-row">${meta || `<span>${tx('usedRobot')}</span>`}</div>
         <div class="v24-card-tags">${tags || `<span>${tx('industrialRobot')}</span>`}</div>
         <div class="v24-actions">
-          ${isDemo(r)?`<button class="ghost" onclick="${openAction}">${tx('demoAction')}</button>${localDemo?`<button class="danger-button" onclick="rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="buy" disabled title="${escHtml(tx('demoListing'))}">${tx('demoListing')}</button>`}`:`<button class="buy" onclick="${askAction}">${tx('contactRoboquo')}</button>`}
+          ${isDemo(r)?`<button class="ghost" onclick="${openAction}">${tx('demoAction')}</button>${localDemo?`<button class="danger-button" onclick="rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="buy" disabled title="${escHtml(tx('demoListing'))}">${tx('demoListing')}</button>`}`:`<button class="buy" onclick="${askAction}">${isPrivateQuote?quoteLabel:tx('contactRoboquo')}</button>`}
         </div>
       </div>
     </article>`;
@@ -505,7 +507,7 @@
           ${r.description?'<p class="rq-product-description">'+escHtml(r.description)+'</p>':''}
           <div class="v24-note-box">${isDemo(r)?tx('demoMarketBody'):tx('productNote')}</div>
           <div class="v24-modal-actions">
-            ${isDemo(r)?`<button class="secondary" onclick="closeModal()">${tx('close')}</button>${r._source==='local-demo'?`<button class="danger-button" onclick="closeModal();rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="primary" disabled>${tx('demoListing')}</button>`}`:`<button class="primary" onclick="${askAction}">${tx('contactRoboquo')}</button>`}
+            ${isDemo(r)?`<button class="secondary" onclick="closeModal()">${tx('close')}</button>${r._source==='local-demo'?`<button class="danger-button" onclick="closeModal();rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="primary" disabled>${tx('demoListing')}</button>`}`:`<button class="primary" onclick="${askAction}">${isPrivateQuote?quoteLabel:tx('contactRoboquo')}</button>`}
           </div>
         </div>
       </div>`;
