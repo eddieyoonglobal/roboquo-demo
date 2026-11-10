@@ -62,6 +62,18 @@
   $$('[data-rq-market-category]').forEach(btn=>btn.addEventListener('click',()=>openCategory(btn.dataset.rqMarketCategory)));
   document.getElementById('rqVisualClear')?.addEventListener('click',clearFilters);
   document.getElementById('categoryFilter')?.addEventListener('change',syncActiveCategory);
+  // Older marketplace filter resets can update the select without a change event.
+  // Observe the existing real-result refresh so photo cards never show a stale active state.
+  if(!window.__rqVisualSyncWrapped&&typeof window.rqMarketResultsChanged==='function'){
+    const previous=window.rqMarketResultsChanged;
+    window.rqMarketResultsChanged=function(...args){
+      const result=previous.apply(this,args);
+      syncActiveCategory();
+      return result;
+    };
+    window.__rqVisualSyncWrapped=true;
+  }
+  document.getElementById('rqMarketReset')?.addEventListener('click',syncActiveCategory);
   document.addEventListener('rq:languagechange',apply);
   apply();
  }
