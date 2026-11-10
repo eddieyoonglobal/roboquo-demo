@@ -29,6 +29,7 @@
 <link href="marketplace-v2.css" rel="stylesheet"/>
 <link href="visuals.css" rel="stylesheet"/>
 <link href="mobile-market.css" rel="stylesheet"/>
+<link href="featured-showcase.css" rel="stylesheet"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -216,6 +217,42 @@
   <button type="button" data-rq-mobile-condition="new" aria-pressed="false">新品</button>
   <button type="button" data-rq-mobile-action="brands" aria-pressed="false">メーカー</button>
 </nav>
+<section class="wrap rq-featured-showcase" id="rqFeaturedShowcase" aria-labelledby="rqFeaturedTitle">
+  <div class="rq-featured-title-row">
+    <div><div class="kicker">REAL ROBOT PHOTOS</div><h2 id="rqFeaturedTitle">Explore iconic robot makers</h2></div>
+    <span class="rq-featured-note" id="rqFeaturedNote">Manufacturer references · not seller inventory</span>
+  </div>
+  <div class="rq-featured-track" role="list" aria-label="Representative robot and gripper brands">
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="FANUC" data-rq-featured-kind="robot">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_robot_CRX-5iA.jpg?width=640" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Actual FANUC CRX-5iA collaborative robot photographed at an exhibition" width="640" height="480" loading="eager" decoding="async">
+        <span class="rq-featured-caption"><strong>FANUC</strong><small>CRX-5iA · Japan</small></span>
+      </button>
+      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg" rel="noopener noreferrer" target="_blank">Bobjgalindo · CC BY 4.0</a>
+    </article>
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Universal Robots" data-rq-featured-kind="robot">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Robot_Lengan_Industri_UR5e.jpg/960px-Robot_Lengan_Industri_UR5e.jpg" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Actual Universal Robots UR5e collaborative robot in an industrial laboratory" width="960" height="720" loading="lazy" decoding="async">
+        <span class="rq-featured-caption"><strong>Universal Robots</strong><small>UR5e · Denmark</small></span>
+      </button>
+      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Robot_Lengan_Industri_UR5e.jpg" rel="noopener noreferrer" target="_blank">D. M. Imtiyaz · CC BY-SA 4.0</a>
+    </article>
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="ABB Robotics" data-rq-featured-kind="robot">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Robot_ABB_2.jpg/960px-Robot_ABB_2.jpg" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Actual ABB industrial robot arms on an automation line; not a GoFa product" width="960" height="720" loading="lazy" decoding="async">
+        <span class="rq-featured-caption"><strong>ABB Robotics</strong><small>Industrial robot · Europe</small></span>
+      </button>
+      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Robot_ABB_2.jpg" rel="noopener noreferrer" target="_blank">© Peter Potrowl · CC BY 2.5</a>
+    </article>
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="OnRobot" data-rq-featured-kind="eoat">
+        <img src="./assets/rq-gripper.svg" alt="Illustrative robotic gripper; not an actual OnRobot RG2 or RG6 product photograph" width="640" height="440" loading="lazy" decoding="async">
+        <span class="rq-featured-caption"><strong>OnRobot</strong><small>RG2 · RG6 · 2FG7</small></span>
+      </button>
+      <a class="rq-featured-credit" href="https://onrobot.com/en/products" rel="noopener noreferrer" target="_blank" id="rqOnRobotPhotoNote">Illustration · Official products</a>
+    </article>
+  </div>
+</section>
 <div class="wrap page-head rq-market-heading"><div class="rq-market-heading-copy"><div class="kicker">ROBOQUO MARKETPLACE</div><h1 data-i18n="marketTitle">Buy &amp; sell robots and parts</h1><p data-i18n="marketDesc">New or used. Find an item or post yours in a few steps.</p></div><figure class="rq-market-heading-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg/960px-Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg" alt="Real industrial robot arm working in a factory" width="960" height="1443" decoding="async" loading="eager"><figcaption><a href="https://commons.wikimedia.org/wiki/File:Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg" target="_blank" rel="noopener noreferrer">Photo: Nenad Stojković · CC BY 2.0</a></figcaption></figure></div>
 <div class="wrap rq-market-quickstart" id="rqMarketQuickStart" aria-label="Buy or sell">
   <button type="button" id="rqBrowseShortcut" class="rq-market-choice rq-market-choice-buy">
@@ -383,5 +420,6 @@
 <script src="cobot-compare.js"></script>
 <script src="visuals.js"></script>
 <script src="mobile-market.js"></script>
+<script src="featured-showcase.js"></script>
 </body>
 </html>
