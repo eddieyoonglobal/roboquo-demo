@@ -36,10 +36,24 @@ h2{font-size:23px;letter-spacing:-.035em;margin:0}h3{font-size:16px;letter-spaci
 footer{margin:42px auto 0;padding:24px 0 35px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
 @media(max-width:750px){.hero{padding:32px 22px}.hero:after{font-size:240px;top:-60px}.kpi{grid-template-columns:repeat(2,minmax(0,1fr))}.features,.statusgrid,.reviewlist{grid-template-columns:1fr}.navlinks a:nth-child(1){display:none}.metric strong{font-size:30px}}
 @media(prefers-reduced-motion:reduce){.btn{transition:none}}
+
+.logo img{display:block;object-fit:contain;max-width:100%;height:42px;width:176px}
+.rq-review-visuals{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:12px;margin-top:20px}
+.rq-review-photo{margin:0;overflow:hidden;position:relative;min-height:270px;border-radius:17px;background:#143351;border:1px solid #cdddea}
+.rq-review-photo>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 37%}
+.rq-review-photo:after{content:"";position:absolute;inset:55% 0 0;background:linear-gradient(transparent,rgba(7,24,43,.85));pointer-events:none}
+.rq-review-photo figcaption{position:absolute;z-index:1;bottom:13px;left:15px;right:15px;color:#fff;font-size:12px}
+.rq-review-photo a{color:#e4f3ff}
+.rq-review-visual-cats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.rq-review-visual-cats div{border-radius:15px;overflow:hidden;background:#fff;border:1px solid #dce8f3;display:flex;flex-direction:column;justify-content:space-between}
+.rq-review-visual-cats img{display:block;width:100%;height:calc(100% - 42px);object-fit:cover;min-height:0}
+.rq-review-visual-cats span{text-align:center;font-size:13px;font-weight:800;padding:10px;color:#193c61}
+@media(max-width:750px){.rq-review-visuals{grid-template-columns:1fr}.rq-review-photo{min-height:230px}.rq-review-visual-cats img{height:140px}}
+@media(max-width:430px){.rq-review-visual-cats{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}.rq-review-visual-cats img{height:105px}.rq-review-visual-cats span{font-size:11px;padding:9px 2px}}
 </style>
 </head>
 <body>
-<header><nav class="wrap"><a class="logo" href="./index.html"><span>RQ</span>RoboQuo</a><div class="navlinks"><a href="#completed">개발 현황</a><a href="#verify">검수 항목</a><span class="preview-label">개발 검수용 · PREVIEW</span></div></nav></header>
+<header><nav class="wrap"><a class="logo" href="./index.html" aria-label="RoboQuo 홈"><img src="./assets/rq-brand.svg" alt="RoboQuo" width="176" height="43"></a><div class="navlinks"><a href="#completed">개발 현황</a><a href="#verify">검수 항목</a><span class="preview-label">개발 검수용 · PREVIEW</span></div></nav></header>
 <main>
 <section class="wrap hero" aria-labelledby="hero-title">
  <div class="eyebrow">ROBOQUO · SITE REVIEW</div>
@@ -47,6 +61,14 @@ footer{margin:42px auto 0;padding:24px 0 35px;border-top:1px solid var(--line);f
  <p>RoboQuo의 현재 개발 성과를 한눈에 확인하는 시연 안내입니다. 로봇·그리퍼·자동화 부품을 사고파는 마켓에 제조사 디렉터리와 공식 모델 사양 비교를 결합했습니다.</p>
  <div class="actions"><a class="btn primary" href="./index.html">RoboQuo 개발 사이트 보기 ↗</a><a class="btn ghost" href="https://github.com/eddieyoonglobal/roboquo-demo/pull/9" target="_blank" rel="noopener noreferrer">개발 변경 내역 보기 ↗</a></div>
  <p class="jp">ロボットを、もっと身近に。探す・比較する・売る。</p>
+</section>
+<section class="wrap rq-review-visuals" aria-label="RoboQuo visual site guide">
+ <figure class="rq-review-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg/960px-Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg" width="960" height="1443" alt="실제 공장에서 가공물을 취급하는 산업용 로봇 사진" decoding="async"><figcaption>실제 산업용 로봇 사진 · <a href="https://commons.wikimedia.org/wiki/File:Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg" target="_blank" rel="noopener noreferrer">Nenad Stojković / CC BY 2.0</a></figcaption></figure>
+ <div class="rq-review-visual-cats">
+  <div><img src="./assets/rq-robot.svg" width="640" height="440" alt="로봇 일러스트"><span>Robots</span></div>
+  <div><img src="./assets/rq-gripper.svg" width="640" height="440" alt="그리퍼 일러스트"><span>Grippers</span></div>
+  <div><img src="./assets/rq-parts.svg" width="640" height="440" alt="부품 일러스트"><span>Parts</span></div>
+ </div>
 </section>
 <section class="wrap section" id="completed">
  <div class="sectionhead"><h2>지금까지 개발한 내용</h2><span class="small">2026.11.10 기준 · 개발 브랜치</span></div>
