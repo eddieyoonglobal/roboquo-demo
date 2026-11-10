@@ -41,7 +41,7 @@ do $$ declare prevented boolean:=false;
 begin
  begin
   update public.marketplace_purchase_offers set status='selected'
-   where id=:'first_quote'::uuid;
+   where id=(select o.id from public.marketplace_purchase_offers o where o.buyer_id='22222222-2222-4222-8222-222222222222' and o.listing_id=(select l.id from public.seller_listings l where l.model='RG2 TEST'));
  exception when unique_violation then prevented:=true;
  end;
  if not prevented then raise exception 'FAIL two accepted buyer prices for one listing';end if;
@@ -50,32 +50,32 @@ do $$ declare prevented boolean:=false;
 begin
  begin
   update public.marketplace_purchase_offers set amount=40000,status='visit_scheduled',visit_at=now()+interval '2 days'
-   where id=:'second_quote'::uuid;
+   where id=(select o.id from public.marketplace_purchase_offers o where o.buyer_id='33333333-3333-4333-8333-333333333333' and o.listing_id=(select l.id from public.seller_listings l where l.model='RG2 TEST'));
  exception when others then prevented:=true;
  end;
  if not prevented then raise exception 'FAIL selected offer amount was negotiable';end if;
 end $$;
 update public.marketplace_purchase_offers
  set status='visit_scheduled',visit_at=now()+interval '2 days'
- where id=:'second_quote'::uuid;
+ where id=(select o.id from public.marketplace_purchase_offers o where o.buyer_id='33333333-3333-4333-8333-333333333333' and o.listing_id=(select l.id from public.seller_listings l where l.model='RG2 TEST'));
 
 reset role;
 set role authenticated;
 set request.jwt.claim.sub='33333333-3333-4333-8333-333333333333';
 update public.marketplace_purchase_offers
  set status='inspection_passed'
- where id=:'second_quote'::uuid;
+ where id=(select o.id from public.marketplace_purchase_offers o where o.buyer_id='33333333-3333-4333-8333-333333333333' and o.listing_id=(select l.id from public.seller_listings l where l.model='RG2 TEST'));
 
 reset role;
 set role authenticated;
 set request.jwt.claim.sub='11111111-1111-4111-8111-111111111111';
 update public.marketplace_purchase_offers set status='completed'
- where id=:'second_quote'::uuid;
+ where id=(select o.id from public.marketplace_purchase_offers o where o.buyer_id='33333333-3333-4333-8333-333333333333' and o.listing_id=(select l.id from public.seller_listings l where l.model='RG2 TEST'));
 do $$ declare prevented boolean:=false;
 begin
  begin
   update public.marketplace_purchase_offers set status='selected'
-   where id=:'first_quote'::uuid;
+   where id=(select o.id from public.marketplace_purchase_offers o where o.buyer_id='22222222-2222-4222-8222-222222222222' and o.listing_id=(select l.id from public.seller_listings l where l.model='RG2 TEST'));
  exception when unique_violation then prevented:=true;
  end;
  if not prevented then raise exception 'FAIL completed listing could accept another buyer';end if;
