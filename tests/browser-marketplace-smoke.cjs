@@ -286,8 +286,9 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
     assert(overflow<=2,'market photo/category layout should not create horizontal overflow: '+overflow);
 
-    assert(await page.locator('#rqBrowseShortcut').isVisible(),'mobile Buy shortcut must be visible');
-    assert(await page.locator('#rqSellShortcut').isVisible(),'mobile Sell shortcut must be visible');
+    assert(!(await page.locator('#rqBrowseShortcut').isVisible()),'mobile removes oversized Buy shortcut to prioritize search');
+    assert(!(await page.locator('#rqSellShortcut').isVisible()),'mobile replaces oversized Sell shortcut with fixed bottom navigation');
+    assert(await page.locator('.mobile-nav .sell-mobile').isVisible(),'mobile Sell action remains available in bottom nav');
     await page.screenshot({path:path.join(screenshotDir,'roboquo-market-mobile.png'),fullPage:true});
   }
   await page.evaluate(()=>window.rqStartSell('part'));
