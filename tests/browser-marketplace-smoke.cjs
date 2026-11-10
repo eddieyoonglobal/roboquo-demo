@@ -269,6 +269,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert(await page.locator('#rqMarketReset').isVisible(),'clear filters appears when filters are active');
   await page.locator('#rqMarketReset').click();
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),2,'reset restores all real listings');
+  assert.equal(await page.locator('#robots .rq-market-discovery-card[aria-pressed="true"]').count(),0,'reset must clear stale highlighted photo category even when filter reset skipped change event');
   assert(!(await page.locator('#rqMarketReset').isVisible()),'reset control hides when filters are clear');
   await page.locator('#marketSearch').fill('중고 그리퍼');
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'Korean used gripper terms locate English seller listing');
