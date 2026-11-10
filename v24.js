@@ -472,13 +472,23 @@
     const mainPhotoVisual=r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}">`:robotSvg(r,'main');
     const nameplateThumb=r.media?.nameplate?`<button class="v24-thumb ${r.photoUrls?.nameplate?'has-uploaded-photo':''}" data-view="nameplate" type="button" ${r.photoKeys?.nameplate?`data-rq-photo-alt="${escHtml(tx('nameplateLabel'))}" data-rq-photo-key="${escHtml(r.photoKeys.nameplate)}"`:''}>${r.photoUrls?.nameplate?`<img src="${escHtml(r.photoUrls.nameplate)}" alt="${escHtml(tx('nameplateLabel'))}">`:`<div>${tx('nameplateLabel')}</div>`}</button>`:'';
     const controllerThumb=r.media?.controller?`<button class="v24-thumb ${r.photoUrls?.ctrlOutside?'has-uploaded-photo':''}" data-view="controller" type="button" ${r.photoKeys?.ctrlOutside?`data-rq-photo-alt="${escHtml(tx('controllerLabel'))}" data-rq-photo-key="${escHtml(r.photoKeys.ctrlOutside)}"`:''}>${r.photoUrls?.ctrlOutside?`<img src="${escHtml(r.photoUrls.ctrlOutside)}" alt="${escHtml(tx('controllerLabel'))}">`:`<div>${tx('controllerLabel')}</div>`}</button>`:'';
+    // The quick-sell form stores the first photo as "overall" and up to seven as
+    // extra1...extra7. Show every uploaded photo in detail, not just the cover.
+    const extraPhotos=Object.entries(r.photoUrls||{})
+      .filter(([slot,url])=>/^extra[1-7]$/.test(slot)&&typeof url==='string'&&url)
+      .sort(([a],[b])=>Number(a.slice(5))-Number(b.slice(5)));
+    const extraThumbs=extraPhotos.map(([slot,url],i)=>{
+      const photoNumber=Number(slot.slice(5))+1;
+      const photoLabel=lang()==='ja'?'写真':lang()==='ko'?'사진':'Photo';
+      return `<button class="v24-thumb has-uploaded-photo" data-view="${escHtml(slot)}" type="button" aria-label="${escHtml(photoLabel+' '+photoNumber)}"><img src="${escHtml(url)}" alt="${escHtml(title+' · '+photoLabel+' '+photoNumber)}" loading="lazy"></button>`;
+    }).join('');
     return `<div class="kicker">ROBOQUO · ${tx('kickerProduct')}</div>
       <div class="v24-product-layout">
         <div class="v24-gallery">
           <div class="v24-main-image ${r.photoUrl?'has-uploaded-photo':''}" id="v24MainImage" ${mainPhotoAttrs}>${mainPhotoVisual}</div>
           <div class="v24-thumb-row">
             <button class="v24-thumb ${r.photoUrl?'has-uploaded-photo':''}" data-view="robot" type="button" ${mainPhotoAttrs}>${r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}">`:robotSvg(r,'thumb')}</button>
-            ${nameplateThumb}${controllerThumb}
+            ${nameplateThumb}${controllerThumb}${extraThumbs}
           </div>
         </div>
         <div>
@@ -533,10 +543,11 @@
     window.rqHydrateListingPhotos?.(modal||document);
     $$('.v24-thumb').forEach(thumb=>thumb.addEventListener('click',()=>{
       const v=thumb.dataset.view; const mount=$('#v24MainImage'); if(!mount) return;
-      const key=v==='robot'?r.photoKey:v==='nameplate'?r.photoKeys?.nameplate:r.photoKeys?.ctrlOutside;
-      const remote=v==='robot'?r.photoUrl:v==='nameplate'?r.photoUrls?.nameplate:r.photoUrls?.ctrlOutside;
+      const isExtra=/^extra[1-7]$/.test(v);
+      const key=isExtra?null:v==='robot'?r.photoKey:v==='nameplate'?r.photoKeys?.nameplate:r.photoKeys?.ctrlOutside;
+      const remote=isExtra?r.photoUrls?.[v]:v==='robot'?r.photoUrl:v==='nameplate'?r.photoUrls?.nameplate:r.photoUrls?.ctrlOutside;
       delete mount.dataset.rqPhotoKey;mount.classList.remove('has-uploaded-photo');
-      if(remote){mount.innerHTML=`<img src="${escHtml(remote)}" alt="${escHtml(v==='robot'?title:(v==='nameplate'?tx('nameplateLabel'):tx('controllerLabel')))}">`;mount.classList.add('has-uploaded-photo');return;}
+      if(remote){const alt=isExtra?title+' · '+(lang()==='ja'?'写真':lang()==='ko'?'사진':'Photo')+' '+(Number(v.slice(5))+1):v==='robot'?title:v==='nameplate'?tx('nameplateLabel'):tx('controllerLabel');mount.innerHTML=`<img src="${escHtml(remote)}" alt="${escHtml(alt)}">`;mount.classList.add('has-uploaded-photo');return;}
       if(key){mount.innerHTML=robotSvg(r,'main');mount.dataset.rqPhotoKey=key;mount.dataset.rqPhotoAlt=v==='robot'?title:(v==='nameplate'?tx('nameplateLabel'):tx('controllerLabel'));window.rqHydrateListingPhotos?.(modal);return;}
       if(v==='robot') mount.innerHTML=robotSvg(r,'main');
       if(v==='nameplate') mount.innerHTML=`<div class="v24-media-placeholder">${tx('nameplateLabel')}</div>`;
