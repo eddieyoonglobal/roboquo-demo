@@ -48,6 +48,14 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#robots .rq-market-heading-photo img').count(),1,'first visible market screen has a real factory robot photograph');
   assert.equal(await page.locator('#rqBrowseShortcut img.rq-market-action-thumb').count(),1,'buy card has an equipment image');
   assert.equal(await page.locator('#rqSellShortcut img.rq-market-action-thumb').count(),1,'sell card has an equipment image');
+  assert.equal(await page.locator('#robots .rq-market-discovery-card').count(),3,'first marketplace route offers three illustrated categories');
+  await page.locator('#robots .rq-market-discovery-card[data-rq-market-category="gripper"]').click();
+  assert.equal(await page.locator('#categoryFilter').inputValue(),'gripper','market visual category selects actual gripper filter');
+  assert.equal(await page.locator('#robots .rq-market-discovery-card[data-rq-market-category="gripper"]').getAttribute('aria-pressed'),'true','selected visual category is visibly active');
+  await page.locator('#rqVisualClear').click();
+  assert.equal(await page.locator('#categoryFilter').inputValue(),'','clear visible category filter returns all items');
+  assert.equal(await page.locator('#robots .rq-market-discovery-card[aria-pressed="true"]').count(),0,'no category remains highlighted after clearing');
+
   assert.equal(await page.locator('.site-header img.rq-site-logo').count(),1,'original RoboQuo logo is visible in the header');
 
   await page.locator('.site-header a.brand').click();
@@ -72,6 +80,11 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     ['fr','Trouver un article','Vendre un article','Préhenseur / EOAT','Tous pays','Japon']
   ]){
     await page.locator('#languageSelect').selectOption(language);
+    if(language==='ja'||language==='ko'){
+      await page.waitForFunction(l=>document.querySelector('#rqMarketDiscoveryTitle')?.textContent === (l==='ja'?'写真から、もっと簡単に探す。':'사진으로 보고, 쉽게 찾으세요.'),language);
+      assert.equal(await page.locator('#robots .rq-market-discovery-card').count(),3,'localized visual equipment menu '+language);
+    }
+
     await page.waitForFunction(([expected])=>document.querySelector('#rqBrowseShortcut strong')?.textContent===expected,[buy]);
     assert.match(await page.locator('#rqSellShortcut').innerText(),new RegExp(sell));
     await page.evaluate(()=>route('robots'));
@@ -245,6 +258,10 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   if(process.env.CI){
     await page.screenshot({path:path.join(screenshotDir,'roboquo-market-desktop.png'),fullPage:true});
     await page.setViewportSize({width:390,height:844});
+    assert.equal(await page.locator('#robots .rq-market-discovery-card').count(),3,'mobile keeps equipment navigation');
+    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
+    assert(overflow<=2,'market photo/category layout should not create horizontal overflow: '+overflow);
+
     assert(await page.locator('#rqBrowseShortcut').isVisible(),'mobile Buy shortcut must be visible');
     assert(await page.locator('#rqSellShortcut').isVisible(),'mobile Sell shortcut must be visible');
     await page.screenshot({path:path.join(screenshotDir,'roboquo-market-mobile.png'),fullPage:true});
