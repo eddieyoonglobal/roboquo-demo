@@ -202,6 +202,19 @@
 <div class="wrap category-grid application-grid" id="applicationGrid"></div>
 </section>
 <section class="page" id="robots">
+<div class="rq-mobile-market-search" id="rqMobileMarketSearch">
+  <label class="rq-mobile-search-field" for="rqMobileQuery">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+    <input type="search" id="rqMobileQuery" autocomplete="off" enterkeyhint="search" placeholder="商品名・メーカーを検索" aria-label="Search RoboQuo listings">
+  </label>
+  <button type="button" id="rqMobileReset" class="rq-mobile-search-reset" aria-label="Clear search" hidden>×</button>
+</div>
+<nav class="rq-mobile-market-pills" id="rqMobileMarketPills" aria-label="Quick filters">
+  <button type="button" data-rq-mobile-condition="" aria-pressed="true">おすすめ</button>
+  <button type="button" data-rq-mobile-condition="used" aria-pressed="false">中古</button>
+  <button type="button" data-rq-mobile-condition="new" aria-pressed="false">新品</button>
+  <button type="button" data-rq-mobile-action="brands" aria-pressed="false">メーカー</button>
+</nav>
 <div class="wrap page-head rq-market-heading"><div class="rq-market-heading-copy"><div class="kicker">ROBOQUO MARKETPLACE</div><h1 data-i18n="marketTitle">Buy &amp; sell robots and parts</h1><p data-i18n="marketDesc">New or used. Find an item or post yours in a few steps.</p></div><figure class="rq-market-heading-photo"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg/960px-Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg" alt="Real industrial robot arm working in a factory" width="960" height="1443" decoding="async" loading="eager"><figcaption><a href="https://commons.wikimedia.org/wiki/File:Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg" target="_blank" rel="noopener noreferrer">Photo: Nenad Stojković · CC BY 2.0</a></figcaption></figure></div>
 <div class="wrap rq-market-quickstart" id="rqMarketQuickStart" aria-label="Buy or sell">
   <button type="button" id="rqBrowseShortcut" class="rq-market-choice rq-market-choice-buy">
