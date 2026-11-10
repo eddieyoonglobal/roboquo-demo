@@ -50,6 +50,9 @@ jobs:
       - name: Test buyer inquiry fallback
         run: node tests/buyer-inquiry-regression.cjs
 
+      - name: Test private quote preview isolation and Japanese UI
+        run: node tests/private-quotes-regression.cjs
+
       - name: Browser smoke test (fixtures only; no production API writes)
         run: |
           npm install --no-save --no-package-lock playwright@1.56.1
