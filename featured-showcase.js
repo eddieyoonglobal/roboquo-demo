@@ -42,13 +42,15 @@ function init(){
   btn.addEventListener('click',()=>openDirectory(btn.dataset.rqFeaturedMaker,btn.dataset.rqFeaturedKind));
  });
  document.querySelectorAll('.rq-featured-card img[data-rq-photo-fallback]').forEach(img=>{
-  img.addEventListener('error',()=>{
+  const useFallback=()=>{
    if(img.dataset.photoFallbackApplied==='true')return;
    img.dataset.photoFallbackApplied='true';
    img.closest('.rq-featured-product')?.classList.add('rq-photo-fallback');
    img.src=img.dataset.rqPhotoFallback;
    img.alt='Generic robot illustration: external product photo unavailable';
-  });
+  };
+  img.addEventListener('error',useFallback);
+  if(img.complete&&img.naturalWidth===0)useFallback();
  });
  document.addEventListener('rq:languagechange',apply);
  apply();
