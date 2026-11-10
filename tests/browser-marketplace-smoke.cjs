@@ -238,7 +238,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
       price:19000,currency:'CNY',sale:'fixed',cat:'industrial',itemCategory:'robot',itemCondition:'new',sellerType:'business',description:'New robot from Chinese dealer',
       apps:[],hours:'—',operatingStatus:'stored',sellerCompany:'Fixture Company',verified:false,demo:false,_source:'seller-supabase',
       media:{nameplate:false,controller:false,video:false},
-      photoUrl:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20"%3E%3C/svg%3E',photoUrls:{},photoCount:1},
+      photoUrl:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20"%3E%3C/svg%3E',photoUrls:{extra1:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="21" height="20"%3E%3C/svg%3E',extra2:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="22" height="20"%3E%3C/svg%3E'},photoCount:3},
     {id:'seller:gripper-fixture',backendId:'gripper-fixture',brand:'OnRobot',model:'RG2 GRIPPER TEST',location:'Osaka',country:'Japan',
       price:48000,currency:'JPY',sale:'fixed',cat:'gripper',itemCategory:'gripper',itemCondition:'used',sellerType:'individual',description:'Actual used gripper fixture',
       apps:[],hours:'—',operatingStatus:'unknown',sellerCompany:'Parts Fixture Seller',verified:false,demo:false,_source:'seller-supabase',
@@ -246,6 +246,14 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
       photoUrl:'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="20" height="20"%3E%3C/svg%3E',photoUrls:{},photoCount:1}
   ]));
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),2,'only 2 real seller fixtures are visible');
+  // Buyer should see every uploaded real seller photo, not only the cover.
+  await page.locator('#marketListings .v24-listing-card').first().locator('.v24-photo').click();
+  assert(await page.locator('#v24MainImage').isVisible(),'seller product details open');
+  assert.equal(await page.locator('#modal .v24-thumb').count(),3,'cover and additional two seller photos appear in gallery');
+  await page.locator('#modal .v24-thumb[data-view="extra2"]').click();
+  assert.match(await page.locator('#v24MainImage img').getAttribute('src'),/width="22"/,'third photo switches the main product image');
+  await page.evaluate(()=>window.closeModal());
+
   assert.match(await page.locator('#rqMarketResultCount').innerText(),/Showing 2 of 2 listings/,'fixture-only results count');
   assert.equal(await page.locator('#marketListings .v24-badge.demo').count(),0,'no DEMO cards shown');
   await page.locator('#rqMarketCategoryChips button[data-filter="gripper"]').click();
