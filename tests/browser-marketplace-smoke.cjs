@@ -46,8 +46,9 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert(await page.locator('#robots').isVisible(),'marketplace must be first page');
   // Actual landmark products — clearly separated from uploaded seller inventory.
   assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-product').count(),4,'four representative manufacturers/EOAT cards');
-  assert.equal(await page.locator('#rqFeaturedShowcase img[src*="commons.wikimedia.org"],#rqFeaturedShowcase img[src*="upload.wikimedia.org"]').count(),3,'three licensed real robot photographs are configured');
+  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card>img[src*="commons.wikimedia.org"],#rqFeaturedShowcase .rq-featured-card>img[src*="upload.wikimedia.org"]').count(),3,'three licensed real robot photographs are configured');
   assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-credit').count(),4,'every featured product has a source or explicit illustration note');
+  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-brand-mark img').count(),3,'three source-verified manufacturer wordmarks are displayed');
   assert.equal(await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="OnRobot"] img[src$="rq-gripper.svg"]').count(),1,'OnRobot uses an illustration until approved images are available');
   const featuredMakers=await page.locator('#rqFeaturedShowcase .rq-featured-card').evaluateAll(els=>els.map(el=>el.dataset.rqFeaturedMaker));
   assert.deepEqual(featuredMakers,['FANUC','Universal Robots','ABB Robotics','OnRobot'],'hero spotlights only reviewed non-Chinese makers');
