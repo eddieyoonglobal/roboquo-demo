@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#142c49">
+<title>RoboQuo 개발 시연 안내 · Release Review</title>
+<link rel="icon" href="./icon-192.svg" type="image/svg+xml">
+<style>
+:root{--ink:#142c49;--muted:#65788a;--blue:#1d65aa;--line:#dbe5f1;--bg:#f4f7fb;--green:#176c55;--amber:#8e5814}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);font-family:"Noto Sans KR","Noto Sans JP","Yu Gothic",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);line-height:1.65}
+a{color:inherit}button,input{font:inherit}.wrap{width:min(1080px,calc(100% - 36px));margin-inline:auto}
+header{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:2}
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:70px}
+.logo{font-size:21px;font-weight:850;text-decoration:none;letter-spacing:-.055em}.logo span{color:#fff;background:var(--ink);display:inline-grid;place-items:center;border-radius:10px;height:36px;width:36px;font-size:15px;letter-spacing:-.1em;margin-right:8px}
+.navlinks{display:flex;flex-wrap:wrap;align-items:center;gap:14px;font-weight:750;font-size:13px}.navlinks a{text-decoration:none}
+.preview-label{font-size:11px;font-weight:850;color:#204b79;background:#eaf2fb;border-radius:30px;padding:6px 11px}
+.hero{margin:24px auto 22px;background:linear-gradient(120deg,#112a47 0%,#1b456d 65%,#2876a8 120%);border-radius:22px;padding:52px 52px 48px;color:#fff;overflow:hidden;position:relative}
+.hero:after{content:"RQ";position:absolute;right:-45px;top:-135px;font-weight:900;font-size:350px;letter-spacing:-.12em;color:#ffffff0c;pointer-events:none}
+.hero>*{position:relative;z-index:1}.eyebrow{font-size:12px;font-weight:800;letter-spacing:.13em;color:#b9d9f3}.hero h1{font-size:clamp(32px,4vw,50px);line-height:1.24;letter-spacing:-.05em;margin:14px 0}
+.hero h1 em{font-style:normal;color:#a9d9ff}.hero p{font-size:15px;max-width:720px;color:#dfecf9;margin:0 0 24px}
+.actions{display:flex;flex-wrap:wrap;gap:10px}.btn{display:inline-flex;align-items:center;justify-content:center;padding:12px 18px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:850;border:1px solid #c3d8ed;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}.btn.primary{background:#fff;color:#163756;border-color:#fff}.btn.ghost{background:#ffffff12;color:#fff;border-color:#bad2e8}.hero .jp{margin:22px 0 0;font-weight:750;font-size:14px;color:#b9daf3}
+.section{margin:32px auto}.sectionhead{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:13px}
+h2{font-size:23px;letter-spacing:-.035em;margin:0}h3{font-size:16px;letter-spacing:-.02em;margin:0 0 8px}
+.small{font-size:12px;color:var(--muted)}.kpi{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.metric,.feature,.status,.guide{border:1px solid var(--line);background:#fff;border-radius:15px;padding:20px}
+.metric strong{display:block;font-size:38px;line-height:1.15;letter-spacing:-.045em;color:#174a78;margin:6px 0}.metric span{font-size:12px;color:var(--muted);font-weight:650}
+.features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.feature{padding:23px}
+.feature .num{font-size:11px;color:#4882b2;font-weight:900;letter-spacing:.1em}.feature p{font-size:13px;color:var(--muted);margin:8px 0 14px}.feature a{font-size:12px;font-weight:750;color:#14578e;text-decoration:underline;text-underline-offset:4px}
+.statusgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.status h3{margin-bottom:12px}
+.checkline{display:flex;gap:9px;align-items:flex-start;font-size:13px;margin:12px 0}.checkline .done{color:var(--green);font-weight:900}.checkline .pending{color:var(--amber);font-weight:900}
+.review{padding:25px;background:#fff;border:1px solid var(--line);border-radius:16px}.review p{margin-top:0;color:var(--muted);font-size:13px}
+.reviewlist{display:grid;grid-template-columns:1fr 1fr;gap:10px 22px}.reviewlabel{display:flex;gap:10px;padding:11px;border-radius:9px;background:#f5f8fc;font-size:13px;cursor:pointer;align-items:flex-start}
+.reviewlabel input{margin:4px 0 0;accent-color:#1e67a4;width:17px;height:17px;flex:none}.progress{font-size:12px;font-weight:750;color:var(--blue);margin-top:13px}
+.warning{background:#fff9ec;border:1px solid #efd9a8;border-radius:12px;padding:19px 22px;color:#674b1e;font-size:13px}
+footer{margin:42px auto 0;padding:24px 0 35px;border-top:1px solid var(--line);font-size:12px;color:var(--muted)}
+@media(max-width:750px){.hero{padding:32px 22px}.hero:after{font-size:240px;top:-60px}.kpi{grid-template-columns:repeat(2,minmax(0,1fr))}.features,.statusgrid,.reviewlist{grid-template-columns:1fr}.navlinks a:nth-child(1){display:none}.metric strong{font-size:30px}}
+@media(prefers-reduced-motion:reduce){.btn{transition:none}}
+</style>
+</head>
+<body>
+<header><nav class="wrap"><a class="logo" href="./index.html"><span>RQ</span>RoboQuo</a><div class="navlinks"><a href="#completed">개발 현황</a><a href="#verify">검수 항목</a><span class="preview-label">개발 검수용 · PREVIEW</span></div></nav></header>
+<main>
+<section class="wrap hero" aria-labelledby="hero-title">
+ <div class="eyebrow">ROBOQUO · SITE REVIEW</div>
+ <h1 id="hero-title">로봇을 찾고, 비교하고,<br><em>거래로 연결하는 플랫폼.</em></h1>
+ <p>RoboQuo의 현재 개발 성과를 한눈에 확인하는 시연 안내입니다. 로봇·그리퍼·자동화 부품을 사고파는 마켓에 제조사 디렉터리와 공식 모델 사양 비교를 결합했습니다.</p>
+ <div class="actions"><a class="btn primary" href="./index.html">RoboQuo 개발 사이트 보기 ↗</a><a class="btn ghost" href="https://github.com/eddieyoonglobal/roboquo-demo/pull/9" target="_blank" rel="noopener noreferrer">개발 변경 내역 보기 ↗</a></div>
+ <p class="jp">ロボットを、もっと身近に。探す・比較する・売る。</p>
+</section>
+<section class="wrap section" id="completed">
+ <div class="sectionhead"><h2>지금까지 개발한 내용</h2><span class="small">2026.11.10 기준 · 개발 브랜치</span></div>
+ <div class="kpi">
+  <div class="metric"><span>전 세계 로봇 제조사</span><strong>148</strong><span>국가·지역별 탐색</span></div>
+  <div class="metric"><span>협동로봇 브랜드</span><strong>40</strong><span>중국 제조사 13개 포함</span></div>
+  <div class="metric"><span>공식 사양 비교 모델</span><strong>10</strong><span>3개 동시 비교</span></div>
+  <div class="metric"><span>UI 지원 언어</span><strong>10</strong><span>검색·디렉터리 화면 중심</span></div>
+ </div>
+ <div class="section" style="margin-bottom:0">
+ <div class="sectionhead"><h2>주요 기능 미리보기</h2><span class="small">실제 개발 사이트에서 탐색</span></div>
+ <div class="features">
+  <article class="feature"><span class="num">01 / MARKETPLACE</span><h3>실제 매물 중심 마켓</h3><p>로봇·그리퍼·부품 카테고리, 국가·상태별 필터, 검색 결과 수, 검색 초기화를 제공합니다. 개발 미리보기에서는 실거래 게시를 제한합니다.</p><a href="./index.html">마켓 화면에서 확인 ↗</a></article>
+  <article class="feature"><span class="num">02 / GLOBAL COBOTS</span><h3>148개 제조사 · 협동로봇 40개</h3><p>제조사 페이지에서 협동로봇 우선 보기, 중국을 포함한 지역별 목록, 브랜드·시리즈 검색, 제조사 공식 링크를 확인할 수 있습니다.</p><a href="./index.html">사이트의 Manufacturers 메뉴 ↗</a></article>
+  <article class="feature"><span class="num">03 / SPEC COMPARE</span><h3>공식 제품 사양 비교</h3><p>FANUC·Doosan·UR·OMRON·JAKA·FAIRINO의 참고 모델 10개를 가반하중(kg), 작업반경(mm), 축 수로 비교합니다.</p><a href="./index.html">Manufacturers → 모델 비교 ↗</a></article>
+  <article class="feature"><span class="num">04 / JAPAN FIRST</span><h3>일본어·한국어·영어 등 다국어</h3><p>일본어 「中古 グリッパー」, 한국어 「중고 그리퍼」와 같은 복합 검색어를 지원하도록 개선했습니다. 모든 판매자 자유 입력 내용의 자동 번역을 뜻하지는 않습니다.</p><a href="./index.html">상단 언어 변경 후 검색 ↗</a></article>
+ </div></div>
+</section>
+<section class="wrap section">
+ <div class="sectionhead"><h2>완료된 것과 남은 것</h2></div>
+ <div class="statusgrid">
+  <div class="status"><h3>개발·자동 테스트 완료</h3>
+   <div class="checkline"><span class="done">✓</span>브랜드 디렉터리와 모델 비교</div>
+   <div class="checkline"><span class="done">✓</span>실제 판매자 매물만 노출하는 필터</div>
+   <div class="checkline"><span class="done">✓</span>다국어 검색 및 모바일 대응</div>
+   <div class="checkline"><span class="done">✓</span>GitHub 브라우저·DB 정책 자동 테스트</div>
+  </div>
+  <div class="status"><h3>운영 전 검증 필요</h3>
+   <div class="checkline"><span class="pending">○</span>실사용 회원가입·로그인과 판매자 권한</div>
+   <div class="checkline"><span class="pending">○</span>실제 상품 사진 저장·게시·삭제</div>
+   <div class="checkline"><span class="pending">○</span>구매자·판매자 채팅과 권한·보안</div>
+   <div class="checkline"><span class="pending">○</span>운영 도메인·배포 환경과 최종 검수</div>
+  </div>
+ </div>
+</section>
+<section class="wrap section" id="verify">
+ <div class="sectionhead"><h2>사이트 확인 체크리스트</h2><span class="small">체크 결과는 이 브라우저에만 저장됩니다.</span></div>
+ <div class="review"><p>위의 「RoboQuo 개발 사이트 보기」를 열고 아래 순서대로 확인해 보세요. 현재는 공개 출시 승인이 아니라 화면과 흐름을 검수하는 단계입니다.</p>
+ <div class="reviewlist">
+  <label class="reviewlabel"><input type="checkbox" data-review="1"><span>첫 화면에서 상품 검색이 쉽게 보이는가?</span></label>
+  <label class="reviewlabel"><input type="checkbox" data-review="2"><span>로봇·그리퍼·부품 구분이 명확한가?</span></label>
+  <label class="reviewlabel"><input type="checkbox" data-review="3"><span>Manufacturers 메뉴에서 협동로봇 브랜드를 찾을 수 있는가?</span></label>
+  <label class="reviewlabel"><input type="checkbox" data-review="4"><span>중국·일본·한국 브랜드를 국가별로 살펴볼 수 있는가?</span></label>
+  <label class="reviewlabel"><input type="checkbox" data-review="5"><span>모델 2~3개 비교 화면이 이해하기 쉬운가?</span></label>
+  <label class="reviewlabel"><input type="checkbox" data-review="6"><span>일본어 표시와 스마트폰 화면이 편리한가?</span></label>
+ </div><div class="progress" id="progress" role="status" aria-live="polite">확인 0 / 6</div>
+ </div>
+</section>
+<section class="wrap section"><div class="warning"><strong>개발 시연판 안내</strong><div>제조사 정보는 참고 디렉터리이며 재고·공식 대리점 자격을 보증하지 않습니다. 모델 비교 값은 제조사 자료에 근거한 참고 사양으로, 실제 설치 시 안전성 평가와 툴 무게 계산이 필요합니다. 결제·에스크로 기능은 아직 구현되지 않았습니다. 운영 DB 마이그레이션과 실제 사용자 거래 시나리오 검증 전에는 정식 판매 사이트로 발표하지 않습니다.</div></div></section>
+</main>
+<footer class="wrap"><strong>RoboQuo</strong> · Development preview &amp; release review · This page documents development status and is not proof of a live transaction service. <a href="https://github.com/eddieyoonglobal/roboquo-demo/pull/9" target="_blank" rel="noopener noreferrer">GitHub PR #9</a></footer>
+<script>
+(function(){
+ const boxes=Array.from(document.querySelectorAll('input[data-review]'));
+ const key='rq-review-progress-2026-11-10';
+ try{const saved=JSON.parse(localStorage.getItem(key)||'[]');boxes.forEach(b=>b.checked=saved.includes(b.dataset.review));}catch(_){}
+ function update(){const done=boxes.filter(b=>b.checked).length;document.getElementById('progress').textContent='확인 '+done+' / '+boxes.length;try{localStorage.setItem(key,JSON.stringify(boxes.filter(b=>b.checked).map(b=>b.dataset.review)))}catch(_){}}
+ boxes.forEach(b=>b.addEventListener('change',update));update();
+})();
+</script>
+</body></html>
