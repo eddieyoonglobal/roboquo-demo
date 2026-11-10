@@ -66,6 +66,21 @@ function init(){
  $('conditionFilter')?.addEventListener('change',updateView);
  $('categoryFilter')?.addEventListener('change',updateView);
  document.addEventListener('rq:languagechange',updateView);
+ // Empty-state buttons are rendered anew whenever real seller results change.
+ // Delegate clicks once so no listener is lost during a list refresh.
+ $('marketListings')?.addEventListener('click',event=>{
+  const action=event.target.closest('[data-rq-empty-action]')?.dataset.rqEmptyAction;
+  if(action==='brands')goMakers();
+  if(action==='clear'){
+   const clear=$('rqVisualClear');
+   if(clear)clear.click();
+   else{
+    for(const id of ['marketSearch','categoryFilter','countryFilter','conditionFilter']){const input=$(id);if(input)input.value='';}
+    window.rqRenderMarketplace?.();
+   }
+   updateView();
+  }
+ });
  updateView();
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
