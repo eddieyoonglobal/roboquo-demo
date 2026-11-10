@@ -346,7 +346,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert(await page.locator('.rq-review-visuals').isVisible(),'preview review guide contains actual robot and category visuals');
   assert.equal(await page.locator('.rq-review-visual-cats img').count(),3,'review page shows robot, gripper and parts');
   assert.equal(await page.locator('nav .logo img[src$="rq-brand.svg"]').count(),1,'review guide uses matching RoboQuo branding');
-  assert.match(await page.locator('.rq-review-photo figcaption').innerText(),/CC BY 2.0/,'photo is visibly attributed');
+  assert.match(await page.locator('.rq-review-photo figcaption').innerText(),/Bobjgalindo.*CC BY 4.0/,'FANUC photo has correct photographer and license attribution');
   if(process.env.CI)await page.screenshot({path:path.join(screenshotDir,'roboquo-review-visual-guide.png'),fullPage:true});
 
   assert.equal(errors.length,0,'uncaught runtime errors: '+errors.join(' | '));
