@@ -98,7 +98,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
 
   await page.evaluate(()=>route('home'));
   assert.equal(await page.locator('#rqVisualMarket .rq-visual-market-card').count(),3,'homepage has 3 visual equipment categories');
-  await page.locator('[data-rq-market-category="gripper"]').click();
+  await page.locator('#home .rq-visual-market-card[data-rq-market-category="gripper"]').click();
   assert(await page.locator('#robots').isVisible(),'visual navigation returns to market');
   assert.equal(await page.locator('#categoryFilter').inputValue(),'gripper','visual gripper card synchronizes actual market category filter');
   await page.evaluate(()=>route('home'));
