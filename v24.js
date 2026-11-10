@@ -400,7 +400,15 @@
       vi:['Không có tin đăng phù hợp','Thử từ khóa, danh mục, quốc gia hoặc tình trạng khác, hoặc xóa bộ lọc.']
     };
     const [head,body]=(filtered?noMatch:blank)[lang()]||(filtered?noMatch:blank).en;
-    return `<div class="rq-market-empty"><h3>${head}</h3><p>${body}</p></div>`;
+    const labels={
+      en:['Explore robot makers','Clear filters'],ja:['メーカーから探す','絞り込みを解除'],ko:['제조사별 로봇 보기','필터 초기화'],
+      zh:['按制造商查看','清除筛选'],de:['Hersteller entdecken','Filter löschen'],
+      fr:['Explorer les fabricants','Effacer les filtres'],es:['Explorar fabricantes','Borrar filtros'],
+      it:['Esplora produttori','Cancella filtri'],pt:['Explorar fabricantes','Limpar filtros'],
+      vi:['Khám phá nhà sản xuất','Xóa bộ lọc']
+    };
+    const action=(labels[lang()]||labels.en)[filtered?1:0];
+    return `<div class="rq-market-empty"><h3>${head}</h3><p>${body}</p><button type="button" class="rq-empty-action" data-rq-empty-action="${filtered?'clear':'brands'}">${escHtml(action)}</button></div>`;
   }
   // Match seller-provided model text as well as multilingual industrial product terms.
   // This lookup is client-side; it never translates or changes seller-provided descriptions.
