@@ -44,6 +44,27 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>Boolean(document.querySelector('#marketListings .rq-market-empty')),{timeout:15000});
   assert(await page.locator('#robots').isVisible(),'marketplace must be first page');
+  // Actual landmark products — clearly separated from uploaded seller inventory.
+  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-product').count(),4,'four representative manufacturers/EOAT cards');
+  assert.equal(await page.locator('#rqFeaturedShowcase img[src*="commons.wikimedia.org"],#rqFeaturedShowcase img[src*="upload.wikimedia.org"]').count(),3,'three licensed real robot photographs are configured');
+  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-credit').count(),4,'every featured product has a source or explicit illustration note');
+  assert.equal(await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="OnRobot"] img[src$="rq-gripper.svg"]').count(),1,'OnRobot uses an illustration until approved images are available');
+  const featuredMakers=await page.locator('#rqFeaturedShowcase .rq-featured-card').evaluateAll(els=>els.map(el=>el.dataset.rqFeaturedMaker));
+  assert.deepEqual(featuredMakers,['FANUC','Universal Robots','ABB Robotics','OnRobot'],'hero spotlights only reviewed non-Chinese makers');
+  assert.match(await page.locator('#rqFeaturedNote').innerText(),/not items for sale/i,'reference photos must not be claimed as stock');
+  await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="FANUC"]').click();
+  assert(await page.locator('#makers').isVisible(),'selected representative photo opens manufacturer directory');
+  assert.equal(await page.locator('#makerSearch').inputValue(),'FANUC','FANUC photo locates FANUC manufacturer');
+  assert.equal(await page.locator('#makerGrid .maker-card').count(),1,'FANUC manufacturer search narrows directory');
+  await page.evaluate(()=>route('robots'));
+  await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="OnRobot"]').click();
+  assert(await page.locator('#makers').isVisible(),'OnRobot artwork opens EOAT makers');
+  assert(await page.locator('[data-maker-tab="eoat"]').evaluate(el=>el.classList.contains('active')),'OnRobot is an EOAT maker, not a robot arm OEM');
+  assert.equal(await page.locator('#makerSearch').inputValue(),'OnRobot','OnRobot profile is searched');
+  await page.locator('[data-maker-tab="robot"]').click();
+  await page.locator('#makerSearch').fill('');
+  await page.evaluate(()=>route('robots'));
+
 
   assert.equal(await page.locator('#robots .rq-market-heading-photo img').count(),1,'first visible market screen has a real factory robot photograph');
   assert.equal(await page.locator('#rqBrowseShortcut img.rq-market-action-thumb').count(),1,'buy card has an equipment image');
@@ -93,6 +114,10 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     assert.equal((await page.locator('#countryFilter option').first().textContent()).trim(),countryAll,'localized country filter '+language);
     assert.equal((await page.locator('#countryFilter option[value="Japan"]').textContent()).trim(),japanName,'localized Japan option '+language);
   }
+  await page.locator('#languageSelect').selectOption('ja');
+  await page.waitForFunction(()=>document.querySelector('#rqFeaturedTitle')?.textContent==='代表的なロボットメーカー');
+  await page.locator('#languageSelect').selectOption('ko');
+  await page.waitForFunction(()=>document.querySelector('#rqFeaturedTitle')?.textContent==='대표 로봇·그리퍼 브랜드');
   await page.locator('#languageSelect').selectOption('en');
   await page.waitForFunction(()=>document.querySelector('#rqBrowseShortcut strong')?.textContent==='Find an item');
   assert.equal(await page.locator('#robots .v24-market-note').count(),0,'duplicated market notice removed');
@@ -279,6 +304,11 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     assert.equal(cardColumnCount,2,'mobile cards use a two-column photo-first grid');
     const searchTop=await page.locator('#rqMobileQuery').boundingBox();
     const pictureTop=await page.locator('#robots .rq-market-discovery-card').first().boundingBox();
+    const featureTop=await page.locator('#rqFeaturedShowcase').boundingBox();
+    assert(featureTop&&searchTop&&pictureTop&&searchTop.y<featureTop.y&&featureTop.y<pictureTop.y,'mobile shows search, representative robot photos, then equipment categories');
+    assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card').count(),4,'mobile representative swipe strip contains four recognisable brands');
+    const stripScrolling=await page.locator('#rqFeaturedShowcase .rq-featured-track').evaluate(el=>({scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}));
+    assert(stripScrolling.scrollWidth>stripScrolling.clientWidth,'mobile featured images scroll horizontally rather than overflow the page');
     assert(searchTop && pictureTop && searchTop.y<pictureTop.y,'mobile search precedes category image cards');
     assert(await page.locator('.mobile-nav').isVisible(),'bottom action bar remains visible');
 
