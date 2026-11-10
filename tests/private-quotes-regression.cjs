@@ -15,7 +15,7 @@ const win={
  openModal:html=>{modal=html},
  rqRequireAuth:()=>{throw Error('Already signed in')}
 };
-const doc={documentElement:{lang:'ja'},readyState:'loading',addEventListener(){}};
+const doc={documentElement:{lang:'ja'},readyState:'loading',addEventListener(){},querySelector(){return null}};
 const fake={window:win,document:doc,console,Intl,Date,Number,String,Object,Array,JSON,Error};
 fake.allRobotListings=()=>[listing];
 vm.runInNewContext(source,fake);
