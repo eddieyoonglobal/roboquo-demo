@@ -85,3 +85,26 @@ Vercel Authentication이 활성화되어 있어 접근 계정에 따라 로그�
 https://github.com/eddieyoonglobal/roboquo-demo/actions/runs/42747049140
 
 정식 `roboquo.com` 배포는 보류하며, 실제 DB 인증/사진/채팅과 프리뷰 사용자 검수 후 진행합니다.
+
+
+## 8. 실제 대표 제품 사진 및 제조사 로고 적용 (2026-11-10)
+
+**목표:** 텍스트나 임의의 중국 로봇 사진 대신, 일본·유럽의 널리 알려진 실제 로봇 제조사 제품 사진을 메인과 모바일에 짧고 크게 표시합니다. 중국 제조사는 **홍보용 대표 사진에서만 제외**하며, RoboQuo의 중립적인 글로벌 제조사 검색 디렉터리에서는 삭제하지 않습니다.
+
+| 실제 사진/자료 | 표시 이름 | 제작/제공자 및 라이선스 | 출처 |
+|---|---|---|---|
+| FANUC 협동로봇 실제 사진 | FANUC CRX-5iA | Bobjgalindo, CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg |
+| Universal Robots 협동로봇 실제 사진 | UR5e | Dzikra muhammad Imtiyaz, CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Robot_Lengan_Industri_UR5e.jpg |
+| ABB 실제 산업용 로봇 사진 (**GoFa 아님**) | ABB industrial robot | © Peter Potrowl, CC BY 2.5 | https://commons.wikimedia.org/wiki/File:Robot_ABB_2.jpg |
+| OnRobot 그리퍼 참고 그림 (**제품 사진 아님**) | RG2 / RG6 / 2FG7 | RoboQuo 자체 제작 일반 그리퍼 SVG | https://onrobot.com/en/products |
+
+- 사진 3개는 메인 Marketplace의 **Representative robot makers** 횡스크롤 카드에 배치. 모바일에서도 상단 검색과 빠른 필터 바로 다음에 등장합니다.
+- 기존 Home/Martket 큰 사진도 중국 제품 여부가 불명확한 일반 사진 대신 **FANUC CRX-5iA 실물 사진**으로 변경했습니다.
+- 사진 위에는 제조사 식별용 로고를 붙였습니다. FANUC / Universal Robots / ABB SVG 로고는 Wikimedia Commons의 단순 로고 자료를 참조했습니다. OnRobot은 글자명만 표시했습니다. 로고는 상표이므로 **제조사 공식 대리점/제휴 보증 표시가 아님**을 안내합니다.
+- 사진을 누르면 해당 로봇 또는 EOAT 제조사 페이지를 검색합니다. 사진 자체가 판매 등록 매물이라는 주장은 하지 않습니다.
+- 각 실물 사진 아래에 원저작자 및 라이선스 링크를 노출합니다. 원본 사진은 직접 재배포하지 않고 Commons URL을 불러와 CSS로 화면에 배치합니다. 외부 URL이 실패하면 **일반 SVG 설명 그림**으로 대체합니다.
+- 제조사 공식 제품 페이지의 마케팅 사진(특히 OnRobot 그리퍼 실사)은 별도 공개 사용 권한이 확인되면 교체합니다. 현재 권한이 미확인된 제조사 사진을 임의 복제하지 않습니다.
+
+**상표 및 사진 권리:** 특정 상품 및 로고는 제조사 식별을 위한 참고 자료일 뿐, RoboQuo가 공식 대리점이거나 재고를 보유했다는 뜻이 아닙니다. 공식 출시 전 사진 출처·상표 사용 문구·라이선스 표기와 연동 링크를 최종 검수합니다.
+
+**모바일 확인:** 상단 검색 → 전체/중고/신품 → FANUC/UR/ABB 실제 사진 및 OnRobot 참고 그림 → 로봇·그리퍼·부품 선택 카드 → 실제 매물. 대표 사진 카드를 누르면 제조사 이름으로 검색되는지 확인하세요.
