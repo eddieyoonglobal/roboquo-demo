@@ -49,6 +49,10 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#rqBrowseShortcut img.rq-market-action-thumb').count(),1,'buy card has an equipment image');
   assert.equal(await page.locator('#rqSellShortcut img.rq-market-action-thumb').count(),1,'sell card has an equipment image');
   assert.equal(await page.locator('.site-header img.rq-site-logo').count(),1,'original RoboQuo logo is visible in the header');
+
+  await page.locator('.site-header a.brand').click();
+  assert(await page.locator('#home').isVisible(),'RoboQuo brand logo opens photo-first home');
+  await page.evaluate(()=>route('robots'));
   for(const name of ['rq-robot.svg','rq-gripper.svg','rq-parts.svg','rq-brand.svg']){
     const response=await page.evaluate(n=>fetch('./assets/'+n).then(r=>({ok:r.ok,contentType:r.headers.get('content-type')})),name);
     assert(response.ok&&response.contentType.includes('svg'),'valid local visual asset: '+name);
@@ -98,7 +102,6 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#makerTypeFilter').inputValue(),'collaborative','manufacturer catalog starts with cobots');
 
   assert.equal(await page.locator('#makerGrid .maker-card img.rq-maker-thumb').count(),40,'directory gives every cobot maker a recognizable illustrative image');
-  assert.equal(await page.locator('#rq-brand-does-not-exist').count(),0,'no fabricated official brand logo');
 
   assert.match(await page.locator('#rqJumpCompare').innerText(),/Compare verified model specs/);
   await page.locator('#rqJumpCompare').click();
