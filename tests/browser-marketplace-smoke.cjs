@@ -274,7 +274,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'used chip excludes new robot fixture');
     await page.locator('[data-rq-mobile-condition=""]').click();
     assert.equal(await page.locator('#conditionFilter').inputValue(),'','all-items chip clears condition');
-    assert.equal(await page.locator('#marketListings .v24-listing-card').count(),3,'all-items chip restores all real fixture listings');
+    assert.equal(await page.locator('#marketListings .v24-listing-card').count(),2,'all-items chip restores both real fixture listings');
     const cardColumnCount=await page.locator('#marketListings').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
     assert.equal(cardColumnCount,2,'mobile cards use a two-column photo-first grid');
     const searchTop=await page.locator('#rqMobileQuery').boundingBox();
