@@ -16,7 +16,7 @@
    const title=$('[data-rq-label="'+k+'"]'),note=$('[data-rq-sub="'+k+'"]');
    if(title)title.textContent=t[k];
    if(note)note.textContent=t[k+'Sub'];
-   $('[data-rq-market-category="'+k+'"]').forEach(btn=>{
+   $$('[data-rq-market-category="'+k+'"]').forEach(btn=>{
     btn.setAttribute('aria-label',t[k]+': '+t[k+'Sub']);
     const label=btn.querySelector('[data-rq-label]');if(label)label.textContent=t[k];
     const sub=btn.querySelector('[data-rq-sub]');if(sub)sub.textContent=t[k+'Sub'];
@@ -28,7 +28,7 @@
  }
  function syncActiveCategory(){
   const current=document.getElementById('categoryFilter')?.value||'';
-  $('.rq-market-discovery-card').forEach(btn=>{
+  $$('.rq-market-discovery-card').forEach(btn=>{
    const selected=btn.dataset.rqMarketCategory===current;
    btn.setAttribute('aria-pressed',String(selected));
    btn.classList.toggle('is-active',selected);
@@ -59,7 +59,7 @@
   syncActiveCategory();
  }
  function init(){
-  $('[data-rq-market-category]').forEach(btn=>btn.addEventListener('click',()=>openCategory(btn.dataset.rqMarketCategory)));
+  $$('[data-rq-market-category]').forEach(btn=>btn.addEventListener('click',()=>openCategory(btn.dataset.rqMarketCategory)));
   document.getElementById('rqVisualClear')?.addEventListener('click',clearFilters);
   document.getElementById('categoryFilter')?.addEventListener('change',syncActiveCategory);
   document.addEventListener('rq:languagechange',apply);
