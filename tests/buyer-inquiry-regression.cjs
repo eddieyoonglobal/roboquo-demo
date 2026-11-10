@@ -34,5 +34,6 @@ assert.match(result,/FANUC/);
 selected={...selected,demo:true};
 result='';ctx.window.rqContactAboutListing('seller:abc','purchase');
 assert.equal(result,'','demo listings must not be actionable');
-assert.equal((s.match(/const askAction=escHtml\(`rqContactAboutListing/g)||[]).length,2);
+assert.equal((s.match(/const askAction=escHtml\(isPrivateQuote/g)||[]).length,2,'listing card and detail route private offers separately from email inquiry');
+assert.match(s,/rqOpenBuyerOffer/,'private quote action is linked only to real offer-enabled listings');
 console.log('PASS buyer inquiry: localized, correct listing reference, draft-only, demo blocked');

@@ -27,6 +27,10 @@
 <link href="styles.css" rel="stylesheet"/>
 <link href="v24.css" rel="stylesheet"/>
 <link href="marketplace-v2.css" rel="stylesheet"/>
+<link href="visuals.css" rel="stylesheet"/>
+<link href="mobile-market.css" rel="stylesheet"/>
+<link href="featured-showcase.css" rel="stylesheet"/>
+<link href="quote-market.css" rel="stylesheet"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -53,7 +57,7 @@
 </head>
 <body>
 <header class="site-header">
-<a aria-label="RoboQuo marketplace" class="brand" data-route="robots" href="#robots"><span class="rq">RQ</span><span>RoboQuo</span></a>
+<a aria-label="RoboQuo home" class="brand" data-route="home" href="#home"><img class="rq-site-logo" src="./assets/rq-brand.svg" alt="RoboQuo" width="186" height="43"></a>
 <nav class="desktop-nav">
 <a data-i18n="navRobots" data-route="robots" href="#robots">Robots</a>
 <a data-i18n="navCategories" data-route="categories" href="#categories">Categories</a>
@@ -92,6 +96,10 @@
 <p class="access-note"><strong data-i18n="browseFree">Browse freely.</strong> <span data-i18n="joinWhenNeeded">Join only when you need to inquire, bid or trade.</span></p>
 </div>
 <div class="hero-visual hero-sell-panel">
+  <figure class="rq-hero-real-photo">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_robot_CRX-5iA.jpg?width=640" alt="Actual FANUC CRX-5iA collaborative robot reference photo" width="960" height="1443" fetchpriority="high" decoding="async">
+    <figcaption><strong id="rqHeroPhotoHeading">Real robotics, clearly visible.</strong><a href="https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg" target="_blank" rel="noopener noreferrer" id="rqPhotoCredit">Bobjgalindo · CC BY 4.0</a></figcaption>
+  </figure>
   <div class="hero-sell-card">
     <div class="hero-sell-topline" data-hero-sell-eyebrow>SELL</div>
     <h3 data-hero-sell-title>Sell a Robot</h3>
@@ -115,6 +123,24 @@
   </div>
 </div>
 </div>
+<section class="wrap rq-visual-market" id="rqVisualMarket" aria-label="Browse robot equipment visually">
+  <div class="rq-visual-market-heading"><div><div class="kicker">SHOP BY EQUIPMENT</div><h2 id="rqVisualMarketTitle">See it. Find it.</h2><p id="rqVisualMarketSubtitle">Start with the type of robot equipment you need.</p></div></div>
+  <div class="rq-visual-market-grid">
+    <button type="button" class="rq-visual-market-card" data-rq-market-category="robot">
+      <img src="./assets/rq-robot.svg" alt="" loading="eager" width="640" height="440">
+      <span class="rq-visual-market-card-info"><strong data-rq-label="robot">Robots</strong><small data-rq-sub="robot">Industrial and collaborative robots</small><b aria-hidden="true">→</b></span>
+    </button>
+    <button type="button" class="rq-visual-market-card" data-rq-market-category="gripper">
+      <img src="./assets/rq-gripper.svg" alt="" loading="lazy" width="640" height="440">
+      <span class="rq-visual-market-card-info"><strong data-rq-label="gripper">Grippers & EOAT</strong><small data-rq-sub="gripper">End effectors and tooling</small><b aria-hidden="true">→</b></span>
+    </button>
+    <button type="button" class="rq-visual-market-card" data-rq-market-category="part">
+      <img src="./assets/rq-parts.svg" alt="" loading="lazy" width="640" height="440">
+      <span class="rq-visual-market-card-info"><strong data-rq-label="part">Parts & Controllers</strong><small data-rq-sub="part">Automation equipment and spare parts</small><b aria-hidden="true">→</b></span>
+    </button>
+  </div>
+  <p class="rq-visual-disclaimer" id="rqVisualDisclaimer">Illustrative category images, not actual seller listings. Only real seller listings are displayed in the marketplace.</p>
+</section>
 <div class="principle-bar">
 <div><strong data-i18n="browse">Browse</strong><span data-i18n="browseSub">Search without signup</span></div>
 <div><strong data-i18n="join">Join</strong><span data-i18n="joinSub">Email signup when needed</span></div>
@@ -179,15 +205,82 @@
 <div class="wrap category-grid application-grid" id="applicationGrid"></div>
 </section>
 <section class="page" id="robots">
-<div class="wrap page-head rq-market-heading"><div class="kicker">ROBOQUO MARKETPLACE</div><h1 data-i18n="marketTitle">Buy &amp; sell robots and parts</h1><p data-i18n="marketDesc">New or used. Find an item or post yours in a few steps.</p></div>
+<div class="rq-mobile-market-search" id="rqMobileMarketSearch">
+  <label class="rq-mobile-search-field" for="rqMobileQuery">
+    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+    <input type="search" id="rqMobileQuery" autocomplete="off" enterkeyhint="search" placeholder="商品名・メーカーを検索" aria-label="Search RoboQuo listings">
+  </label>
+  <button type="button" id="rqMobileReset" class="rq-mobile-search-reset" aria-label="Clear search" hidden>×</button>
+</div>
+<nav class="rq-mobile-market-pills" id="rqMobileMarketPills" aria-label="Quick filters">
+  <button type="button" data-rq-mobile-condition="" aria-pressed="true">すべて</button>
+  <button type="button" data-rq-mobile-condition="used" aria-pressed="false">中古</button>
+  <button type="button" data-rq-mobile-condition="new" aria-pressed="false">新品</button>
+  <button type="button" data-rq-mobile-action="brands" aria-pressed="false">メーカー</button>
+</nav>
+<section class="wrap rq-featured-showcase" id="rqFeaturedShowcase" aria-labelledby="rqFeaturedTitle">
+  <div class="rq-featured-title-row">
+    <div><div class="kicker">REAL ROBOT PHOTOS</div><h2 id="rqFeaturedTitle">Explore iconic robot makers</h2></div>
+    <span class="rq-featured-note" id="rqFeaturedNote">Manufacturer references · not seller inventory</span>
+  </div>
+  <div class="rq-featured-track" role="list" aria-label="Representative robot and gripper brands">
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="FANUC" data-rq-featured-kind="robot">
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_robot_CRX-5iA.jpg?width=640" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Actual FANUC CRX-5iA collaborative robot photographed at an exhibition" width="640" height="480" loading="eager" decoding="async">
+        <span class="rq-featured-brand-mark"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_logo.svg" alt="" loading="lazy" width="80" height="20"></span><span class="rq-featured-caption"><strong>FANUC</strong><small>CRX-5iA · Japan</small></span>
+      </button>
+      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg" rel="noopener noreferrer" target="_blank">Bobjgalindo · CC BY 4.0</a>
+    </article>
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Universal Robots" data-rq-featured-kind="robot">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Robot_Lengan_Industri_UR5e.jpg/960px-Robot_Lengan_Industri_UR5e.jpg" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Actual Universal Robots UR5e collaborative robot in an industrial laboratory" width="960" height="720" loading="lazy" decoding="async">
+        <span class="rq-featured-brand-mark"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Universal_robots_logo.svg" alt="" loading="lazy" width="22" height="22"></span><span class="rq-featured-caption"><strong>Universal Robots</strong><small>UR5e · Denmark</small></span>
+      </button>
+      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Robot_Lengan_Industri_UR5e.jpg" rel="noopener noreferrer" target="_blank">D. M. Imtiyaz · CC BY-SA 4.0</a>
+    </article>
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="ABB Robotics" data-rq-featured-kind="robot">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Robot_ABB_2.jpg/960px-Robot_ABB_2.jpg" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Actual ABB industrial robot arms on an automation line; not a GoFa product" width="960" height="720" loading="lazy" decoding="async">
+        <span class="rq-featured-brand-mark"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/ABB_logo.svg" alt="" loading="lazy" width="56" height="22"></span><span class="rq-featured-caption"><strong>ABB Robotics</strong><small>Industrial robot · Europe</small></span>
+      </button>
+      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Robot_ABB_2.jpg" rel="noopener noreferrer" target="_blank">© Peter Potrowl · CC BY 2.5</a>
+    </article>
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="OnRobot" data-rq-featured-kind="eoat">
+        <img src="./assets/rq-gripper.svg" alt="Illustrative robotic gripper; not an actual OnRobot RG2 or RG6 product photograph" width="640" height="440" loading="lazy" decoding="async">
+        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">OnRobot</span><span class="rq-featured-caption"><strong>OnRobot</strong><small>RG2 · RG6 · 2FG7</small></span>
+      </button>
+      <a class="rq-featured-credit" href="https://onrobot.com/en/products" rel="noopener noreferrer" target="_blank" id="rqOnRobotPhotoNote">Illustration · Official products</a>
+    </article>
+  </div>
+</section>
+<div class="wrap page-head rq-market-heading"><div class="rq-market-heading-copy"><div class="kicker">ROBOQUO MARKETPLACE</div><h1 data-i18n="marketTitle">Buy &amp; sell robots and parts</h1><p data-i18n="marketDesc">New or used. Find an item or post yours in a few steps.</p></div><figure class="rq-market-heading-photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_robot_CRX-5iA.jpg?width=640" alt="Actual FANUC CRX-5iA collaborative robot reference photo" width="960" height="1443" decoding="async" loading="eager"><figcaption><a href="https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg" target="_blank" rel="noopener noreferrer">Bobjgalindo · CC BY 4.0</a></figcaption></figure></div>
 <div class="wrap rq-market-quickstart" id="rqMarketQuickStart" aria-label="Buy or sell">
   <button type="button" id="rqBrowseShortcut" class="rq-market-choice rq-market-choice-buy">
-    <span class="rq-choice-symbol" aria-hidden="true">⌕</span><span class="rq-choice-content"><strong>Find an item</strong><small>Browse new and used robots &amp; parts</small></span><span class="rq-choice-arrow" aria-hidden="true">→</span>
+    <img class="rq-market-action-thumb" src="./assets/rq-robot.svg" alt="" loading="eager" width="92" height="65"><span class="rq-choice-content"><strong>Find an item</strong><small>Browse new and used robots &amp; parts</small></span><span class="rq-choice-arrow" aria-hidden="true">→</span>
   </button>
   <button type="button" id="rqSellShortcut" class="rq-market-choice rq-market-choice-sell">
-    <span class="rq-choice-symbol" aria-hidden="true">＋</span><span class="rq-choice-content"><strong>Sell an item</strong><small>Upload photos and set your price</small></span><span class="rq-choice-arrow" aria-hidden="true">→</span>
+    <img class="rq-market-action-thumb" src="./assets/rq-gripper.svg" alt="" loading="eager" width="92" height="65"><span class="rq-choice-content"><strong>Sell an item</strong><small>Upload photos and set your price</small></span><span class="rq-choice-arrow" aria-hidden="true">→</span>
   </button>
 </div>
+<section class="wrap rq-market-discovery" aria-labelledby="rqMarketDiscoveryTitle">
+  <div class="rq-discovery-header"><div><div class="kicker">DISCOVER BY CATEGORY</div><h2 id="rqMarketDiscoveryTitle">Browse by equipment</h2></div><button type="button" id="rqVisualClear" class="rq-discovery-clear">Show all items</button></div>
+  <nav class="rq-market-discovery-grid" aria-label="Equipment category">
+    <button class="rq-market-discovery-card" type="button" data-rq-market-category="robot" aria-pressed="false">
+      <img src="./assets/rq-robot.svg" width="640" height="440" alt="" loading="eager">
+      <span data-rq-label="robot">Robots</span><span class="rq-category-arrow" aria-hidden="true">→</span>
+    </button>
+    <button class="rq-market-discovery-card" type="button" data-rq-market-category="gripper" aria-pressed="false">
+      <img src="./assets/rq-gripper.svg" width="640" height="440" alt="" loading="eager">
+      <span data-rq-label="gripper">Grippers &amp; EOAT</span><span class="rq-category-arrow" aria-hidden="true">→</span>
+    </button>
+    <button class="rq-market-discovery-card" type="button" data-rq-market-category="part" aria-pressed="false">
+      <img src="./assets/rq-parts.svg" width="640" height="440" alt="" loading="eager">
+      <span data-rq-label="part">Parts &amp; Controllers</span><span class="rq-category-arrow" aria-hidden="true">→</span>
+    </button>
+  </nav>
+  <p class="rq-discovery-note" id="rqDiscoveryNote">Illustrations help you choose a category. Only real seller photos and listings appear below.</p>
+</section>
 <div class="wrap market-toolbar" id="rqMarketSearchArea">
 <div class="search-field"><span>⌕</span><input data-i18n-placeholder="marketSearchPh" id="marketSearch" placeholder="Search maker, model or location"/></div>
 <select id="categoryFilter"><option data-i18n="allCategories" value="">All categories</option></select>
@@ -219,13 +312,50 @@
 </section>
 <section class="page" id="makers">
 <div class="wrap page-head"><div class="kicker">MANUFACTURERS &amp; ECOSYSTEM</div><h1 data-i18n="makerTitle">Start with a manufacturer</h1><p data-i18n="makerDesc">Choose a robot manufacturer to explore major models, compatible peripherals, sellers and service providers.</p></div>
+<section class="wrap rq-cobot-focus" id="rqCobotFocus" aria-labelledby="rqCobotTitle">
+  <div class="rq-cobot-head">
+    <div><div class="kicker">COBOT BRAND DIRECTORY</div><h2 id="rqCobotTitle">Collaborative robot makers around the world</h2><p id="rqCobotDescription">Browse brands and their official product catalogs. Listings and dealer verification are separate.</p></div>
+    <div class="rq-cobot-mode" aria-label="Manufacturer category">
+      <button id="rqCobotOnly" type="button" aria-pressed="true">Collaborative robots</button>
+      <button id="rqAllRobotMakers" type="button" aria-pressed="false">All robot makers</button>
+    </div>
+  </div>
+  <div class="rq-brand-showcase">
+   <img src="./assets/rq-robot.svg" alt="Illustrative robotic arm — not a specific manufacturer's model" loading="lazy" width="640" height="440">
+   <div><div class="rq-brand-showcase-title" id="rqBrandShowcaseTitle">Browse by manufacturer</div><p id="rqBrandShowcaseDesc">Representative brand names, not official logo artwork or an authorized dealership claim.</p>
+    <div class="rq-brand-name-chips"><span>FANUC</span><span>Universal Robots</span><span>Doosan Robotics</span><span>JAKA</span><span>ABB</span><span>DOBOT</span><span>OMRON</span><span>Kawasaki</span></div>
+   </div>
+  </div>
+  <div class="rq-maker-region-links" id="rqMakerRegionLinks" aria-label="Filter robot makers by region"></div>
+  <button type="button" id="rqJumpCompare" class="rq-jump-compare">Compare model specifications ↓</button>
+  <p class="rq-maker-catalog-note" id="rqMakerCatalogNote">Manufacturer directory, not available inventory or authorized dealership claims.</p>
+</section>
 <div class="wrap maker-tabs"><button class="tab active" data-i18n="robotMakers" data-maker-tab="robot">Robot Makers</button><button class="tab" data-i18n="eoatMakers" data-maker-tab="eoat">Grippers &amp; EOAT</button></div>
 <div class="wrap maker-filterbar">
+<div class="search-field rq-maker-search"><span aria-hidden="true">⌕</span><input id="makerSearch" aria-label="Search manufacturer brands" placeholder="Search brand or product series" autocomplete="off"/></div>
 <select id="makerRegionFilter"><option data-i18n="allRegions" value="">All regions</option><option>Japan</option><option>Korea</option><option>China</option><option>Taiwan</option><option>Europe</option><option>North America</option><option>India</option><option>Southeast Asia</option><option>Middle East</option><option>Australia</option></select>
 <select id="makerTypeFilter"><option data-i18n="allRobotTypes" value="">All robot types</option></select>
 <span class="database-count" id="makerCount"></span>
 </div>
 <div class="wrap maker-grid" id="makerGrid"></div>
+<section class="wrap rq-model-compare" id="rqCobotCompare" aria-labelledby="rqCompareTitle">
+ <div class="rq-compare-intro">
+  <div><div class="kicker">OFFICIAL ROBOT SPECS</div><h2 id="rqCompareTitle">Compare collaborative robots</h2><p id="rqCompareDescription">Compare manufacturer-sourced payload, reach and axes. This is not a list of available stock.</p></div>
+  <span class="rq-compare-count" id="rqCompareCount" role="status" aria-live="polite"></span>
+ </div>
+ <div class="rq-compare-filters">
+  <label><span id="rqCompareBrandLabel">Manufacturer</span><select id="rqCompareBrand"><option value="">All manufacturers</option></select></label>
+  <label><span id="rqComparePayloadLabel">Minimum payload</span><select id="rqComparePayload"><option value="0">Any payload</option><option value="5">5 kg+</option><option value="10">10 kg+</option><option value="15">15 kg+</option><option value="20">20 kg+</option></select></label>
+  <label><span id="rqCompareSortLabel">Sort</span><select id="rqCompareSort"><option value="brand">Brand</option><option value="payload-desc">Highest payload</option><option value="reach-desc">Longest reach</option></select></label>
+ </div>
+ <div class="rq-compare-models" id="rqCompareModels"></div>
+ <div class="rq-compare-selection" id="rqCompareSelection">
+  <div class="rq-compare-selection-head"><strong id="rqCompareSelectionTitle">Select up to 3 robots to compare</strong><button type="button" id="rqCompareClear">Clear selection</button></div>
+  <div class="rq-compare-table-scroll" id="rqCompareTableScroll"></div>
+ </div>
+ <p class="rq-compare-safety" id="rqCompareDisclaimer">Check application conditions, tool mass, center of gravity and safety assessment against official documentation before robot selection.</p>
+</section>
+
 <div class="wrap compatibility-demo">
 <div><div class="kicker">COMPATIBILITY</div><h2 data-i18n="compatTitle">Connect robots and peripherals</h2><p data-i18n="compatBody">Example: select FANUC CRX to see compatible grippers, vision, tool changers and local installation companies.</p></div>
 <div class="compat-path"><span>FANUC CRX-10iA/L</span><b>→</b><span>OnRobot / Robotiq / SCHUNK</span><b>→</b><span data-i18n="localSupport">Local sales &amp; installation support</span></div>
@@ -288,5 +418,10 @@
 <script src="seller-backend.js"></script>
 <script src="v24.js"></script>
 <script src="marketplace-v2.js"></script>
+<script src="cobot-compare.js"></script>
+<script src="visuals.js"></script>
+<script src="mobile-market.js"></script>
+<script src="featured-showcase.js"></script>
+<script src="quote-market.js"></script>
 </body>
 </html>

@@ -30,7 +30,7 @@
   const saveCart = (items) => { localStorage.setItem(STORAGE, JSON.stringify(items)); updateCartCount(); renderCartPage(); };
   const inCart = (id) => cart().includes(String(id));
   function formatPrice(r){ const price=Number(r.price);if(!Number.isFinite(price)||price<=0)return tx('toBeCalculated');const currency=['JPY','KRW','CNY','USD','EUR'].includes(r.currency)?r.currency:'JPY';const prefix={JPY:'¥',KRW:'₩',CNY:'CN¥',USD:'US$',EUR:'€'}[currency];return prefix+price.toLocaleString('en-US',{maximumFractionDigits:2}); }
-  function saleLabel(r){ const fixed=r.sale!=='bid'; return fixed ? (typeof tr==='function'?tr('fixedPrice'):tx('fixedPriceListing')) : (typeof tr==='function'?tr('bidding'):tx('privateOfferFlow')); }
+  function saleLabel(r){ const fixed=r.sale!=='bid';return fixed?(typeof tr==='function'?tr('fixedPrice'):tx('fixedPriceListing')):lang()==='ja'?'非公開の買取見積もり':lang()==='ko'?'비공개 매입 견적':'Private buyer offers'; }
   function displayCountry(c){ try{return typeof countryLabel==='function'?countryLabel(c):(c||tx('global'));}catch{return c||tx('global');} }
   function displayTag(t){ try{ const rt=(typeof robotTypes!=='undefined'?robotTypes:[]).find(x=>x.id===t); if(rt)return rt.names?.[lang()]||rt.names?.en||t; const ap=(typeof applications!=='undefined'?applications:[]).find(x=>x.id===t); if(ap)return ap.names?.[lang()]||ap.names?.en||t; }catch(e){} return t; }
   function escHtml(value){return String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));}
@@ -326,7 +326,9 @@
     const title=[r.brand,r.model].filter(Boolean).join(' ')||tx('usedRobot');
     const localDemo=r._source==='local-demo';
     const openAction=escHtml(`rqOpenProduct(${JSON.stringify(id)})`);
-    const askAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},'question')`);
+    const isPrivateQuote=r.sale==='bid'&&r._source==='seller-supabase';
+    const askAction=escHtml(isPrivateQuote?`rqOpenBuyerOffer(${JSON.stringify(id)})`:`rqContactAboutListing(${JSON.stringify(id)},'question')`);
+    const quoteLabel=lang()==='ja'?'買取価格を提案':lang()==='ko'?'매입가격 제안':'Send private quote';
     const buyAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},${fixed?"'purchase'":"'offer'"})`);
     const cartAction=escHtml(fixed?`rqAddToCart(${JSON.stringify(id)})`:`rqOpenProduct(${JSON.stringify(id)})`);
     const meta=[r.year, r.payload==='—'?'':r.payload, r.location].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
@@ -349,7 +351,7 @@
         <div class="v24-meta-row">${meta || `<span>${tx('usedRobot')}</span>`}</div>
         <div class="v24-card-tags">${tags || `<span>${tx('industrialRobot')}</span>`}</div>
         <div class="v24-actions">
-          ${isDemo(r)?`<button class="ghost" onclick="${openAction}">${tx('demoAction')}</button>${localDemo?`<button class="danger-button" onclick="rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="buy" disabled title="${escHtml(tx('demoListing'))}">${tx('demoListing')}</button>`}`:`<button class="buy" onclick="${askAction}">${tx('contactRoboquo')}</button>`}
+          ${isDemo(r)?`<button class="ghost" onclick="${openAction}">${tx('demoAction')}</button>${localDemo?`<button class="danger-button" onclick="rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="buy" disabled title="${escHtml(tx('demoListing'))}">${tx('demoListing')}</button>`}`:`<button class="buy" onclick="${askAction}">${isPrivateQuote?quoteLabel:tx('contactRoboquo')}</button>`}
         </div>
       </div>
     </article>`;
@@ -381,14 +383,64 @@
     // Robot application tags belong in the knowledge directory, not the classifieds.
     const applications=$('#applicationFilter');if(applications)applications.hidden=true;
   }
-  function marketplaceEmpty(){
-    const translated={
-      ko:['아직 등록된 로봇·부품이 없습니다.','신품과 중고 모두 판매자가 직접 등록합니다. 첫 상품을 올려보세요.','상품 등록하기'],
-      ja:['現在、出品はありません。','新品・中古のロボットや部品を自由に出品できます。','出品する'],
-      en:['No listings yet.','Sellers can post new and used robots, grippers and parts here.','Post an item']
+  function marketplaceEmpty(filtered=false){
+    const blank={
+      ko:['아직 등록된 로봇·부품이 없습니다.','신품과 중고 모두 판매자가 직접 등록합니다. 첫 상품을 올려보세요.'],
+      ja:['現在、出品はありません。','新品・中古のロボットや部品を出品できます。'],
+      en:['No listings yet.','Sellers can post new and used robots, grippers and parts here.']
     };
-    const [head,body]=translated[lang()]||translated.en;
-    return `<div class="rq-market-empty"><h3>${head}</h3><p>${body}</p></div>`;
+    const noMatch={
+      en:['No matching listings','Try another keyword, category, country or condition, or clear your filters.'],
+      ja:['条件に一致する出品はありません','キーワード・カテゴリー・国・商品の状態を変更するか、絞り込みを解除してください。'],
+      ko:['검색 조건에 맞는 매물이 없습니다','검색어·카테고리·국가·상품 상태를 바꾸거나 필터를 초기화해 보세요.'],
+      zh:['没有符合条件的商品','请更改关键词、类别、国家或商品状态，或清除筛选条件。'],
+      de:['Keine passenden Angebote','Ändern Sie Suchbegriff, Kategorie, Land oder Zustand oder löschen Sie die Filter.'],
+      fr:['Aucune annonce correspondante','Modifiez la recherche, la catégorie, le pays ou l’état, ou effacez les filtres.'],
+      es:['No hay anuncios coincidentes','Cambie la búsqueda, la categoría, el país o el estado, o borre los filtros.'],
+      it:['Nessun annuncio corrispondente','Modifica la ricerca, la categoria, il paese o la condizione, oppure azzera i filtri.'],
+      pt:['Nenhum anúncio encontrado','Altere a busca, a categoria, o país ou o estado, ou limpe os filtros.'],
+      vi:['Không có tin đăng phù hợp','Thử từ khóa, danh mục, quốc gia hoặc tình trạng khác, hoặc xóa bộ lọc.']
+    };
+    const [head,body]=(filtered?noMatch:blank)[lang()]||(filtered?noMatch:blank).en;
+    const labels={
+      en:['Explore robot makers','Clear filters'],ja:['メーカーから探す','絞り込みを解除'],ko:['제조사별 로봇 보기','필터 초기화'],
+      zh:['按制造商查看','清除筛选'],de:['Hersteller entdecken','Filter löschen'],
+      fr:['Explorer les fabricants','Effacer les filtres'],es:['Explorar fabricantes','Borrar filtros'],
+      it:['Esplora produttori','Cancella filtri'],pt:['Explorar fabricantes','Limpar filtros'],
+      vi:['Khám phá nhà sản xuất','Xóa bộ lọc']
+    };
+    const action=(labels[lang()]||labels.en)[filtered?1:0];
+    return `<div class="rq-market-empty"><h3>${head}</h3><p>${body}</p><button type="button" class="rq-empty-action" data-rq-empty-action="${filtered?'clear':'brands'}">${escHtml(action)}</button></div>`;
+  }
+  // Match seller-provided model text as well as multilingual industrial product terms.
+  // This lookup is client-side; it never translates or changes seller-provided descriptions.
+  const MARKET_SEARCH_TERMS={
+    robot:'robot robots ロボット ロボ트 로봇 机器人 roboter robots robô',
+    gripper:'gripper grippers eoat end-effector endeffector gripping グリッパー グリッパ 그리퍼 그립퍼 夹爪 greifer préhenseur pinza pinze garra kẹp',
+    controller:'controller control cabinet 控制器 コントローラー 制御盤 제어기 컨트롤러 steuerung contrôleur controlador',
+    vision:'vision camera sensor machine vision ビジョン カメラ センサー 비전 카메라 센서 视觉 传感器 bildverarbeitung capteur visión visione',
+    part:'part parts spare replacement 部品 交換部品 부품 수리부품 配件 零件 ersatzteil pièce pieza ricambio phụ tùng',
+    accessory:'accessory accessories peripheral 周辺機器 주변기기 액세서리 外围设备 zubehör accessoire accesorio acessórios',
+    other:'other その他 기타 其他',
+    used:'used secondhand preowned second-hand 中古 중고 二手 gebraucht occasion usado usato đã qua sử dụng',
+    new:'new brand-new 新品 신품 새제품 全新 neuf nuevo nuovo novo mới',
+    refurbished:'refurbished reconditioned overhauled 整備済み 리퍼 재정비 翻新 überholt reconditionné reacondicionado ricondizionato',
+    for_parts:'faulty broken for-parts 部品取り 故障 고장 부품용 拆件 defekt averiado guasto'
+  };
+  const MARKET_SEARCH_INDEX={
+    robot:['robot'],gripper:['gripper'],controller:['controller'],vision:['vision'],
+    part:['part'],accessory:['accessory'],other:['other'],
+    used:['used'],new:['new'],refurbished:['refurbished'],for_parts:['for_parts']
+  };
+  function marketSearchMatches(row,rawQuery){
+    const normalized=value=>String(value??'').normalize('NFKC').toLocaleLowerCase();
+    const fields=[row.brand,row.model,row.location,row.country,row.description,row.itemCategory,row.itemCondition,row.sellerCompany];
+    const category=String(row.itemCategory||'robot'),condition=String(row.itemCondition||'');
+    const aliases=[...(MARKET_SEARCH_INDEX[category]||[]),...(MARKET_SEARCH_INDEX[condition]||[])]
+      .map(key=>MARKET_SEARCH_TERMS[key]||'');
+    const haystack=normalized([...fields,...aliases].join(' '));
+    const query=normalized(rawQuery).trim();
+    return !query||query.split(/\s+/u).every(word=>haystack.includes(word));
   }
   function renderListingsV24(){
     patchMarketCategoryFilter();
@@ -398,12 +450,13 @@
     const condition=$('#conditionFilter')?.value||'';
     const actual=all().filter(r=>r._source==='seller-supabase'&&!isDemo(r));
     const items=actual.filter(r=>
-      (!search||[r.brand,r.model,r.location,r.country,r.description,r.itemCategory].join(' ').toLowerCase().includes(search)) &&
+      marketSearchMatches(r,search) &&
       (!category||(r.itemCategory||'robot')===category) &&
       (!country||r.country===country) &&
       (!condition||r.itemCondition===condition)
     );
-    const market=$('#marketListings');if(market)market.innerHTML=items.map(renderCard).join('')||marketplaceEmpty();
+    const market=$('#marketListings');if(market)market.innerHTML=items.map(renderCard).join('')||marketplaceEmpty(Boolean(search||category||country||condition));
+    window.rqMarketResultsChanged?.(items.length,actual.length);
     const home=$('#homeListings');if(home)home.innerHTML=actual.slice(0,3).map(renderCard).join('')||marketplaceEmpty();
     const featured=$('#featuredCommerceGrid');if(featured)featured.innerHTML=actual.filter(r=>r.sale!=='bid').slice(0,4).map(renderCard).join('')||marketplaceEmpty();
     const featuredTitle=$('#v24CommerceBlock .v24-products-section h2');if(featuredTitle)featuredTitle.textContent=tx('featuredTitle');
@@ -414,20 +467,32 @@
     const fixed=r.sale!=='bid';
     const title=[r.brand,r.model].filter(Boolean).join(' ')||tx('usedRobot');
     const id=idOf(r);
-    const askAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},'question')`);
+    const isPrivateQuote=r.sale==='bid'&&r._source==='seller-supabase';
+    const askAction=escHtml(isPrivateQuote?`rqOpenBuyerOffer(${JSON.stringify(id)})`:`rqContactAboutListing(${JSON.stringify(id)},'question')`);
+    const quoteLabel=lang()==='ja'?'買取価格を提案':lang()==='ko'?'매입가격 제안':'Send private quote';
     const buyAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},${fixed?"'purchase'":"'offer'"})`);
     const cartAction=escHtml(fixed?`rqAddToCart(${JSON.stringify(id)})`:`rqContactAboutListing(${JSON.stringify(id)},'offer')`);
     const mainPhotoAttrs=r.photoKey?`data-rq-photo-alt="${escHtml(title)}" data-rq-photo-key="${escHtml(r.photoKey)}"`:'';
     const mainPhotoVisual=r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}">`:robotSvg(r,'main');
     const nameplateThumb=r.media?.nameplate?`<button class="v24-thumb ${r.photoUrls?.nameplate?'has-uploaded-photo':''}" data-view="nameplate" type="button" ${r.photoKeys?.nameplate?`data-rq-photo-alt="${escHtml(tx('nameplateLabel'))}" data-rq-photo-key="${escHtml(r.photoKeys.nameplate)}"`:''}>${r.photoUrls?.nameplate?`<img src="${escHtml(r.photoUrls.nameplate)}" alt="${escHtml(tx('nameplateLabel'))}">`:`<div>${tx('nameplateLabel')}</div>`}</button>`:'';
     const controllerThumb=r.media?.controller?`<button class="v24-thumb ${r.photoUrls?.ctrlOutside?'has-uploaded-photo':''}" data-view="controller" type="button" ${r.photoKeys?.ctrlOutside?`data-rq-photo-alt="${escHtml(tx('controllerLabel'))}" data-rq-photo-key="${escHtml(r.photoKeys.ctrlOutside)}"`:''}>${r.photoUrls?.ctrlOutside?`<img src="${escHtml(r.photoUrls.ctrlOutside)}" alt="${escHtml(tx('controllerLabel'))}">`:`<div>${tx('controllerLabel')}</div>`}</button>`:'';
+    // The quick-sell form stores the first photo as "overall" and up to seven as
+    // extra1...extra7. Show every uploaded photo in detail, not just the cover.
+    const extraPhotos=Object.entries(r.photoUrls||{})
+      .filter(([slot,url])=>/^extra[1-7]$/.test(slot)&&typeof url==='string'&&url)
+      .sort(([a],[b])=>Number(a.slice(5))-Number(b.slice(5)));
+    const extraThumbs=extraPhotos.map(([slot,url],i)=>{
+      const photoNumber=Number(slot.slice(5))+1;
+      const photoLabel=lang()==='ja'?'写真':lang()==='ko'?'사진':'Photo';
+      return `<button class="v24-thumb has-uploaded-photo" data-view="${escHtml(slot)}" type="button" aria-label="${escHtml(photoLabel+' '+photoNumber)}"><img src="${escHtml(url)}" alt="${escHtml(title+' · '+photoLabel+' '+photoNumber)}" loading="lazy"></button>`;
+    }).join('');
     return `<div class="kicker">ROBOQUO · ${tx('kickerProduct')}</div>
       <div class="v24-product-layout">
         <div class="v24-gallery">
           <div class="v24-main-image ${r.photoUrl?'has-uploaded-photo':''}" id="v24MainImage" ${mainPhotoAttrs}>${mainPhotoVisual}</div>
           <div class="v24-thumb-row">
             <button class="v24-thumb ${r.photoUrl?'has-uploaded-photo':''}" data-view="robot" type="button" ${mainPhotoAttrs}>${r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}">`:robotSvg(r,'thumb')}</button>
-            ${nameplateThumb}${controllerThumb}
+            ${nameplateThumb}${controllerThumb}${extraThumbs}
           </div>
         </div>
         <div>
@@ -444,7 +509,7 @@
           ${r.description?'<p class="rq-product-description">'+escHtml(r.description)+'</p>':''}
           <div class="v24-note-box">${isDemo(r)?tx('demoMarketBody'):tx('productNote')}</div>
           <div class="v24-modal-actions">
-            ${isDemo(r)?`<button class="secondary" onclick="closeModal()">${tx('close')}</button>${r._source==='local-demo'?`<button class="danger-button" onclick="closeModal();rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="primary" disabled>${tx('demoListing')}</button>`}`:`<button class="primary" onclick="${askAction}">${tx('contactRoboquo')}</button>`}
+            ${isDemo(r)?`<button class="secondary" onclick="closeModal()">${tx('close')}</button>${r._source==='local-demo'?`<button class="danger-button" onclick="closeModal();rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="primary" disabled>${tx('demoListing')}</button>`}`:`<button class="primary" onclick="${askAction}">${isPrivateQuote?quoteLabel:tx('contactRoboquo')}</button>`}
           </div>
         </div>
       </div>`;
@@ -482,10 +547,11 @@
     window.rqHydrateListingPhotos?.(modal||document);
     $$('.v24-thumb').forEach(thumb=>thumb.addEventListener('click',()=>{
       const v=thumb.dataset.view; const mount=$('#v24MainImage'); if(!mount) return;
-      const key=v==='robot'?r.photoKey:v==='nameplate'?r.photoKeys?.nameplate:r.photoKeys?.ctrlOutside;
-      const remote=v==='robot'?r.photoUrl:v==='nameplate'?r.photoUrls?.nameplate:r.photoUrls?.ctrlOutside;
+      const isExtra=/^extra[1-7]$/.test(v);
+      const key=isExtra?null:v==='robot'?r.photoKey:v==='nameplate'?r.photoKeys?.nameplate:r.photoKeys?.ctrlOutside;
+      const remote=isExtra?r.photoUrls?.[v]:v==='robot'?r.photoUrl:v==='nameplate'?r.photoUrls?.nameplate:r.photoUrls?.ctrlOutside;
       delete mount.dataset.rqPhotoKey;mount.classList.remove('has-uploaded-photo');
-      if(remote){mount.innerHTML=`<img src="${escHtml(remote)}" alt="${escHtml(v==='robot'?title:(v==='nameplate'?tx('nameplateLabel'):tx('controllerLabel')))}">`;mount.classList.add('has-uploaded-photo');return;}
+      if(remote){const alt=isExtra?title+' · '+(lang()==='ja'?'写真':lang()==='ko'?'사진':'Photo')+' '+(Number(v.slice(5))+1):v==='robot'?title:v==='nameplate'?tx('nameplateLabel'):tx('controllerLabel');mount.innerHTML=`<img src="${escHtml(remote)}" alt="${escHtml(alt)}">`;mount.classList.add('has-uploaded-photo');return;}
       if(key){mount.innerHTML=robotSvg(r,'main');mount.dataset.rqPhotoKey=key;mount.dataset.rqPhotoAlt=v==='robot'?title:(v==='nameplate'?tx('nameplateLabel'):tx('controllerLabel'));window.rqHydrateListingPhotos?.(modal);return;}
       if(v==='robot') mount.innerHTML=robotSvg(r,'main');
       if(v==='nameplate') mount.innerHTML=`<div class="v24-media-placeholder">${tx('nameplateLabel')}</div>`;

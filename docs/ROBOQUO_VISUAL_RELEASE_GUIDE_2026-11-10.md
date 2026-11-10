@@ -1,0 +1,110 @@
+# RoboQuo — 시각화 업데이트 / 배포 전 확인 가이드
+작성: 2026-11-10
+상태: 개발 Preview / **roboquo.com 운영 미반영**
+
+## 1. 실제 개발 반영 내용
+
+| 위치 | 변경 | 확인 방법 |
+|---|---|---|
+| 첫 화면 (Marketplace) | 실제 로봇 사진, 장비 그림이 있는 상품 찾기/상품 팔기 카드 | 개발 사이트 첫 진입 |
+| 사이트 로고 | RoboQuo 자체 디자인 시안 (SVG) | 헤더 왼쪽 |
+| Home | 그림형 Robots / Grippers / Parts 카드 | 헤더 RoboQuo 로고 클릭 |
+| Marketplace 필터 | 그림 카드를 누르면 실제 게시물 카테고리와 연결 | Home 그림 카드를 클릭한 뒤 선택 필터 확인 |
+| Manufacturers | 제조사명과 일반 로봇/그리퍼 도식 | 상단 Manufacturers 메뉴 |
+| Cobot comparison | 공식 사양 모델에 일반 도식 이미지 + 설명용 표시 | Manufacturers → Compare model specifications |
+| 시연 가이드 | 사진·카테고리 3장·점검 체크리스트 | `/review.html` |
+
+## 2. 링크
+
+- 개발 미리보기: https://roboquo-demo-git-chatgpt-roboquo-classifieds-i1-e1e52b-robo-quo.vercel.app/
+- 배포 전 검토 안내: https://roboquo-demo-git-chatgpt-roboquo-classifieds-i1-e1e52b-robo-quo.vercel.app/review.html
+- 소스/변경 기록: https://github.com/eddieyoonglobal/roboquo-demo/pull/9
+
+Vercel Authentication이 활성화되어 있어 접근 계정에 따라 로그인이 필요합니다. 링크는 운영 서비스의 공개 배포를 뜻하지 않습니다.
+
+## 3. 수동 검수 순서
+
+1. 개발 미리보기 주소를 열어 **첫 Marketplace 페이지**에서 사진, 로고, 검색창, 상품 찾기/상품 팔기 카드의 크기와 가독성을 확인
+2. 왼쪽 위 **RoboQuo 로고**를 클릭하면 **Home**으로 이동하는지 확인
+3. Home의 **Robots / Grippers / Parts** 그림을 순서대로 클릭하여 Marketplace에서 카테고리가 올바르게 선택되는지 확인
+4. **Manufacturers** 메뉴에서 협동로봇 40개 브랜드와 국가별 필터, 참고 그림을 확인
+5. **Compare model specifications**에서 모델 2~3개를 선택하고, 참고 사양 및 이미지가 설명용임을 확인
+6. 일본어·한국어를 전환하고 모바일에서 로고, 로봇 사진, 카드가 잘리지 않고 겹치지 않는지 확인
+7. `/review.html`의 6개 체크박스를 이용해 결과 정리
+
+## 4. 이미지 출처 및 권리
+
+- 사이트 로고 및 `assets/rq-robot.svg`, `assets/rq-gripper.svg`, `assets/rq-parts.svg`는 **RoboQuo 개발용 신규 SVG 시안**. 로봇의 실제 브랜드/모델 사진이 아니며 해당 제조사와의 제휴 또는 보증을 의미하지 않습니다.
+- 로봇 사진: **Nenad Stojković (Shixart1985)**, Wikimedia Commons, **CC BY 2.0**, https://commons.wikimedia.org/wiki/File:Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg
+- 라이선스: https://creativecommons.org/licenses/by/2.0/
+- 사진은 CSS 영역에서 **크롭하여 표시**하며 원본 파일 자체를 변경하지 않습니다. 저작자/라이선스 링크를 사진 근처에 표시했습니다.
+- 실제 판매 상품 이미지에는 판매자가 올린 사진만 사용합니다. 설명용 로봇 그림은 실제 재고처럼 표시하지 않습니다.
+- 공식 제조사 로고 및 모델별 사진은 권리·출처 확인 후 별도 추가합니다. 현재 브랜드 이름은 텍스트를 이용합니다.
+
+## 5. 정식 운영 전 체크
+
+**UI/브라우저 자동 테스트 통과는 실제 판매 운영 검증과 다릅니다.**
+
+- 격리된 Supabase staging에 DB migration 006 적용 후 Auth/RLS/Storage 검증
+- 구매자·판매자 실계정으로 사진 등록/조회/삭제, 거래 채팅·권한 검증
+- 다국어·모바일 교차 브라우저 테스트 및 실제 사진의 로딩 성능
+- 개인정보 처리·이용약관, 이미지 저작권, 공식 제휴 표기 검토
+- Vercel 프로젝트 접근 권한 및 운영 도메인 연결 확인
+- 운영 사이트 배포는 **별도 승인·검수 후 진행**; PR #9 개발/Preview에서 바로 production을 덮어쓰지 않음
+
+## 6. 2026-11-10 — 마켓 첫 화면 개선 (추가)
+
+- 첫 Marketplace 화면에 **로봇 / 그리퍼·EOAT / 부품·컨트롤러** 3개의 그림형 카테고리 버튼을 추가했습니다.
+- 선택 시 `#categoryFilter`와 실제 매물 검색 조건이 동기화됩니다. 선택 카드의 강조 및 `aria-pressed` 상태도 반영했습니다.
+- **전체 상품 보기** 버튼으로 검색어, 카테고리, 국가, 상품 상태 필터를 한 번에 초기화할 수 있습니다.
+- 일본어·한국어 및 전체 10개 언어에서 카테고리 설명과 버튼 이름을 표시하며, 스마트폰 가로 넘침을 방지하도록 레이아웃을 조정했습니다.
+- 자동 검사에서 발견된 `querySelector` / `querySelectorAll` 혼용 오류를 수정했습니다. 기존 Home 카드와 새로운 Marketplace 카드가 중복 선택되지 않도록 브라우저 테스트도 보완했습니다.
+- 최종 브라우저·회귀·DB 스키마 자동 테스트 통과: https://github.com/eddieyoonglobal/roboquo-demo/actions/runs/42744765500
+- 최종 커밋: `9852233dfe616444a80e3f4d9dc4d3a823002347`
+- GitHub Vercel 배포 상태 **success** (개발 Preview). 운영 `main` 및 `roboquo.com` 미변경.
+
+**검수 추가 항목:** RoboQuo 개발 사이트에 접속해 첫 화면의 세 그림 카드를 각각 클릭하고, 각 카테고리의 선택 및 전체 상품 보기 초기화가 동작하는지 확인하세요.
+
+## 7. 모바일 상단 검색 우선 개선 (참고: 일본 중고거래 앱의 사진 중심 레이아웃)
+
+2026-11-10 모바일 화면(폭 ≤720px) 전용 개선을 개발 Preview에 추가했습니다.
+
+- 헤더를 약 57px 높이로 축소. RoboQuo 로고, 언어 변경, 메시지만 남겨 상품 탐색 공간 확보
+- **검색창을 화면 가장 위**에 배치하고 실제 `marketSearch`와 양방향 연결
+- 바로 아래 **전체 / 중고 / 신품 / 브랜드** 빠른 버튼. 브랜드는 제조사 디렉터리로 이동
+- 대형 판매/구매 CTA·긴 제목·큰 배너는 모바일에서 숨기고, 로봇·그리퍼·부품의 작은 이미지 3개를 먼저 표시
+- 판매자가 등록한 **실제 이미지가 포함된 상품 카드**를 2열로 구성(모바일). 데이터가 없으면 진짜 빈 상태 안내를 표시하고 가짜 판매 매물은 만들지 않음
+- 기존 하단 5개 버튼 네비게이션 유지, 판매 버튼 접근 가능
+- 일본어·한국어를 포함한 10개 언어 검색 안내/필터 번역
+- 각 버튼은 실제 `conditionFilter`와 연동. 추천 알고리즘을 구현하지 않았으므로 **「おすすめ」 대신 「すべて」**를 표시
+- 모바일 사진을 포함한 UI는 기존 데이터베이스, 로그인 및 상품등록 권한을 변경하지 않음
+
+**모바일 검수 가이드:** iPhone에서 미리보기 접속 → 상단 검색어로 상품 필터 → 중고/신품 전환 → 카테고리 사진 선택 → 하단 출품 메뉴 확인. 데모용 자동 테스트 매물은 검사용 fixture이며 실제 사이트에는 표시하지 않습니다.
+
+최종 자동 테스트(브라우저, 거래 회귀, DB 스키마) 통과:
+https://github.com/eddieyoonglobal/roboquo-demo/actions/runs/42747049140
+
+정식 `roboquo.com` 배포는 보류하며, 실제 DB 인증/사진/채팅과 프리뷰 사용자 검수 후 진행합니다.
+
+
+## 8. 실제 대표 제품 사진 및 제조사 로고 적용 (2026-11-10)
+
+**목표:** 텍스트나 임의의 중국 로봇 사진 대신, 일본·유럽의 널리 알려진 실제 로봇 제조사 제품 사진을 메인과 모바일에 짧고 크게 표시합니다. 중국 제조사는 **홍보용 대표 사진에서만 제외**하며, RoboQuo의 중립적인 글로벌 제조사 검색 디렉터리에서는 삭제하지 않습니다.
+
+| 실제 사진/자료 | 표시 이름 | 제작/제공자 및 라이선스 | 출처 |
+|---|---|---|---|
+| FANUC 협동로봇 실제 사진 | FANUC CRX-5iA | Bobjgalindo, CC BY 4.0 | https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg |
+| Universal Robots 협동로봇 실제 사진 | UR5e | Dzikra muhammad Imtiyaz, CC BY-SA 4.0 | https://commons.wikimedia.org/wiki/File:Robot_Lengan_Industri_UR5e.jpg |
+| ABB 실제 산업용 로봇 사진 (**GoFa 아님**) | ABB industrial robot | © Peter Potrowl, CC BY 2.5 | https://commons.wikimedia.org/wiki/File:Robot_ABB_2.jpg |
+| OnRobot 그리퍼 참고 그림 (**제품 사진 아님**) | RG2 / RG6 / 2FG7 | RoboQuo 자체 제작 일반 그리퍼 SVG | https://onrobot.com/en/products |
+
+- 사진 3개는 메인 Marketplace의 **Representative robot makers** 횡스크롤 카드에 배치. 모바일에서도 상단 검색과 빠른 필터 바로 다음에 등장합니다.
+- 기존 Home/Martket 큰 사진도 중국 제품 여부가 불명확한 일반 사진 대신 **FANUC CRX-5iA 실물 사진**으로 변경했습니다.
+- 사진 위에는 제조사 식별용 로고를 붙였습니다. FANUC / Universal Robots / ABB SVG 로고는 Wikimedia Commons의 단순 로고 자료를 참조했습니다. OnRobot은 글자명만 표시했습니다. 로고는 상표이므로 **제조사 공식 대리점/제휴 보증 표시가 아님**을 안내합니다.
+- 사진을 누르면 해당 로봇 또는 EOAT 제조사 페이지를 검색합니다. 사진 자체가 판매 등록 매물이라는 주장은 하지 않습니다.
+- 각 실물 사진 아래에 원저작자 및 라이선스 링크를 노출합니다. 원본 사진은 직접 재배포하지 않고 Commons URL을 불러와 CSS로 화면에 배치합니다. 외부 URL이 실패하면 **일반 SVG 설명 그림**으로 대체합니다.
+- 제조사 공식 제품 페이지의 마케팅 사진(특히 OnRobot 그리퍼 실사)은 별도 공개 사용 권한이 확인되면 교체합니다. 현재 권한이 미확인된 제조사 사진을 임의 복제하지 않습니다.
+
+**상표 및 사진 권리:** 특정 상품 및 로고는 제조사 식별을 위한 참고 자료일 뿐, RoboQuo가 공식 대리점이거나 재고를 보유했다는 뜻이 아닙니다. 공식 출시 전 사진 출처·상표 사용 문구·라이선스 표기와 연동 링크를 최종 검수합니다.
+
+**모바일 확인:** 상단 검색 → 전체/중고/신품 → FANUC/UR/ABB 실제 사진 및 OnRobot 참고 그림 → 로봇·그리퍼·부품 선택 카드 → 실제 매물. 대표 사진 카드를 누르면 제조사 이름으로 검색되는지 확인하세요.

@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - codex/roboquo-marketplace-fixes-20261109
+      - chatgpt/roboquo-classifieds-i18n-20261109
   pull_request:
     paths:
       - 'app.js'
@@ -11,6 +12,10 @@ on:
       - 'v24.js'
       - 'supabase-config.js'
       - 'tests/**'
+      - 'quote-market.js'
+      - 'quote-market.css'
+      - 'marketplace-v2.js'
+      - 'database/007_private_offer_visit_workflow.sql'
       - '.github/workflows/roboquo-seller-checks.yml'
 
 permissions:
@@ -33,6 +38,7 @@ jobs:
           node --check v24.js
           node --check supabase-config.js
           node --check marketplace-v2.js
+          node --check quote-market.js
       - name: Test seller submission and market state
         run: node tests/seller-marketplace-regression.cjs
       - name: Test transaction integrity and auth return URL
@@ -43,6 +49,9 @@ jobs:
         run: node tests/preview-isolation-regression.cjs
       - name: Test buyer inquiry fallback
         run: node tests/buyer-inquiry-regression.cjs
+
+      - name: Test private quote preview isolation and Japanese UI
+        run: node tests/private-quotes-regression.cjs
 
       - name: Browser smoke test (fixtures only; no production API writes)
         run: |
@@ -100,3 +109,7 @@ jobs:
         run: psql -v ON_ERROR_STOP=1 -f tests/pg-seller-marketplace-smoke.sql
       - name: Test real parts listing and private buyer-seller messages
         run: psql -v ON_ERROR_STOP=1 -f tests/pg-real-classifieds-trade.sql
+      - name: Install exclusive buyer quotes and inspection workflow in disposable PostgreSQL
+        run: psql -v ON_ERROR_STOP=1 -f database/007_private_offer_visit_workflow.sql
+      - name: Test confidential bids, exclusive winner and no re-negotiation
+        run: psql -v ON_ERROR_STOP=1 -f tests/pg-private-quote-trade.sql

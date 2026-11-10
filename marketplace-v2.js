@@ -6,10 +6,16 @@
 const $=s=>document.querySelector(s);
 const lang=()=>document.documentElement.lang||'en';
 const L={
- en:{market:'Used robots & parts',browse:'Browse actual listings',post:'Post an item',inbox:'Messages',preview:'Development Preview: publishing to the live database is disabled.',none:'Sign in to send a message or publish a listing.',login:'Sign in',category:'Category',title:'Item title / model',brand:'Brand / manufacturer',condition:'Condition',price:'Asking price (JPY)',location:'Location',description:'Description (included items, defects, history)',images:'Product photos (1–8, max 15 MB each)',name:'Seller name / company',email:'Contact email (private)',phone:'Contact number (private)',declaration:'I own the item or am authorized to sell it and have described its condition accurately.',publish:'Publish listing',publishing:'Publishing...',published:'Your listing is now live.',saveError:'Could not publish. Check the details and database setup.',required:'Fill all required fields and attach at least one supported photo.',close:'Close',contact:'Message seller',offer:'Offer / inquiry',message:'Your message',send:'Send message',sendError:'Message could not be delivered. Verify sign-in and marketplace DB setup.',sent:'Message sent to the seller.',thread:'Conversation',reply:'Reply',emptyInbox:'No conversations yet.',loadError:'Could not load messages. The marketplace database update may not be installed.',priceHint:'Price negotiation only. RoboQuo does not charge or hold payments.',askPrice:'Price inquiry',photosHint:'Actual photos, not stock images',all:'All items'},
- ko:{market:'중고 로봇·부품 거래',browse:'실제 등록 매물 보기',post:'상품 등록',inbox:'내 채팅',preview:'개발 Preview에서는 운영 DB에 매물을 게시할 수 없습니다.',none:'매물 등록과 판매자 채팅에는 로그인이 필요합니다.',login:'로그인',category:'판매 카테고리',title:'상품명 / 모델명',brand:'제조사 / 브랜드',condition:'상품 상태',price:'판매 희망 가격 (엔)',location:'거래 지역',description:'상품 설명 (포함품, 하자, 사용 이력)',images:'실제 상품 사진 (1~8장, 장당 15MB 이내)',name:'판매자 이름 / 상호',email:'연락 이메일 (비공개)',phone:'연락 전화번호 (비공개)',declaration:'본인 소유이거나 판매 권한이 있으며, 상품 상태를 사실대로 기재했습니다.',publish:'상품 게시하기',publishing:'상품 등록 중...',published:'매물이 공개되었습니다.',saveError:'등록에 실패했습니다. 입력 정보와 DB 설정을 확인하세요.',required:'필수 항목과 실제 상품 사진을 확인하세요.',close:'닫기',contact:'판매자에게 채팅',offer:'가격 제안·문의',message:'판매자에게 보낼 메시지',send:'메시지 보내기',sendError:'메시지를 전달하지 못했습니다. 로그인 또는 DB 설정을 확인하세요.',sent:'판매자에게 메시지를 보냈습니다.',thread:'거래 대화',reply:'답장',emptyInbox:'아직 거래 메시지가 없습니다.',loadError:'메시지를 불러오지 못했습니다. 마켓 DB 업데이트가 필요할 수 있습니다.',priceHint:'판매자와 가격을 협의하세요. RoboQuo는 결제나 예치금을 처리하지 않습니다.',askPrice:'가격 문의',photosHint:'판매 상품의 실제 사진을 올려주세요.',all:'전체 상품'},
- ja:{market:'中古ロボット・部品の売買',browse:'実際の出品を見る',post:'商品を出品',inbox:'取引メッセージ',preview:'開発プレビューでは、本番データベースへの出品を無効にしています。',none:'出品・メッセージにはログインが必要です。',login:'ログイン',category:'出品カテゴリー',title:'商品名・型番',brand:'メーカー・ブランド',condition:'商品状態',price:'希望価格（円）',location:'所在地・取引地域',description:'商品説明（付属品、不具合、使用履歴）',images:'実物写真（1～8枚、1枚15MB以内）',name:'出品者名・会社名',email:'連絡先メール（非公開）',phone:'連絡先電話（非公開）',declaration:'所有者または販売権限があり、商品の状態を正確に記載しました。',publish:'出品を公開する',publishing:'公開中…',published:'商品が公開されました。',saveError:'出品できませんでした。入力内容とDB設定をご確認ください。',required:'必須項目と実物写真をご確認ください。',close:'閉じる',contact:'出品者にメッセージ',offer:'価格交渉・お問い合わせ',message:'出品者へのメッセージ',send:'メッセージを送る',sendError:'メッセージを送信できませんでした。ログインまたはDB設定をご確認ください。',sent:'出品者にメッセージを送信しました。',thread:'取引メッセージ',reply:'返信',emptyInbox:'メッセージはまだありません。',loadError:'メッセージを表示できません。DBの更新が必要な可能性があります。',priceHint:'支払いは当事者間で確認してください。RoboQuoは決済・預かり金に対応していません。',askPrice:'価格のお問い合わせ',photosHint:'ストック画像ではなく実物写真をご登録ください。',all:'すべての商品'}
+ en:{market:'Used robots & parts',browse:'Browse actual listings',post:'Sell a robot or part',inbox:'Messages',preview:'Development Preview: publishing to the live database is disabled.',none:'Sign in to send a message or publish a listing.',login:'Sign in',category:'Category',title:'Item title / model',brand:'Brand / manufacturer',condition:'Condition',price:'Asking price (JPY)',location:'Location',description:'Description (included items, defects, history)',images:'Product photos (1–8, max 15 MB each)',name:'Seller name / company',email:'Contact email (private)',phone:'Contact number (private)',declaration:'I own the item or am authorized to sell it and have described its condition accurately.',publish:'Publish listing',publishing:'Publishing...',published:'Your listing is now live.',saveError:'Could not publish. Check the details and database setup.',required:'Fill all required fields and attach at least one supported photo.',close:'Close',contact:'Message seller',offer:'Offer / inquiry',message:'Your message',send:'Send message',sendError:'Message could not be delivered. Verify sign-in and marketplace DB setup.',sent:'Message sent to the seller.',thread:'Conversation',reply:'Reply',emptyInbox:'No conversations yet.',loadError:'Could not load messages. The marketplace database update may not be installed.',priceHint:'Price negotiation only. RoboQuo does not charge or hold payments.',askPrice:'Price inquiry',photosHint:'Actual photos, not stock images',all:'All items'},
+ ko:{market:'중고 로봇·부품 거래',browse:'실제 등록 매물 보기',post:'로봇 매각 견적받기',inbox:'내 채팅',preview:'개발 Preview에서는 운영 DB에 매물을 게시할 수 없습니다.',none:'매물 등록과 판매자 채팅에는 로그인이 필요합니다.',login:'로그인',category:'판매 카테고리',title:'상품명 / 모델명',brand:'제조사 / 브랜드',condition:'상품 상태',price:'판매 희망 가격 (엔)',location:'거래 지역',description:'상품 설명 (포함품, 하자, 사용 이력)',images:'실제 상품 사진 (1~8장, 장당 15MB 이내)',name:'판매자 이름 / 상호',email:'연락 이메일 (비공개)',phone:'연락 전화번호 (비공개)',declaration:'본인 소유이거나 판매 권한이 있으며, 상품 상태를 사실대로 기재했습니다.',publish:'상품 게시하기',publishing:'상품 등록 중...',published:'매물이 공개되었습니다.',saveError:'등록에 실패했습니다. 입력 정보와 DB 설정을 확인하세요.',required:'필수 항목과 실제 상품 사진을 확인하세요.',close:'닫기',contact:'판매자에게 채팅',offer:'가격 제안·문의',message:'판매자에게 보낼 메시지',send:'메시지 보내기',sendError:'메시지를 전달하지 못했습니다. 로그인 또는 DB 설정을 확인하세요.',sent:'판매자에게 메시지를 보냈습니다.',thread:'거래 대화',reply:'답장',emptyInbox:'아직 거래 메시지가 없습니다.',loadError:'메시지를 불러오지 못했습니다. 마켓 DB 업데이트가 필요할 수 있습니다.',priceHint:'판매자와 가격을 협의하세요. RoboQuo는 결제나 예치금을 처리하지 않습니다.',askPrice:'가격 문의',photosHint:'판매 상품의 실제 사진을 올려주세요.',all:'전체 상품'},
+ ja:{market:'中古ロボット・部品の売買',browse:'実際の出品を見る',post:'ロボット売却見積もり',inbox:'取引メッセージ',preview:'開発プレビューでは、本番データベースへの出品を無効にしています。',none:'出品・メッセージにはログインが必要です。',login:'ログイン',category:'出品カテゴリー',title:'商品名・型番',brand:'メーカー・ブランド',condition:'商品状態',price:'希望価格（円）',location:'所在地・取引地域',description:'商品説明（付属品、不具合、使用履歴）',images:'実物写真（1～8枚、1枚15MB以内）',name:'出品者名・会社名',email:'連絡先メール（非公開）',phone:'連絡先電話（非公開）',declaration:'所有者または販売権限があり、商品の状態を正確に記載しました。',publish:'出品を公開する',publishing:'公開中…',published:'商品が公開されました。',saveError:'出品できませんでした。入力内容とDB設定をご確認ください。',required:'必須項目と実物写真をご確認ください。',close:'閉じる',contact:'出品者にメッセージ',offer:'価格交渉・お問い合わせ',message:'出品者へのメッセージ',send:'メッセージを送る',sendError:'メッセージを送信できませんでした。ログインまたはDB設定をご確認ください。',sent:'出品者にメッセージを送信しました。',thread:'取引メッセージ',reply:'返信',emptyInbox:'メッセージはまだありません。',loadError:'メッセージを表示できません。DBの更新が必要な可能性があります。',priceHint:'支払いは当事者間で確認してください。RoboQuoは決済・預かり金に対応していません。',askPrice:'価格のお問い合わせ',photosHint:'ストック画像ではなく実物写真をご登録ください。',all:'すべての商品'}
 };
+const QUOTE_TEXT={
+ en:{sellMode:'How do you want to sell?',compare:'Get offers from multiple buyers',fixed:'Sell at a fixed price',hint:'Buyer proposals are private. Choose one, schedule an inspection and settle at the agreed price if the item matches. No on-site renegotiation.'},
+ ja:{sellMode:'売却方法',compare:'複数の買取業者から見積もりを受け取る',fixed:'定額で出品する',hint:'買い手の提案は非公開です。売却価格を選び、現地確認で掲載情報と一致すれば再交渉せず合意価格で取引します。'},
+ ko:{sellMode:'어떻게 판매할까요?',compare:'여러 매입업체의 견적받기',fixed:'정해진 가격으로 판매',hint:'구매 제안은 비공개입니다. 제안을 선택하고 현장에서 등록 정보와 일치하면 합의한 가격으로 거래합니다. 현장 추가 네고는 하지 않습니다.'}
+};
+function qt(key){const l=QUOTE_TEXT[lang()]||QUOTE_TEXT.en;return l[key]||QUOTE_TEXT.en[key]||key;}
 const C={
  en:{robot:'Robot',gripper:'Gripper / EOAT',controller:'Controller',vision:'Vision / sensor',part:'Robot part',accessory:'Peripheral / accessory',other:'Other'},
  ko:{robot:'로봇 본체',gripper:'그리퍼·EOAT',controller:'컨트롤러',vision:'비전·센서',part:'로봇 부품',accessory:'주변기기',other:'기타'},
@@ -25,8 +31,15 @@ const MARKET_WORDS={
  ja:{country:'出品国',currency:'通貨',sellerType:'出品者',sellerIndividual:'個人',sellerBusiness:'販売店・企業',conditionAll:'すべての状態',countryAll:'すべての国',itemStatus:'商品状態',allItems:'すべての商品'},
  en:{country:'Seller country',currency:'Currency',sellerType:'Seller',sellerIndividual:'Individual',sellerBusiness:'Company / dealer',conditionAll:'All conditions',countryAll:'All countries',itemStatus:'Condition',allItems:'All items'}
 };
-Object.entries(MARKET_WORDS).forEach(([code,words])=>Object.assign(L[code],words));
-const COUNTRIES={Japan:{ko:'일본',ja:'日本',en:'Japan'},Korea:{ko:'한국',ja:'韓国',en:'Korea'},China:{ko:'중국',ja:'中国',en:'China'},Taiwan:{ko:'대만',ja:'台湾',en:'Taiwan'},USA:{ko:'미국',ja:'米国',en:'USA'},Germany:{ko:'독일',ja:'ドイツ',en:'Germany'},Other:{ko:'기타 국가',ja:'その他',en:'Other'}};
+Object.assign(C,{"zh":{"robot":"机器人本体","gripper":"夹爪与EOAT","controller":"控制器","vision":"视觉与传感器","part":"机器人配件","accessory":"外围设备","other":"其他"},"de":{"robot":"Roboter","gripper":"Greifer / EOAT","controller":"Steuerung","vision":"Bildverarbeitung / Sensor","part":"Roboterteil","accessory":"Zubehör","other":"Sonstiges"},"fr":{"robot":"Robot","gripper":"Préhenseur / EOAT","controller":"Contrôleur","vision":"Vision / capteur","part":"Pièce robot","accessory":"Accessoire","other":"Autre"},"es":{"robot":"Robot","gripper":"Pinza / EOAT","controller":"Controlador","vision":"Visión / sensor","part":"Pieza de robot","accessory":"Accesorio","other":"Otros"},"it":{"robot":"Robot","gripper":"Pinza / EOAT","controller":"Controller","vision":"Visione / sensore","part":"Ricambio robot","accessory":"Accessori","other":"Altro"},"pt":{"robot":"Robô","gripper":"Garra / EOAT","controller":"Controlador","vision":"Visão / sensor","part":"Peça de robô","accessory":"Acessórios","other":"Outros"},"vi":{"robot":"Robot","gripper":"Kẹp / EOAT","controller":"Bộ điều khiển","vision":"Thị giác / cảm biến","part":"Phụ tùng robot","accessory":"Thiết bị ngoại vi","other":"Khác"}});
+Object.assign(CONDITIONS,{"zh":{"used":"二手","new":"全新","refurbished":"翻新","for_parts":"拆件 / 故障"},"de":{"used":"Gebraucht","new":"Neu","refurbished":"Überholt","for_parts":"Ersatzteile / Defekt"},"fr":{"used":"Occasion","new":"Neuf","refurbished":"Reconditionné","for_parts":"Pièces / Défectueux"},"es":{"used":"Usado","new":"Nuevo","refurbished":"Reacondicionado","for_parts":"Para piezas / Averiado"},"it":{"used":"Usato","new":"Nuovo","refurbished":"Ricondizionato","for_parts":"Per ricambi / Guasto"},"pt":{"used":"Usado","new":"Novo","refurbished":"Recondicionado","for_parts":"Para peças / Com defeito"},"vi":{"used":"Đã qua sử dụng","new":"Mới","refurbished":"Tân trang","for_parts":"Lấy linh kiện / Hỏng"}});
+Object.assign(MARKET_WORDS,{"zh":{"country":"卖家所在国家","currency":"货币","sellerType":"卖家","sellerIndividual":"个人","sellerBusiness":"企业 / 经销商","conditionAll":"全部状态","countryAll":"所有国家","itemStatus":"商品状态","allItems":"全部商品"},"de":{"country":"Land","currency":"Währung","sellerType":"Anbieter","sellerIndividual":"Privat","sellerBusiness":"Firma / Händler","conditionAll":"Alle Zustände","countryAll":"Alle Länder","itemStatus":"Artikelzustand","allItems":"Alle Artikel"},"fr":{"country":"Pays","currency":"Devise","sellerType":"Vendeur","sellerIndividual":"Particulier","sellerBusiness":"Entreprise / Revendeur","conditionAll":"Tous états","countryAll":"Tous pays","itemStatus":"État de l'article","allItems":"Tous les articles"},"es":{"country":"País","currency":"Moneda","sellerType":"Vendedor","sellerIndividual":"Particular","sellerBusiness":"Empresa / Distribuidor","conditionAll":"Todos los estados","countryAll":"Todos los países","itemStatus":"Estado del artículo","allItems":"Todos los artículos"},"it":{"country":"Paese","currency":"Valuta","sellerType":"Venditore","sellerIndividual":"Privato","sellerBusiness":"Azienda / Rivenditore","conditionAll":"Tutte le condizioni","countryAll":"Tutti i paesi","itemStatus":"Condizione","allItems":"Tutti gli articoli"},"pt":{"country":"País","currency":"Moeda","sellerType":"Vendedor","sellerIndividual":"Particular","sellerBusiness":"Empresa / Revendedor","conditionAll":"Todas condições","countryAll":"Todos os países","itemStatus":"Condição","allItems":"Todos os itens"},"vi":{"country":"Quốc gia","currency":"Tiền tệ","sellerType":"Người bán","sellerIndividual":"Cá nhân","sellerBusiness":"Công ty / Đại lý","conditionAll":"Mọi tình trạng","countryAll":"Tất cả quốc gia","itemStatus":"Tình trạng","allItems":"Tất cả sản phẩm"}});
+// Apply translated filter copy after all ten locale dictionaries have been added.
+ // Other seller-form labels intentionally fall back to English until translated.
+ Object.entries(MARKET_WORDS).forEach(([code,words])=>Object.assign(L[code]||(L[code]={}),words));
+ const COUNTRIES={Japan:{ko:'일본',ja:'日本',en:'Japan'},Korea:{ko:'한국',ja:'韓国',en:'Korea'},China:{ko:'중국',ja:'中国',en:'China'},Taiwan:{ko:'대만',ja:'台湾',en:'Taiwan'},USA:{ko:'미국',ja:'米国',en:'USA'},Germany:{ko:'독일',ja:'ドイツ',en:'Germany'},Other:{ko:'기타 국가',ja:'その他',en:'Other'}};
+// Localized country option names for every supported marketplace language.
+Object.entries({"Japan":{"zh":"日本","de":"Japan","fr":"Japon","es":"Japón","it":"Giappone","pt":"Japão","vi":"Nhật Bản"},"Korea":{"zh":"韩国","de":"Südkorea","fr":"Corée du Sud","es":"Corea del Sur","it":"Corea del Sud","pt":"Coreia do Sul","vi":"Hàn Quốc"},"China":{"zh":"中国","de":"China","fr":"Chine","es":"China","it":"Cina","pt":"China","vi":"Trung Quốc"},"Taiwan":{"zh":"台湾","de":"Taiwan","fr":"Taïwan","es":"Taiwán","it":"Taiwan","pt":"Taiwan","vi":"Đài Loan"},"USA":{"zh":"美国","de":"USA","fr":"États-Unis","es":"EE. UU.","it":"Stati Uniti","pt":"EUA","vi":"Hoa Kỳ"},"Germany":{"zh":"德国","de":"Deutschland","fr":"Allemagne","es":"Alemania","it":"Germania","pt":"Alemanha","vi":"Đức"},"Other":{"zh":"其他","de":"Sonstige","fr":"Autre","es":"Otro","it":"Altro","pt":"Outros","vi":"Khác"}}).forEach(([country,labels])=>Object.assign(COUNTRIES[country],labels));
 const countryName=key=>COUNTRIES[key]?.[lang()]||COUNTRIES[key]?.en||key;
 const currForCountry={Japan:'JPY',Korea:'KRW',China:'CNY',Taiwan:'USD',USA:'USD',Germany:'EUR',Other:'USD'};
 const CURRENCIES={JPY:'¥ JPY',KRW:'₩ KRW',CNY:'¥ CNY',USD:'$ USD',EUR:'€ EUR'};
@@ -87,7 +100,14 @@ function patchMarketFilters(){
 const MARKET_FIRST_ACTIONS={
  ko:{buy:'상품 찾기',buyHint:'로봇·그리퍼·부품 둘러보기',sell:'상품 팔기',sellHint:'사진 올리고 가격 입력'},
  ja:{buy:'商品を探す',buyHint:'ロボット・グリッパー・部品',sell:'商品を売る',sellHint:'写真を選んで価格を入力'},
- en:{buy:'Find an item',buyHint:'Robots, grippers and parts',sell:'Sell an item',sellHint:'Add photos and your price'}
+ en:{buy:'Find an item',buyHint:'Robots, grippers and parts',sell:'Sell an item',sellHint:'Add photos and your price'},
+ zh:{"buy":"查找商品","buyHint":"机器人、夹爪与配件","sell":"发布商品","sellHint":"上传实物照片及价格"},
+ de:{"buy":"Artikel finden","buyHint":"Roboter, Greifer und Teile","sell":"Artikel verkaufen","sellHint":"Fotos und Preis hinzufügen"},
+ fr:{"buy":"Trouver un article","buyHint":"Robots, préhenseurs et pièces","sell":"Vendre un article","sellHint":"Ajouter photos et prix"},
+ es:{"buy":"Buscar un artículo","buyHint":"Robots, pinzas y piezas","sell":"Vender un artículo","sellHint":"Añadir fotos y precio"},
+ it:{"buy":"Cerca un articolo","buyHint":"Robot, pinze e ricambi","sell":"Vendi un articolo","sellHint":"Aggiungi foto e prezzo"},
+ pt:{"buy":"Encontrar item","buyHint":"Robôs, garras e peças","sell":"Vender item","sellHint":"Adicione fotos e preço"},
+ vi:{"buy":"Tìm sản phẩm","buyHint":"Robot, kẹp và phụ tùng","sell":"Đăng bán","sellHint":"Thêm ảnh và giá"}
 };
 function updateFirstActions(){
  const copy=MARKET_FIRST_ACTIONS[lang()]||MARKET_FIRST_ACTIONS.en;
@@ -95,7 +115,47 @@ function updateFirstActions(){
  if(buy){buy.querySelector('strong').textContent=copy.buy;buy.querySelector('small').textContent=copy.buyHint}
  if(sell){sell.querySelector('strong').textContent=copy.sell;sell.querySelector('small').textContent=copy.sellHint}
  const search=$('#marketSearch');
- if(search)search.placeholder=lang()==='ko'?'상품명·브랜드 검색':lang()==='ja'?'商品名・メーカーを検索':'Search item or brand';
+ if(search){const placeholders={ko:'상품명·브랜드 검색',ja:'商品名・メーカーを検索',zh:'搜索商品或品牌',de:'Artikel oder Marke suchen',fr:'Rechercher un article ou une marque',es:'Buscar artículo o marca',it:'Cerca articolo o marchio',pt:'Pesquisar item ou marca',vi:'Tìm sản phẩm hoặc thương hiệu'};search.placeholder=placeholders[lang()]||'Search item or brand';}
+}
+// Buyer feedback is based only on actual seller listings passed by v24.js.
+let marketCounts={visible:0,total:0};
+function updateMarketFeedback(visible=marketCounts.visible,total=marketCounts.total){
+ marketCounts={visible:Number(visible)||0,total:Number(total)||0};
+ const count=$('#rqMarketResultCount'),clear=$('#rqMarketReset');
+ const v=marketCounts.visible,t=marketCounts.total;
+ const messages={
+  en:`Showing ${v} of ${t} listings`,ja:`全${t}件中${v}件を表示`,ko:`전체 ${t}건 중 ${v}건 표시`,
+  zh:`显示 ${v} / ${t} 条商品`,de:`${v} von ${t} Angeboten`,fr:`${v} annonces sur ${t}`,
+  es:`${v} de ${t} anuncios`,it:`${v} annunci su ${t}`,pt:`${v} de ${t} anúncios`,vi:`Hiển thị ${v} / ${t} tin đăng`
+ };
+ const clearCopy={en:'Clear filters',ja:'絞り込みを解除',ko:'필터 초기화',zh:'清除筛选',de:'Filter löschen',
+  fr:'Effacer les filtres',es:'Borrar filtros',it:'Azzera filtri',pt:'Limpar filtros',vi:'Xóa bộ lọc'};
+ if(count)count.textContent=messages[lang()]||messages.en;
+ if(clear){
+  clear.textContent=clearCopy[lang()]||clearCopy.en;
+  clear.hidden=!['marketSearch','categoryFilter','countryFilter','conditionFilter'].some(id=>String(document.getElementById(id)?.value||'').trim());
+ }
+}
+function installMarketFeedback(){
+ let row=$('#rqMarketFeedback');
+ if(!row){
+  const toolbar=$('#rqMarketSearchArea');if(!toolbar)return;
+  row=document.createElement('div');row.id='rqMarketFeedback';row.className='wrap rq-market-feedback';
+  row.innerHTML='<span id="rqMarketResultCount" role="status" aria-live="polite"></span><button type="button" id="rqMarketReset" class="rq-market-reset" hidden></button>';
+  toolbar.insertAdjacentElement('afterend',row);
+  $('#rqMarketReset').addEventListener('click',()=>{
+   for(const id of ['marketSearch','categoryFilter','countryFilter','conditionFilter']){
+    const field=document.getElementById(id);if(field)field.value='';
+   }
+   if(typeof window.rqRenderMarketplace==='function')window.rqRenderMarketplace();
+   else $('#marketSearch')?.dispatchEvent(new Event('input',{bubbles:true}));
+   categoryTiles();
+   updateMarketFeedback();
+  });
+ }
+ const cardCount=$('#marketListings')?.querySelectorAll('.v24-listing-card').length||0;
+ if(marketCounts.total===0&&cardCount>0)marketCounts={visible:cardCount,total:cardCount};
+ updateMarketFeedback();
 }
 function putMarketActions(){
  updateFirstActions();
@@ -123,6 +183,7 @@ function putMarketActions(){
  }
  categoryTiles();
  patchMarketFilters();
+ installMarketFeedback();
 }
 function showSell(initialCat){
  files=[];
@@ -132,6 +193,8 @@ function showSell(initialCat){
  const html=[
  '<div class="rq-cl-head"><h2>'+esc(tr('post'))+'</h2><p>'+esc(tr('photosHint'))+'</p></div>',
  '<form id="rqQuickSellForm" class="rq-classifieds-form">',
+ '<label class="rq-cl-field rq-cl-method"><span>'+esc(qt('sellMode'))+'</span><select name="sellMethod" id="rqClSellMethod" required><option value="quotes">'+esc(qt('compare'))+'</option><option value="fixed">'+esc(qt('fixed'))+'</option></select></label>',
+ '<p class="rq-cl-sale-note">'+esc(qt('hint'))+'</p>',
  '<div class="rq-cl-pictures"><label>'+esc(tr('images'))+' *<input id="rqClPhotos" type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" required></label><div id="rqClPreview" class="rq-cl-pictures-grid"></div></div>',
  '<div class="rq-cl-columns">',
  '<label class="rq-cl-field"><span>'+esc(tr('category'))+' *</span><select name="itemCategory" required>'+choices(C[lang()]||C.en,initial)+'</select></label>',
@@ -190,7 +253,7 @@ async function submitListing(event){
  if(authRequired()){status.textContent=tr('none');return}
  busy=true;btn.disabled=true;btn.textContent=tr('publishing');
  try{
-  const draft={...data,contactName:data.companyName,sale:'fixed',working:'unknown',declared:true};
+  const draft={...data,contactName:data.companyName,sale:data.sellMethod==='fixed'?'fixed':'bid',working:'unknown',declared:true};
   await window.rqSubmitSellerListing(draft,{photos});
   window.closeModal?.();
   notice(tr('published'));
@@ -286,6 +349,7 @@ async function openThread(id){
  });
 }
 function init(){
+ window.rqMarketResultsChanged=updateMarketFeedback;
  window.rqStartSell=showSell;
  window.rqContactAboutListing=askSeller;
  window.rqOpenMarketInbox=openInbox;
