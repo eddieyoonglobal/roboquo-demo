@@ -211,6 +211,24 @@
     <img class="rq-market-action-thumb" src="./assets/rq-gripper.svg" alt="" loading="eager" width="92" height="65"><span class="rq-choice-content"><strong>Sell an item</strong><small>Upload photos and set your price</small></span><span class="rq-choice-arrow" aria-hidden="true">→</span>
   </button>
 </div>
+<section class="wrap rq-market-discovery" aria-labelledby="rqMarketDiscoveryTitle">
+  <div class="rq-discovery-header"><div><div class="kicker">DISCOVER BY CATEGORY</div><h2 id="rqMarketDiscoveryTitle">Browse by equipment</h2></div><button type="button" id="rqVisualClear" class="rq-discovery-clear">Show all items</button></div>
+  <nav class="rq-market-discovery-grid" aria-label="Equipment category">
+    <button class="rq-market-discovery-card" type="button" data-rq-market-category="robot" aria-pressed="false">
+      <img src="./assets/rq-robot.svg" width="640" height="440" alt="" loading="eager">
+      <span data-rq-label="robot">Robots</span><span class="rq-category-arrow" aria-hidden="true">→</span>
+    </button>
+    <button class="rq-market-discovery-card" type="button" data-rq-market-category="gripper" aria-pressed="false">
+      <img src="./assets/rq-gripper.svg" width="640" height="440" alt="" loading="eager">
+      <span data-rq-label="gripper">Grippers &amp; EOAT</span><span class="rq-category-arrow" aria-hidden="true">→</span>
+    </button>
+    <button class="rq-market-discovery-card" type="button" data-rq-market-category="part" aria-pressed="false">
+      <img src="./assets/rq-parts.svg" width="640" height="440" alt="" loading="eager">
+      <span data-rq-label="part">Parts &amp; Controllers</span><span class="rq-category-arrow" aria-hidden="true">→</span>
+    </button>
+  </nav>
+  <p class="rq-discovery-note" id="rqDiscoveryNote">Illustrations help you choose a category. Only real seller photos and listings appear below.</p>
+</section>
 <div class="wrap market-toolbar" id="rqMarketSearchArea">
 <div class="search-field"><span>⌕</span><input data-i18n-placeholder="marketSearchPh" id="marketSearch" placeholder="Search maker, model or location"/></div>
 <select id="categoryFilter"><option data-i18n="allCategories" value="">All categories</option></select>
