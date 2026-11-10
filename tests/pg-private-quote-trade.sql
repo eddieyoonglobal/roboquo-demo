@@ -79,7 +79,7 @@ begin
  exception when unique_violation then prevented:=true;
  end;
  if not prevented then raise exception 'FAIL completed listing could accept another buyer';end if;
- if (select amount from public.marketplace_purchase_offers where id=:'second_quote'::uuid)<>47000 then
+ if (select amount from public.marketplace_purchase_offers where id=(select o.id from public.marketplace_purchase_offers o where o.buyer_id='33333333-3333-4333-8333-333333333333' and o.listing_id=(select l.id from public.seller_listings l where l.model='RG2 TEST')))<>47000 then
   raise exception 'FAIL accepted price changed';
  end if;
 end $$;
