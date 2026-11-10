@@ -53,7 +53,7 @@
 </head>
 <body>
 <header class="site-header">
-<a aria-label="RoboQuo marketplace" class="brand" data-route="robots" href="#robots"><span class="rq">RQ</span><span>RoboQuo</span></a>
+<a aria-label="RoboQuo marketplace" class="brand" data-route="robots" href="#robots"><img class="rq-site-logo" src="./assets/rq-brand.svg" alt="RoboQuo" width="186" height="43"></a>
 <nav class="desktop-nav">
 <a data-i18n="navRobots" data-route="robots" href="#robots">Robots</a>
 <a data-i18n="navCategories" data-route="categories" href="#categories">Categories</a>
@@ -92,6 +92,10 @@
 <p class="access-note"><strong data-i18n="browseFree">Browse freely.</strong> <span data-i18n="joinWhenNeeded">Join only when you need to inquire, bid or trade.</span></p>
 </div>
 <div class="hero-visual hero-sell-panel">
+  <figure class="rq-hero-real-photo">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg/960px-Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg" alt="A real industrial robot arm handling parts on a factory workbench" width="960" height="1443" fetchpriority="high" decoding="async">
+    <figcaption><strong id="rqHeroPhotoHeading">Real robotics, clearly visible.</strong><a href="https://commons.wikimedia.org/wiki/File:Robot_arm_picks_up_cylindrical_objects_in_a_factory_setting.jpg" target="_blank" rel="noopener noreferrer" id="rqPhotoCredit">Photo: Nenad Stojković · CC BY 2.0</a></figcaption>
+  </figure>
   <div class="hero-sell-card">
     <div class="hero-sell-topline" data-hero-sell-eyebrow>SELL</div>
     <h3 data-hero-sell-title>Sell a Robot</h3>
@@ -115,6 +119,24 @@
   </div>
 </div>
 </div>
+<section class="wrap rq-visual-market" id="rqVisualMarket" aria-label="Browse robot equipment visually">
+  <div class="rq-visual-market-heading"><div><div class="kicker">SHOP BY EQUIPMENT</div><h2 id="rqVisualMarketTitle">See it. Find it.</h2><p id="rqVisualMarketSubtitle">Start with the type of robot equipment you need.</p></div></div>
+  <div class="rq-visual-market-grid">
+    <button type="button" class="rq-visual-market-card" data-rq-market-category="robot">
+      <img src="./assets/rq-robot.svg" alt="" loading="eager" width="640" height="440">
+      <span class="rq-visual-market-card-info"><strong data-rq-label="robot">Robots</strong><small data-rq-sub="robot">Industrial and collaborative robots</small><b aria-hidden="true">→</b></span>
+    </button>
+    <button type="button" class="rq-visual-market-card" data-rq-market-category="gripper">
+      <img src="./assets/rq-gripper.svg" alt="" loading="lazy" width="640" height="440">
+      <span class="rq-visual-market-card-info"><strong data-rq-label="gripper">Grippers & EOAT</strong><small data-rq-sub="gripper">End effectors and tooling</small><b aria-hidden="true">→</b></span>
+    </button>
+    <button type="button" class="rq-visual-market-card" data-rq-market-category="part">
+      <img src="./assets/rq-parts.svg" alt="" loading="lazy" width="640" height="440">
+      <span class="rq-visual-market-card-info"><strong data-rq-label="part">Parts & Controllers</strong><small data-rq-sub="part">Automation equipment and spare parts</small><b aria-hidden="true">→</b></span>
+    </button>
+  </div>
+  <p class="rq-visual-disclaimer" id="rqVisualDisclaimer">Illustrative category images, not actual seller listings. Only real seller listings are displayed in the marketplace.</p>
+</section>
 <div class="principle-bar">
 <div><strong data-i18n="browse">Browse</strong><span data-i18n="browseSub">Search without signup</span></div>
 <div><strong data-i18n="join">Join</strong><span data-i18n="joinSub">Email signup when needed</span></div>
@@ -227,6 +249,12 @@
       <button id="rqAllRobotMakers" type="button" aria-pressed="false">All robot makers</button>
     </div>
   </div>
+  <div class="rq-brand-showcase">
+   <img src="./assets/rq-robot.svg" alt="Illustrative robotic arm — not a specific manufacturer's model" loading="lazy" width="640" height="440">
+   <div><div class="rq-brand-showcase-title" id="rqBrandShowcaseTitle">Browse by manufacturer</div><p id="rqBrandShowcaseDesc">Representative brand names, not official logo artwork or an authorized dealership claim.</p>
+    <div class="rq-brand-name-chips"><span>FANUC</span><span>Universal Robots</span><span>Doosan Robotics</span><span>JAKA</span><span>ABB</span><span>DOBOT</span><span>OMRON</span><span>Kawasaki</span></div>
+   </div>
+  </div>
   <div class="rq-maker-region-links" id="rqMakerRegionLinks" aria-label="Filter robot makers by region"></div>
   <button type="button" id="rqJumpCompare" class="rq-jump-compare">Compare model specifications ↓</button>
   <p class="rq-maker-catalog-note" id="rqMakerCatalogNote">Manufacturer directory, not available inventory or authorized dealership claims.</p>
@@ -320,5 +348,6 @@
 <script src="v24.js"></script>
 <script src="marketplace-v2.js"></script>
 <script src="cobot-compare.js"></script>
+<script src="visuals.js"></script>
 </body>
 </html>
