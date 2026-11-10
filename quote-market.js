@@ -129,8 +129,14 @@ async function changeStatus(id,status,role,changes={}){
    .eq('id',id).eq(role==='seller'?'seller_id':'buyer_id',user().id);
   if(before[status])query.eq('status',before[status]);
   else if(status==='cancelled')query.in('status',['selected','visit_scheduled']);
-  const done=await query.select('id,status').single();
+  const done=await query.select('id,status,listing_id').single();
   if(done.error||done.data?.status!==status)throw done.error||Error('Status update not confirmed');
+  // Completed means the seller confirms the off-platform payment and handover.
+  // Retire the public listing at the same moment; never mark paid automatically.
+  if(status==='completed'&&typeof window.rqMarkListingSold==='function'){
+   try{await window.rqMarkListingSold(done.data.listing_id)}
+   catch(error){console.warn('RoboQuo seller must manually mark the listing sold',error?.code||'update_failed');notify(t('failed'))}
+  }
   await renderPanel(role);
  }catch(error){safeError(error);}
 }
