@@ -10,14 +10,29 @@
  const lang=()=>document.documentElement.lang||'en';
  function apply(){
   const t=copy[lang()]||copy.en;
-  const values={rqVisualMarketTitle:t.title,rqVisualMarketSubtitle:t.sub,rqVisualDisclaimer:t.disclaimer,rqHeroPhotoHeading:t.photo,rqBrandShowcaseTitle:t.brand,rqBrandShowcaseDesc:t.brandDesc};
+  const values={rqVisualMarketTitle:t.title,rqVisualMarketSubtitle:t.sub,rqVisualDisclaimer:t.disclaimer,rqHeroPhotoHeading:t.photo,rqBrandShowcaseTitle:t.brand,rqBrandShowcaseDesc:t.brandDesc,rqMarketDiscoveryTitle:t.title,rqDiscoveryNote:t.disclaimer};
   for(const [id,value] of Object.entries(values)){const el=document.getElementById(id);if(el)el.textContent=value}
   for(const k of ['robot','gripper','part']){
    const title=$('[data-rq-label="'+k+'"]'),note=$('[data-rq-sub="'+k+'"]');
    if(title)title.textContent=t[k];
    if(note)note.textContent=t[k+'Sub'];
-   const btn=$('[data-rq-market-category="'+k+'"]');if(btn)btn.setAttribute('aria-label',t[k]+': '+t[k+'Sub']);
+   $('[data-rq-market-category="'+k+'"]').forEach(btn=>{
+    btn.setAttribute('aria-label',t[k]+': '+t[k+'Sub']);
+    const label=btn.querySelector('[data-rq-label]');if(label)label.textContent=t[k];
+    const sub=btn.querySelector('[data-rq-sub]');if(sub)sub.textContent=t[k+'Sub'];
+   });
   }
+  const clear=document.getElementById('rqVisualClear');
+  if(clear)clear.textContent=({ja:'すべて表示',ko:'전체 상품 보기',zh:'显示全部',de:'Alle anzeigen',fr:'Tout afficher',es:'Ver todos',it:'Mostra tutto',pt:'Ver todos',vi:'Xem tất cả'})[lang()]||'Show all items';
+  syncActiveCategory();
+ }
+ function syncActiveCategory(){
+  const current=document.getElementById('categoryFilter')?.value||'';
+  $('.rq-market-discovery-card').forEach(btn=>{
+   const selected=btn.dataset.rqMarketCategory===current;
+   btn.setAttribute('aria-pressed',String(selected));
+   btn.classList.toggle('is-active',selected);
+  });
  }
  function openCategory(category){
   // This route has separate classifieds filters; never imply artwork is a listing.
@@ -29,10 +44,24 @@
   filter.value=category;
   filter.dispatchEvent(new Event('change',{bubbles:true}));
   window.rqRenderMarketplace?.();
+  syncActiveCategory();
   document.getElementById('rqMarketSearchArea')?.scrollIntoView({behavior:'smooth',block:'start'});
  }
+ function clearFilters(){
+  const select=document.getElementById('categoryFilter');
+  window.rqRenderMarketplace?.();
+  for(const id of ['categoryFilter','countryFilter','conditionFilter','marketSearch']){
+   const input=document.getElementById(id);
+   if(input)input.value='';
+  }
+  if(select)select.dispatchEvent(new Event('change',{bubbles:true}));
+  window.rqRenderMarketplace?.();
+  syncActiveCategory();
+ }
  function init(){
-  $$('.rq-visual-market-card[data-rq-market-category]').forEach(btn=>btn.addEventListener('click',()=>openCategory(btn.dataset.rqMarketCategory)));
+  $('[data-rq-market-category]').forEach(btn=>btn.addEventListener('click',()=>openCategory(btn.dataset.rqMarketCategory)));
+  document.getElementById('rqVisualClear')?.addEventListener('click',clearFilters);
+  document.getElementById('categoryFilter')?.addEventListener('change',syncActiveCategory);
   document.addEventListener('rq:languagechange',apply);
   apply();
  }
