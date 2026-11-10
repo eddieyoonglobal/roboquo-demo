@@ -70,3 +70,19 @@
 
 #makers .rq-model-figure{margin:0;position:relative}
 #makers .rq-model-image-note{display:block;font-size:10px;color:#708398;line-height:1.3;margin-top:4px}
+
+
+/* The first route is Marketplace, not Home: show photography without pushing search out of view. */
+#robots .rq-market-heading{display:grid;grid-template-columns:minmax(0,1fr) 280px;align-items:center;gap:20px;padding-top:28px;padding-bottom:17px}
+#robots .rq-market-heading-copy{min-width:0}
+#robots .rq-market-heading h1{font-size:clamp(29px,3.5vw,43px)}
+#robots .rq-market-heading p{margin-bottom:0}
+#robots .rq-market-heading-photo{position:relative;width:100%;height:150px;margin:0;overflow:hidden;border-radius:17px;background:#d6e7f4;border:1px solid #d0dfec}
+#robots .rq-market-heading-photo>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 34%}
+#robots .rq-market-heading-photo:after{content:"";position:absolute;inset:60% 0 0;background:linear-gradient(transparent,rgba(10,31,50,.82))}
+#robots .rq-market-heading-photo figcaption{position:absolute;z-index:1;bottom:9px;left:10px;right:10px;text-align:right}
+#robots .rq-market-heading-photo a{font-size:9px;color:#fff;text-shadow:0 1px 3px #193751}
+#robots .rq-market-action-thumb{display:block;width:88px;height:75px;object-fit:cover;border-radius:12px;flex-shrink:0;border:1px solid #d4e4f2}
+#robots .rq-market-choice{min-height:105px;padding:14px 18px}
+@media(max-width:750px){#robots .rq-market-heading{grid-template-columns:1fr 130px;gap:12px;padding-top:19px}#robots .rq-market-heading-photo{height:120px}#robots .rq-market-choice{padding:12px}#robots .rq-market-action-thumb{width:60px;height:62px}}
+@media(max-width:490px){#robots .rq-market-heading{grid-template-columns:1fr;gap:8px}#robots .rq-market-heading-photo{height:115px}#robots .rq-market-quickstart{grid-template-columns:1fr;gap:8px;margin-bottom:12px}#robots .rq-market-choice{min-height:80px}#robots .rq-market-action-thumb{width:70px;height:58px}}
