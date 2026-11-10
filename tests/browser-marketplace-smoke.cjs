@@ -105,7 +105,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.evaluate(()=>route('home'));
   await page.locator('#languageSelect').selectOption('ja');
   await page.waitForFunction(()=>document.querySelector('#rqVisualMarketTitle')?.textContent?.includes('写真から'));
-  assert.match(await page.locator('[data-rq-label="gripper"]').innerText(),/グリッパー/,'Japanese visual category labels');
+  assert.match(await page.locator('#home [data-rq-label="gripper"]').innerText(),/グリッパー/,'Japanese visual category labels');
   await page.locator('#languageSelect').selectOption('en');
   await page.evaluate(()=>route('robots'));
 
