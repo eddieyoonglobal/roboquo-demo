@@ -44,6 +44,16 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>Boolean(document.querySelector('#marketListings .rq-market-empty')),{timeout:15000});
   assert(await page.locator('#robots').isVisible(),'marketplace must be first page');
+
+  assert.equal(await page.locator('#robots .rq-market-heading-photo img').count(),1,'first visible market screen has a real factory robot photograph');
+  assert.equal(await page.locator('#rqBrowseShortcut img.rq-market-action-thumb').count(),1,'buy card has an equipment image');
+  assert.equal(await page.locator('#rqSellShortcut img.rq-market-action-thumb').count(),1,'sell card has an equipment image');
+  assert.equal(await page.locator('.site-header img.rq-site-logo').count(),1,'original RoboQuo logo is visible in the header');
+  for(const name of ['rq-robot.svg','rq-gripper.svg','rq-parts.svg','rq-brand.svg']){
+    const response=await page.evaluate(n=>fetch('./assets/'+n).then(r=>({ok:r.ok,contentType:r.headers.get('content-type')})),name);
+    assert(response.ok&&response.contentType.includes('svg'),'valid local visual asset: '+name);
+  }
+
   assert(await page.locator('#rqBrowseShortcut').isVisible(),'first screen offers a visible Buy action');
   assert(await page.locator('#rqSellShortcut').isVisible(),'first screen offers a visible Sell action');
   assert.match(await page.locator('#rqBrowseShortcut').innerText(),/Find an item/);
@@ -69,10 +79,27 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.waitForFunction(()=>document.querySelector('#rqBrowseShortcut strong')?.textContent==='Find an item');
   assert.equal(await page.locator('#robots .v24-market-note').count(),0,'duplicated market notice removed');
 
+  await page.evaluate(()=>route('home'));
+  assert.equal(await page.locator('#rqVisualMarket .rq-visual-market-card').count(),3,'homepage has 3 visual equipment categories');
+  await page.locator('[data-rq-market-category="gripper"]').click();
+  assert(await page.locator('#robots').isVisible(),'visual navigation returns to market');
+  assert.equal(await page.locator('#categoryFilter').inputValue(),'gripper','visual gripper card synchronizes actual market category filter');
+  await page.evaluate(()=>route('home'));
+  await page.locator('#languageSelect').selectOption('ja');
+  await page.waitForFunction(()=>document.querySelector('#rqVisualMarketTitle')?.textContent?.includes('写真から'));
+  assert.match(await page.locator('[data-rq-label="gripper"]').innerText(),/グリッパー/,'Japanese visual category labels');
+  await page.locator('#languageSelect').selectOption('en');
+  await page.evaluate(()=>route('robots'));
+
+
   // Manufacturer data uses reviewed static seed only; no live DB writes.
   await page.evaluate(()=>route('makers'));
   await page.waitForFunction(()=>document.querySelectorAll('#makerGrid .maker-card').length>=40,{timeout:15000});
   assert.equal(await page.locator('#makerTypeFilter').inputValue(),'collaborative','manufacturer catalog starts with cobots');
+
+  assert.equal(await page.locator('#makerGrid .maker-card img.rq-maker-thumb').count(),40,'directory gives every cobot maker a recognizable illustrative image');
+  assert.equal(await page.locator('#rq-brand-does-not-exist').count(),0,'no fabricated official brand logo');
+
   assert.match(await page.locator('#rqJumpCompare').innerText(),/Compare verified model specs/);
   await page.locator('#rqJumpCompare').click();
   assert(await page.locator('#rqCobotCompare').isVisible(),'model comparison jump reaches a visible section');
@@ -80,6 +107,10 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   // Manufacturer-sourced cobot specs: no fabricated catalog entries, sales stock or database writes.
   await page.waitForFunction(()=>document.querySelectorAll('#rqCompareModels .rq-spec-card').length===10,{timeout:15000});
   assert.equal(await page.locator('#rqCompareModels .rq-spec-card').count(),10,'ten official-source cobot models loaded');
+
+  assert.equal(await page.locator('#rqCompareModels .rq-model-photo').count(),10,'each comparison card has a model-neutral illustration');
+  assert.match(await page.locator('#rqCompareModels .rq-model-image-note').first().innerText(),/Illustration/,'visuals are explicitly not OEM product photos');
+
   assert.match(await page.locator('#rqCompareDescription').innerText(),/No live inventory/i);
   const fanucSpec=page.locator('#rqCompareModels .rq-spec-card').filter({hasText:'CRX-10iA'});
   assert.match(await fanucSpec.innerText(),/10 kg/,'FANUC payload recorded');
@@ -234,6 +265,14 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.locator('#rqQuickSellForm [name=declared]').check();
   await page.locator('#rqClSubmit').click();
   assert.match(await page.locator('#rqClStatus').innerText(),/Preview|preview|live database/i,'Preview upload must remain blocked before production');
+
+  await page.goto(origin+'/review.html',{waitUntil:'domcontentloaded'});
+  assert(await page.locator('.rq-review-visuals').isVisible(),'preview review guide contains actual robot and category visuals');
+  assert.equal(await page.locator('.rq-review-visual-cats img').count(),3,'review page shows robot, gripper and parts');
+  assert.equal(await page.locator('nav .logo img[src$="rq-brand.svg"]').count(),1,'review guide uses matching RoboQuo branding');
+  assert.match(await page.locator('.rq-review-photo figcaption').innerText(),/CC BY 2.0/,'photo is visibly attributed');
+  if(process.env.CI)await page.screenshot({path:path.join(screenshotDir,'roboquo-review-visual-guide.png'),fullPage:true});
+
   assert.equal(errors.length,0,'uncaught runtime errors: '+errors.join(' | '));
   console.log('PASS marketplace: real robots+parts, category/search, buyer chat form, photo upload preview guard');
  }finally{await browser.close()}
