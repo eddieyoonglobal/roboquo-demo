@@ -61,6 +61,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="FANUC"]').click();
   assert(await page.locator('#makers').isVisible(),'selected representative photo opens manufacturer directory');
   assert.equal(await page.locator('#makerSearch').inputValue(),'FANUC','FANUC photo locates FANUC manufacturer');
+  assert.equal(await page.locator('#makerTypeFilter').inputValue(),'','featured industrial manufacturers are not restricted to collaborative robots');
   assert.equal(await page.locator('#makerGrid .maker-card').count(),1,'FANUC manufacturer search narrows directory');
   await page.evaluate(()=>route('robots'));
   await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="OnRobot"]').click();
@@ -69,6 +70,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#makerSearch').inputValue(),'OnRobot','OnRobot profile is searched');
   await page.locator('[data-maker-tab="robot"]').click();
   await page.locator('#makerSearch').fill('');
+  await page.locator('#makerTypeFilter').selectOption('collaborative'); // Restore cobot default for unrelated catalog smoke tests.
   await page.evaluate(()=>route('robots'));
 
 
