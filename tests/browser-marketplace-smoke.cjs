@@ -316,6 +316,12 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   if(process.env.CI)await page.screenshot({path:path.join(screenshotDir,'roboquo-buyer-inquiry-desktop.png'),fullPage:true});
   await page.evaluate(()=>window.closeModal());
   if(process.env.CI){
+    await page.evaluate(()=>{
+      for(const id of ['rqRobotMakerTrack','rqEoatMakerTrack']){
+        const track=document.getElementById(id);
+        if(track)track.scrollLeft=0;
+      }
+    });
     await page.screenshot({path:path.join(screenshotDir,'roboquo-market-desktop.png'),fullPage:true});
     await page.setViewportSize({width:390,height:844});
     assert(await page.locator('#rqMobileQuery').isVisible(),'mobile search is present at top');
@@ -365,6 +371,12 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     assert(!(await page.locator('#rqBrowseShortcut').isVisible()),'mobile removes oversized Buy shortcut to prioritize search');
     assert(!(await page.locator('#rqSellShortcut').isVisible()),'mobile replaces oversized Sell shortcut with fixed bottom navigation');
     assert(await page.locator('.mobile-nav .sell-mobile').isVisible(),'mobile Sell action remains available in bottom nav');
+    await page.evaluate(()=>{
+      for(const id of ['rqRobotMakerTrack','rqEoatMakerTrack']){
+        const track=document.getElementById(id);
+        if(track)track.scrollLeft=0;
+      }
+    });
     await page.screenshot({path:path.join(screenshotDir,'roboquo-market-mobile.png'),fullPage:true});
   }
   await page.evaluate(()=>window.rqStartSell('part'));
