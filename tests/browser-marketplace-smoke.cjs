@@ -50,6 +50,12 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-credit').count(),15,'every robot card has a source or an explicit illustration note');
   assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-brand-mark img').count(),3,'three source-verified manufacturer wordmarks are displayed');
   assert.equal(await page.locator('#rqEoatShowcase .rq-featured-product').count(),14,'second row has fourteen gripper and EOAT manufacturers');
+  assert.equal(await page.locator('#rqEoatShowcase .rq-maker-real-photo').count(),2,'SCHUNK and Schmalz real product photos appear in gripper gallery');
+  assert.equal(await page.locator('#rqEoatShowcase .rq-maker-real-photo img[data-rq-photo-fallback]').count(),2,'real gripper photos include safe offline fallback');
+  assert.equal(await page.locator('#rqEoatShowcase .rq-maker-real-photo .rq-featured-credit[href*="commons.wikimedia.org"]').count(),2,'licensed brand imagery includes original source links');
+  const sourceHtml=fs.readFileSync(path.join(root,'index.html'),'utf8');
+  assert(sourceHtml.includes('Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG?width=640'),'SCHUNK real licensed photograph is declared, even in network-blocked CI');
+  assert(sourceHtml.includes('Schmalz_Vakuum-Komponenten_allgemein.jpg?width=640'),'Schmalz real licensed photograph is declared, even in network-blocked CI');
   assert.equal(await page.locator('#rqEoatShowcase .rq-featured-credit').count(),14,'every EOAT maker card has a source or an explicit illustration label');
   assert.equal(await page.locator('#rqEoatShowcase .rq-featured-card[data-rq-featured-kind="eoat"]').count(),14,'gripper card searches EOAT directory, not robot arm directory');
   assert.equal(await page.locator('#rqEoatShowcase img[src$="rq-vacuum-eoat.svg"]').count(),3,'vacuum EOAT uses a clearly labeled generic vacuum illustration');
@@ -86,8 +92,12 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
 
 
   assert.equal(await page.locator('#robots .rq-market-heading-photo img').count(),1,'first visible market screen has a real factory robot photograph');
-  assert.equal(await page.locator('#rqBrowseShortcut img.rq-market-action-thumb').count(),1,'buy card has an equipment image');
-  assert.equal(await page.locator('#rqSellShortcut img.rq-market-action-thumb').count(),1,'sell card has an equipment image');
+  assert.equal(await page.locator('.site-header [data-action="sell"]').count(),1,'desktop header has one Sell entry');
+  assert.equal(await page.locator('.mobile-nav [data-action="sell"]').count(),1,'mobile footer has one Sell entry');
+  assert.equal(await page.locator('#home .hero-actions [data-action="sell"], #home .start-grid [data-action="sell"], #home .hero-sell-cta').count(),0,'home duplicate Sell actions removed');
+  assert.equal(await page.locator('#rqMarketQuickStart, #rqBrowseShortcut, #rqSellShortcut').count(),0,'redundant marketplace calls to action removed');
+  assert.equal(await page.locator('#home .rq-category-real-photo').count(),2,'home categories display actual representative industrial photography');
+  assert.equal(await page.locator('#robots .rq-category-real-photo').count(),2,'marketplace categories display actual robot and SCHUNK gripper photos');
   assert.equal(await page.locator('#robots .rq-market-discovery-card').count(),3,'first marketplace route offers three illustrated categories');
   await page.locator('#robots .rq-market-discovery-card[data-rq-market-category="gripper"]').click();
   const marketVisualDebug=await page.evaluate(()=>({value:document.getElementById('categoryFilter')?.value,options:[...document.getElementById('categoryFilter').options].map(o=>o.value),render:typeof window.rqRenderMarketplace,route:typeof window.route,active:document.querySelector('#robots .rq-market-discovery-card[aria-pressed="true"]')?.dataset.rqMarketCategory}));
@@ -107,10 +117,8 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     assert(response.ok&&response.contentType.includes('svg'),'valid local visual asset: '+name);
   }
 
-  assert(await page.locator('#rqBrowseShortcut').isVisible(),'first screen offers a visible Buy action');
-  assert(await page.locator('#rqSellShortcut').isVisible(),'first screen offers a visible Sell action');
-  assert.match(await page.locator('#rqBrowseShortcut').innerText(),/Find an item/);
-  assert.match(await page.locator('#rqSellShortcut').innerText(),/Sell an item/);
+  assert(await page.locator('.site-header [data-action="sell"]').isVisible(),'single desktop Sell CTA remains visible');
+  assert.match(await page.locator('.site-header [data-action="sell"]').innerText(),/Post an item/);
 
   // All available locale selectors must localize the actual Buy/Sell entry points.
   for(const [language,buy,sell,gripper,countryAll,japanName] of [
@@ -126,8 +134,8 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
       assert.equal(await page.locator('#robots .rq-market-discovery-card').count(),3,'localized visual equipment menu '+language);
     }
 
-    await page.waitForFunction(([expected])=>document.querySelector('#rqBrowseShortcut strong')?.textContent===expected,[buy]);
-    assert.match(await page.locator('#rqSellShortcut').innerText(),new RegExp(sell));
+    assert((await page.locator('.site-header [data-action="sell"]').innerText()).trim().length>0,'single Sell CTA remains localized in '+language);
+    assert.equal(await page.locator('#rqMarketQuickStart').count(),0,'no duplicate CTA in '+language);
     await page.evaluate(()=>route('robots'));
     assert.match(await page.locator('#rqMarketCategoryChips').innerText(),new RegExp(gripper));
     assert.equal((await page.locator('#countryFilter option').first().textContent()).trim(),countryAll,'localized country filter '+language);
@@ -138,7 +146,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.locator('#languageSelect').selectOption('ko');
   await page.waitForFunction(()=>document.querySelector('#rqFeaturedTitle')?.textContent==='대표 로봇 메이커');
   await page.locator('#languageSelect').selectOption('en');
-  await page.waitForFunction(()=>document.querySelector('#rqBrowseShortcut strong')?.textContent==='Find an item');
+  await page.waitForFunction(()=>document.querySelector('.site-header [data-action="sell"]')?.textContent==='Post an item');
   assert.equal(await page.locator('#robots .v24-market-note').count(),0,'duplicated market notice removed');
 
   await page.evaluate(()=>route('home'));
@@ -232,10 +240,10 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.locator('#languageSelect').selectOption('en');
   await page.evaluate(()=>route('robots'));
 
-  await page.locator('#rqBrowseShortcut').click();
-  assert.equal(await page.evaluate(()=>document.activeElement?.id),'marketSearch','Buy should focus item search');
-  await page.locator('#rqSellShortcut').click();
-  assert(await page.locator('#rqQuickSellForm').isVisible(),'Sell shortcut must open photo-first listing form');
+  await page.locator('#marketSearch').focus();
+  assert.equal(await page.evaluate(()=>document.activeElement?.id),'marketSearch','search is directly focusable with no duplicate shortcut');
+  await page.locator('.site-header [data-action="sell"]').click();
+  assert(await page.locator('#rqQuickSellForm').isVisible(),'the one global desktop Sell entry opens the photo-first form');
   await page.evaluate(()=>window.closeModal());
 
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),0,'no fake robot inventory is displayed');
@@ -327,7 +335,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     assert(await page.locator('#rqMobileQuery').isVisible(),'mobile search is present at top');
     assert.equal(await page.locator('#rqMobileMarketPills button').count(),4,'mobile has four quick filters');
     assert(!(await page.locator('#robots .rq-market-heading').isVisible()),'long desktop heading is hidden on mobile');
-    assert(!(await page.locator('#rqMarketQuickStart').isVisible()),'large duplicate buy and sell actions are hidden on mobile');
+
     assert.equal(await page.locator('#robots .rq-market-discovery-card').count(),3,'mobile shows exactly three pictorial equipment categories');
     await page.locator('#rqMobileQuery').fill('RG2');
     assert.equal(await page.locator('#marketSearch').inputValue(),'RG2','mobile query synchronizes with real market search');
@@ -368,8 +376,8 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
     assert(overflow<=2,'market photo/category layout should not create horizontal overflow: '+overflow);
 
-    assert(!(await page.locator('#rqBrowseShortcut').isVisible()),'mobile removes oversized Buy shortcut to prioritize search');
-    assert(!(await page.locator('#rqSellShortcut').isVisible()),'mobile replaces oversized Sell shortcut with fixed bottom navigation');
+
+
     assert(await page.locator('.mobile-nav .sell-mobile').isVisible(),'mobile Sell action remains available in bottom nav');
     await page.evaluate(()=>{
       for(const id of ['rqRobotMakerTrack','rqEoatMakerTrack']){
