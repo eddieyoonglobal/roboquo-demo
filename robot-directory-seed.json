@@ -1,7 +1,7 @@
 {
   "schema_version": "0.20",
   "generated_for": "RoboQuo v19 global ecosystem prototype",
-  "note": "Robot/EOAT seed directory; 2026-11-10 collaborative robot manufacturer audit. Product pages support manufacturer identity, not listing availability or authorized dealer status. Regional classification for multinational Flexiv is informational. Dealer authorization must be separately verified.",
+  "note": "Robot/EOAT seed directory; 2026-11-10 collaborative robot manufacturer audit. Product pages support manufacturer identity, not listing availability or authorized dealer status. Regional classification for multinational Flexiv is informational. Dealer authorization must be separately verified.. 2026-11-11: expanded verified European/Japanese/Korean gripper & EOAT vendor directory; independent profile listings are not dealer endorsements.",
   "robot_types": [
     {
       "id": "industrial",
@@ -2340,6 +2340,18 @@
   ],
   "eoat_manufacturers": [
     {
+      "name": "AIDIN Robotics",
+      "origin": "Korea",
+      "region": "Korea",
+      "types": [
+        "gripper",
+        "ft"
+      ],
+      "series": "SusGrip · SusGrip-FT",
+      "status": "directory",
+      "url": "https://www.aidinrobotics.co.kr/en/smart-gripper"
+    },
+    {
       "name": "ATI Industrial Automation",
       "origin": "USA",
       "region": "North America",
@@ -2352,6 +2364,18 @@
       "url": "https://www.ati-ia.com/"
     },
     {
+      "name": "CKD",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "gripper",
+        "vacuum"
+      ],
+      "series": "Electric gripper FFLD · pneumatic handling",
+      "status": "directory",
+      "url": "https://www.ckd.co.jp/"
+    },
+    {
       "name": "Coval",
       "origin": "France",
       "region": "Europe",
@@ -2361,6 +2385,30 @@
       "series": "Vacuum Components",
       "status": "directory",
       "url": "https://www.coval.com/"
+    },
+    {
+      "name": "Gimatic",
+      "origin": "Italy",
+      "region": "Europe",
+      "types": [
+        "gripper",
+        "toolchanger"
+      ],
+      "series": "Electric · pneumatic grippers",
+      "status": "directory",
+      "url": "https://www.gimatic.com/"
+    },
+    {
+      "name": "Koganei",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "gripper",
+        "vacuum"
+      ],
+      "series": "Pneumatic hands · vacuum",
+      "status": "directory",
+      "url": "https://www.koganei.co.jp/"
     },
     {
       "name": "OnRobot",
@@ -2379,6 +2427,29 @@
       "url": "https://onrobot.com/"
     },
     {
+      "name": "Piab",
+      "origin": "Sweden",
+      "region": "Europe",
+      "types": [
+        "vacuum"
+      ],
+      "series": "Vacuum gripping · piCOBOT",
+      "status": "directory",
+      "url": "https://www.piab.com/"
+    },
+    {
+      "name": "PISCO",
+      "origin": "Japan",
+      "region": "Japan",
+      "types": [
+        "vacuum",
+        "gripper"
+      ],
+      "series": "Vacuum & pneumatic gripper components",
+      "status": "directory",
+      "url": "https://www.pisco.co.jp/"
+    },
+    {
       "name": "Robotiq",
       "origin": "Canada",
       "region": "North America",
@@ -2390,6 +2461,17 @@
       "series": "2F · Hand-E · Vacuum · Wrist Camera",
       "status": "directory",
       "url": "https://robotiq.com/"
+    },
+    {
+      "name": "ROBOTIS",
+      "origin": "Korea",
+      "region": "Korea",
+      "types": [
+        "gripper"
+      ],
+      "series": "OpenMANIPULATOR hands · robot grippers",
+      "status": "directory",
+      "url": "https://en.robotis.com/"
     },
     {
       "name": "Schmalz",
@@ -2436,6 +2518,17 @@
       "series": "DELTO DG-2F · DG-3F · DG-5F · Robotic Hands",
       "status": "official-source",
       "url": "https://www.tesollo.com/products"
+    },
+    {
+      "name": "WONIK Robotics",
+      "origin": "Korea",
+      "region": "Korea",
+      "types": [
+        "gripper"
+      ],
+      "series": "Allegro Hand",
+      "status": "directory",
+      "url": "https://wonikrobotics.com/en/"
     },
     {
       "name": "Zimmer Group",
