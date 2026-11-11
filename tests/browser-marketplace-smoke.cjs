@@ -46,7 +46,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert(await page.locator('#robots').isVisible(),'marketplace must be first page');
   // Actual landmark products — clearly separated from uploaded seller inventory.
   assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-product').count(),15,'fifteen representative robot manufacturers in the first row');
-  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card>img[data-rq-photo-fallback]').count(),5,'five licensed real robot photographs are configured');
+  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card>img[data-rq-photo-fallback]').count(),6,'six freely reusable real robot photographs are configured');
   assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-credit').count(),15,'every robot card has a source or an explicit illustration note');
   assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-brand-mark img').count(),3,'three source-verified manufacturer wordmarks are displayed');
   assert.equal(await page.locator('#rqEoatShowcase .rq-featured-product').count(),14,'second row has fourteen gripper and EOAT manufacturers');
@@ -62,7 +62,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.match(fs.readFileSync(path.join(root,'index.html'),'utf8'),/data-rq-featured-maker="Yaskawa"[\s\S]{0,220}Welding_Robot_resized\.jpg/,'Yaskawa real photo source is maintained even when CI deliberately blocks external images');
   assert.equal(await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="KUKA"] img[data-rq-photo-fallback]').count(),1,'KUKA real image with offline fallback is configured');
   assert.match(fs.readFileSync(path.join(root,'index.html'),'utf8'),/data-rq-featured-maker="KUKA"[\s\S]{0,220}KUKA_Robot_and_Target\.jpg/,'KUKA real photo source is maintained even when CI deliberately blocks external images');
-  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-credit[href*="commons.wikimedia.org/wiki/File:"]').count(),5,'all five real-photo cards link to image attribution and licenses');
+  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-credit[href*="commons.wikimedia.org/wiki/File:"]').count(),6,'all six real-photo cards link to original photo and usage terms');
   assert.match(await page.locator('#rqFeaturedNote').innerText(),/not items for sale/i,'reference photos must not be claimed as stock');
   await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="FANUC"]').click();
   assert(await page.locator('#makers').isVisible(),'selected representative photo opens manufacturer directory');
