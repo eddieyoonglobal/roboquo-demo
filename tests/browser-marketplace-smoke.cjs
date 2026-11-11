@@ -359,6 +359,13 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     const pictureTop=await page.locator('#robots .rq-market-discovery-card').first().boundingBox();
     const featureTop=await page.locator('#rqFeaturedShowcase').boundingBox();
     assert(featureTop&&searchTop&&pictureTop&&searchTop.y<featureTop.y&&featureTop.y<pictureTop.y,'mobile shows search, representative robot photos, then equipment categories');
+    const categoryGeometry=await page.locator('#robots .rq-market-discovery-card').first().evaluate(card=>{
+      const cardRect=card.getBoundingClientRect(),photoRect=card.querySelector('img').getBoundingClientRect(),labelRect=card.querySelector('[data-rq-label]').getBoundingClientRect();
+      return {cardW:cardRect.width,photoW:photoRect.width,photoBottom:photoRect.bottom,labelTop:labelRect.top,labelW:labelRect.width};
+    });
+    assert(categoryGeometry.photoW>=categoryGeometry.cardW*.75,'mobile category image fills card width instead of squeezing alongside text: '+JSON.stringify(categoryGeometry));
+    assert(categoryGeometry.labelTop>=categoryGeometry.photoBottom-2,'mobile category label appears BELOW the photo: '+JSON.stringify(categoryGeometry));
+    assert(categoryGeometry.labelW>=categoryGeometry.cardW*.75,'mobile category label has enough width for readable text');
     assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card').count(),15,'mobile robot maker strip contains fifteen recognisable brands');
     const stripScrolling=await page.locator('#rqFeaturedShowcase .rq-featured-track').evaluate(el=>({scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}));
     assert(stripScrolling.scrollWidth>stripScrolling.clientWidth,'mobile featured images scroll horizontally rather than overflow the page');
