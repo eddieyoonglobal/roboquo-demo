@@ -45,17 +45,23 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.waitForFunction(()=>Boolean(document.querySelector('#marketListings .rq-market-empty')),{timeout:15000});
   assert(await page.locator('#robots').isVisible(),'marketplace must be first page');
   // Actual landmark products — clearly separated from uploaded seller inventory.
-  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-product').count(),4,'four representative manufacturers/EOAT cards');
-  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card>img[data-rq-photo-fallback]').count(),3,'three licensed real robot photographs are configured');
-  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-credit').count(),4,'every featured product has a source or explicit illustration note');
+  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-product').count(),6,'six representative manufacturers/EOAT cards');
+  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card>img[data-rq-photo-fallback]').count(),5,'five licensed real robot photographs are configured');
+  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-credit').count(),6,'every featured product has a source or explicit illustration note');
   assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-brand-mark img').count(),3,'three source-verified manufacturer wordmarks are displayed');
   assert.equal(await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="OnRobot"] img[src$="rq-gripper.svg"]').count(),1,'OnRobot uses an illustration until approved images are available');
   const featuredMakers=await page.locator('#rqFeaturedShowcase .rq-featured-card').evaluateAll(els=>els.map(el=>el.dataset.rqFeaturedMaker));
-  assert.deepEqual(featuredMakers,['FANUC','Universal Robots','ABB Robotics','OnRobot'],'hero spotlights only reviewed non-Chinese makers');
+  assert.deepEqual(featuredMakers,['FANUC','Yaskawa','Universal Robots','ABB Robotics','KUKA','OnRobot'],'hero spotlights only reviewed non-Chinese makers');
+  assert.equal(await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="Yaskawa"] img[data-rq-photo-fallback]').count(),1,'Yaskawa real image with offline fallback is configured');
+  assert.match(fs.readFileSync(path.join(root,'index.html'),'utf8'),/data-rq-featured-maker="Yaskawa"[\s\S]{0,220}Welding_Robot_resized\.jpg/,'Yaskawa real photo source is maintained even when CI deliberately blocks external images');
+  assert.equal(await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="KUKA"] img[data-rq-photo-fallback]').count(),1,'KUKA real image with offline fallback is configured');
+  assert.match(fs.readFileSync(path.join(root,'index.html'),'utf8'),/data-rq-featured-maker="KUKA"[\s\S]{0,220}KUKA_Robot_and_Target\.jpg/,'KUKA real photo source is maintained even when CI deliberately blocks external images');
+  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-credit[href*="commons.wikimedia.org/wiki/File:"]').count(),5,'all five real-photo cards link to image attribution and licenses');
   assert.match(await page.locator('#rqFeaturedNote').innerText(),/not items for sale/i,'reference photos must not be claimed as stock');
   await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="FANUC"]').click();
   assert(await page.locator('#makers').isVisible(),'selected representative photo opens manufacturer directory');
   assert.equal(await page.locator('#makerSearch').inputValue(),'FANUC','FANUC photo locates FANUC manufacturer');
+  assert.equal(await page.locator('#makerTypeFilter').inputValue(),'','featured industrial manufacturers are not restricted to collaborative robots');
   assert.equal(await page.locator('#makerGrid .maker-card').count(),1,'FANUC manufacturer search narrows directory');
   await page.evaluate(()=>route('robots'));
   await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="OnRobot"]').click();
@@ -64,6 +70,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#makerSearch').inputValue(),'OnRobot','OnRobot profile is searched');
   await page.locator('[data-maker-tab="robot"]').click();
   await page.locator('#makerSearch').fill('');
+  await page.locator('#makerTypeFilter').selectOption('collaborative'); // Restore cobot default for unrelated catalog smoke tests.
   await page.evaluate(()=>route('robots'));
 
 
@@ -326,7 +333,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     const pictureTop=await page.locator('#robots .rq-market-discovery-card').first().boundingBox();
     const featureTop=await page.locator('#rqFeaturedShowcase').boundingBox();
     assert(featureTop&&searchTop&&pictureTop&&searchTop.y<featureTop.y&&featureTop.y<pictureTop.y,'mobile shows search, representative robot photos, then equipment categories');
-    assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card').count(),4,'mobile representative swipe strip contains four recognisable brands');
+    assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card').count(),6,'mobile representative swipe strip contains six recognisable brands');
     const stripScrolling=await page.locator('#rqFeaturedShowcase .rq-featured-track').evaluate(el=>({scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}));
     assert(stripScrolling.scrollWidth>stripScrolling.clientWidth,'mobile featured images scroll horizontally rather than overflow the page');
     assert(searchTop && pictureTop && searchTop.y<pictureTop.y,'mobile search precedes category image cards');

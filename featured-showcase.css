@@ -1,11 +1,11 @@
-/* Representative product imagery: 3 licensed real photos, 1 explicitly generic EOAT illustration.
+/* Representative product imagery: 5 licensed real photos, 1 explicitly generic EOAT illustration.
  * Brand-name identifiers are not official logo files. Images are not actual seller listings. */
 #robots .rq-featured-showcase{margin:14px auto 17px}
 #robots .rq-featured-title-row{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:11px}
 #robots .rq-featured-title-row .kicker{font-size:10px;letter-spacing:.08em;margin-bottom:3px}
 #robots .rq-featured-title-row h2{font-size:clamp(19px,2.1vw,26px);line-height:1.24;letter-spacing:-.035em;color:#173957;margin:0}
 #robots .rq-featured-note{font-size:11px;color:#64768d;text-align:right;line-height:1.4;max-width:310px}
-#robots .rq-featured-track{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;max-width:100%}
+#robots .rq-featured-track{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;max-width:100%}
 #robots .rq-featured-product{min-width:0;background:#fff;border:1px solid #dbe6ef;border-radius:15px;overflow:hidden;display:flex;flex-direction:column}
 #robots .rq-featured-card{border:0;background:#fff;color:#18395c;cursor:pointer;display:flex;flex-direction:column;text-align:left;padding:0;min-width:0;width:100%;flex:1}
 #robots .rq-featured-brand-mark{position:absolute;z-index:1;left:9px;top:9px;display:inline-flex;align-items:center;justify-content:center;padding:5px 8px;min-height:29px;background:rgba(255,255,255,.95);border-radius:8px;box-shadow:0 2px 8px rgba(18,41,65,.16)}
@@ -24,6 +24,11 @@
 #robots .rq-featured-card:hover .rq-featured-caption strong{color:#1764a4}
 #robots .rq-featured-card:focus-visible,#robots .rq-featured-credit:focus-visible{outline:3px solid #247bc9;outline-offset:-3px;border-radius:6px}
 #robots .rq-featured-product.rq-photo-fallback .rq-featured-card img{object-fit:contain;padding:10px}
+#robots .rq-featured-card[data-rq-featured-maker="Yaskawa"] img{object-position:center 48%}
+#robots .rq-featured-card[data-rq-featured-maker="KUKA"] img{object-position:center 42%}
+@media(min-width:721px) and (max-width:1130px){
+ #robots .rq-featured-track{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
 @media(max-width:720px){
  #robots .rq-featured-showcase{width:100%;max-width:100%;padding:0;margin:7px auto 10px}
  #robots .rq-featured-title-row{padding:0 14px;margin-bottom:8px;align-items:center}

@@ -1,7 +1,7 @@
 /* RoboQuo reference maker strip, not items for sale.
- * Source photos: FANUC CC BY 4.0, UR5e CC BY-SA 4.0, ABB CC BY 2.5.
+ * Source photos: FANUC CC BY 4.0, Yaskawa CC BY-SA 4.0, UR5e CC BY-SA 4.0, ABB CC BY 2.5, KUKA CC BY 4.0.
  * OnRobot image is original generic artwork pending official marketing asset authorization.
- * All four cards navigate to existing manufacturer directory; no seller inventory mutation.
+ * All six cards navigate to existing manufacturer directory; no seller inventory mutation.
  */
 (function(){
 'use strict';
@@ -31,7 +31,8 @@ function openDirectory(brand,kind){
  const region=$('makerRegionFilter');
  if(region)region.value='';
  const type=$('makerTypeFilter');
- if(type&&kind!=='eoat')type.value='collaborative';
+ // Industrial makers (FANUC, Yaskawa, ABB, KUKA) must not be hidden by the cobot-only default.
+ if(type&&kind!=='eoat')type.value='';
  const search=$('makerSearch');
  if(search){search.value=brand;search.dispatchEvent(new Event('input',{bubbles:true}));}
  else region?.dispatchEvent(new Event('change',{bubbles:true}));
