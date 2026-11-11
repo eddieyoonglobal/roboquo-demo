@@ -91,7 +91,7 @@
 </div>
 <div class="hero-actions">
 <button class="primary big" data-i18n="findRobots" data-route="robots">Find Robots</button>
-<button class="secondary big" data-action="sell" data-i18n="sellRobotNow">Sell a Robot</button>
+
 </div>
 <p class="access-note"><strong data-i18n="browseFree">Browse freely.</strong> <span data-i18n="joinWhenNeeded">Join only when you need to inquire, bid or trade.</span></p>
 </div>
@@ -118,8 +118,7 @@
         <strong data-hero-photo-controller>Controller</strong>
       </button>
     </div>
-    <button class="primary wide hero-sell-cta" type="button" data-action="sell" data-hero-sell-cta>Start with Photos</button>
-    <small class="hero-sell-note" data-hero-sell-note>No price or full specifications are required to start.</small>
+
   </div>
 </div>
 </div>
@@ -127,11 +126,11 @@
   <div class="rq-visual-market-heading"><div><div class="kicker">SHOP BY EQUIPMENT</div><h2 id="rqVisualMarketTitle">See it. Find it.</h2><p id="rqVisualMarketSubtitle">Start with the type of robot equipment you need.</p></div></div>
   <div class="rq-visual-market-grid">
     <button type="button" class="rq-visual-market-card" data-rq-market-category="robot">
-      <img src="./assets/rq-robot.svg" alt="" loading="eager" width="640" height="440">
+      <img class="rq-category-real-photo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_robot_CRX-5iA.jpg?width=640" data-rq-photo-fallback="./assets/rq-robot.svg" alt="" loading="eager" width="640" height="440">
       <span class="rq-visual-market-card-info"><strong data-rq-label="robot">Robots</strong><small data-rq-sub="robot">Industrial and collaborative robots</small><b aria-hidden="true">→</b></span>
     </button>
     <button type="button" class="rq-visual-market-card" data-rq-market-category="gripper">
-      <img src="./assets/rq-gripper.svg" alt="" loading="lazy" width="640" height="440">
+      <img class="rq-category-real-photo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG?width=640" data-rq-photo-fallback="./assets/rq-gripper.svg" alt="" loading="lazy" width="640" height="440">
       <span class="rq-visual-market-card-info"><strong data-rq-label="gripper">Grippers & EOAT</strong><small data-rq-sub="gripper">End effectors and tooling</small><b aria-hidden="true">→</b></span>
     </button>
     <button type="button" class="rq-visual-market-card" data-rq-market-category="part">
@@ -140,6 +139,7 @@
     </button>
   </div>
   <p class="rq-visual-disclaimer" id="rqVisualDisclaimer">Illustrative category images, not actual seller listings. Only real seller listings are displayed in the marketplace.</p>
+  <p class="rq-category-photo-credit">Representative product photos, not listings: <a href="https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg" target="_blank" rel="noopener noreferrer">FANUC · Bobjgalindo CC BY 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG" target="_blank" rel="noopener noreferrer">SCHUNK · NearEMPTiness CC BY-SA 4.0</a></p>
 </section>
 <div class="principle-bar">
 <div><strong data-i18n="browse">Browse</strong><span data-i18n="browseSub">Search without signup</span></div>
@@ -153,7 +153,7 @@
 <button class="start-card" data-route="robots"><span class="start-icon">⌕</span><div><strong data-i18n="buyRobot">Buy a Robot</strong><small data-i18n="buyRobotSub">Search used and new robots</small></div><b>→</b></button>
 <button class="start-card" data-route="buy"><span class="start-icon">↗</span><div><strong data-i18n="buyOnline">Buy Online</strong><small data-i18n="buyOnlineSub">Retailers and prices by country</small></div><b>→</b></button>
 <button class="start-card" data-action="solution"><span class="start-icon">◎</span><div><strong data-i18n="buildSolution">Build Your Solution</strong><small data-i18n="buildSolutionSub">Robot → EOAT → vision → service → logistics</small></div><b>→</b></button>
-<button class="start-card" data-action="sell"><span class="start-icon">＋</span><div><strong data-i18n="sellRobot">Sell a Robot</strong><small data-i18n="sellRobotSub">Fixed price or bidding</small></div><b>→</b></button>
+
 <button class="start-card" data-route="makers"><span class="start-icon">⌘</span><div><strong data-i18n="findPeripheral">Find Peripherals</strong><small data-i18n="findPeripheralSub">Grippers, vision, tool changers</small></div><b>→</b></button>
 <button class="start-card" data-route="companies"><span class="start-icon">▦</span><div><strong data-i18n="findCompany">Find a Company</strong><small data-i18n="findCompanySub">Dealers, SIs and service providers</small></div><b>→</b></button>
 <button class="start-card" data-route="projects"><span class="start-icon">↗</span><div><strong data-i18n="postProject">Post a Project</strong><small data-i18n="postProjectSub">Teaching, installation and repair</small></div><b>→</b></button>
@@ -353,12 +353,12 @@
       </button>
       <a class="rq-featured-credit" href="https://onrobot.com/en/products" rel="noopener noreferrer" target="_blank" id="rqOnRobotPhotoNote">Illustration · Official products</a>
     </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+    <article class="rq-featured-product rq-maker-real-photo" role="listitem">
       <button type="button" class="rq-featured-card" data-rq-featured-maker="SCHUNK" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-gripper.svg" alt="Generic generic gripper illustration, not a product photo of SCHUNK" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">SCHUNK</span><span class="rq-featured-caption"><strong>SCHUNK</strong><small>Grippers · Germany</small></span>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG?width=640" data-rq-photo-fallback="./assets/rq-gripper.svg" alt="Actual SCHUNK SVH servo-electric five-finger robot hand photographed at Hannover Messe 2016" width="640" height="440" loading="lazy" decoding="async">
+        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">SCHUNK</span><span class="rq-featured-caption"><strong>SCHUNK</strong><small>SVH 5-finger hand · Germany</small></span>
       </button>
-      <a class="rq-featured-credit" href="https://schunk.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
+      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG" rel="noopener noreferrer" target="_blank">NearEMPTiness · CC BY-SA 4.0</a>
     </article>
     <article class="rq-featured-product rq-maker-illustration" role="listitem">
       <button type="button" class="rq-featured-card" data-rq-featured-maker="Zimmer Group" data-rq-featured-kind="eoat">
@@ -374,12 +374,12 @@
       </button>
       <a class="rq-featured-credit" href="https://www.smcworld.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
     </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+    <article class="rq-featured-product rq-maker-real-photo" role="listitem">
       <button type="button" class="rq-featured-card" data-rq-featured-maker="Schmalz" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-vacuum-eoat.svg" alt="Generic generic gripper illustration, not a product photo of Schmalz" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Schmalz</span><span class="rq-featured-caption"><strong>Schmalz</strong><small>Vacuum EOAT · Germany</small></span>
+        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Schmalz_Vakuum-Komponenten_allgemein.jpg?width=640" data-rq-photo-fallback="./assets/rq-vacuum-eoat.svg" alt="Real Schmalz vacuum gripping components shown in manufacturer-licensed product reference photograph" width="640" height="440" loading="lazy" decoding="async">
+        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Schmalz</span><span class="rq-featured-caption"><strong>Schmalz</strong><small>Vacuum grippers · Germany</small></span>
       </button>
-      <a class="rq-featured-credit" href="https://www.schmalz.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
+      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Schmalz_Vakuum-Komponenten_allgemein.jpg" rel="noopener noreferrer" target="_blank">J. Schmalz GmbH · CC BY-SA 3.0</a>
     </article>
     <article class="rq-featured-product rq-maker-illustration" role="listitem">
       <button type="button" class="rq-featured-card" data-rq-featured-maker="Piab" data-rq-featured-kind="eoat">
@@ -447,23 +447,16 @@
   </div>
 </section>
 <div class="wrap page-head rq-market-heading"><div class="rq-market-heading-copy"><div class="kicker">ROBOQUO MARKETPLACE</div><h1 data-i18n="marketTitle">Buy &amp; sell robots and parts</h1><p data-i18n="marketDesc">New or used. Find an item or post yours in a few steps.</p></div><figure class="rq-market-heading-photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_robot_CRX-5iA.jpg?width=640" alt="Actual FANUC CRX-5iA collaborative robot reference photo" width="960" height="1443" decoding="async" loading="eager"><figcaption><a href="https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg" target="_blank" rel="noopener noreferrer">Bobjgalindo · CC BY 4.0</a></figcaption></figure></div>
-<div class="wrap rq-market-quickstart" id="rqMarketQuickStart" aria-label="Buy or sell">
-  <button type="button" id="rqBrowseShortcut" class="rq-market-choice rq-market-choice-buy">
-    <img class="rq-market-action-thumb" src="./assets/rq-robot.svg" alt="" loading="eager" width="92" height="65"><span class="rq-choice-content"><strong>Find an item</strong><small>Browse new and used robots &amp; parts</small></span><span class="rq-choice-arrow" aria-hidden="true">→</span>
-  </button>
-  <button type="button" id="rqSellShortcut" class="rq-market-choice rq-market-choice-sell">
-    <img class="rq-market-action-thumb" src="./assets/rq-gripper.svg" alt="" loading="eager" width="92" height="65"><span class="rq-choice-content"><strong>Sell an item</strong><small>Upload photos and set your price</small></span><span class="rq-choice-arrow" aria-hidden="true">→</span>
-  </button>
-</div>
+
 <section class="wrap rq-market-discovery" aria-labelledby="rqMarketDiscoveryTitle">
   <div class="rq-discovery-header"><div><div class="kicker">DISCOVER BY CATEGORY</div><h2 id="rqMarketDiscoveryTitle">Browse by equipment</h2></div><button type="button" id="rqVisualClear" class="rq-discovery-clear">Show all items</button></div>
   <nav class="rq-market-discovery-grid" aria-label="Equipment category">
     <button class="rq-market-discovery-card" type="button" data-rq-market-category="robot" aria-pressed="false">
-      <img src="./assets/rq-robot.svg" width="640" height="440" alt="" loading="eager">
+      <img class="rq-category-real-photo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_robot_CRX-5iA.jpg?width=640" data-rq-photo-fallback="./assets/rq-robot.svg" width="640" height="440" alt="" loading="eager">
       <span data-rq-label="robot">Robots</span><span class="rq-category-arrow" aria-hidden="true">→</span>
     </button>
     <button class="rq-market-discovery-card" type="button" data-rq-market-category="gripper" aria-pressed="false">
-      <img src="./assets/rq-gripper.svg" width="640" height="440" alt="" loading="eager">
+      <img class="rq-category-real-photo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG?width=640" data-rq-photo-fallback="./assets/rq-gripper.svg" width="640" height="440" alt="" loading="lazy">
       <span data-rq-label="gripper">Grippers &amp; EOAT</span><span class="rq-category-arrow" aria-hidden="true">→</span>
     </button>
     <button class="rq-market-discovery-card" type="button" data-rq-market-category="part" aria-pressed="false">
@@ -472,6 +465,7 @@
     </button>
   </nav>
   <p class="rq-discovery-note" id="rqDiscoveryNote">Illustrations help you choose a category. Only real seller photos and listings appear below.</p>
+  <p class="rq-category-photo-credit">Robot / gripper photo references: <a href="https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg" target="_blank" rel="noopener noreferrer">FANUC CC BY 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG" target="_blank" rel="noopener noreferrer">SCHUNK CC BY-SA 4.0</a></p>
 </section>
 <div class="wrap market-toolbar" id="rqMarketSearchArea">
 <div class="search-field"><span>⌕</span><input data-i18n-placeholder="marketSearchPh" id="marketSearch" placeholder="Search maker, model or location"/></div>

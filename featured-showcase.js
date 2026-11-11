@@ -52,11 +52,12 @@ function init(){
  document.querySelectorAll('.rq-featured-card[data-rq-featured-maker]').forEach(btn=>{
   btn.addEventListener('click',()=>openDirectory(btn.dataset.rqFeaturedMaker,btn.dataset.rqFeaturedKind));
  });
- document.querySelectorAll('.rq-featured-card img[data-rq-photo-fallback]').forEach(img=>{
+ document.querySelectorAll('.rq-featured-card img[data-rq-photo-fallback],.rq-category-real-photo[data-rq-photo-fallback]').forEach(img=>{
   const useFallback=()=>{
    if(img.dataset.photoFallbackApplied==='true')return;
    img.dataset.photoFallbackApplied='true';
    img.closest('.rq-featured-product')?.classList.add('rq-photo-fallback');
+   img.classList.add('rq-category-photo-fallback');
    img.src=img.dataset.rqPhotoFallback;
    img.alt='Generic illustration: licensed maker photo currently unavailable';
   };

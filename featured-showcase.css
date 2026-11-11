@@ -121,3 +121,10 @@
  #robots .rq-featured-product{flex-basis:138px;width:138px}
  #robots .rq-featured-card>img{height:92px}
 }
+
+/* Real EOAT product photos: preserve image proportions, foreground and credits. */
+#robots .rq-maker-real-photo .rq-featured-card>img{object-fit:cover;object-position:center;background:#edf3f8;padding:0}
+#robots .rq-maker-real-photo .rq-featured-card[data-rq-featured-maker="SCHUNK"]>img{object-position:center 48%}
+#robots .rq-maker-real-photo .rq-featured-card[data-rq-featured-maker="Schmalz"]>img{object-position:center}
+#robots .rq-maker-real-photo .rq-featured-credit{text-decoration:underline}
+#robots .rq-maker-real-photo.rq-photo-fallback .rq-featured-card>img{object-fit:contain;padding:8px}

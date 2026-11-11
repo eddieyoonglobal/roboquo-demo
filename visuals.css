@@ -120,3 +120,15 @@
  #robots .rq-category-arrow{position:absolute;right:8px;bottom:7px;font-size:12px}
  #robots .rq-discovery-note{font-size:9px}
 }
+
+/* 2026-11-11: licensed actual product photos for visual robot/gripper categories. */
+#home .rq-visual-market-card>img.rq-category-real-photo{object-fit:cover;object-position:center 45%;filter:saturate(1.06)}
+#home .rq-visual-market-card[data-rq-market-category="gripper"]>img.rq-category-real-photo{object-position:center 48%}
+#robots .rq-market-discovery-card>img.rq-category-real-photo{object-fit:cover;object-position:center;border:1px solid #d5e3ee;background:#f2f7fc}
+#home .rq-visual-market-card>img.rq-category-photo-fallback,#robots .rq-market-discovery-card>img.rq-category-photo-fallback{object-fit:contain;padding:5px;filter:none;background:#e7f2fb}
+.rq-category-photo-credit{color:#79899a;font-size:9px;line-height:1.5;letter-spacing:0;margin:5px 0 12px}
+.rq-category-photo-credit a{color:#4b6a88;text-underline-offset:2px}
+#robots .rq-category-photo-credit{margin:4px auto 8px}
+#home .hero-actions{display:flex;align-items:center;justify-content:flex-start}
+#home .hero-actions .primary{min-width:165px}
+@media(max-width:680px){#home .hero-actions .primary{width:100%}.rq-category-photo-credit{font-size:8px;line-height:1.45}}

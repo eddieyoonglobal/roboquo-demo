@@ -94,10 +94,8 @@
     if(nav){
       nav.innerHTML=`
         <a data-route="robots" href="#robots">${copy.find}</a>
-        <button type="button" data-action="sell">${copy.post}</button>
         <a data-route="about" href="#about">${copy.help}</a>`;
       $$('[data-route]',nav).forEach(a=>a.addEventListener('click',e=>{e.preventDefault();route(a.dataset.route)}));
-      const post=$('[data-action="sell"]',nav);if(post){post.dataset.v24sell='1';post.addEventListener('click',()=>window.rqStartSell?.());}
     }
     const mobile=$('.mobile-nav');
     if(mobile){
@@ -168,7 +166,6 @@
               <span class="eyebrow">${tx('eyebrowSell')}</span>
               <h3>${tx('sellCardTitle')}</h3>
               <p>${tx('sellCardBody')}</p>
-              <button class="secondary" data-action="sell">${tx('heroSecondary')}</button>
               <div class="v24-metric-row"><span>${tx('nameplate')}</span><span>${tx('detailHours')}</span><span>${tx('detailShipping')}</span></div>
             </article>
             <article class="v24-action-card">
@@ -226,7 +223,7 @@
             <div class="kicker">${tx('kickerSellGlobal')}</div>
             <h2>${tx('wizardTitle')}</h2>
             <p>${tx('wizardBody')}</p>
-            <div class="hero-actions" style="margin-top:18px"><button class="primary big" data-action="sell">${tx('heroSecondary')}</button><button class="secondary big" data-route="companies">${tx('companies')}</button></div>
+            <div class="hero-actions" style="margin-top:18px"><button class="secondary big" data-route="companies">${tx('companies')}</button></div>
           </div>
           <div class="v24-sell-checks">
             <span>✓ ${tx('nameplate')}</span>
