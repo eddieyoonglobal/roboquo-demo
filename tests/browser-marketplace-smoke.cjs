@@ -333,7 +333,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
     const pictureTop=await page.locator('#robots .rq-market-discovery-card').first().boundingBox();
     const featureTop=await page.locator('#rqFeaturedShowcase').boundingBox();
     assert(featureTop&&searchTop&&pictureTop&&searchTop.y<featureTop.y&&featureTop.y<pictureTop.y,'mobile shows search, representative robot photos, then equipment categories');
-    assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card').count(),4,'mobile representative swipe strip contains four recognisable brands');
+    assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card').count(),6,'mobile representative swipe strip contains six recognisable brands');
     const stripScrolling=await page.locator('#rqFeaturedShowcase .rq-featured-track').evaluate(el=>({scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}));
     assert(stripScrolling.scrollWidth>stripScrolling.clientWidth,'mobile featured images scroll horizontally rather than overflow the page');
     assert(searchTop && pictureTop && searchTop.y<pictureTop.y,'mobile search precedes category image cards');
