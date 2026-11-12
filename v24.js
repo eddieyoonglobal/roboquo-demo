@@ -85,11 +85,13 @@
   function patchNav(){
     const locale=lang();
     const navCopy={
-      ko:{find:'상품 찾기',post:'상품 등록',help:'이용 안내',chat:'채팅'},
-      ja:{find:'商品を探す',post:'出品する',help:'ご利用ガイド',chat:'チャット'},
-      en:{find:'Browse items',post:'Post an item',help:'How it works',chat:'Messages'}
+      ko:{find:'구매',post:'판매 등록',help:'이용 안내',chat:'채팅'},
+      ja:{find:'購入',post:'出品する',help:'ご利用ガイド',chat:'チャット'},
+      en:{find:'Buy equipment',post:'Sell equipment',help:'How it works',chat:'Messages'}
     };
     const copy=navCopy[locale]||navCopy.en;
+    const topSell=$('.header-actions [data-action="sell"]');
+    if(topSell)topSell.textContent=copy.post;
     const nav=$('.desktop-nav');
     if(nav){
       nav.innerHTML=`
@@ -109,11 +111,11 @@
     }
   }
   function patchHero(){
-    const title=$('#home .hero-copy h1'); if(title) title.innerHTML='Robots.<br><span>Ready to trade.</span>'; // Brand headline stays English in every locale
+    const title=$('#home .hero-copy h1'); if(title) title.innerHTML='Buy &amp; Sell Robots.<br><span>Fast and Simple.</span>'; // Brand headline stays English in every locale
     const lead=$('#home .local-headline'); if(lead) lead.textContent=tx('heroLead');
     const body=$('#home .hero-desc'); if(body) body.textContent=tx('heroBody');
     const input=$('#globalSearch'); if(input) input.placeholder=tx('heroSearch');
-    const primary=$('#home .hero-actions .primary'); if(primary){primary.textContent=tx('heroPrimary'); primary.onclick=()=>route('robots');}
+    const primary=$('#home .hero-actions .primary:not([data-rq-quick-action])'); if(primary){primary.textContent=tx('heroPrimary'); primary.onclick=()=>route('robots');}
     const secondary=$('#home .hero-actions .secondary'); if(secondary){secondary.textContent=tx('heroSecondary'); secondary.onclick=()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow());}
     if(!$('#home .hero-trust')){
       $('.hero-copy .hero-actions')?.insertAdjacentHTML('afterend',`<div class="hero-trust"><span>✓ ${tx('trust1')}</span><span>✓ ${tx('trust2')}</span><span>✓ ${tx('trust3')}</span><span>✓ ${tx('trust4')}</span></div>`);
