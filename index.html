@@ -31,6 +31,8 @@
 <link href="mobile-market.css" rel="stylesheet"/>
 <link href="featured-showcase.css" rel="stylesheet"/>
 <link href="quote-market.css" rel="stylesheet"/>
+<link href="simple-market.css" rel="stylesheet"/>
+<script>try{localStorage.removeItem("rqLangV21")}catch(e){}</script>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -59,6 +61,8 @@
 <header class="site-header">
 <a aria-label="RoboQuo home" class="brand" data-route="home" href="#home"><img class="rq-site-logo" src="./assets/rq-brand.svg" alt="RoboQuo" width="186" height="43"></a>
 <nav class="desktop-nav">
+<a data-route="robots" href="#robots">Buy</a>
+<a href="#sell" data-rq-quick-action="sell">Sell</a>
 <a data-i18n="navRobots" data-route="robots" href="#robots">Robots</a>
 <a data-i18n="navCategories" data-route="categories" href="#categories">Categories</a>
 <a data-i18n="navBuy" data-route="buy" href="#buy">Where to Buy</a>
@@ -84,13 +88,14 @@
 <div class="kicker">ROBOQUO</div>
 <h1>Robots.<br/><span>Ready to trade.</span></h1>
 <p class="local-headline" data-i18n="localHeadline">Buy, sell, and connect with the people who make robots work.</p>
-<p class="hero-desc" data-i18n="heroDesc">Find, buy and sell robots, then connect with peripherals, suppliers and experts in one simple flow.</p>
+<p class="hero-desc" data-i18n="heroDesc">Buy or sell used robots and automation equipment.</p>
 <div class="hero-search">
 <div class="search-field"><span aria-hidden="true">⌕</span><input aria-label="Search RoboQuo" data-i18n-placeholder="searchPlaceholder" id="globalSearch" placeholder="FANUC CRX, OnRobot RG2, robot teaching..."/></div>
 <button class="primary" data-i18n="search" id="searchBtn">Search</button>
 </div>
 <div class="hero-actions">
-<button class="primary big" data-i18n="findRobots" data-route="robots">Find Robots</button>
+<button class="primary big" data-rq-quick-action="buy" type="button">Buy Robots</button>
+<button class="primary big" data-rq-quick-action="sell" type="button">Sell Robots &amp; Parts</button>
 
 </div>
 <p class="access-note"><strong data-i18n="browseFree">Browse freely.</strong> <span data-i18n="joinWhenNeeded">Join only when you need to inquire, bid or trade.</span></p>
@@ -609,5 +614,6 @@
 <script src="mobile-market.js"></script>
 <script src="featured-showcase.js"></script>
 <script src="quote-market.js"></script>
+<script src="simple-market.js"></script>
 </body>
 </html>
