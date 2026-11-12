@@ -209,6 +209,12 @@
 <div class="wrap category-section-head application-head"><div><div class="kicker">APPLICATIONS</div><h2 data-i18n="applicationTitle">Applications</h2></div><p data-i18n="applicationDesc">Welding, painting, palletizing, machine tending, inspection and more.</p></div>
 <div class="wrap category-grid application-grid" id="applicationGrid"></div>
 </section>
+<div class="wrap page-head rq-market-heading"><div class="rq-market-heading-copy"><div class="kicker">ROBOQUO MARKETPLACE</div><h1 data-i18n="marketTitle">Buy &amp; sell robots and parts</h1><p data-i18n="marketDesc">New or used. Find an item or post yours in a few steps.</p>
+<div class="rq-market-primary-actions" aria-label="Marketplace actions">
+<button type="button" data-rq-quick-action="buy" class="rq-market-buy-button">Buy equipment</button>
+<button type="button" data-rq-quick-action="sell" class="rq-market-sell-button">Sell equipment</button>
+</div></div></div>
+
 <section class="page" id="robots">
 <div class="rq-mobile-market-search" id="rqMobileMarketSearch">
   <label class="rq-mobile-search-field" for="rqMobileQuery">
@@ -223,245 +229,15 @@
   <button type="button" data-rq-mobile-condition="new" aria-pressed="false">新品</button>
   <button type="button" data-rq-mobile-action="brands" aria-pressed="false">メーカー</button>
 </nav>
-<section class="wrap rq-featured-showcase" id="rqFeaturedShowcase" aria-labelledby="rqFeaturedTitle">
-  <div class="rq-featured-title-row">
-    <div><div class="kicker">REAL ROBOT PHOTOS</div><h2 id="rqFeaturedTitle">Explore iconic robot makers</h2></div>
-    <span class="rq-featured-note" id="rqFeaturedNote">Manufacturer references · not seller inventory</span>
-    <nav class="rq-maker-arrows" aria-label="Robot brands">
-      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqRobotMakerTrack" data-rq-scroll="-1" aria-label="Scroll robot makers left">‹</button>
-      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqRobotMakerTrack" data-rq-scroll="1" aria-label="Scroll robot makers right">›</button>
-    </nav>
-  </div>
-  <div class="rq-featured-track" id="rqRobotMakerTrack" role="list" aria-label="Representative industrial and collaborative robot makers">
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="FANUC" data-rq-featured-kind="robot">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_robot_CRX-5iA.jpg?width=640" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Actual FANUC CRX-5iA collaborative robot photographed at an exhibition" width="640" height="480" loading="eager" decoding="async">
-        <span class="rq-featured-brand-mark"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_logo.svg" alt="" loading="lazy" width="80" height="20"></span><span class="rq-featured-caption"><strong>FANUC</strong><small>CRX-5iA · Japan</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg" rel="noopener noreferrer" target="_blank">Bobjgalindo · CC BY 4.0</a>
-    </article>
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Yaskawa" data-rq-featured-kind="robot">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Welding_Robot_resized.jpg?width=640" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Actual Yaskawa Motoman industrial welding robot at a manufacturing facility" width="640" height="480" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">YASKAWA</span><span class="rq-featured-caption"><strong>Yaskawa</strong><small>MOTOMAN · Japan</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Welding_Robot_resized.jpg" rel="noopener noreferrer" target="_blank">PT Metindo Erasakti · CC BY-SA 4.0</a>
-    </article>
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Universal Robots" data-rq-featured-kind="robot">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Robot_Lengan_Industri_UR5e.jpg/960px-Robot_Lengan_Industri_UR5e.jpg" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Actual Universal Robots UR5e collaborative robot in an industrial laboratory" width="960" height="720" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Universal_robots_logo.svg" alt="" loading="lazy" width="22" height="22"></span><span class="rq-featured-caption"><strong>Universal Robots</strong><small>UR5e · Denmark</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Robot_Lengan_Industri_UR5e.jpg" rel="noopener noreferrer" target="_blank">D. M. Imtiyaz · CC BY-SA 4.0</a>
-    </article>
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="ABB Robotics" data-rq-featured-kind="robot">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Robot_ABB_2.jpg/960px-Robot_ABB_2.jpg" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Actual ABB industrial robot arms on an automation line; not a GoFa product" width="960" height="720" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/ABB_logo.svg" alt="" loading="lazy" width="56" height="22"></span><span class="rq-featured-caption"><strong>ABB Robotics</strong><small>Industrial robot · Europe</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Robot_ABB_2.jpg" rel="noopener noreferrer" target="_blank">© Peter Potrowl · CC BY 2.5</a>
-    </article>
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="KUKA" data-rq-featured-kind="robot">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/KUKA_Robot_and_Target.jpg?width=640" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Actual orange KUKA industrial robot arm handling a research target at CERN" width="640" height="480" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">KUKA</span><span class="rq-featured-caption"><strong>KUKA</strong><small>Industrial robots · Germany</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:KUKA_Robot_and_Target.jpg" rel="noopener noreferrer" target="_blank">CERN / Maximilien Brice · CC BY 4.0</a>
-    </article>
-
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Kawasaki Robotics" data-rq-featured-kind="robot">
-        <img src="./assets/rq-robot.svg" alt="Generic robotic arm illustration, not a product photo of Kawasaki Robotics" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Kawasaki Robotics</span><span class="rq-featured-caption"><strong>Kawasaki Robotics</strong><small>Kawasaki industrial · Japan</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://kawasakirobotics.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="DENSO Robotics" data-rq-featured-kind="robot">
-        <img src="./assets/rq-robot.svg" alt="Generic robotic arm illustration, not a product photo of DENSO Robotics" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">DENSO Robotics</span><span class="rq-featured-caption"><strong>DENSO Robotics</strong><small>Compact &amp; SCARA · Japan</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.densorobotics.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Doosan Robotics" data-rq-featured-kind="robot">
-        <img src="./assets/rq-robot.svg" alt="Generic robotic arm illustration, not a product photo of Doosan Robotics" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Doosan Robotics</span><span class="rq-featured-caption"><strong>Doosan Robotics</strong><small>Collaborative · Korea</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.doosanrobotics.com/en/product-solutions/product" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Nachi-Fujikoshi" data-rq-featured-kind="robot">
-        <img src="./assets/rq-robot.svg" alt="Generic robotic arm illustration, not a product photo of Nachi-Fujikoshi" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Nachi-Fujikoshi</span><span class="rq-featured-caption"><strong>Nachi-Fujikoshi</strong><small>Industrial · Japan</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.nachirobotics.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="OMRON Robotics" data-rq-featured-kind="robot">
-        <img src="./assets/rq-robot.svg" alt="Generic robotic arm illustration, not a product photo of OMRON Robotics" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">OMRON Robotics</span><span class="rq-featured-caption"><strong>OMRON Robotics</strong><small>SCARA &amp; cobots · Japan</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://automation.omron.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Epson Robots" data-rq-featured-kind="robot">
-        <img src="./assets/rq-robot.svg" alt="Generic robotic arm illustration, not a product photo of Epson Robots" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Epson Robots</span><span class="rq-featured-caption"><strong>Epson Robots</strong><small>SCARA · Japan</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://epson.com/robots" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Stäubli Robotics" data-rq-featured-kind="robot">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Staeubli_Robots_line.jpg?width=640" data-rq-photo-fallback="./assets/rq-robot.svg" alt="Photograph of actual Stäubli industrial robots on a manufacturing line" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Stäubli Robotics</span><span class="rq-featured-caption"><strong>Stäubli Robotics</strong><small>Industrial · Switzerland</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Staeubli_Robots_line.jpg" rel="noopener noreferrer" target="_blank">Clemenspool · CC0 photo</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Comau" data-rq-featured-kind="robot">
-        <img src="./assets/rq-robot.svg" alt="Generic robotic arm illustration, not a product photo of Comau" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Comau</span><span class="rq-featured-caption"><strong>Comau</strong><small>Industrial · Italy</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.comau.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Rainbow Robotics" data-rq-featured-kind="robot">
-        <img src="./assets/rq-robot.svg" alt="Generic robotic arm illustration, not a product photo of Rainbow Robotics" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Rainbow Robotics</span><span class="rq-featured-caption"><strong>Rainbow Robotics</strong><small>Collaborative · Korea</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://rainbow-robotics.com/en/products/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="HD Hyundai Robotics" data-rq-featured-kind="robot">
-        <img src="./assets/rq-robot.svg" alt="Generic robotic arm illustration, not a product photo of HD Hyundai Robotics" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">HD Hyundai Robotics</span><span class="rq-featured-caption"><strong>HD Hyundai Robotics</strong><small>Industrial · Korea</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.hyundai-robotics.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-  </div>
-</section>
-<section class="wrap rq-featured-showcase rq-eoat-showcase" id="rqEoatShowcase" aria-labelledby="rqEoatTitle">
-  <div class="rq-featured-title-row">
-    <div><div class="kicker">GRIPPERS / EOAT</div><h2 id="rqEoatTitle">Explore gripper and EOAT makers</h2></div>
-    <span class="rq-featured-note" id="rqEoatNote">Maker references · not seller listings</span>
-    <nav class="rq-maker-arrows" aria-label="Gripper brands">
-      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqEoatMakerTrack" data-rq-scroll="-1" aria-label="Scroll gripper makers left">‹</button>
-      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqEoatMakerTrack" data-rq-scroll="1" aria-label="Scroll gripper makers right">›</button>
-    </nav>
-  </div>
-  <div class="rq-featured-track" id="rqEoatMakerTrack" role="list" aria-label="Representative gripper and EOAT manufacturers">
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="OnRobot" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-gripper.svg" alt="Illustrative robotic gripper; not an actual OnRobot RG2 or RG6 product photograph" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">OnRobot</span><span class="rq-featured-caption"><strong>OnRobot</strong><small>RG2 · RG6 · 2FG7</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://onrobot.com/en/products" rel="noopener noreferrer" target="_blank" id="rqOnRobotPhotoNote">Illustration · Official products</a>
-    </article>
-    <article class="rq-featured-product rq-maker-real-photo" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="SCHUNK" data-rq-featured-kind="eoat">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG?width=640" data-rq-photo-fallback="./assets/rq-gripper.svg" alt="Actual SCHUNK SVH servo-electric five-finger robot hand photographed at Hannover Messe 2016" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">SCHUNK</span><span class="rq-featured-caption"><strong>SCHUNK</strong><small>SVH 5-finger hand · Germany</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG" rel="noopener noreferrer" target="_blank">NearEMPTiness · CC BY-SA 4.0</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Zimmer Group" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-gripper.svg" alt="Generic generic gripper illustration, not a product photo of Zimmer Group" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Zimmer Group</span><span class="rq-featured-caption"><strong>Zimmer Group</strong><small>Electric &amp; pneumatic · Germany</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.zimmer-group.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="SMC" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-gripper.svg" alt="Generic generic gripper illustration, not a product photo of SMC" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">SMC</span><span class="rq-featured-caption"><strong>SMC</strong><small>Pneumatic &amp; vacuum · Japan</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.smcworld.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-real-photo" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Schmalz" data-rq-featured-kind="eoat">
-        <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Schmalz_Vakuum-Komponenten_allgemein.jpg?width=640" data-rq-photo-fallback="./assets/rq-vacuum-eoat.svg" alt="Real Schmalz vacuum gripping components shown in manufacturer-licensed product reference photograph" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Schmalz</span><span class="rq-featured-caption"><strong>Schmalz</strong><small>Vacuum grippers · Germany</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://commons.wikimedia.org/wiki/File:Schmalz_Vakuum-Komponenten_allgemein.jpg" rel="noopener noreferrer" target="_blank">J. Schmalz GmbH · CC BY-SA 3.0</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Piab" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-vacuum-eoat.svg" alt="Generic generic gripper illustration, not a product photo of Piab" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Piab</span><span class="rq-featured-caption"><strong>Piab</strong><small>Vacuum EOAT · Sweden</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.piab.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="CKD" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-gripper.svg" alt="Generic generic gripper illustration, not a product photo of CKD" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">CKD</span><span class="rq-featured-caption"><strong>CKD</strong><small>Electric &amp; pneumatic · Japan</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.ckd.co.jp/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Gimatic" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-gripper.svg" alt="Generic generic gripper illustration, not a product photo of Gimatic" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Gimatic</span><span class="rq-featured-caption"><strong>Gimatic</strong><small>Electric &amp; pneumatic · Italy</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.gimatic.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Koganei" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-gripper.svg" alt="Generic generic gripper illustration, not a product photo of Koganei" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Koganei</span><span class="rq-featured-caption"><strong>Koganei</strong><small>Pneumatic · Japan</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.koganei.co.jp/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Tesollo" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-robotic-hand.svg" alt="Generic generic gripper illustration, not a product photo of Tesollo" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">Tesollo</span><span class="rq-featured-caption"><strong>Tesollo</strong><small>Multi-finger hands · Korea</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.tesollo.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="WONIK Robotics" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-robotic-hand.svg" alt="Generic generic gripper illustration, not a product photo of WONIK Robotics" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">WONIK Robotics</span><span class="rq-featured-caption"><strong>WONIK Robotics</strong><small>Allegro Hand · Korea</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://wonikrobotics.com/en/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="AIDIN Robotics" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-gripper.svg" alt="Generic generic gripper illustration, not a product photo of AIDIN Robotics" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">AIDIN Robotics</span><span class="rq-featured-caption"><strong>AIDIN Robotics</strong><small>SusGrip · Korea</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.aidinrobotics.co.kr/en/smart-gripper" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="ROBOTIS" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-robotic-hand.svg" alt="Generic generic gripper illustration, not a product photo of ROBOTIS" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">ROBOTIS</span><span class="rq-featured-caption"><strong>ROBOTIS</strong><small>Robot hands · Korea</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://en.robotis.com/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="PISCO" data-rq-featured-kind="eoat">
-        <img src="./assets/rq-vacuum-eoat.svg" alt="Generic generic gripper illustration, not a product photo of PISCO" width="640" height="440" loading="lazy" decoding="async">
-        <span class="rq-featured-brand-mark rq-featured-brand-mark--text">PISCO</span><span class="rq-featured-caption"><strong>PISCO</strong><small>Vacuum components · Japan</small></span>
-      </button>
-      <a class="rq-featured-credit" href="https://www.pisco.co.jp/" rel="noopener noreferrer" target="_blank">Illustration · Maker website</a>
-    </article>
-  </div>
-</section>
-<div class="wrap page-head rq-market-heading"><div class="rq-market-heading-copy"><div class="kicker">ROBOQUO MARKETPLACE</div><h1 data-i18n="marketTitle">Buy &amp; sell robots and parts</h1><p data-i18n="marketDesc">New or used. Find an item or post yours in a few steps.</p></div><figure class="rq-market-heading-photo"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_robot_CRX-5iA.jpg?width=640" alt="Actual FANUC CRX-5iA collaborative robot reference photo" width="960" height="1443" decoding="async" loading="eager"><figcaption><a href="https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg" target="_blank" rel="noopener noreferrer">Bobjgalindo · CC BY 4.0</a></figcaption></figure></div>
-
 <section class="wrap rq-market-discovery" aria-labelledby="rqMarketDiscoveryTitle">
   <div class="rq-discovery-header"><div><div class="kicker">DISCOVER BY CATEGORY</div><h2 id="rqMarketDiscoveryTitle">Browse by equipment</h2></div><button type="button" id="rqVisualClear" class="rq-discovery-clear">Show all items</button></div>
   <nav class="rq-market-discovery-grid" aria-label="Equipment category">
     <button class="rq-market-discovery-card" type="button" data-rq-market-category="robot" aria-pressed="false">
-      <img class="rq-category-real-photo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_robot_CRX-5iA.jpg?width=640" data-rq-photo-fallback="./assets/rq-robot.svg" width="640" height="440" alt="" loading="eager">
+      <img src="./assets/rq-robot.svg" alt="" width="64" height="64" loading="lazy">
       <span data-rq-label="robot">Robots</span><span class="rq-category-arrow" aria-hidden="true">→</span>
     </button>
     <button class="rq-market-discovery-card" type="button" data-rq-market-category="gripper" aria-pressed="false">
-      <img class="rq-category-real-photo" src="https://commons.wikimedia.org/wiki/Special:FilePath/Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG?width=640" data-rq-photo-fallback="./assets/rq-gripper.svg" width="640" height="440" alt="" loading="lazy">
+      <img src="./assets/rq-gripper.svg" alt="" width="64" height="64" loading="lazy">
       <span data-rq-label="gripper">Grippers &amp; EOAT</span><span class="rq-category-arrow" aria-hidden="true">→</span>
     </button>
     <button class="rq-market-discovery-card" type="button" data-rq-market-category="part" aria-pressed="false">
@@ -469,8 +245,6 @@
       <span data-rq-label="part">Parts &amp; Controllers</span><span class="rq-category-arrow" aria-hidden="true">→</span>
     </button>
   </nav>
-  <p class="rq-discovery-note" id="rqDiscoveryNote">Illustrations help you choose a category. Only real seller photos and listings appear below.</p>
-  <p class="rq-category-photo-credit">Robot / gripper photo references: <a href="https://commons.wikimedia.org/wiki/File:Fanuc_robot_CRX-5iA.jpg" target="_blank" rel="noopener noreferrer">FANUC CC BY 4.0</a> · <a href="https://commons.wikimedia.org/wiki/File:Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG" target="_blank" rel="noopener noreferrer">SCHUNK CC BY-SA 4.0</a></p>
 </section>
 <div class="wrap market-toolbar" id="rqMarketSearchArea">
 <div class="search-field"><span>⌕</span><input data-i18n-placeholder="marketSearchPh" id="marketSearch" placeholder="Search maker, model or location"/></div>
@@ -480,6 +254,118 @@
 <select id="conditionFilter" aria-label="Condition"><option value="">All conditions</option><option value="new">New</option><option value="used">Used</option><option value="refurbished">Refurbished</option><option value="for_parts">For parts</option></select>
 </div>
 <div class="wrap listing-grid market" id="marketListings"></div>
+<section class="wrap rq-featured-showcase" id="rqFeaturedShowcase" aria-labelledby="rqFeaturedTitle">
+  <div class="rq-featured-title-row">
+    <div><div class="kicker">ROBOT BRANDS</div><h2 id="rqFeaturedTitle">Explore iconic robot makers</h2></div>
+    <span class="rq-featured-note" id="rqFeaturedNote"></span>
+    <nav class="rq-maker-arrows" aria-label="Robot brands">
+      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqRobotMakerTrack" data-rq-scroll="-1" aria-label="Scroll robot makers left">‹</button>
+      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqRobotMakerTrack" data-rq-scroll="1" aria-label="Scroll robot makers right">›</button>
+    </nav>
+  </div>
+  <div class="rq-featured-track" id="rqRobotMakerTrack" role="list" aria-label="Representative industrial and collaborative robot makers">
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="FANUC" data-rq-featured-kind="robot" aria-label="Filter listings by FANUC"><span class="rq-featured-brand-mark"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_logo.svg" alt="FANUC" loading="lazy" width="80" height="20"></span></button>
+    </article>
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Yaskawa" data-rq-featured-kind="robot" aria-label="Filter listings by Yaskawa"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">YASKAWA</span></button>
+    </article>
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Universal Robots" data-rq-featured-kind="robot" aria-label="Filter listings by Universal Robots"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Universal Robots</span></button>
+    </article>
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="ABB Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by ABB Robotics"><span class="rq-featured-brand-mark"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/ABB_logo.svg" alt="ABB Robotics" loading="lazy" width="56" height="22"></span></button>
+    </article>
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="KUKA" data-rq-featured-kind="robot" aria-label="Filter listings by KUKA"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">KUKA</span></button>
+    </article>
+
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Kawasaki Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by Kawasaki Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Kawasaki Robotics</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="DENSO Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by DENSO Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">DENSO Robotics</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Doosan Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by Doosan Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Doosan Robotics</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Nachi-Fujikoshi" data-rq-featured-kind="robot" aria-label="Filter listings by Nachi-Fujikoshi"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Nachi-Fujikoshi</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="OMRON Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by OMRON Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">OMRON Robotics</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Epson Robots" data-rq-featured-kind="robot" aria-label="Filter listings by Epson Robots"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Epson Robots</span></button>
+    </article>
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Stäubli Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by Stäubli Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Stäubli Robotics</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Comau" data-rq-featured-kind="robot" aria-label="Filter listings by Comau"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Comau</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Rainbow Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by Rainbow Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Rainbow Robotics</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="HD Hyundai Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by HD Hyundai Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">HD Hyundai Robotics</span></button>
+    </article>
+  </div>
+</section>
+<section class="wrap rq-featured-showcase rq-eoat-showcase" id="rqEoatShowcase" aria-labelledby="rqEoatTitle">
+  <div class="rq-featured-title-row">
+    <div><div class="kicker">GRIPPER BRANDS</div><h2 id="rqEoatTitle">Explore gripper and EOAT makers</h2></div>
+    <span class="rq-featured-note" id="rqEoatNote"></span>
+    <nav class="rq-maker-arrows" aria-label="Gripper brands">
+      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqEoatMakerTrack" data-rq-scroll="-1" aria-label="Scroll gripper makers left">‹</button>
+      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqEoatMakerTrack" data-rq-scroll="1" aria-label="Scroll gripper makers right">›</button>
+    </nav>
+  </div>
+  <div class="rq-featured-track" id="rqEoatMakerTrack" role="list" aria-label="Representative gripper and EOAT manufacturers">
+    <article class="rq-featured-product" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="OnRobot" data-rq-featured-kind="eoat" aria-label="Filter listings by OnRobot"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">OnRobot</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-real-photo" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="SCHUNK" data-rq-featured-kind="eoat" aria-label="Filter listings by SCHUNK"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">SCHUNK</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Zimmer Group" data-rq-featured-kind="eoat" aria-label="Filter listings by Zimmer Group"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Zimmer Group</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="SMC" data-rq-featured-kind="eoat" aria-label="Filter listings by SMC"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">SMC</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-real-photo" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Schmalz" data-rq-featured-kind="eoat" aria-label="Filter listings by Schmalz"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Schmalz</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Piab" data-rq-featured-kind="eoat" aria-label="Filter listings by Piab"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Piab</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="CKD" data-rq-featured-kind="eoat" aria-label="Filter listings by CKD"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">CKD</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Gimatic" data-rq-featured-kind="eoat" aria-label="Filter listings by Gimatic"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Gimatic</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Koganei" data-rq-featured-kind="eoat" aria-label="Filter listings by Koganei"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Koganei</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="Tesollo" data-rq-featured-kind="eoat" aria-label="Filter listings by Tesollo"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Tesollo</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="WONIK Robotics" data-rq-featured-kind="eoat" aria-label="Filter listings by WONIK Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">WONIK Robotics</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="AIDIN Robotics" data-rq-featured-kind="eoat" aria-label="Filter listings by AIDIN Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">AIDIN Robotics</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="ROBOTIS" data-rq-featured-kind="eoat" aria-label="Filter listings by ROBOTIS"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">ROBOTIS</span></button>
+    </article>
+    <article class="rq-featured-product rq-maker-illustration" role="listitem">
+      <button type="button" class="rq-featured-card" data-rq-featured-maker="PISCO" data-rq-featured-kind="eoat" aria-label="Filter listings by PISCO"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">PISCO</span></button>
+    </article>
+  </div>
+</section>
 </section>
 <section class="page" id="buy">
 <div class="wrap page-head split"><div><div class="kicker">WHERE TO BUY</div><h1 data-i18n="buyTitle">Find robots you can buy online</h1><p data-i18n="buyDesc">Compare products and purchase channels in RoboQuo, then confirm the latest price, stock, lead time and warranty on the seller's website before purchasing.</p></div><div class="source-pill"><span class="pulse"></span><span data-i18n="sourceBased">Source and check date shown</span></div></div>
