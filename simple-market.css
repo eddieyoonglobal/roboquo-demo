@@ -17,3 +17,13 @@
 #home .hero-sell-panel{display:flex!important;justify-content:center;align-items:center}
 #home .hero-sell-card{position:static!important;width:100%!important;max-width:390px!important}
 @media(max-width:860px){.rq-simple-sell{margin-left:0}.rq-featured-showcase .rq-featured-product{flex-basis:135px!important;max-width:135px!important}.rq-featured-showcase .rq-featured-card{height:88px!important;min-height:88px!important}}
+
+/* Buy/Sell is the primary job; informational sections remain reachable by navigation. */
+#home .start-grid,#home .principle-bar,#home .rq-software-promo{display:none!important}
+#home .start-grid+*{margin-top:0}
+#home .hero-copy h1{font-size:clamp(2rem,4.3vw,4rem)!important;line-height:1.1!important}
+#home .hero-copy .local-headline{font-size:clamp(1rem,1.6vw,1.2rem)!important;max-width:480px}
+#home .hero-actions button[data-rq-quick-action]{min-height:54px;min-width:160px}
+#home .hero-actions button[data-rq-quick-action="sell"]{background:#fff!important;color:#17263b!important;border:2px solid #17263b!important}
+#home .hero-search{max-width:630px}
+@media(max-width:680px){#home .hero-actions{display:grid!important;grid-template-columns:1fr 1fr!important}#home .hero-actions button[data-rq-quick-action]{min-width:0!important;padding:12px 6px!important;font-size:14px!important}}
