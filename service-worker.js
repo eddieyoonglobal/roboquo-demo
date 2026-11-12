@@ -1,5 +1,5 @@
-const CACHE='roboquo-maker-galleries-v2';
-const ASSETS=['./','./index.html','./styles.css','./v24.css','./app.js','./v24.js','./supabase-config.js','./robot-model-master.js','./auth.js','./seller-backend.js','./assets/rq-vacuum-eoat.svg','./assets/rq-robotic-hand.svg','./quote-market.js','./quote-market.css','./marketplace-v2.js','./marketplace-v2.css','./mobile-market.js','./mobile-market.css','./featured-showcase.js','./featured-showcase.css','./events-seed.json','./company-directory-seed.json','./purchase-channel-seed.json','./robot-directory-seed.json','./manifest.json','./icon-180.png','./icon-192.png','./icon-512.png','./icon-192.svg','./icon-512.svg','./social-preview.png'];
+const CACHE='roboquo-marketplace-first-v3';
+const ASSETS=['./','./index.html','./styles.css','./v24.css','./app.js','./v24.js','./supabase-config.js','./robot-model-master.js','./auth.js','./seller-backend.js','./assets/rq-vacuum-eoat.svg','./assets/rq-robotic-hand.svg','./quote-market.js','./quote-market.css','./marketplace-v2.js','./marketplace-v2.css','./mobile-market.js','./mobile-market.css','./featured-showcase.js','./featured-showcase.css','./simple-market.js','./simple-market.css','./events-seed.json','./company-directory-seed.json','./purchase-channel-seed.json','./robot-directory-seed.json','./manifest.json','./icon-180.png','./icon-192.png','./icon-512.png','./icon-192.svg','./icon-512.svg','./social-preview.png'];
 const ASSET_PATHS=new Set(ASSETS.map(path=>new URL(path,self.location.href).pathname));
 
 self.addEventListener('install',event=>event.waitUntil(
