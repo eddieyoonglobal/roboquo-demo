@@ -1,35 +1,11 @@
 {
   "total": 29,
-  "mirrored": 0,
+  "mirrored": 24,
   "unavailable": [
     "FANUC",
-    "Yaskawa",
-    "Universal Robots",
-    "ABB Robotics",
-    "KUKA",
-    "Kawasaki Robotics",
     "DENSO Robotics",
-    "Doosan Robotics",
-    "Nachi-Fujikoshi",
-    "OMRON Robotics",
-    "Epson Robots",
     "Stäubli Robotics",
-    "Comau",
-    "Rainbow Robotics",
-    "HD Hyundai Robotics",
-    "OnRobot",
     "SCHUNK",
-    "Zimmer Group",
-    "SMC",
-    "Schmalz",
-    "Piab",
-    "CKD",
-    "Gimatic",
-    "Koganei",
-    "Tesollo",
-    "WONIK Robotics",
-    "AIDIN Robotics",
-    "ROBOTIS",
     "PISCO"
   ],
   "details": [
@@ -38,315 +14,231 @@
       "slug": "fanuc",
       "status": "unavailable",
       "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
+        "HTTPError: HTTP Error 429: Too Many Requests (015d12c)"
       ]
     },
     {
       "brand": "Yaskawa",
       "slug": "yaskawa",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.yaskawa-global.com",
+      "sha256": "63f14c2d24b43ae518aa7b257114026383a2e154d987b884a9b3cef2c090de1e",
+      "bytes": 2145
     },
     {
       "brand": "Universal Robots",
       "slug": "universal-robots",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.universal-robots.com",
+      "sha256": "8714e6b28b9b27fe7b279716f758022e2d99278fc67e57556ccfa2b5bfaf44ef",
+      "bytes": 35182
     },
     {
       "brand": "ABB Robotics",
       "slug": "abb-robotics",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "commons.wikimedia.org",
+      "sha256": "c69ccbe3325b56e7b8b9d8e65d54ebd45a24bdcc51bd604b0acc93a87ffbefe7",
+      "bytes": 812
     },
     {
       "brand": "KUKA",
       "slug": "kuka",
-      "status": "unavailable",
-      "errors": [
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.kuka.com",
+      "sha256": "7c7797fe9914aa9f949c242aef87fee9caabcfc83380378b7301059be67365f1",
+      "bytes": 1130
     },
     {
       "brand": "Kawasaki Robotics",
       "slug": "kawasaki-robotics",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "kawasakirobotics.com",
+      "sha256": "702dbcec6aa33143102c92dd2434106a3ea1806fe20c8a7c698fbeb879866e51",
+      "bytes": 4734
     },
     {
       "brand": "DENSO Robotics",
       "slug": "denso-robotics",
       "status": "unavailable",
       "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
+        "HTTPError: HTTP Error 429: Too Many Requests (015d12c)"
       ]
     },
     {
       "brand": "Doosan Robotics",
       "slug": "doosan-robotics",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.doosanrobotics.com",
+      "sha256": "407d6e38ebd40770bed7eb4c6839943ca5871fefaa0e08382688fa8142bc8ec8",
+      "bytes": 1920
     },
     {
       "brand": "Nachi-Fujikoshi",
       "slug": "nachi-fujikoshi",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.nachi-fujikoshi.co.jp",
+      "sha256": "7c283bf28b44d5511d1eeeee877a0bac06196be0d82323deb1cdd77757fdf5d0",
+      "bytes": 185736
     },
     {
       "brand": "OMRON Robotics",
       "slug": "omron-robotics",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "commons.wikimedia.org",
+      "sha256": "581efadd0547fcb529f4d64e671343bb065e3c32ce36a0756572ab5e8a662cd2",
+      "bytes": 3611
     },
     {
       "brand": "Epson Robots",
       "slug": "epson-robots",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "raw.githubusercontent.com",
+      "sha256": "4ab26cd779afe1ff234d222b136d822c544e496044c2ef14624a13fb53e9a39c",
+      "bytes": 1202
     },
     {
       "brand": "Stäubli Robotics",
       "slug": "staubli-robotics",
       "status": "unavailable",
       "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
+        "HTTPError: HTTP Error 429: Too Many Requests (015d12c)"
       ]
     },
     {
       "brand": "Comau",
       "slug": "comau",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.comau.com",
+      "sha256": "00bfd1bee6a467035ed796c58c3c7ea429ad41dc503e0ebdd86a125ffed9b8a9",
+      "bytes": 4941
     },
     {
       "brand": "Rainbow Robotics",
       "slug": "rainbow-robotics",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "rainbow-robotics.com",
+      "sha256": "d7acdef45e40917440af5d11d31a236df3811fff0790b558843b6a254e3e66fe",
+      "bytes": 7293
     },
     {
       "brand": "HD Hyundai Robotics",
       "slug": "hd-hyundai-robotics",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.hd-hyundairobotics.com",
+      "sha256": "1f2af4a0df1d2b4bae838b4f7a986d903762fee5354b2ba2c1751061cff9acf0",
+      "bytes": 42512
     },
     {
       "brand": "OnRobot",
       "slug": "onrobot",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "onrobot.com",
+      "sha256": "6dd1c1e28ecf3d186d24e66a538aabbe40bf61c32c3931e9636ca2f0c2494a65",
+      "bytes": 3237
     },
     {
       "brand": "SCHUNK",
       "slug": "schunk",
       "status": "unavailable",
       "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
+        "HTTPError: HTTP Error 429: Too Many Requests (015d12c)"
       ]
     },
     {
       "brand": "Zimmer Group",
       "slug": "zimmer-group",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "images.nuernbergmesse.de",
+      "sha256": "3a60b95746a52cc247fd40e6d767370e5e4430e22c02f3f1603c17bd6889a2af",
+      "bytes": 586074
     },
     {
       "brand": "SMC",
       "slug": "smc",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "commons.wikimedia.org",
+      "sha256": "d37e7b0430d39fbf04240e42acbf7ed25d688d5c493c03fa70eaae55ebf56bc0",
+      "bytes": 5059
     },
     {
       "brand": "Schmalz",
       "slug": "schmalz",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.schmalz.com",
+      "sha256": "847312d1066ecf9eb5ec7a9ef286aa9becf0cf98a9224ab48734a127efe18b19",
+      "bytes": 2060
     },
     {
       "brand": "Piab",
       "slug": "piab",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "fistoar.github.io",
+      "sha256": "5609eb91ea0670030a17e825bb0f2ac8b38157b4298edc4ec30d76d59b37f521",
+      "bytes": 87640
     },
     {
       "brand": "CKD",
       "slug": "ckd",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.kohno-shoji.co.jp",
+      "sha256": "a51874162de18d69743ac6900b94a0b06606f47c3a414b44bc79c2e1198e6517",
+      "bytes": 22613
     },
     {
       "brand": "Gimatic",
       "slug": "gimatic",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "gimatic.com",
+      "sha256": "d2c4dc208308bde730b7bf1c2fbfe2089bf55df9512d29ce75e1162e60d1ade3",
+      "bytes": 117390
     },
     {
       "brand": "Koganei",
       "slug": "koganei",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.koganei.co.jp",
+      "sha256": "306322f54697d4dd5c32253a53dde9c7ea35800c3282e53166f3b91de4bff089",
+      "bytes": 2397
     },
     {
       "brand": "Tesollo",
       "slug": "tesollo",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.tesollo.com",
+      "sha256": "665b71b551fdaaafd8e6b8d51f05adabac9ecf7e1a428a852371a192849674cc",
+      "bytes": 2741
     },
     {
       "brand": "WONIK Robotics",
       "slug": "wonik-robotics",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "wonikrobotics.com",
+      "sha256": "38b3b2f6d95e5e832c402c3a6bf20478124eff3694ebca9d61a50b460008cf2a",
+      "bytes": 9030
     },
     {
       "brand": "AIDIN Robotics",
       "slug": "aidin-robotics",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "static.wixstatic.com",
+      "sha256": "69968b84c04770fc01040d511e1fdc7f4463d98c24ba96636d027d9cef1cab82",
+      "bytes": 94158
     },
     {
       "brand": "ROBOTIS",
       "slug": "robotis",
-      "status": "unavailable",
-      "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
-      ]
+      "status": "downloaded",
+      "sourceHost": "s3-symbol-logo.tradingview.com",
+      "sha256": "0a0243b8d2e8ace8d838404076134b2d8240e4430bc6d8c3a4c73a6ba1ab7346",
+      "bytes": 7376
     },
     {
       "brand": "PISCO",
       "slug": "pisco",
       "status": "unavailable",
       "errors": [
-        "non-https source",
-        "non-https source",
-        "non-https source",
-        "non-https source"
+        "ValueError: HTTP 202"
       ]
     }
   ]
