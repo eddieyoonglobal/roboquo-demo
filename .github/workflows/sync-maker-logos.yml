@@ -1,0 +1,53 @@
+name: Sync actual maker logo images
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'maker-logo-sources.json'
+      - 'tools/sync-maker-logos.py'
+      - '.github/workflows/sync-maker-logos.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: maker-logo-mirror-main
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image validator
+        run: python -m pip install --disable-pip-version-check Pillow
+      - name: Download and verify original manufacturer logos
+        run: python tools/sync-maker-logos.py
+      - name: Upload per-brand audit, including failed logo hosts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: roboquo-maker-logo-source-report
+          path: assets/maker-logos/SOURCE_REPORT.json
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Commit real downloaded brand images for reliable serving
+        run: |
+          git config user.name 'RoboQuo Logo Mirror'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add assets/maker-logos maker-logo-local-map.js
+          if git diff --cached --quiet; then
+            echo 'No new manufacturer logo files'
+          else
+            git commit -m 'Mirror verified manufacturer brand images locally'
+            git push origin HEAD:main
+          fi
