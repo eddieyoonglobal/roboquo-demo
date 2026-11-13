@@ -5,6 +5,7 @@ const assert=require('node:assert/strict');
 const {setTimeout:delay}=require('node:timers/promises');
 const BASE=(process.env.ROBOQUO_SITE||'https://roboquo.com').replace(/\/$/,'');
 const EXPECTED=29;
+const NEW_LOGOS=['dobot-approved.png','jaka-approved.png','estun-approved.png','techman-approved.png','hiwin-approved.png','delta-approved.png','hanwha-approved.png','neuromeka-approved.png','piab-approved.png','aidin-robotics-approved.png','pisco-approved.png'];
 async function get(path,timeout=14000){
  const url=new URL(path,BASE+'/');
  const resp=await fetch(url,{signal:AbortSignal.timeout(timeout),redirect:'follow',headers:{'Cache-Control':'no-cache','User-Agent':'RoboQuo-logo-deploy-check/1.0'}});
@@ -16,6 +17,7 @@ async function check(){
  assert.equal(home.resp.status,200,'Public home must respond HTTP 200');
  assert.match(home.body,/maker-logo-catalog\.js/,'Public home must load maker logo catalog');
  assert.match(home.body,/maker-logo-local-map\.js/,'Public home must load local logo registry');
+ assert.match(home.body,/maker-approved\.js/,'Public home must load 37-brand approved browser');
  const mapFile=await get('/maker-logo-local-map.js');
  assert.equal(mapFile.resp.status,200,'Local map must be served');
  const match=mapFile.body.match(/window\.RQ_MAKER_LOGO_LOCAL\s*=\s*(\{[^;]*\})\s*;/s);
@@ -38,8 +40,18 @@ async function check(){
   }
  }
  await Promise.all(Array.from({length:6},worker));
+ 
+ for(const name of NEW_LOGOS){
+  const url=new URL('/assets/maker-logos/'+name,BASE+'/');
+  try{
+   const response=await fetch(url,{signal:AbortSignal.timeout(12000),redirect:'follow',headers:{'Cache-Control':'no-cache','User-Agent':'RoboQuo-logo-deploy-check/1.0'}});
+   const bytes=Buffer.from(await response.arrayBuffer());
+   const isPng=bytes.length>=8&&bytes.subarray(0,8).equals(Buffer.from('89504e470d0a1a0a','hex'));
+   if(response.status!==200||!isPng)failures.push({approvedLogo:name,http:response.status,bytes:bytes.length});
+  }catch(e){failures.push({approvedLogo:name,error:String(e).slice(0,140)});}
+ }
  assert.equal(failures.length,0,'Manufacturer logo image failures: '+JSON.stringify(failures));
- return {site:BASE,siteUrl:home.resp.url,logos:keys.length,http200:keys.length,ok:true};
+ return {site:BASE,siteUrl:home.resp.url,logos:37,existingLocal:keys.length,additionalOriginalFiles:NEW_LOGOS.length,http200:keys.length+NEW_LOGOS.length,ok:true};
 }
 (async()=>{
  const attempts=10;

@@ -4,6 +4,11 @@ on:
     branches: [main]
     paths:
       - 'tests/live-maker-logo-browser.cjs'
+      - 'maker-approved.js'
+      - 'maker-approved.css'
+      - 'assets/maker-logos/**'
+      - 'index.html'
+      - 'maker-logo-local-map.js'
       - '.github/workflows/verify-maker-logo-browser.yml'
   workflow_dispatch:
 
@@ -25,7 +30,7 @@ jobs:
         run: |
           npm install --no-save --no-package-lock playwright@1.56.1
           npx playwright install --with-deps chromium
-      - name: Verify original logos render on desktop and mobile
+      - name: Verify all 37 approved maker marks on desktop and mobile
         run: node tests/live-maker-logo-browser.cjs
       - name: Attach actual public website screenshots and per-brand results
         if: always()

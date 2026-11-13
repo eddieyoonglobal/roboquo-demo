@@ -39,6 +39,8 @@ jobs:
           node --check supabase-config.js
           node --check marketplace-v2.js
           node --check quote-market.js
+      - name: Verify approved maker release resources
+        run: node tests/maker-approved-release-regression.cjs
       - name: Test seller submission and market state
         run: node tests/seller-marketplace-regression.cjs
       - name: Test transaction integrity and auth return URL
