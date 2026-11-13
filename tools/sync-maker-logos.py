@@ -15,6 +15,7 @@ import re
 import sys
 import urllib.error
 import urllib.request
+from urllib.parse import urlparse
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -91,7 +92,7 @@ def download_one(row: dict) -> dict:
             digest = hashlib.sha256(result.encode("utf-8")).hexdigest()
             dest.write_text(result, encoding="utf-8")
             return {"brand": maker, "slug": slug, "status": "downloaded",
-                    "sourceHost": urllib.request.urlparse(url).hostname,
+                    "sourceHost": urlparse(url).hostname,
                     "sha256": digest, "bytes": len(result.encode("utf-8"))}
         except Exception as exc:
             errors.append(type(exc).__name__ + ": " + str(exc)[:90])
