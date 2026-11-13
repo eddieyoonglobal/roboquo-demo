@@ -7,35 +7,98 @@
 (function(){
 'use strict';
 const LOGOS={
-  "FANUC": "https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_logo.svg",
-  "Yaskawa": "https://www.yaskawa-global.com/img/common/logo.svg",
-  "Universal Robots": "https://www.universal-robots.com/assets/header-logo-desktop.svg",
-  "ABB Robotics": "https://commons.wikimedia.org/wiki/Special:FilePath/ABB_logo.svg",
-  "KUKA": "https://www.kuka.com/-/media/kuka-corporate/images/home/logos/kuka_logo.svg?rev=-1&hash=D89635BD83E7413E2F1D8545163A3AA1",
-  "Kawasaki Robotics": "https://kawasakirobotics.com/content/themes/krobot-theme/dist/images/common/logo.svg",
-  "DENSO Robotics": "https://commons.wikimedia.org/wiki/Special:FilePath/DENSO_WAVE_Logp.png",
-  "Doosan Robotics": "https://www.doosanrobotics.com/images/logo.svg",
-  "Nachi-Fujikoshi": "https://www.nachi-fujikoshi.co.jp/dcms_media/image/logo-english.jpg",
-  "OMRON Robotics": "https://commons.wikimedia.org/wiki/Special:FilePath/OMRON_Logo.svg",
-  "Epson Robots": "https://raw.githubusercontent.com/glincker/thesvg/main/public/icons/epson/default.svg",
-  "Stäubli Robotics": "https://commons.wikimedia.org/wiki/Special:FilePath/St%C3%A4ubli_International_logo.svg",
-  "Comau": "https://www.comau.com/wp-content/uploads/2024/07/cropped-Logo-COMAU.png",
-  "Rainbow Robotics": "https://rainbow-robotics.com/wp-content/uploads/2026/02/logo-dark.svg",
-  "HD Hyundai Robotics": "https://commons.wikimedia.org/wiki/Special:FilePath/HD_Hyundai_Robotics_logo_KR.png",
-  "OnRobot": "https://onrobot.com/images/logo.svg",
-  "SCHUNK": "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Schunk.svg",
-  "Zimmer Group": "https://commons.wikimedia.org/wiki/Special:FilePath/Zimmer_Group.svg",
-  "SMC": "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_SMC_Corporation.svg",
-  "Schmalz": "https://www.schmalz.com/_static/1794485269864/schmalz.DqeEAYVi.svg",
-  "Piab": "https://fistoar.github.io/Rap-Engineers-Rotary-valve/images/Logos/piab.webp",
-  "CKD": "https://www.kohno-shoji.co.jp/resources/img/base/pcategory/cmp-10.jpg",
-  "Gimatic": "https://gimatic.com/_nuxt/gimaticLogo.LoDLpaJw.svg",
-  "Koganei": "https://www.koganei.co.jp/common/asset/logo.png",
-  "Tesollo": "https://www.tesollo.com/branding/logo_color.svg",
-  "WONIK Robotics": "https://wonikrobotics.com/img/svg/img_logo.svg",
-  "AIDIN Robotics": "https://static.wixstatic.com/media/d71e42_e1d5db6bf45d40c484b0c0ff01481556~mv2.png/v1/fit/w_2500%2Ch_1330%2Cal_c/d71e42_e1d5db6bf45d40c484b0c0ff01481556~mv2.png",
-  "ROBOTIS": "https://s3-symbol-logo.tradingview.com/robotis--600.png",
-  "PISCO": "https://www.pisco.com/common/img/meta/ogp-img.png"
+  "FANUC": [
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_logo.svg"
+  ],
+  "Yaskawa": [
+    "https://www.yaskawa-global.com/img/common/logo.svg"
+  ],
+  "Universal Robots": [
+    "https://www.universal-robots.com/assets/header-logo-desktop.svg",
+    "https://www.universal-robots.com/assets/header-logo-mobile.svg"
+  ],
+  "ABB Robotics": [
+    "https://commons.wikimedia.org/wiki/Special:FilePath/ABB_logo.svg",
+    "https://raw.githubusercontent.com/glincker/thesvg/main/public/icons/abb/default.svg"
+  ],
+  "KUKA": [
+    "https://www.kuka.com/-/media/kuka-corporate/images/home/logos/kuka_logo.svg?rev=-1&hash=D89635BD83E7413E2F1D8545163A3AA1"
+  ],
+  "Kawasaki Robotics": [
+    "https://kawasakirobotics.com/content/themes/krobot-theme/dist/images/common/logo.svg"
+  ],
+  "DENSO Robotics": [
+    "https://commons.wikimedia.org/wiki/Special:FilePath/DENSO_WAVE_Logp.png"
+  ],
+  "Doosan Robotics": [
+    "https://www.doosanrobotics.com/images/logo.svg"
+  ],
+  "Nachi-Fujikoshi": [
+    "https://www.nachi-fujikoshi.co.jp/dcms_media/image/logo-english.jpg"
+  ],
+  "OMRON Robotics": [
+    "https://commons.wikimedia.org/wiki/Special:FilePath/OMRON_Logo.svg"
+  ],
+  "Epson Robots": [
+    "https://raw.githubusercontent.com/glincker/thesvg/main/public/icons/epson/default.svg"
+  ],
+  "Stäubli Robotics": [
+    "https://commons.wikimedia.org/wiki/Special:FilePath/St%C3%A4ubli_International_logo.svg"
+  ],
+  "Comau": [
+    "https://www.comau.com/wp-content/uploads/2024/07/cropped-Logo-COMAU.png"
+  ],
+  "Rainbow Robotics": [
+    "https://rainbow-robotics.com/wp-content/uploads/2026/02/logo-dark.svg"
+  ],
+  "HD Hyundai Robotics": [
+    "https://commons.wikimedia.org/wiki/Special:FilePath/HD_Hyundai_Robotics_logo_KR.png",
+    "https://www.hd-hyundairobotics.com/resources/resource/images/thumb/thumb_part0.png"
+  ],
+  "OnRobot": [
+    "https://onrobot.com/images/logo.svg"
+  ],
+  "SCHUNK": [
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Schunk.svg"
+  ],
+  "Zimmer Group": [
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Zimmer_Group.svg",
+    "https://images.nuernbergmesse.de/files/eb60f776-1990-424a-f4ce-15703591fa68.png"
+  ],
+  "SMC": [
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_SMC_Corporation.svg"
+  ],
+  "Schmalz": [
+    "https://www.schmalz.com/_static/1794485269864/schmalz.DqeEAYVi.svg"
+  ],
+  "Piab": [
+    "https://fistoar.github.io/Rap-Engineers-Rotary-valve/images/Logos/piab.webp"
+  ],
+  "CKD": [
+    "https://www.kohno-shoji.co.jp/resources/img/base/pcategory/cmp-10.jpg"
+  ],
+  "Gimatic": [
+    "https://gimatic.com/_nuxt/gimaticLogo.LoDLpaJw.svg"
+  ],
+  "Koganei": [
+    "https://www.koganei.co.jp/common/asset/logo.png"
+  ],
+  "Tesollo": [
+    "https://www.tesollo.com/branding/logo_color.svg",
+    "https://www.tesollo.com/branding/logo_white.svg"
+  ],
+  "WONIK Robotics": [
+    "https://wonikrobotics.com/img/svg/img_logo.svg"
+  ],
+  "AIDIN Robotics": [
+    "https://static.wixstatic.com/media/d71e42_e1d5db6bf45d40c484b0c0ff01481556~mv2.png/v1/fit/w_2500%2Ch_1330%2Cal_c/d71e42_e1d5db6bf45d40c484b0c0ff01481556~mv2.png"
+  ],
+  "ROBOTIS": [
+    "https://s3-symbol-logo.tradingview.com/robotis--600.png"
+  ],
+  "PISCO": [
+    "https://www.pisco.com/common/img/meta/ogp-img.png"
+  ]
 };
 function init(){
  const cards=document.querySelectorAll('#robots .rq-featured-card[data-rq-featured-maker]');
