@@ -1,0 +1,23 @@
+/* Brand identity cards: use authentic manufacturer logos, not styled substitute text.
+   Logos are trademarks of their respective owners. */
+#robots .rq-featured-card .rq-featured-brand-mark:has(.rq-actual-maker-logo){
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ width:100%!important;min-height:38px!important;max-height:54px!important;
+ background:#fff!important;padding:3px!important;overflow:hidden!important;
+}
+#robots .rq-featured-card .rq-featured-brand-mark .rq-actual-maker-logo{
+ display:block!important;width:auto!important;height:auto!important;
+ max-width:calc(100% - 10px)!important;max-height:43px!important;
+ object-fit:contain!important;object-position:center!important;
+ margin:auto!important;filter:none!important;background:transparent!important;
+}
+#robots .rq-featured-card[data-rq-logo-status="text-fallback"] .rq-featured-brand-mark{
+ font-size:12px!important;line-height:1.2!important;color:#5f6b7c!important;
+}
+#robots .rq-featured-card[data-rq-logo-status="loaded"]{
+ border-color:#dce5ed!important;background:#fff!important;
+}
+@media(max-width:720px){
+ #robots .rq-featured-card .rq-featured-brand-mark:has(.rq-actual-maker-logo){min-height:28px!important;max-height:37px!important}
+ #robots .rq-featured-card .rq-featured-brand-mark .rq-actual-maker-logo{max-width:calc(100% - 4px)!important;max-height:30px!important}
+}
