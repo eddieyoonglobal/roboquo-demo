@@ -16,9 +16,31 @@ const actionCopy={
 function updateLanguage(){
  const lang=document.documentElement.lang||'en';
  const copy=actionCopy[lang]||actionCopy.en;
+ const mobile=window.matchMedia&&window.matchMedia("(max-width:720px)").matches;
+ const short={
+  en:{buy:"Buy",sell:"Sell"},ko:{buy:"구매",sell:"판매"},ja:{buy:"購入",sell:"販売"},
+  zh:{buy:"购买",sell:"出售"},de:{buy:"Kaufen",sell:"Verkaufen"},
+  fr:{buy:"Acheter",sell:"Vendre"},es:{buy:"Comprar",sell:"Vender"},
+  it:{buy:"Compra",sell:"Vendi"},pt:{buy:"Comprar",sell:"Vender"},
+  vi:{buy:"Mua",sell:"Bán"}
+ };
+ const compact=short[lang]||short.en;
+ const arrivals={
+  en:"New arrivals",ko:"신규 매물",ja:"新着出品",zh:"最新上架",de:"Neue Angebote",
+  fr:"Nouvelles annonces",es:"Nuevos anuncios",it:"Nuovi annunci",
+  pt:"Novos anúncios",vi:"Tin đăng mới"
+ };
+ const vision={
+  en:"Vision",ko:"비전·센서",ja:"ビジョン・センサー",zh:"视觉与传感器",
+  de:"Bildverarbeitung",fr:"Vision",es:"Visión",it:"Visione",pt:"Visão",vi:"Thị giác máy"
+ };
+ const arrivalsLabel=document.getElementById("rqArrivals");
+ const visionLabel=document.getElementById("rqVisionLabel");
+ if(arrivalsLabel)arrivalsLabel.textContent=arrivals[lang]||arrivals.en;
+ if(visionLabel)visionLabel.textContent=vision[lang]||vision.en;
  document.querySelectorAll('#robots [data-rq-quick-action],#home [data-rq-quick-action]').forEach(b=>{
   const type=b.dataset.rqQuickAction;
-  if(type==='buy'||type==='sell')b.textContent=copy[type];
+  if(type==='buy'||type==='sell'){b.textContent=mobile?compact[type]:copy[type];b.setAttribute('aria-label',copy[type]);}
  });
 }
 function showListings(){
@@ -47,6 +69,7 @@ function init(){
   });
  });
  document.addEventListener('rq:languagechange',updateLanguage);
+ window.addEventListener('resize',updateLanguage,{passive:true});
  updateLanguage();
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});
