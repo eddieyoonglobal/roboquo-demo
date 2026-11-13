@@ -8,7 +8,8 @@
 'use strict';
 const LOGOS={
   "FANUC": [
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_logo.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_logo.svg",
+    "https://static.cdnlogo.com/logos/f/34/fanuc_800.png"
   ],
   "Yaskawa": [
     "https://www.yaskawa-global.com/img/common/logo.svg"
@@ -28,7 +29,9 @@ const LOGOS={
     "https://kawasakirobotics.com/content/themes/krobot-theme/dist/images/common/logo.svg"
   ],
   "DENSO Robotics": [
-    "https://commons.wikimedia.org/wiki/Special:FilePath/DENSO_WAVE_Logp.png"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/DENSO_WAVE_Logp.png",
+    "https://www.denso-wave.com/ja/common/imgs/logp.png",
+    "https://iconlogovector.com/uploads/images/2024/10/lg-6713c3bbdc3e5-Denso-Wave.webp"
   ],
   "Doosan Robotics": [
     "https://www.doosanrobotics.com/images/logo.svg"
@@ -43,7 +46,8 @@ const LOGOS={
     "https://raw.githubusercontent.com/glincker/thesvg/main/public/icons/epson/default.svg"
   ],
   "Stäubli Robotics": [
-    "https://commons.wikimedia.org/wiki/Special:FilePath/St%C3%A4ubli_International_logo.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/St%C3%A4ubli_International_logo.svg",
+    "https://www.bbc-agency.eu/hubfs/LIB/logos/Staubli-1.png"
   ],
   "Comau": [
     "https://www.comau.com/wp-content/uploads/2024/07/cropped-Logo-COMAU.png"
@@ -59,7 +63,8 @@ const LOGOS={
     "https://onrobot.com/images/logo.svg"
   ],
   "SCHUNK": [
-    "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Schunk.svg"
+    "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Schunk.svg",
+    "https://select-tools.com/upload/iblock/d17/kftma9xcpd3j9ov10idfgbpzi4qlv271/schunk-logo-2023.png"
   ],
   "Zimmer Group": [
     "https://commons.wikimedia.org/wiki/Special:FilePath/Zimmer_Group.svg",
@@ -97,7 +102,8 @@ const LOGOS={
     "https://s3-symbol-logo.tradingview.com/robotis--600.png"
   ],
   "PISCO": [
-    "https://www.pisco.com/common/img/meta/ogp-img.png"
+    "https://www.pisco.com/common/img/meta/ogp-img.png",
+    "https://cdn.shopify.com/s/files/1/0577/0801/9878/files/pisco_logo.png?v=1773204808"
   ]
 };
 function init(){
