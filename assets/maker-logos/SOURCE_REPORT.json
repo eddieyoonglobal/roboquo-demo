@@ -1,21 +1,15 @@
 {
   "total": 29,
-  "mirrored": 24,
-  "unavailable": [
-    "FANUC",
-    "DENSO Robotics",
-    "Stäubli Robotics",
-    "SCHUNK",
-    "PISCO"
-  ],
+  "mirrored": 29,
+  "unavailable": [],
   "details": [
     {
       "brand": "FANUC",
       "slug": "fanuc",
-      "status": "unavailable",
-      "errors": [
-        "HTTPError: HTTP Error 429: Too Many Requests (015d12c)"
-      ]
+      "status": "downloaded",
+      "sourceHost": "static.cdnlogo.com",
+      "sha256": "e51521341cb6fc1c20bb3aec74be2ff59fb11509601f41f85310af48485e4bee",
+      "bytes": 40968
     },
     {
       "brand": "Yaskawa",
@@ -60,10 +54,10 @@
     {
       "brand": "DENSO Robotics",
       "slug": "denso-robotics",
-      "status": "unavailable",
-      "errors": [
-        "HTTPError: HTTP Error 429: Too Many Requests (015d12c)"
-      ]
+      "status": "downloaded",
+      "sourceHost": "www.denso-wave.com",
+      "sha256": "47db15cf3e8fbdf6bb2ff043a6c8e384c5e399abe1f7a14bc4e95829ffc3c0c3",
+      "bytes": 16485
     },
     {
       "brand": "Doosan Robotics",
@@ -100,10 +94,10 @@
     {
       "brand": "Stäubli Robotics",
       "slug": "staubli-robotics",
-      "status": "unavailable",
-      "errors": [
-        "HTTPError: HTTP Error 429: Too Many Requests (015d12c)"
-      ]
+      "status": "downloaded",
+      "sourceHost": "commons.wikimedia.org",
+      "sha256": "43dd5d97f776b45442ad6517ff8f78da995e6b918fbcd0bca741c54c6f6aaca8",
+      "bytes": 5362
     },
     {
       "brand": "Comau",
@@ -140,10 +134,10 @@
     {
       "brand": "SCHUNK",
       "slug": "schunk",
-      "status": "unavailable",
-      "errors": [
-        "HTTPError: HTTP Error 429: Too Many Requests (015d12c)"
-      ]
+      "status": "downloaded",
+      "sourceHost": "select-tools.com",
+      "sha256": "cea49102b52a9056dd88a0ada3721b6a54ee3b04f0c04e6ea040cf35c281b0b8",
+      "bytes": 82007
     },
     {
       "brand": "Zimmer Group",
@@ -156,8 +150,7 @@
     {
       "brand": "SMC",
       "slug": "smc",
-      "status": "downloaded",
-      "sourceHost": "commons.wikimedia.org",
+      "status": "kept-existing",
       "sha256": "d37e7b0430d39fbf04240e42acbf7ed25d688d5c493c03fa70eaae55ebf56bc0",
       "bytes": 5059
     },
@@ -236,10 +229,10 @@
     {
       "brand": "PISCO",
       "slug": "pisco",
-      "status": "unavailable",
-      "errors": [
-        "ValueError: HTTP 202"
-      ]
+      "status": "downloaded",
+      "sourceHost": "cdn.shopify.com",
+      "sha256": "7c237b89b215d1b33a29f97923a7e5d40eb86cb45d3adf803cb1fa05cd7dd500",
+      "bytes": 55284
     }
   ]
 }
