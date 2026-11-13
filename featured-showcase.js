@@ -31,7 +31,7 @@ function openDirectory(brand,kind){
  const aliases={
   'ABB Robotics':'ABB','Kawasaki Robotics':'Kawasaki','DENSO Robotics':'DENSO',
   'Doosan Robotics':'Doosan','Stäubli Robotics':'Stäubli','Epson Robots':'Epson',
-  'HD Hyundai Robotics':'Hyundai'
+  'HD Hyundai Robotics':'Hyundai','Rainbow Robotics':'Rainbow','Hanwha Robotics':'Hanwha','Neuromeka':'Neuromeka','WONIK Robotics':'WONIK','AIDIN Robotics':'AIDIN'
  };
  const query=aliases[brand]||brand;
  const category=document.getElementById('categoryFilter');
