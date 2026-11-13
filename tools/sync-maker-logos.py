@@ -1,0 +1,132 @@
+#!/usr/bin/env python3
+"""Mirror source-verified manufacturer logo images for RoboQuo.
+
+Run only in the repository. Fails closed to a company name if an image
+is unavailable, instead of generating an invented typographic logo.
+"""
+from __future__ import annotations
+
+import base64
+import concurrent.futures
+import hashlib
+import io
+import json
+import re
+import sys
+import urllib.error
+import urllib.request
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+from PIL import Image, UnidentifiedImageError
+
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "assets" / "maker-logos"
+MAX_BYTES = 1_600_000
+HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; RoboQuoBrandAssets/1.0)",
+           "Accept": "image/svg+xml,image/png,image/jpeg,image/webp,image/*;q=0.8"}
+MIME = {"PNG": "image/png", "JPEG": "image/jpeg", "WEBP": "image/webp"}
+BLOCKED_TAGS = {"script", "foreignObject", "iframe", "object", "embed"}
+
+def validate_svg(raw: bytes) -> str:
+    if not re.search(rb"<svg(?:\s|>)", raw[:4096], re.I):
+        raise ValueError("not an svg document")
+    tree = ET.fromstring(raw)
+    if tree.tag.rsplit("}", 1)[-1] != "svg":
+        raise ValueError("not an svg root")
+    for elem in tree.iter():
+        if elem.tag.rsplit("}", 1)[-1] in BLOCKED_TAGS:
+            raise ValueError("unsafe svg element")
+        for name, value in elem.attrib.items():
+            name = name.rsplit("}", 1)[-1].lower()
+            if name.startswith("on"):
+                raise ValueError("unsafe SVG event attribute")
+            if name in {"href", "src"} and re.match(r"(?i)https?://", value):
+                raise ValueError("remote dependency in svg")
+    txt = raw.decode("utf-8-sig")
+    if len(txt) < 150:
+        raise ValueError("svg too small")
+    return txt
+
+def as_safe_svg(raw: bytes) -> str:
+    if b"<svg" in raw[:4096].lower():
+        return validate_svg(raw)
+    with Image.open(io.BytesIO(raw)) as im:
+        im.verify()
+    with Image.open(io.BytesIO(raw)) as im:
+        im.load()
+        w, h = im.size
+        if w < 60 or h < 15 or w > 12000 or h > 12000:
+            raise ValueError("unexpected image size")
+        if im.format not in MIME:
+            target = io.BytesIO()
+            im.convert("RGBA").save(target, "PNG", optimize=True)
+            raw = target.getvalue()
+            media = "image/png"
+        else:
+            media = MIME[im.format]
+    encoded = base64.b64encode(raw).decode("ascii")
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" '
+            f'width="{w}" height="{h}" viewBox="0 0 {w} {h}">'
+            f'<image width="{w}" height="{h}" href="data:{media};base64,{encoded}"/>'
+            f'</svg>')
+
+def download_one(row: dict) -> dict:
+    maker, slug = row["brand"], row["slug"]
+    dest = OUT / f"{slug}.svg"
+    errors = []
+    for url in row["urls"]:
+        if not url.startswith("https://"):
+            errors.append("non-https source")
+            continue
+        try:
+            req = urllib.request.Request(url, headers=HEADERS)
+            with urllib.request.urlopen(req, timeout=18) as rsp:
+                data = rsp.read(MAX_BYTES + 1)
+                if len(data) > MAX_BYTES:
+                    raise ValueError("source too large")
+                if rsp.status != 200:
+                    raise ValueError(f"HTTP {rsp.status}")
+            result = as_safe_svg(data)
+            digest = hashlib.sha256(result.encode("utf-8")).hexdigest()
+            dest.write_text(result, encoding="utf-8")
+            return {"brand": maker, "slug": slug, "status": "downloaded",
+                    "sourceHost": urllib.request.urlparse(url).hostname,
+                    "sha256": digest, "bytes": len(result.encode("utf-8"))}
+        except Exception as exc:
+            errors.append(type(exc).__name__ + ": " + str(exc)[:90])
+    if dest.exists() and dest.stat().st_size > 150:
+        return {"brand": maker, "slug": slug, "status": "kept-existing",
+                "sha256": hashlib.sha256(dest.read_bytes()).hexdigest(),
+                "bytes": dest.stat().st_size}
+    return {"brand": maker, "slug": slug, "status": "unavailable",
+            "errors": errors[:4]}
+
+def main() -> int:
+    manifest = json.loads((ROOT / "maker-logo-sources.json").read_text("utf-8"))
+    rows = manifest["logos"]
+    if len(rows) != 29 or len({x["brand"] for x in rows}) != 29:
+        raise RuntimeError("Manufacturer identity catalog is incomplete")
+    OUT.mkdir(parents=True, exist_ok=True)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=6) as executor:
+        result_by_brand = {item["brand"]: item for item in executor.map(download_one, rows)}
+    results = [result_by_brand[x["brand"]] for x in rows]
+    local = {
+        r["brand"]: f"./assets/maker-logos/{r['slug']}.svg?v={r['sha256'][:10]}"
+        for r in results if r["status"] in ("downloaded", "kept-existing")
+    }
+    (ROOT / "maker-logo-local-map.js").write_text(
+        "/* Verified file mirrors generated by tools/sync-maker-logos.py. */\n"
+        + "window.RQ_MAKER_LOGO_LOCAL = "
+        + json.dumps(local, ensure_ascii=False, sort_keys=True)
+        + ";\n", encoding="utf-8"
+    )
+    report = {"total": len(rows), "mirrored": len(local),
+              "unavailable": [r["brand"] for r in results if r["status"] == "unavailable"],
+              "details": results}
+    (OUT / "SOURCE_REPORT.json").write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n")
+    print(f"Logo mirrors: {len(local)}/{len(rows)}; unavailable: {', '.join(report['unavailable'])}")
+    return 0
+
+if __name__ == "__main__":
+    sys.exit(main())
