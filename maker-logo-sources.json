@@ -1,0 +1,183 @@
+{
+  "purpose": "RoboQuo maker identity logo assets. Show original company marks only; never make a fake SVG text logo.",
+  "created": "2026-11-13",
+  "count": 29,
+  "logos": [
+    {
+      "brand": "FANUC",
+      "slug": "fanuc",
+      "urls": "https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_logo.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Yaskawa",
+      "slug": "yaskawa",
+      "urls": "https://www.yaskawa-global.com/img/common/logo.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Universal Robots",
+      "slug": "universal-robots",
+      "urls": "https://www.universal-robots.com/assets/header-logo-desktop.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "ABB Robotics",
+      "slug": "abb-robotics",
+      "urls": "https://commons.wikimedia.org/wiki/Special:FilePath/ABB_logo.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "KUKA",
+      "slug": "kuka",
+      "urls": [
+        "h"
+      ],
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Kawasaki Robotics",
+      "slug": "kawasaki-robotics",
+      "urls": "https://kawasakirobotics.com/content/themes/krobot-theme/dist/images/common/logo.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "DENSO Robotics",
+      "slug": "denso-robotics",
+      "urls": "https://commons.wikimedia.org/wiki/Special:FilePath/DENSO_WAVE_Logp.png",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Doosan Robotics",
+      "slug": "doosan-robotics",
+      "urls": "https://www.doosanrobotics.com/images/logo.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Nachi-Fujikoshi",
+      "slug": "nachi-fujikoshi",
+      "urls": "https://www.nachi-fujikoshi.co.jp/dcms_media/image/logo-english.jpg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "OMRON Robotics",
+      "slug": "omron-robotics",
+      "urls": "https://commons.wikimedia.org/wiki/Special:FilePath/OMRON_Logo.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Epson Robots",
+      "slug": "epson-robots",
+      "urls": "https://raw.githubusercontent.com/glincker/thesvg/main/public/icons/epson/default.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Stäubli Robotics",
+      "slug": "staubli-robotics",
+      "urls": "https://commons.wikimedia.org/wiki/Special:FilePath/St%C3%A4ubli_International_logo.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Comau",
+      "slug": "comau",
+      "urls": "https://www.comau.com/wp-content/uploads/2024/07/cropped-Logo-COMAU.png",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Rainbow Robotics",
+      "slug": "rainbow-robotics",
+      "urls": "https://rainbow-robotics.com/wp-content/uploads/2026/02/logo-dark.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "HD Hyundai Robotics",
+      "slug": "hd-hyundai-robotics",
+      "urls": "https://commons.wikimedia.org/wiki/Special:FilePath/HD_Hyundai_Robotics_logo_KR.png",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "OnRobot",
+      "slug": "onrobot",
+      "urls": "https://onrobot.com/images/logo.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "SCHUNK",
+      "slug": "schunk",
+      "urls": "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Schunk.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Zimmer Group",
+      "slug": "zimmer-group",
+      "urls": "https://commons.wikimedia.org/wiki/Special:FilePath/Zimmer_Group.svg",
+      "sourceNote": "Wikimedia Commons company catalog logo"
+    },
+    {
+      "brand": "SMC",
+      "slug": "smc",
+      "urls": "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_SMC_Corporation.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Schmalz",
+      "slug": "schmalz",
+      "urls": "https://www.schmalz.com/_static/1794485269864/schmalz.DqeEAYVi.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Piab",
+      "slug": "piab",
+      "urls": "https://fistoar.github.io/Rap-Engineers-Rotary-valve/images/Logos/piab.webp",
+      "sourceNote": "third-party actual manufacturer logo (not from piab.com)"
+    },
+    {
+      "brand": "CKD",
+      "slug": "ckd",
+      "urls": "https://www.kohno-shoji.co.jp/resources/img/base/pcategory/cmp-10.jpg",
+      "sourceNote": "authorized distributor, matches brand manual"
+    },
+    {
+      "brand": "Gimatic",
+      "slug": "gimatic",
+      "urls": "https://gimatic.com/_nuxt/gimaticLogo.LoDLpaJw.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Koganei",
+      "slug": "koganei",
+      "urls": "https://www.koganei.co.jp/common/asset/logo.png",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "Tesollo",
+      "slug": "tesollo",
+      "urls": "https://www.tesollo.com/branding/logo_color.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "WONIK Robotics",
+      "slug": "wonik-robotics",
+      "urls": "https://wonikrobotics.com/img/svg/img_logo.svg",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    },
+    {
+      "brand": "AIDIN Robotics",
+      "slug": "aidin-robotics",
+      "urls": "https://static.wixstatic.com/media/d71e42_e1d5db6bf45d40c484b0c0ff01481556~mv2.png/v1/fit/w_2500%2Ch_1330%2Cal_c/d71e42_e1d5db6bf45d40c484b0c0ff01481556~mv2.png",
+      "sourceNote": "company-owned Wix website CDN"
+    },
+    {
+      "brand": "ROBOTIS",
+      "slug": "robotis",
+      "urls": "https://s3-symbol-logo.tradingview.com/robotis--600.png",
+      "sourceNote": "financial quote image, company wordmark"
+    },
+    {
+      "brand": "PISCO",
+      "slug": "pisco",
+      "urls": "https://www.pisco.com/common/img/meta/ogp-img.png",
+      "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
+    }
+  ]
+}
