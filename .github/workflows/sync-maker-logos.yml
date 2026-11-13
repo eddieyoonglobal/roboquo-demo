@@ -1,4 +1,4 @@
-name: Sync actual maker logo images
+name: Sync manufacturer logo images
 on:
   push:
     branches: [main]
