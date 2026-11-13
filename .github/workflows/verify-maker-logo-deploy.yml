@@ -1,0 +1,28 @@
+name: Verify deployed RoboQuo manufacturer logos
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tests/live-maker-logo-smoke.cjs'
+      - '.github/workflows/verify-maker-logo-deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: Check public site and all 29 genuine logo files
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Use Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Confirm production serves actual manufacturer marks
+        env:
+          ROBOQUO_SITE: https://roboquo.com
+        run: node tests/live-maker-logo-smoke.cjs
