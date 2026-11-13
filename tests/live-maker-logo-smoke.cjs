@@ -9,8 +9,9 @@ const NEW_LOGOS=['dobot-approved.png','jaka-approved.png','estun-approved.png','
 async function get(path,timeout=14000){
  const url=new URL(path,BASE+'/');
  const resp=await fetch(url,{signal:AbortSignal.timeout(timeout),redirect:'follow',headers:{'Cache-Control':'no-cache','User-Agent':'RoboQuo-logo-deploy-check/1.0'}});
- const body=await resp.text();
- return {resp,body,url:url.href};
+ const bytes=Buffer.from(await resp.arrayBuffer());
+ const body=bytes.toString('utf8');
+ return {resp,body,bytes,url:url.href};
 }
 async function check(){
  const home=await get('/');
@@ -33,7 +34,9 @@ async function check(){
    const src=logos[name];
    try{
     const out=await get(src);
-    if(out.resp.status!==200||!/<svg(?:\s|>)/i.test(out.body.slice(0,4000))){
+    const isSvg=/<svg(?:\s|>)/i.test(out.body.slice(0,4000));
+    const isPng=out.bytes.length>=8&&out.bytes.subarray(0,8).equals(Buffer.from('89504e470d0a1a0a','hex'));
+    if(out.resp.status!==200||!(isSvg||isPng)){
      failures.push({brand:name,http:out.resp.status,bytes:out.body.length,src});
     }
    }catch(e){failures.push({brand:name,error:String(e).slice(0,140),src});}
