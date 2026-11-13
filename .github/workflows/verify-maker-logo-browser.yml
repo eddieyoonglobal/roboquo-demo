@@ -1,0 +1,37 @@
+name: Verify manufacturer logos in browser
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tests/live-maker-logo-browser.cjs'
+      - '.github/workflows/verify-maker-logo-browser.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      ROBOQUO_SITE: https://roboquo.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install browser test dependencies
+        run: |
+          npm install --no-save --no-package-lock playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Verify original logos render on desktop and mobile
+        run: node tests/live-maker-logo-browser.cjs
+      - name: Attach actual public website screenshots and per-brand results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: roboquo-real-logo-browser-verification
+          path: test-artifacts/roboquo-logos-*
+          retention-days: 14
+          if-no-files-found: warn
