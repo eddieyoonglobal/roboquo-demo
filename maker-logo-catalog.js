@@ -11,7 +11,7 @@ const LOGOS={
   "Yaskawa": "https://www.yaskawa-global.com/img/common/logo.svg",
   "Universal Robots": "https://www.universal-robots.com/assets/header-logo-desktop.svg",
   "ABB Robotics": "https://commons.wikimedia.org/wiki/Special:FilePath/ABB_logo.svg",
-  "KUKA": "https://www.kuka.com/-/media/kuka-corporate/images/home/logos/kuka_logo.svg?rev=-1%26hash=D89635BD83E7413E2F1D8545163A3AA1",
+  "KUKA": "https://www.kuka.com/-/media/kuka-corporate/images/home/logos/kuka_logo.svg?rev=-1&hash=D89635BD83E7413E2F1D8545163A3AA1",
   "Kawasaki Robotics": "https://kawasakirobotics.com/content/themes/krobot-theme/dist/images/common/logo.svg",
   "DENSO Robotics": "https://commons.wikimedia.org/wiki/Special:FilePath/DENSO_WAVE_Logp.png",
   "Doosan Robotics": "https://www.doosanrobotics.com/images/logo.svg",
@@ -43,6 +43,8 @@ function init(){
   const brand=card.getAttribute('data-rq-featured-maker');
   const sources=LOGOS[brand], mark=card.querySelector('.rq-featured-brand-mark');
   if(!mark || !Array.isArray(sources)||sources.length===0){card.dataset.rqLogoStatus='missing';continue;}
+  const mirror=window.RQ_MAKER_LOGO_LOCAL?.[brand];
+  const allSources=mirror?[mirror,...sources]:sources;
   let index=0;
   const img=document.createElement('img');
   img.alt=brand;
@@ -56,7 +58,7 @@ function init(){
   });
   function next(){
    index++;
-   if(index<sources.length){card.dataset.rqLogoStatus='trying-alternate';img.src=sources[index];return;}
+   if(index<allSources.length){card.dataset.rqLogoStatus='trying-alternate';img.src=allSources[index];return;}
    mark.textContent=brand;
    card.dataset.rqLogoStatus='text-fallback';
   }
@@ -64,7 +66,7 @@ function init(){
   mark.classList.remove('rq-featured-brand-mark--text');
   mark.replaceChildren(img);
   card.dataset.rqLogoStatus='pending';
-  img.src=sources[0];
+  img.src=allSources[0];
  }
  window.rqManufacturerLogoReport=()=>({
   total:cards.length,
