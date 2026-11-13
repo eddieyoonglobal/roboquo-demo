@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/* Browser-only, read-only proof that all 29 authentic maker logos display. */
+/* Browser-only, read-only proof that all 37 authentic maker logos display. */
 'use strict';
 const assert=require('node:assert/strict');
 const fs=require('node:fs');
@@ -23,10 +23,11 @@ try{
     if(typeof window.route==='function')window.route('robots');
     else location.hash='#robots';
   });
+  await page.waitForFunction(()=>document.querySelectorAll('#robots .rq-featured-card[data-rq-featured-maker]').length===37,{timeout:12000});
   const cards=page.locator('#robots .rq-featured-card[data-rq-featured-maker]');
   await cards.first().waitFor({timeout:15000});
   const n=await cards.count();
-  assert.equal(n,29,'Expected 29 manufacturer cards');
+  assert.equal(n,37,'Expected 37 manufacturer cards');
   const failures=[];
   for(let i=0;i<n;i++){
    const card=cards.nth(i);
@@ -53,5 +54,5 @@ try{
 fs.writeFileSync(path.join(OUT,'roboquo-logos-browser-report.json'),JSON.stringify(result,null,2));
 const missing=result.flatMap(x=>x.failures.map(z=>x.device+':'+z.brand));
 assert.equal(missing.length,0,'Manufacturer images failed to render: '+missing.join(', '));
-console.log('PASS: all 29 manufacturer logo images rendered on both desktop and mobile');
+console.log('PASS: all 37 manufacturer logo images rendered on both desktop and mobile');
 })().catch(e=>{console.error(e.stack);process.exit(1)});

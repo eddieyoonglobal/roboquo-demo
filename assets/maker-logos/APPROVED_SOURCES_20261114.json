@@ -1,0 +1,68 @@
+[
+  {
+    "file": "dobot-approved.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Copy_of_%E6%A8%AA%E7%89%88.svg/960px-Copy_of_%E6%A8%AA%E7%89%88.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "sha256": "3947306ab98d00b1e90ef9d754888fda19403b7465794751a256244b71c250b0",
+    "bytes": 8593
+  },
+  {
+    "file": "jaka-approved.png",
+    "source": "https://www.jaka.com/profile/upload/2023/11/16/02%20%20RGB%E6%A8%A1%E5%BC%8F%20logo-%E9%80%8F%E6%98%8E%E5%BA%95_20231116160604A005.png",
+    "sha256": "ccc08e0ce3cd97035461c234607fc0ebb1d33db4c8ad3df0fc685644107f2617",
+    "bytes": 9541
+  },
+  {
+    "file": "estun-approved.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c3/Estun_Logo.svg/960px-Estun_Logo.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "sha256": "0fd3163c333848ca2d754ffcaa6f2631dd4e163642168cc77b7cb89e299b1184",
+    "bytes": 4276
+  },
+  {
+    "file": "techman-approved.png",
+    "source": "https://www.tm-robot.com/images/footer/footer-logo.png",
+    "sha256": "dc8019981a339b9eefeb352407c9d98a2eeb3717c1054dea1dc811f41ffe1199",
+    "bytes": 5377
+  },
+  {
+    "file": "hiwin-approved.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/80/Hiwin_logo.svg/960px-Hiwin_logo.svg.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "sha256": "4fdd3e30ad1b5e825cdfe46255fb87eea146219b3f2066d6c0ba9cb295dd6349",
+    "bytes": 25596
+  },
+  {
+    "file": "delta-approved.png",
+    "source": "https://www.deltaww.com/images/delta_logo.png",
+    "sha256": "105bfdbd4feb6f2d42ef10dc1885f89c0df61bcdf765f9c5f15de31f1118a47c",
+    "bytes": 2585
+  },
+  {
+    "file": "hanwha-approved.png",
+    "source": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/77/Hanwha_Robotics_CMYK_4_KEH.png/960px-Hanwha_Robotics_CMYK_4_KEH.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+    "sha256": "86930effe00d60320e5f7de17bc4b5199f30e4e02e8649c55862a14501539cdc",
+    "bytes": 32414
+  },
+  {
+    "file": "neuromeka-approved.png",
+    "source": "https://static.wixstatic.com/media/a83c47_6d3e6f5a51fa48e5a2bd3a099937b525~mv2.png",
+    "sha256": "df7fdb06d1a53407b0a7687ded92bf2801416cb082eb4c481db58f53cf52a7ef",
+    "bytes": 9892
+  },
+  {
+    "file": "piab-approved.png",
+    "source": "https://www.piabgroup.com/globalassets/piab-group/brands-images-and-blocks/piab.png",
+    "sha256": "ba71af1696a5ed4e5a0a2fe1b1b82f3523facf0f5df82ab5e6a094b41627bc13",
+    "bytes": 21755
+  },
+  {
+    "file": "aidin-robotics-approved.png",
+    "source": "https://static.wixstatic.com/media/d71e42_e1d5db6bf45d40c484b0c0ff01481556~mv2.png",
+    "sha256": "fb98585e11454106478a6ba2204c3db6e580ce311b4405774fb3d02089d59e45",
+    "bytes": 63840
+  },
+  {
+    "file": "pisco-approved.png",
+    "source": "https://shop.pisco.com/wp-content/uploads/2023/04/logo.png",
+    "sha256": "a29276a852f8160ecb7b69ede96ce23b0bab1ff958b4a17044766dedaf19746f",
+    "bytes": 12751
+  }
+]

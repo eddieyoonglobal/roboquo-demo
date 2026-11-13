@@ -332,7 +332,8 @@
     const cartAction=escHtml(fixed?`rqAddToCart(${JSON.stringify(id)})`:`rqOpenProduct(${JSON.stringify(id)})`);
     const meta=[r.year, r.payload==='—'?'':r.payload, r.location].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
     const tags=[(categoryCopy()[r.itemCategory]||displayTag(r.cat)), ...(r.apps||[]).map(displayTag)].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
-    const photoVisual=r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}" loading="lazy">`:robotSvg(r);
+    const missingPhotoText=({ko:'판매자 사진 없음',ja:'出品者の写真はありません',en:'No seller photo',zh:'卖家未上传照片'})[lang()]||'No seller photo';
+    const photoVisual=r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}" loading="lazy">`:(isDemo(r)?robotSvg(r):`<span class="rq-photo-pending" role="img" aria-label="${escHtml(missingPhotoText)}">${escHtml(missingPhotoText)}</span>`);
     return `<article class="v24-listing-card">
       <button aria-label="${escHtml(title)}" class="v24-photo v24-photo-button ${r.photoUrl?'has-uploaded-photo':''}" onclick="${openAction}" type="button" ${r.photoKey?`data-rq-photo-alt="${escHtml(title)}" data-rq-photo-key="${escHtml(r.photoKey)}"`:''}>
         <div class="photo-badges"><span class="v24-badge">${escHtml(displayCountry(r.country))}</span>${isDemo(r)?`<span class="v24-badge demo">${tx('demoBadge')}</span>`:''}<span class="v24-badge dark">${escHtml(conditionCopy()[r.itemCondition]||tx('conditionUnverified'))}</span></div>

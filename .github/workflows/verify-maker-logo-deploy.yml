@@ -4,6 +4,11 @@ on:
     branches: [main]
     paths:
       - 'tests/live-maker-logo-smoke.cjs'
+      - 'maker-approved.js'
+      - 'maker-approved.css'
+      - 'assets/maker-logos/**'
+      - 'index.html'
+      - 'maker-logo-local-map.js'
       - '.github/workflows/verify-maker-logo-deploy.yml'
   workflow_dispatch:
 
@@ -12,7 +17,7 @@ permissions:
 
 jobs:
   smoke:
-    name: Check public site and all 29 genuine logo files
+    name: Check public site and 37 maker cards with authentic images
     runs-on: ubuntu-latest
     timeout-minutes: 6
     steps:
