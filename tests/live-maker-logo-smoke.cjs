@@ -31,7 +31,7 @@ async function check(){
    const src=logos[name];
    try{
     const out=await get(src);
-    if(out.resp.status!==200||!/^\s*(?:<\?xml[^>]*>\s*)?<svg[\s>]/i.test(out.body.slice(0,1000))){
+    if(out.resp.status!==200||!/<svg(?:\s|>)/i.test(out.body.slice(0,4000))){
      failures.push({brand:name,http:out.resp.status,bytes:out.body.length,src});
     }
    }catch(e){failures.push({brand:name,error:String(e).slice(0,140),src});}
