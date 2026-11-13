@@ -1,0 +1,353 @@
+{
+  "total": 29,
+  "mirrored": 0,
+  "unavailable": [
+    "FANUC",
+    "Yaskawa",
+    "Universal Robots",
+    "ABB Robotics",
+    "KUKA",
+    "Kawasaki Robotics",
+    "DENSO Robotics",
+    "Doosan Robotics",
+    "Nachi-Fujikoshi",
+    "OMRON Robotics",
+    "Epson Robots",
+    "Stäubli Robotics",
+    "Comau",
+    "Rainbow Robotics",
+    "HD Hyundai Robotics",
+    "OnRobot",
+    "SCHUNK",
+    "Zimmer Group",
+    "SMC",
+    "Schmalz",
+    "Piab",
+    "CKD",
+    "Gimatic",
+    "Koganei",
+    "Tesollo",
+    "WONIK Robotics",
+    "AIDIN Robotics",
+    "ROBOTIS",
+    "PISCO"
+  ],
+  "details": [
+    {
+      "brand": "FANUC",
+      "slug": "fanuc",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Yaskawa",
+      "slug": "yaskawa",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Universal Robots",
+      "slug": "universal-robots",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "ABB Robotics",
+      "slug": "abb-robotics",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "KUKA",
+      "slug": "kuka",
+      "status": "unavailable",
+      "errors": [
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Kawasaki Robotics",
+      "slug": "kawasaki-robotics",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "DENSO Robotics",
+      "slug": "denso-robotics",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Doosan Robotics",
+      "slug": "doosan-robotics",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Nachi-Fujikoshi",
+      "slug": "nachi-fujikoshi",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "OMRON Robotics",
+      "slug": "omron-robotics",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Epson Robots",
+      "slug": "epson-robots",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Stäubli Robotics",
+      "slug": "staubli-robotics",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Comau",
+      "slug": "comau",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Rainbow Robotics",
+      "slug": "rainbow-robotics",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "HD Hyundai Robotics",
+      "slug": "hd-hyundai-robotics",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "OnRobot",
+      "slug": "onrobot",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "SCHUNK",
+      "slug": "schunk",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Zimmer Group",
+      "slug": "zimmer-group",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "SMC",
+      "slug": "smc",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Schmalz",
+      "slug": "schmalz",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Piab",
+      "slug": "piab",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "CKD",
+      "slug": "ckd",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Gimatic",
+      "slug": "gimatic",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Koganei",
+      "slug": "koganei",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "Tesollo",
+      "slug": "tesollo",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "WONIK Robotics",
+      "slug": "wonik-robotics",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "AIDIN Robotics",
+      "slug": "aidin-robotics",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "ROBOTIS",
+      "slug": "robotis",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    },
+    {
+      "brand": "PISCO",
+      "slug": "pisco",
+      "status": "unavailable",
+      "errors": [
+        "non-https source",
+        "non-https source",
+        "non-https source",
+        "non-https source"
+      ]
+    }
+  ]
+}
