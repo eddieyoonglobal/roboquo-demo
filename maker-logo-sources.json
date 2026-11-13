@@ -7,7 +7,8 @@
       "brand": "FANUC",
       "slug": "fanuc",
       "urls": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_logo.svg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_logo.svg",
+        "https://static.cdnlogo.com/logos/f/34/fanuc_800.png"
       ],
       "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
     },
@@ -57,7 +58,9 @@
       "brand": "DENSO Robotics",
       "slug": "denso-robotics",
       "urls": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/DENSO_WAVE_Logp.png"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/DENSO_WAVE_Logp.png",
+        "https://www.denso-wave.com/ja/common/imgs/logp.png",
+        "https://iconlogovector.com/uploads/images/2024/10/lg-6713c3bbdc3e5-Denso-Wave.webp"
       ],
       "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
     },
@@ -97,7 +100,8 @@
       "brand": "Stäubli Robotics",
       "slug": "staubli-robotics",
       "urls": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/St%C3%A4ubli_International_logo.svg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/St%C3%A4ubli_International_logo.svg",
+        "https://www.bbc-agency.eu/hubfs/LIB/logos/Staubli-1.png"
       ],
       "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
     },
@@ -138,7 +142,8 @@
       "brand": "SCHUNK",
       "slug": "schunk",
       "urls": [
-        "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Schunk.svg"
+        "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Schunk.svg",
+        "https://select-tools.com/upload/iblock/d17/kftma9xcpd3j9ov10idfgbpzi4qlv271/schunk-logo-2023.png"
       ],
       "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
     },
@@ -236,7 +241,8 @@
       "brand": "PISCO",
       "slug": "pisco",
       "urls": [
-        "https://www.pisco.com/common/img/meta/ogp-img.png"
+        "https://www.pisco.com/common/img/meta/ogp-img.png",
+        "https://cdn.shopify.com/s/files/1/0577/0801/9878/files/pisco_logo.png?v=1773204808"
       ],
       "sourceNote": "Official company website or Wikimedia source verified for manufacturer identity"
     }
