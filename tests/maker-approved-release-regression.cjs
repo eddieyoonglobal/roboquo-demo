@@ -9,9 +9,10 @@ for(const file of files){assert.ok(sw.includes(file));assert.ok(fs.existsSync(pa
 assert.ok(css.includes('data-rq-featured-maker="FANUC"'));
 assert.ok(v24.includes('판매자 사진 없음'));
 assert.ok(js.includes("categoryFilter")&&js.includes("marketSearch"));
-const regionBlock=js.match(/const originals=\\{([\\s\\S]*?)\\n\\};\\nconst translations=/);
-assert.ok(regionBlock,'maker region map missing');
-const assignedMakers=[...regionBlock[1].matchAll(/'([^']+)'/g)].map(match=>match[1]);
+const regionStart=js.indexOf('const originals={');
+const regionEnd=js.indexOf('const translations=',regionStart);
+assert.ok(regionStart>=0&&regionEnd>regionStart,'maker region map missing');
+const assignedMakers=[...js.slice(regionStart,regionEnd).matchAll(/'([^']+)'/g)].map(match=>match[1]);
 const currentMakers=existing.map(match=>match[1]);
 assert.equal(assignedMakers.length,29,'All existing maker cards must have a region');
 assert.equal(new Set(assignedMakers).size,29,'A maker must belong to exactly one region');
