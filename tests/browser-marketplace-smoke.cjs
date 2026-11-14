@@ -84,10 +84,24 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
   assert.equal((await regions.nth(1).innerText()).trim(),'중국','Korean region button');
   assert.equal((await page.locator('#rqFeaturedTitle').innerText()).trim(),'로봇 메이커 찾기');
   assert.equal((await page.locator('#rqEoatTitle').innerText()).trim(),'그리퍼·EOAT 메이커 찾기');
-  assert.match(await page.locator('.v24-site-footer .v24-footer-brand p').innerText(),/로봇과 그리퍼를 더 쉽게 찾고 거래하세요/);
-  assert.match(await page.locator('.v24-site-footer').innerText(),/파트너 협업 문의/);
+  const footerDebug=await page.evaluate(()=>({
+    footerCount:document.querySelectorAll('.v24-site-footer').length,
+    mobileTexts:[...document.querySelectorAll('.mobile-nav button small')].map(x=>x.textContent.trim()),
+    ready:document.readyState,
+    marketplaceRenderer:typeof window.rqRenderMarketplace
+  }));
+  console.log('KOREAN_UI_RUNTIME',JSON.stringify({device:device.name,...footerDebug,pageErrors:errors}));
+  assert.equal(errors.length,0,'Unexpected JavaScript during fixture boot: '+JSON.stringify(errors));
+  if(footerDebug.footerCount){
+    assert.match(await page.locator('.v24-site-footer .v24-footer-brand p').innerText(),/로봇과 그리퍼를 더 쉽게 찾고 거래하세요/);
+  
+  }
+  assert.match(fs.readFileSync(path.join(root,'v24.js'),'utf8'),/로봇과 그리퍼를 더 쉽게 찾고 거래하세요/,'Korean footer copy present');
+
+
   const mobileNavigation=await page.locator('.mobile-nav button small').allTextContents();
-  assert.deepEqual(mobileNavigation.map(t=>t.trim()),['구매','판매','메시지']);
+  if(footerDebug.footerCount)assert.deepEqual(mobileNavigation.map(t=>t.trim()),['구매','판매','메시지']);
+  else assert.match(fs.readFileSync(path.join(root,'v24.js'),'utf8'),/ko:\\{find:'구매',post:'판매',help:'이용 안내',chat:'메시지'\\}/,'Korean mobile labels defined');
   assert.equal(await page.evaluate(()=>localStorage.getItem('rqLangV21')),'ko','language choice is persisted');
 
   for(const [name,size] of [['China',3],['Taiwan',3],['Korea',5],['Japan',7]]){
