@@ -79,9 +79,10 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
   }
 
   const regions=page.locator('#rqMakerRegionPicker [data-rq-region-filter]');
-  assert.equal(await regions.count(),5,'region chooser: all, China, Taiwan, Korea, Japan');
+  assert.equal(await regions.count(),6,'region chooser: all, Japan, Korea, China, Taiwan, Europe');
   await page.locator('#languageSelect').selectOption('ko');
-  assert.equal((await regions.nth(1).innerText()).trim(),'중국','Korean region button');
+  assert.equal((await regions.nth(1).innerText()).trim(),'일본','Korean region button');
+  assert.equal((await regions.nth(5).innerText()).trim(),'유럽','Korean Europe button');
   assert.equal((await page.locator('#rqFeaturedTitle').innerText()).trim(),'로봇 메이커 찾기');
   assert.equal((await page.locator('#rqEoatTitle').innerText()).trim(),'그리퍼·EOAT 메이커 찾기');
   const footerDebug=await page.evaluate(()=>({
@@ -104,10 +105,17 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
   else assert.match(fs.readFileSync(path.join(root,'v24.js'),'utf8'),/ko:\\{find:'구매',post:'판매',help:'이용 안내',chat:'메시지'\\}/,'Korean mobile labels defined');
   assert.equal(await page.evaluate(()=>localStorage.getItem('rqLangV21')),'ko','language choice is persisted');
 
-  for(const [name,size] of [['China',3],['Taiwan',3],['Korea',5],['Japan',7]]){
+  for(const [name,size] of [['China',3],['Taiwan',3],['Korea',5],['Japan',7],['Europe',5]]){
    await page.locator('#rqMakerRegionPicker [data-rq-region-filter="'+name+'"]').click();
    assert.equal(await page.locator('#rqRobotMakerTrack .rq-featured-product:not([hidden])').count(),size,name+' origin filter');
   }
+  const eoatRegions=page.locator('#rqEoatRegionPicker [data-rq-region-filter]');
+  assert.equal(await eoatRegions.count(),4,'EOAT picker: all, Japan, Korea, Europe');
+  for(const [name,size] of [['Japan',4],['Korea',4],['Europe',6]]){
+   await page.locator('#rqEoatRegionPicker [data-rq-region-filter="'+name+'"]').click();
+   assert.equal(await page.locator('#rqEoatMakerTrack .rq-featured-product:not([hidden])').count(),size,name+' EOAT origin filter');
+  }
+  await page.locator('#rqEoatRegionPicker [data-rq-region-filter=""]').click();
   await page.locator('#rqMakerRegionPicker [data-rq-region-filter=""]').click();
   await page.locator('#rqRobotMakerTrack [data-rq-featured-maker="JAKA"]').click();
   assert.equal(await page.locator('#categoryFilter').inputValue(),'robot','JAKA selected robot category');
@@ -124,7 +132,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
   // Demo data, when visible, must not be mislabeled as real seller inventory.
   const demoBadges=page.locator('#robots .v24-listing-card .v24-badge.demo');
   const demoCount=await demoBadges.count();
-  const reportItem={device:device.name,robotMakers:23,eoatMakers:14,logos:37,broken,logoLayout,mobileNavigation,regionButtons:5,overflow,demoBadges:demoCount,pageErrors:errors};
+  const reportItem={device:device.name,robotMakers:23,eoatMakers:14,logos:37,broken,logoLayout,mobileNavigation,regionButtons:6,overflow,demoBadges:demoCount,pageErrors:errors};
   fs.mkdirSync(path.join(root,'test-artifacts'),{recursive:true});
   await page.locator('#rqFeaturedShowcase').scrollIntoViewIfNeeded();
   await page.screenshot({path:path.join(root,'test-artifacts','roboquo-marketplace-'+device.name+'.png'),fullPage:false});
