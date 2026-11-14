@@ -1,4 +1,4 @@
-/* Verified local logo sources; manufacturer trademarks belong to their owners. */
+/* Verified local vendor-logo images; manufacturer trademarks remain with owners. */
 window.RQ_MAKER_LOGO_LOCAL = {
   "ABB Robotics": "./assets/maker-logos/abb-robotics.svg?v=c69ccbe332",
   "AIDIN Robotics": "./assets/maker-logos/aidin-robotics-approved.png?v=20261114",
@@ -7,7 +7,7 @@ window.RQ_MAKER_LOGO_LOCAL = {
   "DENSO Robotics": "./assets/maker-logos/denso-robotics.svg?v=47db15cf3e",
   "Doosan Robotics": "./assets/maker-logos/doosan-robotics.svg?v=407d6e38eb",
   "Epson Robots": "./assets/maker-logos/epson-robots.svg?v=4ab26cd779",
-  "FANUC": "./assets/maker-logos/fanuc.svg?v=e51521341c",
+  "FANUC": "./assets/maker-logos/fanuc-trimmed-20261114.png?v=2",
   "Gimatic": "./assets/maker-logos/gimatic.svg?v=d2c4dc2083",
   "HD Hyundai Robotics": "./assets/maker-logos/hd-hyundai-robotics.svg?v=1f2af4a0df",
   "KUKA": "./assets/maker-logos/kuka.svg?v=7c7797fe99",
@@ -15,12 +15,12 @@ window.RQ_MAKER_LOGO_LOCAL = {
   "Koganei": "./assets/maker-logos/koganei.svg?v=306322f546",
   "Nachi-Fujikoshi": "./assets/maker-logos/nachi-fujikoshi.svg?v=7c283bf28b",
   "OMRON Robotics": "./assets/maker-logos/omron-robotics.svg?v=581efadd05",
-  "OnRobot": "./assets/maker-logos/onrobot.svg?v=6dd1c1e28e",
+  "OnRobot": "./assets/maker-logos/onrobot-trimmed-20261114.png?v=2",
   "PISCO": "./assets/maker-logos/pisco-approved.png?v=20261114",
   "Piab": "./assets/maker-logos/piab-approved.png?v=20261114",
   "ROBOTIS": "./assets/maker-logos/robotis.svg?v=0a0243b8d2",
   "Rainbow Robotics": "./assets/maker-logos/rainbow-robotics.svg?v=d7acdef45e",
-  "SCHUNK": "./assets/maker-logos/schunk.svg?v=cea49102b5",
+  "SCHUNK": "./assets/maker-logos/schunk-trimmed-20261114.png?v=2",
   "SMC": "./assets/maker-logos/smc.svg?v=d37e7b0430",
   "Schmalz": "./assets/maker-logos/schmalz.svg?v=847312d106",
   "Stäubli Robotics": "./assets/maker-logos/staubli-robotics.svg?v=43dd5d97f7",

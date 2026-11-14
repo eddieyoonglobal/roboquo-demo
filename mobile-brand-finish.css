@@ -1,0 +1,140 @@
+/* RoboQuo mobile/brand finish, 2026-11-14 — CSS isolated from product images.
+ * 3 authentic OEM files have been whitespace-trimmed only. Their artwork is unchanged.
+ */
+#robots .rq-featured-showcase{--rq-brand-ink:#203b58;--rq-brand-border:#dce5ef}
+#robots .rq-featured-showcase .rq-featured-title-row{
+  gap:12px!important;margin-bottom:13px!important;align-items:center!important
+}
+#robots .rq-featured-showcase .rq-featured-title-row h2{
+  color:#203953!important;font-weight:800!important;letter-spacing:-.035em!important;
+  font-size:clamp(18px,1.7vw,23px)!important;line-height:1.25!important
+}
+#robots .rq-featured-showcase .rq-featured-track{
+  display:flex!important;gap:12px!important;align-items:stretch!important;
+  padding:7px 13px 12px!important;scroll-padding-inline:13px!important;
+  overflow-x:auto!important;scroll-snap-type:x proximity!important
+}
+#robots .rq-featured-showcase .rq-featured-product{
+  flex:0 0 182px!important;width:182px!important;min-width:182px!important;max-width:182px!important;
+  min-height:108px!important;background:#fff!important;
+  padding:0!important;margin:0!important;overflow:visible!important;
+  border:0!important;box-shadow:none!important;scroll-snap-align:start!important
+}
+#robots .rq-featured-showcase .rq-featured-product[data-rq-featured-brand="FANUC"]{
+  flex-basis:218px!important;width:218px!important;min-width:218px!important;max-width:218px!important
+}
+#robots .rq-featured-showcase .rq-featured-product .rq-featured-card{
+  display:flex!important;position:relative!important;flex:0 0 auto!important;
+  width:100%!important;height:108px!important;min-height:108px!important;max-height:none!important;
+  align-items:center!important;justify-content:center!important;
+  padding:13px!important;margin:0!important;overflow:visible!important;
+  border:1px solid var(--rq-brand-border)!important;border-radius:17px!important;
+  background:#fff!important;box-shadow:0 3px 13px rgba(15,45,78,.047)!important;
+  transition:border-color .16s ease, box-shadow .16s ease,transform .16s ease
+}
+#robots .rq-featured-showcase .rq-featured-product .rq-featured-card:hover{
+  border-color:#aac5dc!important;box-shadow:0 7px 20px rgba(18,63,104,.09)!important;
+  transform:translateY(-1px)
+}
+#robots .rq-featured-showcase .rq-featured-product .rq-featured-card:focus-visible{
+  outline:3px solid #3f8ccc!important;outline-offset:2px!important
+}
+#robots .rq-featured-showcase .rq-featured-product .rq-featured-card .rq-featured-brand-mark,
+#robots .rq-featured-showcase .rq-featured-product .rq-featured-card .rq-featured-brand-mark:has(img){
+  position:static!important;inset:auto!important;transform:none!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;
+  padding:0!important;margin:0!important;flex:1 1 auto!important;overflow:visible!important;
+  background:transparent!important;border:0!important;border-radius:0!important;box-shadow:none!important
+}
+#robots .rq-featured-showcase .rq-featured-product .rq-featured-card .rq-featured-brand-mark img,
+#robots .rq-featured-showcase .rq-featured-product .rq-featured-card .rq-featured-brand-mark img.rq-actual-maker-logo{
+  position:static!important;display:block!important;flex:0 1 auto!important;
+  box-sizing:border-box!important;width:auto!important;height:auto!important;
+  max-width:100%!important;max-height:77px!important;
+  min-width:0!important;min-height:0!important;
+  object-fit:contain!important;object-position:center!important;
+  margin:auto!important;padding:0!important;border:0!important;
+  filter:none!important;background:transparent!important
+}
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="FANUC"] .rq-featured-brand-mark img,
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="FANUC"] .rq-featured-brand-mark img.rq-actual-maker-logo{
+  width:190px!important;max-width:100%!important;max-height:63px!important
+}
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="OnRobot"] .rq-featured-brand-mark img,
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="OnRobot"] .rq-featured-brand-mark img.rq-actual-maker-logo{
+  width:150px!important;max-width:100%!important;max-height:68px!important
+}
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="SCHUNK"] .rq-featured-brand-mark img,
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="SCHUNK"] .rq-featured-brand-mark img.rq-actual-maker-logo{
+  width:156px!important;max-width:100%!important;max-height:70px!important
+}
+#robots .rq-featured-showcase .rq-featured-card.rq-selected-brand{
+  border:2px solid #2470bb!important;box-shadow:0 3px 16px rgba(33,103,171,.12)!important
+}
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="Piab"],
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="Neuromeka"],
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="Koganei"],
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="Techman Robot"],
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="ROBOTIS"]{
+  background:#15364f!important;border-color:#15364f!important
+}
+#robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="PISCO"] .rq-featured-brand-mark img{max-width:95px!important;max-height:70px!important}
+#robots .rq-region-picker{margin:7px 0 11px!important;gap:7px!important}
+#robots .rq-region-picker button{min-height:37px!important;padding:9px 14px!important;border-color:#d7e2ee!important}
+#robots .rq-region-picker button[aria-pressed="true"]{background:#204e7e!important;color:#fff!important;border-color:#204e7e!important}
+/* The footer should invite action, not read like a long corporate notice. */
+.v24-site-footer{padding:25px 0 calc(84px + env(safe-area-inset-bottom,0px))!important;margin-top:35px!important}
+.v24-site-footer .v24-footer-inner{gap:24px!important}
+.v24-site-footer .v24-footer-brand{font-size:25px!important;line-height:1.1!important}
+.v24-site-footer .v24-footer-brand p{color:#c8d4e2!important;font-size:14px!important;line-height:1.55!important;max-width:485px!important;margin:10px 0 0!important}
+.v24-site-footer .v24-footer-contacts{gap:8px!important}
+.v24-site-footer .v24-footer-contacts a{
+  display:flex!important;align-items:center!important;min-height:45px!important;
+  font-size:12px!important;font-weight:700!important;padding:10px 13px!important;
+  border-radius:10px!important;background:rgba(255,255,255,.035)!important
+}
+.v24-site-footer .v24-footer-bottom{margin-top:20px!important}
+@media(max-width:720px){
+  #robots .rq-featured-showcase{margin:12px 0 17px!important}
+  #robots .rq-featured-showcase .rq-featured-title-row{margin-bottom:12px!important;padding:0 16px!important;min-height:29px!important}
+  #robots .rq-featured-showcase .rq-featured-title-row h2{font-size:18px!important;line-height:1.23!important}
+  #robots .rq-featured-showcase .rq-featured-track{
+    gap:11px!important;padding:7px 16px 13px!important;scroll-padding-inline:16px!important
+  }
+  #robots .rq-featured-showcase .rq-featured-product{
+    flex-basis:169px!important;width:169px!important;min-width:169px!important;
+    max-width:169px!important;min-height:97px!important
+  }
+  #robots .rq-featured-showcase .rq-featured-product[data-rq-featured-brand="FANUC"]{
+    flex-basis:205px!important;width:205px!important;min-width:205px!important;max-width:205px!important
+  }
+  #robots .rq-featured-showcase .rq-featured-product .rq-featured-card{
+    height:97px!important;min-height:97px!important;padding:11px!important;border-radius:15px!important
+  }
+  #robots .rq-featured-showcase .rq-featured-product .rq-featured-card .rq-featured-brand-mark img,
+  #robots .rq-featured-showcase .rq-featured-product .rq-featured-card .rq-featured-brand-mark img.rq-actual-maker-logo{
+    max-width:100%!important;max-height:68px!important
+  }
+  #robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="FANUC"] .rq-featured-brand-mark img{
+    width:179px!important;max-height:55px!important
+  }
+  #robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="OnRobot"] .rq-featured-brand-mark img{
+    width:140px!important;max-height:61px!important
+  }
+  #robots .rq-featured-showcase .rq-featured-card[data-rq-featured-maker="SCHUNK"] .rq-featured-brand-mark img{
+    width:141px!important;max-height:62px!important
+  }
+  #robots .rq-region-picker{margin:9px 0!important;padding:0 16px!important}
+  .v24-site-footer{margin-top:26px!important;padding:24px 0 calc(93px + env(safe-area-inset-bottom,0px))!important}
+  .v24-site-footer .v24-footer-inner{display:flex!important;flex-direction:column!important;gap:18px!important;width:calc(100% - 40px)!important}
+  .v24-site-footer .v24-footer-brand{font-size:25px!important}
+  .v24-site-footer .v24-footer-brand p{font-size:13px!important;line-height:1.57!important;max-width:none!important;margin-top:9px!important}
+  .v24-site-footer .v24-footer-contacts a{font-size:11.5px!important;min-height:42px!important;padding:9px 12px!important}
+  .v24-site-footer .v24-footer-bottom{font-size:10px!important}
+  .mobile-nav{padding-bottom:env(safe-area-inset-bottom,0px)!important}
+  .mobile-nav button small{font-size:11.5px!important;font-weight:730!important;white-space:nowrap!important}
+}
+@media(prefers-reduced-motion:reduce){
+  #robots .rq-featured-showcase .rq-featured-product .rq-featured-card{transition:none!important}
+}

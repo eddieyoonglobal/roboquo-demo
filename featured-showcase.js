@@ -8,7 +8,7 @@
 const texts={
  en:{title:'Filter by robot brand',note:'Reference photos or illustrations · not items for sale',onrobot:'Illustration · Official products',eoat:'Filter by gripper & EOAT brand',eoatNote:'Maker references · not seller listings'},
  ja:{title:'ロボットメーカーで絞り込む',note:'参考写真・イメージ図／出品商品ではありません',onrobot:'イメージ図・公式製品はこちら',eoat:'グリッパーメーカーで絞り込む',eoatNote:'メーカー紹介／出品商品ではありません'},
- ko:{title:'로봇 제조사로 검색',note:'참고 사진·설명용 그림 · 판매 매물 아님',onrobot:'설명용 그림 · 공식 제품 보기',eoat:'그리퍼 제조사로 검색',eoatNote:'제조사 소개 · 실제 판매 매물 아님'},
+ ko:{title:'로봇 메이커 찾기',note:'참고 사진·설명용 그림 · 판매 매물 아님',onrobot:'설명용 그림 · 공식 제품 보기',eoat:'그리퍼·EOAT 메이커 찾기',eoatNote:'제조사 소개 · 실제 판매 매물 아님'},
  zh:{title:'主要机器人品牌',note:'参考照片，非在售商品',onrobot:'示意图 · 官方产品'},
  de:{title:'Bekannte Robotermarken',note:'Referenzbilder, keine Verkaufsangebote',onrobot:'Illustration · Herstellerprodukte'},
  fr:{title:'Fabricants de robots reconnus',note:'Photos de référence, pas des annonces',onrobot:'Illustration · Produits officiels'},
