@@ -17,7 +17,9 @@ const currentMakers=existing.map(match=>match[1]);
 assert.equal(assignedMakers.length,29,'All existing maker cards must have a region');
 assert.equal(new Set(assignedMakers).size,29,'A maker must belong to exactly one region');
 assert.deepEqual([...assignedMakers].sort(),[...currentMakers].sort(),'Maker region map must match visible cards');
-assert.ok(js.includes("for(const name of ['','Japan','Korea','China','Taiwan','Europe'])"),'Region picker missing Europe');
+assert.ok(js.includes("setupRegionPicker(track,'rqMakerRegionPicker',['','Japan','Korea','China','Taiwan','Europe'])"),'Robot region picker missing Europe');
+assert.ok(js.includes("setupRegionPicker(eoatTrack,'rqEoatRegionPicker',['','Japan','Korea','Europe'])"),'Gripper region picker missing');
+assert.ok(js.includes("document.querySelectorAll('#robots [data-rq-featured-maker]')"),'Both maker galleries must be classified');
 for(const language of ['en','ko','ja','zh','de','fr','es','it','pt','vi']){
  assert.ok(js.includes(language+":{all:")&&js.includes('europe:'),'Region translations must cover every supported language: '+language);
 }
