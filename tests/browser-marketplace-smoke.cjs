@@ -93,7 +93,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
   console.log('KOREAN_UI_RUNTIME',JSON.stringify({device:device.name,...footerDebug,pageErrors:errors}));
   assert.equal(errors.length,0,'Unexpected JavaScript during fixture boot: '+JSON.stringify(errors));
   if(footerDebug.footerCount){
-    assert.match(await page.locator('.v24-site-footer .v24-footer-brand p').innerText(),/로봇과 그리퍼를 더 쉽게 찾고 거래하세요/);
+    assert.match(await page.locator('.v24-site-footer .v24-footer-brand + p').innerText(),/로봇과 그리퍼를 더 쉽게 찾고 거래하세요/);
   
   }
   assert.match(fs.readFileSync(path.join(root,'v24.js'),'utf8'),/로봇과 그리퍼를 더 쉽게 찾고 거래하세요/,'Korean footer copy present');
