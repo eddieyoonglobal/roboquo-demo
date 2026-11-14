@@ -12,14 +12,21 @@ const manufacturers=[
  {name:'Neuromeka',origin:'Korea',src:'neuromeka-approved.png',query:'Neuromeka'}
 ];
 const originals={
- Japan:['FANUC','Yaskawa','Kawasaki Robotics','DENSO Robotics','Nachi-Fujikoshi','OMRON Robotics','Epson Robots'],
- Korea:['Doosan Robotics','Rainbow Robotics','HD Hyundai Robotics']
+ Japan:['FANUC','Yaskawa','Kawasaki Robotics','DENSO Robotics','Nachi-Fujikoshi','OMRON Robotics','Epson Robots','SMC','CKD','Koganei','PISCO'],
+ Korea:['Doosan Robotics','Rainbow Robotics','HD Hyundai Robotics','Tesollo','WONIK Robotics','AIDIN Robotics','ROBOTIS'],
+ Europe:['Universal Robots','ABB Robotics','KUKA','Stäubli Robotics','Comau','OnRobot','SCHUNK','Zimmer Group','Schmalz','Piab','Gimatic']
 };
 const translations={
- en:{all:'All makers',china:'China',taiwan:'Taiwan',korea:'Korea',japan:'Japan',label:'Filter manufacturer origin'},
- ko:{all:'전체 제조사',china:'중국',taiwan:'대만',korea:'한국',japan:'일본',label:'제조사 국가 선택'},
- ja:{all:'全メーカー',china:'中国',taiwan:'台湾',korea:'韓国',japan:'日本',label:'メーカー所在国で選択'},
- zh:{all:'全部品牌',china:'中国',taiwan:'台湾',korea:'韩国',japan:'日本',label:'按制造商国家筛选'}
+ en:{all:'All makers',japan:'Japan',korea:'Korea',china:'China',taiwan:'Taiwan',europe:'Europe',label:'Filter maker region'},
+ ko:{all:'전체 메이커',japan:'일본',korea:'한국',china:'중국',taiwan:'대만',europe:'유럽',label:'제조사 지역별 보기'},
+ ja:{all:'すべて',japan:'日本',korea:'韓国',china:'中国',taiwan:'台湾',europe:'欧州',label:'メーカーの地域で絞り込む'},
+ zh:{all:'全部品牌',japan:'日本',korea:'韩国',china:'中国',taiwan:'台湾',europe:'欧洲',label:'按制造商地区筛选'},
+ de:{all:'Alle Marken',japan:'Japan',korea:'Korea',china:'China',taiwan:'Taiwan',europe:'Europa',label:'Herstellerregion wählen'},
+ fr:{all:'Toutes marques',japan:'Japon',korea:'Corée',china:'Chine',taiwan:'Taïwan',europe:'Europe',label:'Filtrer par région'},
+ es:{all:'Todas las marcas',japan:'Japón',korea:'Corea',china:'China',taiwan:'Taiwán',europe:'Europa',label:'Filtrar por región'},
+ it:{all:'Tutti i marchi',japan:'Giappone',korea:'Corea',china:'Cina',taiwan:'Taiwan',europe:'Europa',label:'Filtra per regione'},
+ pt:{all:'Todas as marcas',japan:'Japão',korea:'Coreia',china:'China',taiwan:'Taiwan',europe:'Europa',label:'Filtrar por região'},
+ vi:{all:'Tất cả hãng',japan:'Nhật Bản',korea:'Hàn Quốc',china:'Trung Quốc',taiwan:'Đài Loan',europe:'Châu Âu',label:'Lọc theo khu vực'}
 };
 function init(){
  const track=document.getElementById('rqRobotMakerTrack');
@@ -49,7 +56,7 @@ function init(){
   });
  }
  const nav=document.createElement('div');nav.id='rqMakerRegionPicker';nav.className='rq-region-picker';
- for(const name of ['','China','Taiwan','Korea','Japan']){
+ for(const name of ['','Japan','Korea','China','Taiwan','Europe']){
   const button=document.createElement('button');button.type='button';button.dataset.rqRegionFilter=name;button.setAttribute('aria-pressed',String(name===''));nav.appendChild(button);
  }
  track.parentElement.insertBefore(nav,track);
