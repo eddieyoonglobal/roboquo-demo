@@ -30,9 +30,10 @@ const translations={
 };
 function init(){
  const track=document.getElementById('rqRobotMakerTrack');
+ const eoatTrack=document.getElementById('rqEoatMakerTrack');
  if(!track||document.getElementById('rqMakerRegionPicker'))return;
  for(const [origin,names] of Object.entries(originals))for(const name of names){
-  const button=[...track.querySelectorAll('[data-rq-featured-maker]')].find(el=>el.dataset.rqFeaturedMaker===name);
+  const button=[...document.querySelectorAll('#robots [data-rq-featured-maker]')].find(el=>el.dataset.rqFeaturedMaker===name);
   if(button){const item=button.closest('.rq-featured-product');if(item)item.dataset.rqRegion=origin;if(name==='FANUC')item.dataset.rqFeaturedBrand='FANUC';}
  }
  const existing=new Set([...track.querySelectorAll('[data-rq-featured-maker]')].map(el=>el.dataset.rqFeaturedMaker));
@@ -55,26 +56,41 @@ function init(){
    document.getElementById('rqMarketSearchArea')?.scrollIntoView({behavior:'smooth',block:'start'});
   });
  }
- const nav=document.createElement('div');nav.id='rqMakerRegionPicker';nav.className='rq-region-picker';
- for(const name of ['','Japan','Korea','China','Taiwan','Europe']){
-  const button=document.createElement('button');button.type='button';button.dataset.rqRegionFilter=name;button.setAttribute('aria-pressed',String(name===''));nav.appendChild(button);
+ function setupRegionPicker(target,id,regions){
+  if(!target||document.getElementById(id))return;
+  const nav=document.createElement('div');nav.id=id;nav.className='rq-region-picker';
+  nav.setAttribute('role','group');
+  for(const name of regions){
+   const button=document.createElement('button');button.type='button';
+   button.dataset.rqRegionFilter=name;
+   button.setAttribute('aria-pressed',String(name===''));
+   nav.appendChild(button);
+  }
+  target.parentElement.insertBefore(nav,target);
+  const regionBtns=[...nav.querySelectorAll('button')];
+  function labelUpdate(){
+   const locale=(document.getElementById('languageSelect')?.value||document.documentElement.lang||'en').split('-')[0];
+   const t=translations[locale]||translations.en;
+   nav.setAttribute('aria-label',t.label);
+   regionBtns.forEach(btn=>{
+    const region=btn.dataset.rqRegionFilter||'all';
+    btn.textContent=t[region.toLowerCase()]||region;
+   });
+  }
+  function regionUpdate(region){
+   target.querySelectorAll('.rq-featured-product').forEach(item=>{
+    item.hidden=Boolean(region)&&item.dataset.rqRegion!==region;
+   });
+   regionBtns.forEach(btn=>btn.setAttribute('aria-pressed',String(btn.dataset.rqRegionFilter===region)));
+   target.scrollLeft=0;
+  }
+  regionBtns.forEach(btn=>btn.addEventListener('click',()=>regionUpdate(btn.dataset.rqRegionFilter)));
+  document.getElementById('languageSelect')?.addEventListener('change',labelUpdate);
+  document.addEventListener('rq:languagechange',labelUpdate);
+  labelUpdate();regionUpdate('');
  }
- track.parentElement.insertBefore(nav,track);
- const regionBtns=[...nav.querySelectorAll('button')];
- function labelUpdate(){
-  const locale=document.getElementById('languageSelect')?.value||document.documentElement.lang||'en',t=translations[locale]||translations.en;
-  nav.setAttribute('aria-label',t.label);
-  regionBtns.forEach(btn=>btn.textContent=t[(btn.dataset.rqRegionFilter||'all').toLowerCase()]||btn.dataset.rqRegionFilter);
- }
- function regionUpdate(region){
-  [...track.querySelectorAll('.rq-featured-product')].forEach(el=>{el.hidden=Boolean(region)&&el.dataset.rqRegion!==region;});
-  regionBtns.forEach(el=>el.setAttribute('aria-pressed',String(el.dataset.rqRegionFilter===region)));
-  track.scrollLeft=0;
- }
- regionBtns.forEach(btn=>btn.addEventListener('click',()=>regionUpdate(btn.dataset.rqRegionFilter)));
- document.getElementById('languageSelect')?.addEventListener('change',labelUpdate);
- document.addEventListener('rq:languagechange',labelUpdate);
- labelUpdate();regionUpdate('');
+ setupRegionPicker(track,'rqMakerRegionPicker',['','Japan','Korea','China','Taiwan','Europe']);
+ setupRegionPicker(eoatTrack,'rqEoatRegionPicker',['','Japan','Korea','Europe']);
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
