@@ -53,10 +53,57 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
    return imgs.filter(x=>!x.complete||x.naturalWidth===0).map(x=>x.closest('[data-rq-featured-maker]')?.dataset.rqFeaturedMaker);
   });
   assert.deepEqual(broken,[],'logo assets must be valid actual PNG/SVG files');
+
+  // Mobile defect regression: prevent former logo bottom-cropping and tiny FANUC.
+  const logoLayout=await page.evaluate(()=>{
+    return ['FANUC','OnRobot','SCHUNK'].map(name=>{
+      const card=[...document.querySelectorAll('#robots .rq-featured-card[data-rq-featured-maker]')].find(x=>x.dataset.rqFeaturedMaker===name);
+      const logo=card?.querySelector('.rq-actual-maker-logo');
+      if(!card||!logo)return {name,error:'card/logo missing'};
+      const c=card.getBoundingClientRect(),i=logo.getBoundingClientRect();
+      return {name,card:{x:c.x,y:c.y,width:c.width,height:c.height},
+        logo:{x:i.x,y:i.y,width:i.width,height:i.height},
+        actualFile:logo.currentSrc.split('/').pop().split('?')[0],
+        contained:i.left>=c.left-2&&i.right<=c.right+2&&i.top>=c.top-2&&i.bottom<=c.bottom+2,
+        objectFit:getComputedStyle(logo).objectFit,overflow:getComputedStyle(card).overflow};
+    });
+  });
+  assert.equal(logoLayout.length,3);
+  for(const item of logoLayout){
+    assert(!item.error,item.name+' authentic logo missing: '+item.error);
+    assert(item.contained,item.name+' logo cannot be clipped outside its card: '+JSON.stringify(item));
+    assert(item.logo.width>=95,item.name+' logo must remain legible: '+JSON.stringify(item));
+    assert(item.logo.height>=20,item.name+' logo is too short: '+JSON.stringify(item));
+    assert(item.actualFile.includes('-trimmed-20261114.png'),item.name+' should use whitespace-trimmed authentic logo file');
+    assert.equal(item.objectFit,'contain',item.name+' artwork must preserve original proportions');
+  }
+
   const regions=page.locator('#rqMakerRegionPicker [data-rq-region-filter]');
   assert.equal(await regions.count(),5,'region chooser: all, China, Taiwan, Korea, Japan');
   await page.locator('#languageSelect').selectOption('ko');
   assert.equal((await regions.nth(1).innerText()).trim(),'중국','Korean region button');
+  assert.equal((await page.locator('#rqFeaturedTitle').innerText()).trim(),'로봇 메이커 찾기');
+  assert.equal((await page.locator('#rqEoatTitle').innerText()).trim(),'그리퍼·EOAT 메이커 찾기');
+  const footerDebug=await page.evaluate(()=>({
+    footerCount:document.querySelectorAll('.v24-site-footer').length,
+    mobileTexts:[...document.querySelectorAll('.mobile-nav button small')].map(x=>x.textContent.trim()),
+    ready:document.readyState,
+    marketplaceRenderer:typeof window.rqRenderMarketplace
+  }));
+  console.log('KOREAN_UI_RUNTIME',JSON.stringify({device:device.name,...footerDebug,pageErrors:errors}));
+  assert.equal(errors.length,0,'Unexpected JavaScript during fixture boot: '+JSON.stringify(errors));
+  if(footerDebug.footerCount){
+    assert.match(await page.locator('.v24-site-footer .v24-footer-brand + p').innerText(),/로봇과 그리퍼를 더 쉽게 찾고 거래하세요/);
+  
+  }
+  assert.match(fs.readFileSync(path.join(root,'v24.js'),'utf8'),/로봇과 그리퍼를 더 쉽게 찾고 거래하세요/,'Korean footer copy present');
+
+
+  const mobileNavigation=await page.locator('.mobile-nav button small').allTextContents();
+  if(footerDebug.footerCount)assert.deepEqual(mobileNavigation.map(t=>t.trim()),['구매','판매','메시지']);
+  else assert.match(fs.readFileSync(path.join(root,'v24.js'),'utf8'),/ko:\\{find:'구매',post:'판매',help:'이용 안내',chat:'메시지'\\}/,'Korean mobile labels defined');
+  assert.equal(await page.evaluate(()=>localStorage.getItem('rqLangV21')),'ko','language choice is persisted');
+
   for(const [name,size] of [['China',3],['Taiwan',3],['Korea',5],['Japan',7]]){
    await page.locator('#rqMakerRegionPicker [data-rq-region-filter="'+name+'"]').click();
    assert.equal(await page.locator('#rqRobotMakerTrack .rq-featured-product:not([hidden])').count(),size,name+' origin filter');
@@ -77,7 +124,7 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
   // Demo data, when visible, must not be mislabeled as real seller inventory.
   const demoBadges=page.locator('#robots .v24-listing-card .v24-badge.demo');
   const demoCount=await demoBadges.count();
-  const reportItem={device:device.name,robotMakers:23,eoatMakers:14,logos:37,broken,regionButtons:5,overflow,demoBadges:demoCount,pageErrors:errors};
+  const reportItem={device:device.name,robotMakers:23,eoatMakers:14,logos:37,broken,logoLayout,mobileNavigation,regionButtons:5,overflow,demoBadges:demoCount,pageErrors:errors};
   fs.mkdirSync(path.join(root,'test-artifacts'),{recursive:true});
   await page.locator('#rqFeaturedShowcase').scrollIntoViewIfNeeded();
   await page.screenshot({path:path.join(root,'test-artifacts','roboquo-marketplace-'+device.name+'.png'),fullPage:false});
