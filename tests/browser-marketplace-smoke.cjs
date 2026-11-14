@@ -105,10 +105,17 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
   else assert.match(fs.readFileSync(path.join(root,'v24.js'),'utf8'),/ko:\\{find:'구매',post:'판매',help:'이용 안내',chat:'메시지'\\}/,'Korean mobile labels defined');
   assert.equal(await page.evaluate(()=>localStorage.getItem('rqLangV21')),'ko','language choice is persisted');
 
-  for(const [name,size] of [['China',3],['Taiwan',3],['Korea',9],['Japan',11],['Europe',11]]){
+  for(const [name,size] of [['China',3],['Taiwan',3],['Korea',5],['Japan',7],['Europe',5]]){
    await page.locator('#rqMakerRegionPicker [data-rq-region-filter="'+name+'"]').click();
    assert.equal(await page.locator('#rqRobotMakerTrack .rq-featured-product:not([hidden])').count(),size,name+' origin filter');
   }
+  const eoatRegions=page.locator('#rqEoatRegionPicker [data-rq-region-filter]');
+  assert.equal(await eoatRegions.count(),4,'EOAT picker: all, Japan, Korea, Europe');
+  for(const [name,size] of [['Japan',4],['Korea',4],['Europe',6]]){
+   await page.locator('#rqEoatRegionPicker [data-rq-region-filter="'+name+'"]').click();
+   assert.equal(await page.locator('#rqEoatMakerTrack .rq-featured-product:not([hidden])').count(),size,name+' EOAT origin filter');
+  }
+  await page.locator('#rqEoatRegionPicker [data-rq-region-filter=""]').click();
   await page.locator('#rqMakerRegionPicker [data-rq-region-filter=""]').click();
   await page.locator('#rqRobotMakerTrack [data-rq-featured-maker="JAKA"]').click();
   assert.equal(await page.locator('#categoryFilter').inputValue(),'robot','JAKA selected robot category');
