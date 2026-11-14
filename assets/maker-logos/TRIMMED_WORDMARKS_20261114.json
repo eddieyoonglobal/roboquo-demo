@@ -1,0 +1,80 @@
+[
+  {
+    "brand": "FANUC",
+    "source": "assets/maker-logos/fanuc.svg",
+    "output": "assets/maker-logos/fanuc-trimmed-20261114.png",
+    "originalSize": [
+      800,
+      800
+    ],
+    "contentBounds": [
+      18,
+      332,
+      781,
+      460
+    ],
+    "crop": [
+      0,
+      322,
+      800,
+      471
+    ],
+    "outputSize": [
+      800,
+      149
+    ],
+    "visiblePixels": 48417
+  },
+  {
+    "brand": "OnRobot",
+    "source": "assets/maker-logos/onrobot.svg",
+    "output": "assets/maker-logos/onrobot-trimmed-20261114.png",
+    "originalSize": [
+      1065,
+      427
+    ],
+    "contentBounds": [
+      0,
+      1,
+      1064,
+      425
+    ],
+    "crop": [
+      0,
+      0,
+      1065,
+      427
+    ],
+    "outputSize": [
+      1065,
+      427
+    ],
+    "visiblePixels": 172215
+  },
+  {
+    "brand": "SCHUNK",
+    "source": "assets/maker-logos/schunk.svg",
+    "output": "assets/maker-logos/schunk-trimmed-20261114.png",
+    "originalSize": [
+      2000,
+      756
+    ],
+    "contentBounds": [
+      153,
+      178,
+      1813,
+      599
+    ],
+    "crop": [
+      95,
+      146,
+      1872,
+      632
+    ],
+    "outputSize": [
+      1100,
+      301
+    ],
+    "visiblePixels": 589443
+  }
+]
