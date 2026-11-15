@@ -1,0 +1,138 @@
+/* RoboQuo customer-facing header: one task per action, no technical DB status.
+   Desktop: logo | discover / manufacturers / guide | messages / language / account / post.
+   Mobile: logo / language / account. Buy, Sell and Messages remain in bottom navigation. */
+.site-header{
+  box-sizing:border-box;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:clamp(12px,1.6vw,28px);
+  width:100%;
+  min-height:73px;
+  padding-inline:clamp(16px,2.8vw,60px)!important;
+}
+.site-header .brand{flex:0 0 auto;min-width:0}
+.site-header .rq-site-logo{display:block;width:clamp(154px,10vw,186px);max-width:100%;height:auto;object-fit:contain}
+.site-header .desktop-nav{
+  display:flex;
+  flex:1 1 auto;
+  min-width:0;
+  align-items:center;
+  justify-content:center;
+  gap:clamp(14px,2vw,30px);
+  white-space:nowrap;
+}
+.site-header .desktop-nav a{
+  display:inline-flex;
+  align-items:center;
+  min-height:44px;
+  font-size:clamp(12px,.85vw,14px);
+  color:#263650;
+  font-weight:730;
+  letter-spacing:-.015em;
+  text-decoration:none;
+}
+.site-header .desktop-nav a:hover{color:#255bc2}
+.site-header .desktop-nav a:focus-visible,
+.site-header .header-actions button:focus-visible,
+.site-header .header-actions select:focus-visible{
+  outline:3px solid #79aaf7;
+  outline-offset:2px;
+  border-radius:8px
+}
+.site-header .header-actions{
+  flex:0 0 auto;
+  display:flex;
+  gap:clamp(5px,.65vw,11px);
+  align-items:center;
+  justify-content:flex-end;
+  min-width:0;
+}
+.site-header .header-actions .cart-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  min-height:39px;
+  padding:7px 11px;
+  border:1px solid #e2e7ee;
+  border-radius:10px;
+  background:transparent;
+  color:#34445b;
+  box-shadow:none;
+  font-size:12px;
+  line-height:1.1;
+  white-space:nowrap;
+  font-weight:720;
+}
+.site-header .header-actions .lang{
+  box-sizing:border-box;
+  min-width:96px;
+  max-width:135px;
+  min-height:41px;
+  padding:7px 4px;
+  color:#49566c;
+  font-size:12px;
+  border-radius:8px;
+  background:transparent;
+}
+.site-header .header-actions #myRoboquoBtn{
+  box-sizing:border-box;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding:7px 8px;
+  min-height:39px;
+  min-width:0;
+  font-size:12px;
+  white-space:nowrap;
+  color:#34445b;
+  font-weight:735;
+}
+.site-header .header-actions > .primary.small{
+  box-sizing:border-box;
+  min-height:41px;
+  padding:8px 16px;
+  white-space:nowrap;
+  font-size:13px;
+  border-radius:11px;
+  background:#111827;
+  color:#fff;
+}
+#rqDbStatus{display:none!important}
+@media(max-width:1180px){
+ .site-header{gap:14px}
+ .site-header .desktop-nav{display:none!important}
+ .site-header .header-actions{margin-left:auto}
+}
+@media(max-width:760px){
+ .site-header{height:62px;min-height:62px;padding-inline:16px!important}
+ .site-header .rq-site-logo{width:clamp(125px,42vw,162px);height:auto}
+ .site-header .header-actions{gap:4px}
+ .site-header .header-actions .cart-btn{display:none!important}
+ .site-header .header-actions > .primary.small{display:none!important}
+ .site-header .header-actions .lang{
+  flex:0 0 auto;min-width:87px;max-width:116px;
+  min-height:38px;padding:5px 1px;font-size:12px
+ }
+ /* Mobile account access stays available; the mobile bottom bar owns Buy/Sell/Chat. */
+ .site-header .header-actions #myRoboquoBtn{
+  display:inline-flex!important;
+  align-items:center;justify-content:center;
+  width:36px;min-width:36px;height:36px;min-height:36px;
+  padding:0!important;
+  font-size:0!important;
+  line-height:1;
+  border:1px solid #e0e7ef;
+  border-radius:11px;
+  background:#fff;
+ }
+ .site-header .header-actions #myRoboquoBtn::before{
+  content:"👤";font-family:"Segoe UI Emoji","Apple Color Emoji",sans-serif;
+  font-size:18px!important;line-height:1
+ }
+}
+@media(max-width:360px){
+ .site-header{padding-inline:12px!important}
+ .site-header .rq-site-logo{width:122px}
+ .site-header .header-actions .lang{min-width:77px;max-width:99px}
+}

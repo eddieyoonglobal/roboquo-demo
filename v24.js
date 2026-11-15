@@ -70,7 +70,8 @@
   function ensureCartButton(){
     let btn=$('.header-actions > .cart-btn');
     if(!btn){btn=document.createElement('button');btn.className='cart-btn';btn.addEventListener('click',()=>window.rqOpenMarketInbox?window.rqOpenMarketInbox():route('robots'));$('.header-actions')?.insertBefore(btn,$('.header-actions').firstElementChild);}
-    const messageLabel=lang()==='ko'?'내 채팅':lang()==='ja'?'メッセージ':'Messages';
+    const messageLabels={ko:'내 채팅',ja:'メッセージ',en:'Messages',zh:'消息',de:'Nachrichten',fr:'Messages',es:'Mensajes',it:'Messaggi',pt:'Mensagens',vi:'Tin nhắn'};
+    const messageLabel=messageLabels[lang()]||messageLabels.en;
     btn.setAttribute('aria-label',messageLabel);
     btn.innerHTML=`<span aria-hidden="true">💬</span> <span>${messageLabel}</span>`;
   }
@@ -85,17 +86,27 @@
   function patchNav(){
     const locale=lang();
     const navCopy={
-      ko:{find:'구매',post:'판매',help:'이용 안내',chat:'메시지'},
-      ja:{find:'購入',post:'出品する',help:'ご利用ガイド',chat:'チャット'},
-      en:{find:'Buy equipment',post:'Sell equipment',help:'How it works',chat:'Messages'}
+      ko:{find:'상품 찾기',makers:'제조사',post:'상품 등록',help:'이용 안내',chat:'내 채팅'},
+      ja:{find:'商品を探す',makers:'メーカー',post:'商品を出品',help:'ご利用案内',chat:'メッセージ'},
+      en:{find:'Find products',makers:'Manufacturers',post:'Post an item',help:'How it works',chat:'Messages'},
+      zh:{find:'查找商品',makers:'制造商',post:'发布商品',help:'使用指南',chat:'消息'},
+      de:{find:'Produkte finden',makers:'Hersteller',post:'Artikel einstellen',help:'So funktioniert es',chat:'Nachrichten'},
+      fr:{find:'Trouver un produit',makers:'Fabricants',post:'Déposer une annonce',help:'Mode d’emploi',chat:'Messages'},
+      es:{find:'Buscar productos',makers:'Fabricantes',post:'Publicar producto',help:'Cómo funciona',chat:'Mensajes'},
+      it:{find:'Cerca prodotti',makers:'Produttori',post:'Pubblica annuncio',help:'Come funziona',chat:'Messaggi'},
+      pt:{find:'Buscar produtos',makers:'Fabricantes',post:'Anunciar produto',help:'Como funciona',chat:'Mensagens'},
+      vi:{find:'Tìm sản phẩm',makers:'Nhà sản xuất',post:'Đăng sản phẩm',help:'Hướng dẫn',chat:'Tin nhắn'}
     };
     const copy=navCopy[locale]||navCopy.en;
     const topSell=$('.header-actions [data-action="sell"]');
-    if(topSell)topSell.textContent=locale==='ko'?'판매 등록':copy.post;
+    if(topSell)topSell.textContent=copy.post;
+    const account=$('#myRoboquoBtn');
+    if(account){account.title=account.textContent.trim()||'My RoboQuo';account.setAttribute('aria-label',account.title);}
     const nav=$('.desktop-nav');
     if(nav){
       nav.innerHTML=`
         <a data-route="robots" href="#robots">${copy.find}</a>
+        <a data-route="makers" href="#makers">${copy.makers}</a>
         <a data-route="about" href="#about">${copy.help}</a>`;
       $$('[data-route]',nav).forEach(a=>a.addEventListener('click',e=>{e.preventDefault();route(a.dataset.route)}));
     }
