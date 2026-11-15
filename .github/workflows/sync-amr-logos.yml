@@ -1,0 +1,55 @@
+name: Mirror original AMR AGV manufacturer logo artwork
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'amr-maker-sources.json'
+      - 'tools/sync-amr-logos.py'
+      - '.github/workflows/sync-amr-logos.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: roboquo-amr-logo-assets-main
+  cancel-in-progress: false
+
+jobs:
+  mirror:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image validator
+        run: python -m pip install --disable-pip-version-check Pillow
+      - name: Check safe AMR maker manifest and mirror code
+        run: |
+          node tests/amr-makers-regression.cjs
+          python -m py_compile tools/sync-amr-logos.py
+      - name: Fetch and verify original company logo images
+        run: python tools/sync-amr-logos.py
+      - name: Store per-company download audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: amr-manufacturer-original-logo-report
+          path: assets/amr-logos/SOURCE_REPORT.json
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Commit available original logo files and source map
+        run: |
+          git config user.name 'RoboQuo AMR Logo Mirror'
+          git config user.email 'github-actions[bot]@users.noreply.github.com'
+          git add assets/amr-logos amr-maker-local-map.js
+          if git diff --cached --quiet; then
+            echo 'No new original logo assets'
+          else
+            git commit -m 'Mirror verified AMR and AGV maker logos locally'
+            git push origin HEAD:main
+          fi
