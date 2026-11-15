@@ -127,6 +127,9 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#marketSearch').inputValue(),'FANUC','FANUC maker search');
   assert.equal(await page.locator('#robots [data-rq-quick-action="buy"]').count(),1,'buy CTA');
   assert.equal(await page.locator('#robots [data-rq-quick-action="sell"]').count(),1,'sell CTA');
+  assert.equal(await page.locator('.desktop-nav [data-rq-quick-action="sell"]').count(),0,'no duplicate desktop sell menu');
+  assert.equal(await page.locator('.header-actions button[data-action="sell"]').count(),1,'keep exactly one desktop sell CTA');
+  assert.equal(await page.locator('.mobile-nav button[data-action="sell"]').count(),1,'keep mobile sell shortcut');
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
   assert(overflow<=3,'unexpected horizontal overflow: '+overflow);
   // Demo data, when visible, must not be mislabeled as real seller inventory.
