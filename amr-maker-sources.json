@@ -1,0 +1,243 @@
+{
+  "purpose": "Independent AMR/AGV/mobile transport manufacturers for navigation only; these are not sellers, inventory, partnerships or warranty claims.",
+  "updated": "2026-11-15",
+  "makers": [
+    {
+      "id": "amr-01",
+      "name": "MiR",
+      "slug": "mir",
+      "country": "Denmark",
+      "region": "Europe",
+      "search": "Mobile Industrial Robots",
+      "website": "https://mobile-industrial-robots.com/",
+      "logoSources": [
+        "https://pbs.twimg.com/profile_images/931074733751390208/5qLH--FA.jpg"
+      ],
+      "logoNote": "Manufacturer-operated social profile artwork"
+    },
+    {
+      "id": "amr-02",
+      "name": "Tompkins Robotics",
+      "slug": "tompkins-robotics",
+      "country": "USA",
+      "region": "USA",
+      "search": "Tompkins",
+      "website": "https://www.tompkinsrobotics.com/",
+      "logoSources": [
+        "https://www.tompkinsrobotics.com/hubfs/TR%20Media%20Kit/Logos/trlogo2021transparent-notag.png"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-03",
+      "name": "Doog",
+      "slug": "doog",
+      "country": "Japan",
+      "region": "Japan",
+      "search": "Doog",
+      "website": "https://doog-inc.com/",
+      "logoSources": [
+        "https://doog-inc.com/wp-content/uploads/2021/04/1.logo-doog-iso_web3.png"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-04",
+      "name": "LexxPluss",
+      "slug": "lexxpluss",
+      "country": "Japan",
+      "region": "Japan",
+      "search": "LexxPluss",
+      "website": "https://lexxpluss.com/jp/",
+      "logoSources": [
+        "https://lexxpluss.com/wp-content/uploads/2024/03/LexxPluss-Logo.png"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-05",
+      "name": "Rapyuta Robotics",
+      "slug": "rapyuta-robotics",
+      "country": "Japan",
+      "region": "Japan",
+      "search": "Rapyuta",
+      "website": "https://www.rapyuta-robotics.com/ja/",
+      "logoSources": [
+        "https://www.rapyuta-robotics.com/ja/wp-content/uploads/sites/10/2022/01/rr-logo-horizontal2022.svg"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-06",
+      "name": "Quicktron",
+      "slug": "quicktron",
+      "country": "China",
+      "region": "China",
+      "search": "Quicktron",
+      "website": "https://www.quicktron.com/",
+      "logoSources": [
+        "https://www.quicktron.com/storage/479/logo-1676973788tTMTV-(1).png"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-07",
+      "name": "Geek+",
+      "slug": "geek",
+      "country": "China",
+      "region": "China",
+      "search": "Geek+",
+      "website": "https://www.geekplus.com/",
+      "logoSources": [
+        "https://www.geekplus.com/hs-fs/hubfs/geek+%20logo%20transparent-1.png?width=200&height=76&name=geek+%20logo%20transparent-1.png"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-08",
+      "name": "Locus Robotics",
+      "slug": "locus-robotics",
+      "country": "USA",
+      "region": "USA",
+      "search": "Locus",
+      "website": "https://locusrobotics.com/",
+      "logoSources": [
+        "https://locusrobotics.com/wp-content/uploads/2026/09/locus-robotics-logo.svg"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-09",
+      "name": "HAI Robotics",
+      "slug": "hai-robotics",
+      "country": "China",
+      "region": "China",
+      "search": "HAI Robotics",
+      "website": "https://www.hairobotics.com/",
+      "logoSources": [
+        "https://www.hairobotics.com/themes/custom/hairobotics/logo.svg"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-10",
+      "name": "ForwardX",
+      "slug": "forwardx",
+      "country": "China",
+      "region": "China",
+      "search": "ForwardX",
+      "website": "https://www.forwardx.com/",
+      "logoSources": [
+        "https://www.forwardx.com/wp-content/uploads/2023/01/logo-606_228.png"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-11",
+      "name": "AGILOX",
+      "slug": "agilox",
+      "country": "Austria",
+      "region": "Europe",
+      "search": "AGILOX",
+      "website": "https://www.agilox.net/",
+      "logoSources": [
+        "https://www.agilox.net/media/agilox_logo_w_rgb-scaled.png"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-12",
+      "name": "Daifuku",
+      "slug": "daifuku",
+      "country": "Japan",
+      "region": "Japan",
+      "search": "Daifuku",
+      "website": "https://www.daifuku.com/",
+      "logoSources": [
+        "https://www.daifuku.com/assets/images/common/logo_main.svg"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-13",
+      "name": "Keigan",
+      "slug": "keigan",
+      "country": "Japan",
+      "region": "Japan",
+      "search": "Keigan",
+      "website": "https://www.keigan.co.jp/",
+      "logoSources": [
+        "https://www.keigan.co.jp/wf/a/690dab6b44c40c87f34ad478_Logo.png"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-14",
+      "name": "OMRON Robotics",
+      "slug": "omron-robotics",
+      "country": "Japan",
+      "region": "Japan",
+      "search": "OMRON",
+      "website": "https://www.omron.com/",
+      "logoSources": [
+        "https://commons.wikimedia.org/wiki/Special:FilePath/OMRON_Logo.svg"
+      ],
+      "logoNote": "Manufacturer-hosted wordmark or documented Wikimedia artwork"
+    },
+    {
+      "id": "amr-15",
+      "name": "Hikrobot",
+      "slug": "hikrobot",
+      "country": "China",
+      "region": "China",
+      "search": "Hikrobot",
+      "website": "https://www.hikrobotics.com/",
+      "logoSources": [],
+      "logoNote": "No verified image source: show a single readable company name until verified"
+    },
+    {
+      "id": "amr-16",
+      "name": "MiraBot",
+      "slug": "mirabot",
+      "country": "Japan",
+      "region": "Japan",
+      "search": "CarriRo",
+      "website": "https://www.mirarobot.co.jp/",
+      "logoSources": [],
+      "logoNote": "No verified image source: show a single readable company name until verified"
+    },
+    {
+      "id": "amr-17",
+      "name": "Exotec",
+      "slug": "exotec",
+      "country": "France",
+      "region": "Europe",
+      "search": "Exotec",
+      "website": "https://www.exotec.com/",
+      "logoSources": [],
+      "logoNote": "No verified image source: show a single readable company name until verified"
+    },
+    {
+      "id": "amr-18",
+      "name": "Twinny",
+      "slug": "twinny",
+      "country": "Korea",
+      "region": "Korea",
+      "search": "Twinny",
+      "website": "https://twinny.ai/",
+      "logoSources": [],
+      "logoNote": "No verified image source: show a single readable company name until verified"
+    },
+    {
+      "id": "amr-19",
+      "name": "Yujin Robot",
+      "slug": "yujin-robot",
+      "country": "Korea",
+      "region": "Korea",
+      "search": "Yujin Robot",
+      "website": "https://yujinrobot.com/",
+      "logoSources": [],
+      "logoNote": "No verified image source: show a single readable company name until verified"
+    }
+  ]
+}
