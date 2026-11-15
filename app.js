@@ -687,14 +687,6 @@ function rqMergeByName(base,live){
   const liveKeys=new Set(live.map(x=>norm(x.name)));
   return [...live,...base.filter(x=>!liveKeys.has(norm(x.name)))];
 }
-function rqDbBadge(state,text){
-  let el=document.getElementById('rqDbStatus');
-  if(!el){
-    el=document.createElement('span'); el.id='rqDbStatus'; el.className='rq-db-status';el.setAttribute('role','status');el.setAttribute('aria-live','polite');
-    const host=document.querySelector('.header-actions'); if(host)host.insertBefore(el,host.firstChild);
-  }
-  if(el){el.dataset.state=state;el.textContent=text;}
-}
 async function loadRoboquoSeedData(){
   const res=await fetch('./robot-directory-seed.json',{cache:'no-cache'});
   if(!res.ok)throw new Error(`Seed data ${res.status}`);
@@ -706,7 +698,7 @@ async function loadRoboquoSeedData(){
   renderCategories();populateMakerRegions();renderMakers();
 }
 async function loadRoboquoLiveDatabase(){
-  rqDbBadge('loading','Tokyo DB…');
+
   const jobs={
     makers:rqDbGet('manufacturers?select=*,manufacturer_localizations(*)&is_active=eq.true&order=name.asc'),
     companies:rqDbGet('companies?select=*&is_public=eq.true&order=name.asc'),
@@ -734,11 +726,11 @@ async function loadRoboquoLiveDatabase(){
   });
   populateCompanyCountries();populateEventFilters();renderCategories();renderListings();renderMakers();renderNetwork();renderPurchaseChannels();renderEvents();
   if(document.getElementById('searchPageInput')?.value)renderGlobalSearch(document.getElementById('searchPageInput').value);
-  rqDbBadge(successful?'live':'error',successful?`● Tokyo DB LIVE`:'DB fallback');
+
   console.info(`RoboQuo v23: ${successful}/${entries.length} live Supabase data sources connected.`);
 }
 async function bootstrapRoboquoData(){
   try{await loadRoboquoSeedData();}catch(err){console.warn('RoboQuo seed data unavailable.',err);}
-  try{await loadRoboquoLiveDatabase();}catch(err){console.warn('RoboQuo live DB unavailable; using static fallback.',err);rqDbBadge('error','DB fallback');}
+  try{await loadRoboquoLiveDatabase();}catch(err){console.warn('RoboQuo live DB unavailable; using static fallback.',err);}
 }
 bootstrapRoboquoData();
