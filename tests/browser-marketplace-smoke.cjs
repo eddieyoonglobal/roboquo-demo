@@ -101,8 +101,8 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
 
 
   const mobileNavigation=await page.locator('.mobile-nav button small').allTextContents();
-  if(footerDebug.footerCount)assert.deepEqual(mobileNavigation.map(t=>t.trim()),['구매','판매','메시지']);
-  else assert.match(fs.readFileSync(path.join(root,'v24.js'),'utf8'),/ko:\\{find:'구매',post:'판매',help:'이용 안내',chat:'메시지'\\}/,'Korean mobile labels defined');
+  if(footerDebug.footerCount)assert.deepEqual(mobileNavigation.map(t=>t.trim()),['상품 찾기','상품 등록','내 채팅']);
+  else assert.match(fs.readFileSync(path.join(root,'v24.js'),'utf8'),/ko:\\{find:'상품 찾기',makers:'제조사',post:'상품 등록',help:'이용 안내',chat:'내 채팅'\\}/,'Korean mobile labels defined');
   assert.equal(await page.evaluate(()=>localStorage.getItem('rqLangV21')),'ko','language choice is persisted');
 
   for(const [name,size] of [['China',3],['Taiwan',3],['Korea',5],['Japan',7],['Europe',5]]){
