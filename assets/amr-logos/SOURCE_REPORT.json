@@ -1,12 +1,9 @@
 {
   "total": 19,
-  "mirrored": 14,
+  "mirrored": 17,
   "unverified": [
     "Hikrobot",
-    "MiraBot",
-    "Exotec",
-    "Twinny",
-    "Yujin Robot"
+    "Exotec"
   ],
   "details": [
     {
@@ -114,8 +111,10 @@
     },
     {
       "name": "MiraBot",
-      "status": "unverified",
-      "errors": []
+      "status": "downloaded",
+      "host": "www.mirabot.co.jp",
+      "sha256": "1b2d0be07f8d7bc22245936cb3d85a4bced1d3d0bef7886e0b7a24df9111bf35",
+      "bytes": 3495
     },
     {
       "name": "Exotec",
@@ -124,13 +123,17 @@
     },
     {
       "name": "Twinny",
-      "status": "unverified",
-      "errors": []
+      "status": "downloaded",
+      "host": "twinny.ai",
+      "sha256": "b8434bd583a172506ef1cef82c670e6024806f6eeaa131ea6f6ee30d7d0ffeec",
+      "bytes": 18837
     },
     {
       "name": "Yujin Robot",
-      "status": "unverified",
-      "errors": []
+      "status": "downloaded",
+      "host": "static.wixstatic.com",
+      "sha256": "8498b8bdf2b93f5d30922b008e30b0461e7876147e10adb17a05212bac325087",
+      "bytes": 14465
     }
   ]
 }
