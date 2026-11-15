@@ -1,0 +1,136 @@
+{
+  "total": 19,
+  "mirrored": 14,
+  "unverified": [
+    "Hikrobot",
+    "MiraBot",
+    "Exotec",
+    "Twinny",
+    "Yujin Robot"
+  ],
+  "details": [
+    {
+      "name": "MiR",
+      "status": "downloaded",
+      "host": "pbs.twimg.com",
+      "sha256": "b5315c4d7c524f7a0a1d61992885fc41f57a457c2545ce87439abcb9d7714df1",
+      "bytes": 24341
+    },
+    {
+      "name": "Tompkins Robotics",
+      "status": "downloaded",
+      "host": "www.tompkinsrobotics.com",
+      "sha256": "cb797a23c7436b80d11fec10d0d06cef1e5e890f2ebb1e4cc7e6aa393d5a746d",
+      "bytes": 71560
+    },
+    {
+      "name": "Doog",
+      "status": "downloaded",
+      "host": "doog-inc.com",
+      "sha256": "08310edba07daa60fbb039ca1977436e75479d95faa9939e5b663c236c53fb43",
+      "bytes": 5388
+    },
+    {
+      "name": "LexxPluss",
+      "status": "downloaded",
+      "host": "lexxpluss.com",
+      "sha256": "435300d5a0c305ec4b6113024dddfd1020fe816ca885cf04912d02d611f76176",
+      "bytes": 7081
+    },
+    {
+      "name": "Rapyuta Robotics",
+      "status": "downloaded",
+      "host": "www.rapyuta-robotics.com",
+      "sha256": "979b3ebd081974ccdd35ab61a73e3d28ac203b931004409a0405533f5eef8511",
+      "bytes": 4373
+    },
+    {
+      "name": "Quicktron",
+      "status": "downloaded",
+      "host": "www.quicktron.com",
+      "sha256": "675b9efb6a965728ee2881bbdb1c048091759a15f7df9d561583901f970e8171",
+      "bytes": 38775
+    },
+    {
+      "name": "Geek+",
+      "status": "downloaded",
+      "host": "www.geekplus.com",
+      "sha256": "7ae2e14933e960e53586262d421bc37534f678e2cdc8b37c4a9f22668d0c8656",
+      "bytes": 4558
+    },
+    {
+      "name": "Locus Robotics",
+      "status": "downloaded",
+      "host": "locusrobotics.com",
+      "sha256": "8d00c5d8946e6e4d965fbd3faed65fba099d587a3d00f4ccd7f3154aa194134c",
+      "bytes": 10775
+    },
+    {
+      "name": "HAI Robotics",
+      "status": "downloaded",
+      "host": "www.hairobotics.com",
+      "sha256": "d5874759a19da242446ccc3dcc0f99e441b4dce728cae0853d2cea74f0069b25",
+      "bytes": 4143
+    },
+    {
+      "name": "ForwardX",
+      "status": "downloaded",
+      "host": "www.forwardx.com",
+      "sha256": "ed0a921b47285dc0d02035b102870fe95910333ac9466096559c02be34f8cb1a",
+      "bytes": 16600
+    },
+    {
+      "name": "AGILOX",
+      "status": "downloaded",
+      "host": "www.agilox.net",
+      "sha256": "0afd279cbddc0c4f735c2969291606a04e6e517fcb141c0177ef6cd692183035",
+      "bytes": 40267
+    },
+    {
+      "name": "Daifuku",
+      "status": "downloaded",
+      "host": "www.daifuku.com",
+      "sha256": "b9ce176ddfc3f115c37d5158ac62444da24b0aabcc6ac4b88d24b388c52fde17",
+      "bytes": 4627
+    },
+    {
+      "name": "Keigan",
+      "status": "downloaded",
+      "host": "www.keigan.co.jp",
+      "sha256": "ccf21b87b7e014d2ff543f49e3b417cf869040e463071a9c39bd8a04feba0e26",
+      "bytes": 3825
+    },
+    {
+      "name": "OMRON Robotics",
+      "status": "downloaded",
+      "host": "commons.wikimedia.org",
+      "sha256": "581efadd0547fcb529f4d64e671343bb065e3c32ce36a0756572ab5e8a662cd2",
+      "bytes": 3611
+    },
+    {
+      "name": "Hikrobot",
+      "status": "unverified",
+      "errors": []
+    },
+    {
+      "name": "MiraBot",
+      "status": "unverified",
+      "errors": []
+    },
+    {
+      "name": "Exotec",
+      "status": "unverified",
+      "errors": []
+    },
+    {
+      "name": "Twinny",
+      "status": "unverified",
+      "errors": []
+    },
+    {
+      "name": "Yujin Robot",
+      "status": "unverified",
+      "errors": []
+    }
+  ]
+}
