@@ -130,6 +130,23 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('.desktop-nav [data-rq-quick-action="sell"]').count(),0,'no duplicate desktop sell menu');
   assert.equal(await page.locator('.header-actions button[data-action="sell"]').count(),1,'keep exactly one desktop sell CTA');
   assert.equal(await page.locator('.mobile-nav button[data-action="sell"]').count(),1,'keep mobile sell shortcut');
+  // Customer header: no engineering DB badge and no duplicate sales actions.
+  assert.equal(await page.locator('#rqDbStatus').count(),0,'DB connectivity must never create a customer-facing status pill');
+  assert.equal(await page.locator('.desktop-nav a').count(),3,'three concise desktop navigation links');
+  assert.deepEqual(await page.locator('.desktop-nav a').evaluateAll(nodes=>nodes.map(n=>n.dataset.route)),['robots','makers','about'],'navigation preserves search, manufacturers and guide');
+  assert.equal(await page.locator('.header-actions > .primary.small').count(),1,'keep exactly one prominent post CTA');
+  const headerLayout=await page.evaluate(()=>{
+   const header=document.querySelector('.site-header'),account=document.getElementById('myRoboquoBtn'),cart=header.querySelector('.cart-btn');
+   return {overflow:document.documentElement.scrollWidth-innerWidth,accountVisible:getComputedStyle(account).display!=='none',chatInHeader:cart?getComputedStyle(cart).display!=='none':false};
+  });
+  assert.equal(headerLayout.accountVisible,true,'account must be reachable on mobile and desktop');
+  assert.equal(headerLayout.chatInHeader,device.width>760,'messages should only live in bottom navigation on mobile');
+  assert(headerLayout.overflow<=3,'header must not cause horizontal page overflow: '+JSON.stringify(headerLayout));
+  await page.locator('#languageSelect').selectOption('ko');
+  await page.waitForFunction(()=>document.querySelector('.desktop-nav a')?.textContent==='상품 찾기');
+  assert.deepEqual(await page.locator('.desktop-nav a').allTextContents(),['상품 찾기','제조사','이용 안내'],'Korean navigation must be concise');
+  assert.equal((await page.locator('.header-actions > .primary.small').innerText()).trim(),'상품 등록','one consistent Korean post action');
+
   const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth);
   assert(overflow<=3,'unexpected horizontal overflow: '+overflow);
   // Demo data, when visible, must not be mislabeled as real seller inventory.
