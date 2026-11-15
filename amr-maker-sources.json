@@ -202,9 +202,11 @@
       "country": "Japan",
       "region": "Japan",
       "search": "CarriRo",
-      "website": "https://www.mirarobot.co.jp/",
-      "logoSources": [],
-      "logoNote": "No verified image source: show a single readable company name until verified"
+      "website": "https://www.mirabot.co.jp/",
+      "logoSources": [
+        "https://www.mirabot.co.jp/wp-content/themes/mirabot/favicon/icon.svg"
+      ],
+      "logoNote": "Official company-owned SVG mark; verified current mirabot.co.jp website"
     },
     {
       "id": "amr-17",
@@ -225,8 +227,10 @@
       "region": "Korea",
       "search": "Twinny",
       "website": "https://twinny.ai/",
-      "logoSources": [],
-      "logoNote": "No verified image source: show a single readable company name until verified"
+      "logoSources": [
+        "https://twinny.ai/assets/img/logo_dark.png"
+      ],
+      "logoNote": "Official Twinny maker website logo_dark.png"
     },
     {
       "id": "amr-19",
@@ -235,9 +239,11 @@
       "country": "Korea",
       "region": "Korea",
       "search": "Yujin Robot",
-      "website": "https://yujinrobot.com/",
-      "logoSources": [],
-      "logoNote": "No verified image source: show a single readable company name until verified"
+      "website": "https://www.yujinrobot.com/",
+      "logoSources": [
+        "https://static.wixstatic.com/media/4fe3ae_976833ab63a3446ba5bc91efb03d2b41~mv2.png"
+      ],
+      "logoNote": "Original Yujin Robot wordmark published on company Wix CDN"
     }
   ]
 }
