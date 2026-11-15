@@ -10,6 +10,13 @@ const names=new Set(data.makers.map(x=>x.name));
 for(const name of ['MiR','Tompkins Robotics','Doog','LexxPluss','Rapyuta Robotics','Quicktron','Geek+','Locus Robotics','HAI Robotics','ForwardX','AGILOX','Daifuku','Keigan','OMRON Robotics','Hikrobot','MiraBot','Exotec','Twinny','Yujin Robot']){
  assert(names.has(name),'missing AMR maker: '+name);
 }
+// Never link MiraBot to the previous mistaken mirarobot.co.jp spelling.
+assert.equal(data.makers.find(x=>x.name==='MiraBot').website,'https://www.mirabot.co.jp/');
+for(const name of ['MiraBot','Twinny','Yujin Robot']){
+ const maker=data.makers.find(x=>x.name===name);
+ assert(maker.logoSources.length>=1,'official logo source required for '+name);
+ assert(maker.logoNote.includes('Official')||maker.logoNote.includes('Original'),'logo provenance required for '+name);
+}
 for(const x of data.makers){
  assert(/^https:\/\//.test(x.website),x.name+' missing real company website');
  assert(/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(x.slug),x.name+' incorrect asset slug');
