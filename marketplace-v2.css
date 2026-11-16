@@ -21,6 +21,8 @@
 .rq-cl-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
 .rq-cl-field{display:flex;flex-direction:column;gap:7px;min-width:0}
 .rq-cl-field span{font-size:13px;font-weight:700;color:#34455c}
+.rq-cl-field .rq-cl-currency-display{box-sizing:border-box;display:flex;align-items:center;min-height:43px;padding:11px 12px;border:1px solid #cdd5df;border-radius:9px;background:#f4f7fb;font-size:15px;font-weight:750;color:#173457;letter-spacing:.01em}
+.rq-cl-field input[type="hidden"]{display:none!important}
 .rq-cl-field input,.rq-cl-field select,.rq-cl-field textarea,.rq-cl-reply textarea{width:100%;min-height:43px;padding:11px 12px;border-radius:9px;border:1px solid #cdd5df;background:white;color:#172334;font:inherit;box-sizing:border-box}
 .rq-cl-field textarea,.rq-cl-reply textarea{line-height:1.6;resize:vertical}
 .rq-cl-field input:focus-visible,.rq-cl-field select:focus-visible,.rq-cl-field textarea:focus-visible{outline:2px solid #1764e8;outline-offset:1px}
