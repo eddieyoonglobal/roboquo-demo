@@ -62,19 +62,26 @@ const server=http.createServer((req,res)=>{
    assert.equal(await page.locator('#rqClMakerOther').inputValue(),'New Custom Manufacturer');
    await page.locator('#rqClMakerSelect').selectOption('YASKAWA');
    assert.equal(await page.locator('#rqClMakerOther').isVisible(),false);
-   // The amount never silently switches from JPY to KRW or the reverse.
-   await page.locator('#rqClCurrency').selectOption('KRW');
-   assert.match(await page.locator('#rqClPriceLabel').innerText(),/₩ KRW/);
-   await page.locator('[name="price"]').fill('3000000');
+   // Currency is derived from country; no independent editable select.
+   assert.equal(await page.locator('#rqClCurrency').getAttribute('type'),'hidden');
+   assert.equal(await page.locator('#rqClCurrencyDisplay').isVisible(),true);
    await page.locator('#rqClCountry').selectOption('Japan');
    assert.equal(await page.locator('#rqClCurrency').inputValue(),'JPY');
-   assert.equal(await page.locator('[name="price"]').inputValue(),'','old KRW numeric amount cleared on JPY switch');
    assert.match(await page.locator('#rqClPriceLabel').innerText(),/¥ JPY/);
+   assert.match(await page.locator('#rqClCurrencyDisplay').innerText(),/¥ JPY/);
    await page.locator('[name="price"]').fill('3000000');
    await page.locator('#rqClCountry').selectOption('Korea');
    assert.equal(await page.locator('#rqClCurrency').inputValue(),'KRW');
-   assert.equal(await page.locator('[name="price"]').inputValue(),'','old JPY numeric amount cleared on KRW switch');
+   assert.equal(await page.locator('[name="price"]').inputValue(),'','old JPY amount cleared');
    assert.match(await page.locator('#rqClPriceLabel').innerText(),/₩ KRW/);
+   assert.match(await page.locator('#rqClCurrencyDisplay').innerText(),/₩ KRW/);
+   await page.locator('[name="price"]').fill('3000000');
+   await page.locator('#rqClCountry').selectOption('Japan');
+   assert.equal(await page.locator('#rqClCurrency').inputValue(),'JPY');
+   assert.equal(await page.locator('[name="price"]').inputValue(),'','old KRW amount cleared');
+   assert.match(await page.locator('#rqClPriceLabel').innerText(),/¥ JPY/);
+   assert.equal(await page.locator('#rqClCurrency').evaluate(e=>new FormData(e.form).get('currency')),'JPY');
+   assert.equal(await page.locator('[name="currency"]').count(),1);
    await page.locator('#rqClSellMethod').selectOption('fixed');
    assert.equal(await page.locator('[name="price"]').getAttribute('required'),'');
    await page.locator('#rqClSellMethod').selectOption('quotes');
