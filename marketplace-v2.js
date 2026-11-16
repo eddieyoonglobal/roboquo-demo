@@ -359,9 +359,14 @@ function init(){
   wrapped.__classifieds=true;window.rqSetSellerLiveListings=wrapped;
  }
  putMarketActions();
- // The classifieds feed is the product's primary landing page; the former
- // multi-service demo home remains accessible through the Home navigation.
- if(!location.hash||location.hash==='#robots')route('robots');
+ // The marketplace is the first page for new visitors, matching the
+ // active section in index.html before JavaScript loads. Deep links remain usable.
+ const requested=location.hash.slice(1);
+ const pageId=requested&&document.getElementById(requested)?.classList.contains('page')
+   ?requested:'robots';
+ route(pageId);
+ // Reveal the prepared page only after v24 and marketplace setup have run.
+ requestAnimationFrame(()=>document.documentElement.classList.remove('rq-first-paint'));
  document.addEventListener('rq:languagechange',()=>{
   putMarketActions();
   const hint=$('#rqMarketInfo');if(hint)hint.textContent=tr('priceHint');
