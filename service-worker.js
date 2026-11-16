@@ -1,6 +1,9 @@
-const CACHE='roboquo-header-clean-v3-20261115';
+const CACHE='roboquo-firstpaint-v4-20261116';
 const ASSETS=['./','./index.html','./styles.css','./v24.css','./app.js','./v24.js','./header-clean.css','./supabase-config.js','./robot-model-master.js','./auth.js','./seller-backend.js','./assets/rq-vacuum-eoat.svg','./assets/rq-robotic-hand.svg','./quote-market.js','./quote-market.css','./marketplace-v2.js','./marketplace-v2.css','./mobile-market.js','./mobile-market.css','./featured-showcase.js','./featured-showcase.css','./simple-market.js','./simple-market.css','./maker-logo-catalog.js','./maker-logo-catalog.css','./maker-logo-local-map.js','./events-seed.json','./company-directory-seed.json','./purchase-channel-seed.json','./robot-directory-seed.json','./manifest.json','./icon-180.png','./icon-192.png','./icon-512.png','./icon-192.svg','./icon-512.svg','./social-preview.png','./maker-approved.css','./maker-approved.js','./mobile-brand-finish.css','./assets/maker-logos/fanuc-trimmed-20261114.png','./assets/maker-logos/onrobot-trimmed-20261114.png','./assets/maker-logos/schunk-trimmed-20261114.png','./assets/maker-logos/dobot-approved.png','./assets/maker-logos/jaka-approved.png','./assets/maker-logos/estun-approved.png','./assets/maker-logos/techman-approved.png','./assets/maker-logos/hiwin-approved.png','./assets/maker-logos/delta-approved.png','./assets/maker-logos/hanwha-approved.png','./assets/maker-logos/neuromeka-approved.png','./assets/maker-logos/piab-approved.png','./assets/maker-logos/aidin-robotics-approved.png','./assets/maker-logos/pisco-approved.png'];
 const ASSET_PATHS=new Set(ASSETS.map(path=>new URL(path,self.location.href).pathname));
+// Initial routing depends on the same HTML and JavaScript version. Prefer the network,
+// falling back to cached resources only when offline.
+const BOOT_PATHS=new Set(['./index.html','./app.js','./v24.js','./marketplace-v2.js'].map(path=>new URL(path,self.location.href).pathname));
 
 self.addEventListener('install',event=>event.waitUntil(
   caches.open(CACHE).then(cache=>cache.addAll(ASSETS)).then(()=>self.skipWaiting())
@@ -18,6 +21,15 @@ self.addEventListener('fetch',event=>{
     return;
   }
   if(!ASSET_PATHS.has(url.pathname))return;
+  if(BOOT_PATHS.has(url.pathname)){
+    event.respondWith(
+      fetch(request).then(response=>{
+        if(response.ok)caches.open(CACHE).then(cache=>cache.put(request,response.clone()));
+        return response;
+      }).catch(()=>caches.match(request,{ignoreSearch:true}))
+    );
+    return;
+  }
   event.respondWith(caches.match(request,{ignoreSearch:true}).then(cached=>{
     const update=fetch(request).then(response=>{if(response.ok)caches.open(CACHE).then(cache=>cache.put(request,response.clone()));return response;});
     return cached||update;
