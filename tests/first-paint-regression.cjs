@@ -61,7 +61,10 @@ const server=http.createServer((req,res)=>{
   assert.equal(await page.locator('#robots').isVisible(),true,'final marketplace becomes visible');
   assert.equal(errors.length,0,'unexpected browser errors at '+width+': '+JSON.stringify(errors));
   // A direct link must still display the requested page, not always force Marketplace.
-  await page.goto(origin+'/#home',{waitUntil:'domcontentloaded'});
+  // A hash-only navigation stays in the same document; reload to test a true
+  // first visit arriving from an external link with #home in the URL.
+  await page.goto(origin+'/#home');
+  await page.reload({waitUntil:'domcontentloaded'});
   await page.waitForFunction(()=>!document.documentElement.classList.contains('rq-first-paint'));
   assert.equal(await page.locator('#home').isVisible(),true,'explicit #home deep link preserved');
   assert.equal(await page.locator('#robots').isVisible(),false,'deep link shows only home');
