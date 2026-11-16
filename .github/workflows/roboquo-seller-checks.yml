@@ -62,6 +62,7 @@ jobs:
           node tests/browser-marketplace-smoke.cjs
           node tests/first-paint-regression.cjs
           node tests/first-yaskawa-listing-guide.cjs
+          node tests/quick-listing-auth-regression.cjs
 
       - name: Attach fixture-only browser screenshots
         if: always()
