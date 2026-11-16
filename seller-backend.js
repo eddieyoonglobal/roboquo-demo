@@ -73,6 +73,14 @@
   window.rqSubmitSellerListing=async(draft,options={})=>{
     // Do not submit test listings into the live database from a Preview URL.
     if(window.rqCanWriteSupabase?.()===false)throw Object.assign(new Error('Preview is read-only'),{code:'PREVIEW_READ_ONLY'});
+    // Authorization and Preview isolation checks take priority; amounts are verified before writes.
+    const amount=numberOrNull(draft.price);
+    const inputAmount=String(draft.price??'').trim();
+    if(inputAmount&&(amount===null||amount<=0))
+      throw Object.assign(new Error('Price must be positive and numeric'),{code:'PRICE_INVALID'});
+    if(draft.sale!=='bid'&&(amount===null||amount<=0))
+      throw Object.assign(new Error('Fixed-price listing needs a positive amount'),{code:'PRICE_REQUIRED'});
+
     const api=client(),account=user();if(!api||!account)throw Object.assign(new Error('Authentication required'),{code:'AUTH_REQUIRED'});
     // Validate client-side photo records before writing any seller/contact data.
     const photos=options.photos||await window.rqGetSellerPhotoRecords?.()||[];

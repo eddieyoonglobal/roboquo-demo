@@ -45,6 +45,42 @@ const server=http.createServer((req,res)=>{
      preset:form.dataset.firstProduct,
      owner:form.querySelector('[name="companyName"]').value};
    });
+   // The live directory contains all 165 active manufacturers, not just a short brand list.
+   await page.waitForFunction(()=>document.querySelectorAll('#rqClMakerSelect option').length>=165,{timeout:10000});
+   const makerValues=await page.locator('#rqClMakerSelect option').evaluateAll(opts=>opts.map(o=>o.value));
+   assert(makerValues.includes('FANUC'),'FANUC remains selectable');
+   assert(makerValues.includes('YASKAWA'),'YASKAWA maker alias remains selectable');
+   assert(makerValues.includes('ABB Robotics'),'ABB remains selectable');
+   assert(makerValues.includes('__other__'),'brand-not-listed option exists');
+   const manufacturerCount=makerValues.filter(x=>x&&x!=='__other__').length;
+   assert(manufacturerCount>=165,'all 165 active maker names must be selectable, got '+manufacturerCount);
+   // Free text appears only when the seller chooses Other.
+   await page.locator('#rqClMakerSelect').selectOption('__other__');
+   assert.equal(await page.locator('#rqClMakerOther').isVisible(),true);
+   assert.equal(await page.locator('#rqClMakerOther').getAttribute('required'),'');
+   await page.locator('#rqClMakerOther').fill('New Custom Manufacturer');
+   assert.equal(await page.locator('#rqClMakerOther').inputValue(),'New Custom Manufacturer');
+   await page.locator('#rqClMakerSelect').selectOption('YASKAWA');
+   assert.equal(await page.locator('#rqClMakerOther').isVisible(),false);
+   // The amount never silently switches from JPY to KRW or the reverse.
+   await page.locator('#rqClCurrency').selectOption('KRW');
+   assert.match(await page.locator('#rqClPriceLabel').innerText(),/₩ KRW/);
+   await page.locator('[name="price"]').fill('3000000');
+   await page.locator('#rqClCountry').selectOption('Japan');
+   assert.equal(await page.locator('#rqClCurrency').inputValue(),'JPY');
+   assert.equal(await page.locator('[name="price"]').inputValue(),'','old KRW numeric amount cleared on JPY switch');
+   assert.match(await page.locator('#rqClPriceLabel').innerText(),/¥ JPY/);
+   await page.locator('[name="price"]').fill('3000000');
+   await page.locator('#rqClCountry').selectOption('Korea');
+   assert.equal(await page.locator('#rqClCurrency').inputValue(),'KRW');
+   assert.equal(await page.locator('[name="price"]').inputValue(),'','old JPY numeric amount cleared on KRW switch');
+   assert.match(await page.locator('#rqClPriceLabel').innerText(),/₩ KRW/);
+   await page.locator('#rqClSellMethod').selectOption('fixed');
+   assert.equal(await page.locator('[name="price"]').getAttribute('required'),'');
+   await page.locator('#rqClSellMethod').selectOption('quotes');
+   assert.equal(await page.locator('[name="price"]').getAttribute('required'),null,'price optional for quote');
+   assert.match(await page.locator('#rqClPriceHelp').innerText(),/환산하지 않습니다|convert numbers|換算/);
+   // Preserve the user's incomplete initial listing, with no accidental writes.
    assert.equal(data.brand,'YASKAWA');
    assert.equal(data.model,'CSRA-SDB06HA');
    assert.equal(data.itemCategory,'part');
@@ -53,6 +89,7 @@ const server=http.createServer((req,res)=>{
    assert.equal(data.location,'');
    assert.equal(data.phone,'010-3975-7017');
    assert.equal(data.price,'');
+   assert.match(fs.readFileSync(path.join(root,'v24.js'),'utf8'),/価格応相談|가격 협의/,'unspecified negotiated amount must be presented clearly to buyers');
    assert.match(data.description,/SERVOPACK CSRA-SDB06HA/);
    assert.equal(data.pictures,0,'photos are attached only by authenticated seller');
    assert.equal(data.checked,false,'seller declaration is never pre-checked');

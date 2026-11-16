@@ -29,7 +29,7 @@
   const cart = () => JSON.parse(localStorage.getItem(STORAGE)||'[]');
   const saveCart = (items) => { localStorage.setItem(STORAGE, JSON.stringify(items)); updateCartCount(); renderCartPage(); };
   const inCart = (id) => cart().includes(String(id));
-  function formatPrice(r){ const price=Number(r.price);if(!Number.isFinite(price)||price<=0)return tx('toBeCalculated');const currency=['JPY','KRW','CNY','USD','EUR'].includes(r.currency)?r.currency:'JPY';const prefix={JPY:'¥',KRW:'₩',CNY:'CN¥',USD:'US$',EUR:'€'}[currency];return prefix+price.toLocaleString('en-US',{maximumFractionDigits:2}); }
+  function formatPrice(r){ const price=Number(r.price);if(!Number.isFinite(price)||price<=0)return r.sale==='bid'?(lang()==='ko'?'가격 협의':lang()==='ja'?'価格応相談':'Price on request'):tx('toBeCalculated');const currency=['JPY','KRW','CNY','USD','EUR'].includes(r.currency)?r.currency:'JPY';const prefix={JPY:'¥',KRW:'₩',CNY:'CN¥',USD:'US$',EUR:'€'}[currency];return prefix+price.toLocaleString('en-US',{maximumFractionDigits:2}); }
   function saleLabel(r){ const fixed=r.sale!=='bid';return fixed?(typeof tr==='function'?tr('fixedPrice'):tx('fixedPriceListing')):lang()==='ja'?'非公開の買取見積もり':lang()==='ko'?'비공개 매입 견적':'Private buyer offers'; }
   function displayCountry(c){ try{return typeof countryLabel==='function'?countryLabel(c):(c||tx('global'));}catch{return c||tx('global');} }
   function displayTag(t){ try{ const rt=(typeof robotTypes!=='undefined'?robotTypes:[]).find(x=>x.id===t); if(rt)return rt.names?.[lang()]||rt.names?.en||t; const ap=(typeof applications!=='undefined'?applications:[]).find(x=>x.id===t); if(ap)return ap.names?.[lang()]||ap.names?.en||t; }catch(e){} return t; }

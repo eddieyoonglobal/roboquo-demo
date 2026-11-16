@@ -15,6 +15,7 @@ on:
       - 'quote-market.js'
       - 'quote-market.css'
       - 'marketplace-v2.js'
+      - 'seller-manufacturers.json'
       - 'database/007_private_offer_visit_workflow.sql'
       - '.github/workflows/roboquo-seller-checks.yml'
 
