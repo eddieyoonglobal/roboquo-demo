@@ -63,7 +63,8 @@ const server=http.createServer((req,res)=>{
   assert.equal(dbWrites.length,0,'fee guide must never write user or billing data');
   assert.equal(pageErrors.length,0,'fee page JS errors: '+JSON.stringify(pageErrors));
   await page.locator('#languageSelect').selectOption('ko');
-  await page.goto(base+'/#about',{waitUntil:'domcontentloaded'});
+  await page.evaluate(()=>route('about'));
+  await page.locator('#about').waitFor({state:'visible'});
   await page.locator('[data-rq-fees-link]').click();
   assert.equal(await page.locator('#fees').isVisible(),true,'About fee link should open fee guide');
   console.log('PASS fee guide '+width+'px: free listing, 2.5/5 promo, 5/10 base, 10 locales, no charges');
