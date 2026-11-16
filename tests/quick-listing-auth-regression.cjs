@@ -34,15 +34,15 @@ const server=http.createServer((req,res)=>{
   await page.evaluate(()=>window.rqCanWriteSupabase=()=>true); // Local fixture only; never an actual production write.
   await page.waitForFunction(()=>document.querySelector('#rqClMakerSelect option[value="YASKAWA"]'));
   await page.locator('#rqClCountry').selectOption('Korea');
-  await page.locator('select[name="itemCondition"]').selectOption('used');
-  await page.locator('input[name="location"]').fill('Seoul, Korea');
-  await page.locator('input[name="companyName"]').fill('QA Seller');
-  await page.locator('input[name="contactEmail"]').fill('seller@example.test');
-  await page.locator('input[name="contactPhone"]').fill('010-3975-7017');
-  await page.locator('input[name="price"]').fill('3000000');
+  await page.locator('#rqQuickSellForm select[name="itemCondition"]').selectOption('used');
+  await page.locator('#rqQuickSellForm input[name="location"]').fill('Seoul, Korea');
+  await page.locator('#rqQuickSellForm input[name="companyName"]').fill('QA Seller');
+  await page.locator('#rqQuickSellForm input[name="contactEmail"]').fill('seller@example.test');
+  await page.locator('#rqQuickSellForm input[name="contactPhone"]').fill('010-3975-7017');
+  await page.locator('#rqQuickSellForm input[name="price"]').fill('3000000');
   await page.locator('#rqClPhotos').setInputFiles({name:'yaskawa-test.jpg',mimeType:'image/jpeg',buffer:Buffer.from([255,216,255,217])});
-  await page.locator('input[name="declared"]').check();
-  const original=await page.locator('textarea[name="description"]').inputValue();
+  await page.locator('#rqQuickSellForm input[name="declared"]').check();
+  const original=await page.locator('#rqQuickSellForm textarea[name="description"]').inputValue();
   await page.locator('#rqClSubmit').click();
   await page.locator('#rqAuthPassword').waitFor({timeout:10000});
   assert.equal(await page.locator('#rqQuickSellForm').count(),0,'authentication replaces the sell form but stores the draft');
