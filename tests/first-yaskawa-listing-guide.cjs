@@ -89,6 +89,7 @@ const server=http.createServer((req,res)=>{
    assert.equal(data.location,'');
    assert.equal(data.phone,'010-3975-7017');
    assert.equal(data.price,'');
+   assert.match(fs.readFileSync(path.join(root,'v24.js'),'utf8'),/価格応相談|가격 협의/,'unspecified negotiated amount must be presented clearly to buyers');
    assert.match(data.description,/SERVOPACK CSRA-SDB06HA/);
    assert.equal(data.pictures,0,'photos are attached only by authenticated seller');
    assert.equal(data.checked,false,'seller declaration is never pre-checked');
