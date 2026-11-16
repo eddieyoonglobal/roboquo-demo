@@ -1,0 +1,56 @@
+/* Public fee transparency; this is a proposal, not a payment gateway. */
+#fees .rq-fees-container{max-width:1120px;margin:0 auto;padding:48px 24px 80px;min-width:0}
+#fees .rq-fees-head{max-width:790px;margin-bottom:26px}
+#fees .rq-fees-kicker{display:block;font-size:11px;letter-spacing:.1em;font-weight:800;color:#5268af;margin-bottom:10px}
+#fees .rq-fees-title{font-size:clamp(28px,3.3vw,42px);line-height:1.24;letter-spacing:-.035em;color:#172640;margin:0 0 13px}
+#fees .rq-fees-lead{font-size:clamp(14px,1.4vw,17px);line-height:1.75;color:#45566c;margin:0 0 13px}
+#fees .rq-fees-status{display:inline-flex;align-items:center;min-height:30px;font-size:12px;font-weight:750;padding:6px 12px;background:#f0f4f9;color:#3d5877;border-radius:8px;border:1px solid #dde6f0;margin:0}
+#fees .rq-fees-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:28px 0 24px}
+#fees .rq-fees-card{display:flex;flex-direction:column;min-width:0;padding:24px 21px;border:1px solid #dce4ed;border-radius:17px;background:#fff;box-shadow:0 5px 19px rgba(22,42,67,.04)}
+#fees .rq-fees-card-title{font-size:19px;line-height:1.4;letter-spacing:-.024em;color:#1e334c;margin:0 0 10px}
+#fees .rq-fees-description{font-size:13px;line-height:1.68;color:#5b6e83;margin:0 0 19px;flex:1}
+#fees .rq-fees-prices{display:flex;flex-direction:column;gap:4px;margin-bottom:8px}
+#fees .rq-fees-regular{font-size:13px;color:#6d7788;line-height:1.5}
+#fees .rq-fees-promo{font-size:clamp(28px,3vw,37px);line-height:1.25;color:#152d53;letter-spacing:-.02em}
+#fees .rq-fees-offer{font-size:12px;color:#2850a8;font-weight:800}
+#fees .rq-fees-card-caption{font-size:11px;color:#67788c;margin:8px 0 0}
+#fees .rq-fees-example,
+#fees .rq-fees-conditions{border:1px solid #dfe5ee;border-radius:17px;background:#fff;padding:25px;margin:16px 0}
+#fees .rq-fees-example>h2,
+#fees .rq-fees-conditions>h2{font-size:20px;line-height:1.35;margin:0 0 11px;color:#1a3150}
+#fees .rq-fees-example>p{font-size:13px;line-height:1.65;color:#5c7086;margin:0 0 16px}
+#fees .rq-fees-example-inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:12px 0 18px}
+#fees .rq-fees-example-inputs label{display:flex;flex-direction:column;gap:8px;font-size:13px;font-weight:740;color:#354963;min-width:0}
+#fees .rq-fees-example-inputs input,
+#fees .rq-fees-example-inputs select{box-sizing:border-box;border:1px solid #ced9e5;border-radius:10px;background:#fff;padding:10px 12px;font:inherit;font-size:15px;min-height:45px;color:#1b334f;max-width:100%;width:100%}
+#fees .rq-fees-example-inputs input:focus-visible,
+#fees .rq-fees-example-inputs select:focus-visible,
+#fees .rq-fees-actions a:focus-visible{outline:3px solid #65a8e8;outline-offset:2px}
+#fees .rq-fees-example-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+#fees .rq-fees-result{border-radius:11px;background:#f2f6fb;padding:14px;min-width:0;display:flex;flex-direction:column;gap:6px}
+#fees .rq-fees-result span{font-size:12px;line-height:1.4;color:#526680}
+#fees .rq-fees-result strong{font-size:clamp(17px,2vw,24px);color:#1d375e;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#fees .rq-fees-tax-note{font-size:11px!important;color:#68798c!important;margin:14px 0 0!important}
+#fees .rq-fees-conditions ul{padding-left:21px;margin:7px 0 15px}
+#fees .rq-fees-conditions li{font-size:13px;line-height:1.8;color:#3c516a;margin:4px 0}
+#fees .rq-fees-legal{font-size:11px;line-height:1.7;color:#6b7a8c;margin:0}
+#fees .rq-fees-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:24px}
+#fees .rq-fees-contact{background:#172842;color:#fff;padding:13px 20px;min-height:42px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;font-weight:750;border-radius:11px;text-decoration:none}
+#fees .rq-fees-back{font-size:13px;font-weight:700;color:#335e98;text-decoration:none}
+#about .rq-fees-entry{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:21px 22px;margin:25px auto;border-radius:15px;border:1px solid #dbe4ef;background:#f5f8fc}
+#about .rq-fees-entry strong{font-size:18px;color:#1a2f4a}
+#about .rq-fees-entry a{font-size:14px;font-weight:750;white-space:nowrap;color:#2451a2;text-decoration:none}
+@media(max-width:760px){
+ #fees .rq-fees-container{padding:22px 16px 70px}
+ #fees .rq-fees-cards{grid-template-columns:1fr;gap:10px}
+ #fees .rq-fees-card{padding:17px}
+ #fees .rq-fees-card-title{font-size:17px}
+ #fees .rq-fees-description{margin-bottom:10px}
+ #fees .rq-fees-promo{font-size:29px}
+ #fees .rq-fees-example,#fees .rq-fees-conditions{padding:17px}
+ #fees .rq-fees-example-inputs{grid-template-columns:1fr}
+ #fees .rq-fees-example-results{grid-template-columns:1fr}
+ #fees .rq-fees-result{flex-direction:row;align-items:center;justify-content:space-between}
+ #fees .rq-fees-result strong{font-size:19px}
+ #about .rq-fees-entry{padding:18px 16px}
+}
