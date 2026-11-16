@@ -11,8 +11,8 @@
  ];
  const copy={
   ko:{
-   title:'수수료 안내',lead:'출시 기념 · 유료 서비스 수수료 50% 할인 예정',
-   badge:'도입 예정 요율',regular:'정규',intro:'출시 기념',fee:'성사 수수료',
+   title:'수수료 안내',lead:'출시 기념 요율(안) · 거래 성사 시 적용 검토',
+   badge:'도입 예정 요율',regular:'정규',intro:'도입 요율',fee:'성사 수수료',
    names:['상품 등록·업체 소개','구매자 소개·거래 중개','판매대행','종합 판매지원·위탁판매'],
    desc:['업체 정보와 제품을 무료로 소개','구매자 발굴과 기본 거래 조율','문의 대응·가격 협상·인도 일정 조율','별도 계약에 따른 전체 판매 진행 지원'],
    note:'무료 등록·업체 소개에는 수수료가 없습니다. 유료 서비스는 RoboQuo가 사전 계약에 따라 직접 참여하고 거래가 완료된 경우, 판매자에게만 부과할 예정입니다. 소비세와 운송·철거·검수 등 실비는 별도입니다.',
@@ -20,8 +20,8 @@
    discount:'출시 초기 최대 20건의 유료 서비스 계약을 대상으로 검토 중이며, 적용 기간과 조건은 계약 전에 별도 공지합니다.',
    zero:'무료',pct:percent=>percent+'%',cta:'상품 등록하기'},
   ja:{
-   title:'手数料のご案内',lead:'オープン記念・有料サービス手数料50%OFF（予定）',
-   badge:'導入予定の料金',regular:'通常',intro:'オープン記念',fee:'成約手数料',
+   title:'手数料のご案内',lead:'オープン記念の予定料率 · 成約時のみ',
+   badge:'導入予定の料金',regular:'通常',intro:'導入予定',fee:'成約手数料',
    names:['商品掲載・企業紹介','購入者紹介・取引仲介','販売代行','総合販売支援・委託販売'],
    desc:['企業情報・商品掲載は無料','購入希望者の紹介と基本的な取引調整','お問い合わせ対応、価格交渉、引渡し日程の調整','別途契約に基づく販売プロセス全体の支援'],
    note:'掲載・企業紹介は無料です。有料サービスの手数料は、事前契約に基づきRoboQuoが取引に関与し、成約した場合に売主からいただく想定です。消費税、運搬・撤去・検品等の実費は別途となります。',
@@ -29,8 +29,8 @@
    discount:'オープン後の有料サービス契約先着20件を対象に検討中です。適用期間・条件は契約前に別途ご案内します。',
    zero:'無料',pct:percent=>percent+'%',cta:'商品を出品する'},
   en:{
-   title:'Fees & services',lead:'Launch offer · 50% off paid-service commissions (proposed)',
-   badge:'Proposed rates',regular:'Standard',intro:'Launch offer',fee:'Success fee',
+   title:'Fees & services',lead:'Proposed introductory success-fee rates',
+   badge:'Proposed rates',regular:'Standard',intro:'Introductory',fee:'Success fee',
    names:['Free listings & company profiles','Buyer introductions & brokerage','Assisted sales','Full consignment support'],
    desc:['Publish product and company information at no charge','Buyer discovery and basic negotiation support','Coordinate inquiries, pricing and handover','Full sales coordination by separate agreement'],
    note:'Listings and company profiles are free. Paid success fees would be charged to the seller only for completed transactions handled by RoboQuo under a prior agreement. Taxes and transport, removal and inspection costs are separate.',
@@ -38,8 +38,8 @@
    discount:'Under consideration for the first 20 qualifying paid-service agreements after launch. Dates and eligibility will be disclosed before contracting.',
    zero:'Free',pct:percent=>percent+'%',cta:'Post a listing'},
   zh:{
-   title:'服务费标准',lead:'开业优惠 · 付费服务佣金五折（拟定）',
-   badge:'拟定收费',regular:'标准',intro:'开业优惠',fee:'成交佣金',
+   title:'服务费标准',lead:'开业初期拟定的成交佣金',
+   badge:'拟定收费',regular:'标准',intro:'拟定费率',fee:'成交佣金',
    names:['免费发布与企业介绍','买家介绍与交易撮合','代理销售','全程委托销售支持'],
    desc:['免费展示商品及企业信息','寻找买家并协助基本交易','询价、价格协商与交货协调','根据单独合同提供全程销售支持'],
    note:'商品发布及企业介绍免费。付费服务拟仅在事先签约、RoboQuo参与且交易完成时向卖方收费。税费、运输、拆卸及检验费用另计。',
@@ -47,7 +47,7 @@
    discount:'拟面向上线后的前20份合格付费服务合同，具体日期与条件将于签约前公布。',
    zero:'免费',pct:p=>p+'%',cta:'发布商品'},
   de:{
-   title:'Gebühren',lead:'Startangebot · 50 % Rabatt auf Provisionen (geplant)',
+   title:'Gebühren',lead:'Geplante Einstiegsprovisionen',
    badge:'Geplante Gebühren',regular:'Standard',intro:'Zum Start',fee:'Erfolgsprovision',
    names:['Anzeigen & Firmenprofile','Käufervermittlung','Verkaufsunterstützung','Komplette Kommissionsabwicklung'],
    desc:['Kostenlose Präsentation','Käufer finden und Kontakte vermitteln','Anfragen und Übergabe koordinieren','Umfassende Unterstützung nach separatem Vertrag'],
@@ -56,7 +56,7 @@
    discount:'Vorgesehen für die ersten 20 geeigneten kostenpflichtigen Verträge. Bedingungen vor Vertragsabschluss.',
    zero:'Kostenlos',pct:p=>p+'%',cta:'Artikel einstellen'},
   fr:{
-   title:'Tarifs',lead:'Offre de lancement · commissions à -50 % (projet)',
+   title:'Tarifs',lead:'Commissions de lancement proposées',
    badge:'Tarifs envisagés',regular:'Habituel',intro:'Lancement',fee:'Commission au succès',
    names:['Annonces et profils gratuits','Mise en relation','Vente accompagnée','Mandat de vente complet'],
    desc:['Présentez gratuitement votre activité','Recherche d’acheteurs et mise en relation','Coordination des négociations','Service complet sur contrat distinct'],
@@ -65,7 +65,7 @@
    discount:'Envisagé pour les 20 premiers contrats admissibles. Conditions annoncées avant signature.',
    zero:'Gratuit',pct:p=>p+'%',cta:'Publier une annonce'},
   es:{
-   title:'Tarifas',lead:'Lanzamiento · 50 % de descuento en comisiones (propuesta)',
+   title:'Tarifas',lead:'Propuesta de comisiones de lanzamiento',
    badge:'Precios propuestos',regular:'Habitual',intro:'Lanzamiento',fee:'Comisión por venta',
    names:['Anuncios y empresas gratis','Contacto con compradores','Venta asistida','Consignación integral'],
    desc:['Publicación gratuita','Búsqueda y contacto con compradores','Gestión de consultas y negociación','Gestión integral bajo contrato separado'],
@@ -74,7 +74,7 @@
    discount:'Previsto para los 20 primeros contratos elegibles; condiciones antes de contratar.',
    zero:'Gratis',pct:p=>p+'%',cta:'Publicar un anuncio'},
   it:{
-   title:'Commissioni',lead:'Lancio · commissioni scontate del 50% (proposta)',
+   title:'Commissioni',lead:'Commissioni iniziali proposte',
    badge:'Tariffe proposte',regular:'Standard',intro:'Lancio',fee:'Commissione a risultato',
    names:['Annunci e profili gratuiti','Segnalazione acquirenti','Vendita assistita','Vendita in conto vendita'],
    desc:['Pubblicazione gratuita','Ricerca e presentazione acquirenti','Assistenza nelle trattative','Gestione completa su accordo separato'],
@@ -83,7 +83,7 @@
    discount:'Ipotesi per i primi 20 contratti idonei; condizioni comunicate prima della firma.',
    zero:'Gratis',pct:p=>p+'%',cta:'Pubblica un annuncio'},
   pt:{
-   title:'Comissões',lead:'Lançamento · 50% de desconto (proposta)',
+   title:'Comissões',lead:'Comissões iniciais propostas',
    badge:'Tarifas propostas',regular:'Normal',intro:'Lançamento',fee:'Comissão por venda',
    names:['Anúncios e empresas grátis','Indicação de compradores','Venda assistida','Consignação completa'],
    desc:['Publique gratuitamente','Busca e apresentação de compradores','Apoio a negociações e entrega','Serviço completo mediante contrato separado'],
@@ -92,7 +92,7 @@
    discount:'Em estudo para os 20 primeiros contratos elegíveis, com condições informadas antecipadamente.',
    zero:'Grátis',pct:p=>p+'%',cta:'Publicar produto'},
   vi:{
-   title:'Phí dịch vụ',lead:'Ưu đãi ra mắt · giảm 50% hoa hồng (dự kiến)',
+   title:'Phí dịch vụ',lead:'Mức hoa hồng dự kiến khi ra mắt',
    badge:'Mức phí dự kiến',regular:'Thông thường',intro:'Ra mắt',fee:'Hoa hồng thành công',
    names:['Đăng tin và giới thiệu doanh nghiệp','Giới thiệu người mua','Hỗ trợ bán hàng','Ký gửi toàn diện'],
    desc:['Miễn phí giới thiệu sản phẩm','Tìm kiếm và kết nối người mua','Hỗ trợ đàm phán và bàn giao','Hỗ trợ toàn bộ theo hợp đồng riêng'],
@@ -117,14 +117,13 @@
     const name=document.createElement('h3');name.textContent=t.names[i];
     const desc=document.createElement('p');desc.className='rq-fee-desc';desc.textContent=t.desc[i];
     const info=document.createElement('div');info.className='rq-fee-numbers';
-    const regular=document.createElement('span');regular.className='rq-fee-regular';
     const promo=document.createElement('strong');promo.className='rq-fee-promo';
-    if(i===0){promo.textContent=t.zero;}
-    else{
-      regular.textContent=t.regular+' '+t.pct(tier.standard);
-      promo.textContent=t.intro+' '+t.pct(tier.promo);
-    }
-    info.append(regular,promo);article.append(name,desc,info);grid.append(article);
+    // Do not claim a previously charged "usual" price when RoboQuo is new.
+    // Japanese consumer price-display guidance warns against unsubstantiated
+    // normal-price / discount comparisons. Competitor benchmarks stay in
+    // the internal source-backed pricing policy, not consumer-facing cards.
+    promo.textContent=i===0?t.zero:t.intro+' '+t.pct(tier.promo);
+    info.append(promo);article.append(name,desc,info);grid.append(article);
   }
   $('rqPricingNote').textContent=t.note;
   $('rqPricingPending').textContent=t.pending;
