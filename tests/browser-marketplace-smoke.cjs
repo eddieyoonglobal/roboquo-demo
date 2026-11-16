@@ -90,10 +90,10 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
   await page.waitForFunction(()=>document.getElementById('rqPricingTitle')?.textContent==='수수료 안내');
   assert.equal(await page.locator('#rqPricingGrid .rq-fee-plan').count(),4);
   assert.equal((await page.locator('#rqPricingGrid [data-tier="directory"] .rq-fee-promo').innerText()).trim(),'무료');
-  for(const [tier,standard,promo] of [['introduction','5%','2.5%'],['assisted','10%','5%'],['managed','15%','7.5%']]){
+  for(const [tier,promo] of [['introduction','2.5%'],['assisted','5%'],['managed','7.5%']]){
     const box=page.locator('#rqPricingGrid [data-tier="'+tier+'"]');
-    assert((await box.locator('.rq-fee-regular').innerText()).includes(standard),tier+' normal fee');
-    assert((await box.locator('.rq-fee-promo').innerText()).includes(promo),tier+' launch fee');
+    assert((await box.locator('.rq-fee-promo').innerText()).includes(promo),tier+' proposed introductory fee');
+    assert.equal(await box.locator('.rq-fee-regular').count(),0,'no invented previous regular price');
   }
   assert.match(await page.locator('#rqPricingPending').innerText(),/자동 결제.*시행하지 않습니다/);
   const pricing=await page.evaluate(()=>window.RQ_PRICING_REPORT?.());
