@@ -5,6 +5,7 @@
  const COPY={
  ko:{
   eyebrow:'ROBOQUO 요금 안내',title:'먼저 무료로 시작하세요. 거래 지원은 필요한 만큼.',
+  entryTitle:'상품 등록은 무료. 거래 지원 요금 확인',entryAction:'수수료 안내 보기',
   lead:'업체 소개와 직접 상품 등록은 무료입니다. RoboQuo가 실제로 구매자를 연결하거나 판매대행을 맡는 경우에만 별도 합의에 따라 성공 수수료가 발생합니다.',
   status:'출시 초기 수수료 제안 · 적용 조건은 사전 협의',
   plans:[['업체 소개 · 직접 등록','업체 프로필, 상품 등록, 기본 문의 기능','무료'],['거래 중개','RoboQuo가 구매자를 소개하고 거래 협의를 지원','성사 시'],['판매대행','상품 소개, 구매자 발굴, 협상·거래 조율을 위탁','성사 시']],
@@ -23,6 +24,7 @@
  },
  ja:{
   eyebrow:'ROBOQUO 料金のご案内',title:'掲載は無料。必要な取引支援だけを。',
+  entryTitle:'出品無料・取引支援の料金について',entryAction:'料金・手数料を見る',
   lead:'企業紹介と商品の直接出品は無料です。RoboQuoによる買い手紹介や販売代行をご依頼いただく場合のみ、事前の合意に基づいて成約手数料が発生します。',
   status:'ローンチ向け料金案・適用条件は事前協議',
   plans:[['企業紹介・直接出品','企業プロフィール、商品掲載、基本的なお問い合わせ','無料'],['取引仲介','RoboQuoが買い手を紹介し、商談を支援','成約時のみ'],['販売代行','商品掲載支援、買い手探し、交渉・取引調整','成約時のみ']],
@@ -41,6 +43,7 @@
  },
  en:{
   eyebrow:'ROBOQUO SERVICE FEES',title:'List for free. Pay only for the support you need.',
+  entryTitle:'Free listings and transparent transaction support fees',entryAction:'View fees',
   lead:'Company profiles and direct item listings are free. A success fee applies only when you separately engage RoboQuo for buyer introductions or a managed sale.',
   status:'Proposed launch rates · terms agreed before service',
   plans:[['Company profile & direct listing','Company profile, product posting and basic inquiries','Free'],['Transaction introduction','RoboQuo finds a buyer and supports the negotiation','On completion'],['Managed sale','Listing assistance, buyer outreach and transaction coordination','On completion']],
@@ -59,6 +62,7 @@
  },
  zh:{
   eyebrow:'ROBOQUO 服务收费',title:'免费发布，仅为需要的交易服务付费',
+  entryTitle:'免费发布与透明的交易服务费',entryAction:'查看收费方案',
   lead:'企业介绍和直接发布商品免费。仅在事先委托 RoboQuo 寻找买家或代理销售时，按书面约定收取成交服务费。',
   status:'上线初期费率方案 · 具体条件事先商定',plans:[['企业介绍·直接发布','企业信息、商品发布及咨询','免费'],['交易撮合','买家介绍与交易沟通','成交后'],['代理销售','发布协助、寻找买家、谈判与协调','成交后']],
   standard:'常规费率',offer:'上线优惠：五折',free:'免费',fromSale:'成交后',tax:'税费另计（如适用）',
@@ -78,9 +82,12 @@
  function render(){
   const root=$('rqFeesMount');if(!root)return;
   const t=chooseLanguage();root.replaceChildren();
+  const entryTitle=$('rqFeesEntryTitle'),entryAction=$('rqFeesEntryAction');
+  if(entryTitle)entryTitle.textContent=t.entryTitle||COPY.en.entryTitle;
+  if(entryAction)entryAction.textContent=t.entryAction||COPY.en.entryAction;
   const head=node('header','rq-fees-head');
   head.append(node('span','rq-fees-kicker',t.eyebrow));
-  head.append(node('h1','rq-fees-title',t.title));
+  const title=node('h1','rq-fees-title',t.title);title.id='rqFeeTitle';head.append(title);
   head.append(node('p','rq-fees-lead',t.lead));
   head.append(node('p','rq-fees-status',t.status));root.append(head);
   const cards=node('div','rq-fees-cards');
