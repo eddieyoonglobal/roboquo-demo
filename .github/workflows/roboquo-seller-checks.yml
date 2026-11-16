@@ -16,6 +16,9 @@ on:
       - 'quote-market.css'
       - 'marketplace-v2.js'
       - 'seller-manufacturers.json'
+      - 'fees.js'
+      - 'fees.css'
+      - 'index.html'
       - 'database/007_private_offer_visit_workflow.sql'
       - '.github/workflows/roboquo-seller-checks.yml'
 
@@ -62,6 +65,7 @@ jobs:
           node tests/browser-marketplace-smoke.cjs
           node tests/first-paint-regression.cjs
           node tests/first-yaskawa-listing-guide.cjs
+          node tests/fees-regression.cjs
 
       - name: Attach fixture-only browser screenshots
         if: always()
