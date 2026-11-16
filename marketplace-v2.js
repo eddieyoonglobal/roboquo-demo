@@ -26,6 +26,20 @@ const CONDITIONS={
  ko:{used:'중고',new:'신품',refurbished:'정비·리퍼',for_parts:'부품용·고장'},
  ja:{used:'中古',new:'新品',refurbished:'整備済み',for_parts:'部品取り・故障'}
 };
+// Guided first-listing preset. Not an existing offer: never inserts or publishes automatically.
+const YASKAWA_FIRST_LISTING={
+ maker:'YASKAWA',model:'CSRA-SDB06HA',category:'part',phone:'010-3975-7017',
+ descriptions:{
+  ko:'YASKAWA SERVOPACK CSRA-SDB06HA. 사진에 보이는 본체와 상자입니다.\n작동 여부, 사용 이력, 구성품, 하자 및 보증 여부는 판매자 확인 후 안내합니다.\n구입 문의: 010-3975-7017',
+  ja:'YASKAWA SERVOPACK CSRA-SDB06HA。写真に写っている本体と箱です。\n動作確認、使用履歴、付属品、瑕疵および保証の有無は出品者にご確認ください。\n購入のお問い合わせ：010-3975-7017',
+  en:'YASKAWA SERVOPACK CSRA-SDB06HA. Main unit and box shown in the actual photos.\nOperation, usage history, included accessories, defects and warranty are not yet confirmed by the seller.\nPurchase inquiries: 010-3975-7017'
+ }
+};
+const YASKAWA_GUIDE={
+ ko:{caption:'첫 상품 등록 준비 · 실제 게시 전 확인이 필요합니다.',tip:'사진 6장을 선택하고 판매 국가·상품 상태·거래 지역·판매자 정보를 직접 확인하세요. 가격은 협의로 진행하려면 비워둘 수 있습니다. 등록 버튼을 누르기 전에는 공개되지 않습니다.',choose:'선택해주세요'},
+ ja:{caption:'初回出品の入力補助・公開前に内容をご確認ください。',tip:'写真6枚を選択し、出品国・商品状態・所在地・出品者情報を確認してください。価格交渉の場合、希望価格は空欄のままでも構いません。公開ボタンを押すまで出品されません。',choose:'選択してください'},
+ en:{caption:'First listing preset · verify details before publishing.',tip:'Select all 6 actual photos, then choose seller country, condition, location and seller details. Leave price empty for negotiable offers. Nothing is public until you submit.',choose:'Please select'}
+};
 const MARKET_WORDS={
  ko:{country:'판매 국가',currency:'가격 통화',sellerType:'판매자',sellerIndividual:'개인',sellerBusiness:'업체·대리점',conditionAll:'전체 상태',countryAll:'전체 국가',itemStatus:'상품 상태',allItems:'전체 상품'},
  ja:{country:'出品国',currency:'通貨',sellerType:'出品者',sellerIndividual:'個人',sellerBusiness:'販売店・企業',conditionAll:'すべての状態',countryAll:'すべての国',itemStatus:'商品状態',allItems:'すべての商品'},
@@ -185,33 +199,38 @@ function putMarketActions(){
  patchMarketFilters();
  installMarketFeedback();
 }
-function showSell(initialCat){
+function showSell(initialCat,presetId){
  files=[];
+ const firstProduct=presetId==='yaskawa-csra-sdb06ha';
+ const guide=YASKAWA_GUIDE[lang()]||YASKAWA_GUIDE.en;
  const account=user();
  const meta=account?.user_metadata||{};
- const initial=initialCat&&C.en[initialCat]?initialCat:'robot';
+ const initial=firstProduct?'part':initialCat&&C.en[initialCat]?initialCat:'robot';
+ const firstDescription=YASKAWA_FIRST_LISTING.descriptions[lang()]||YASKAWA_FIRST_LISTING.descriptions.en;
+ const requiredOption=firstProduct?'<option value="" selected disabled>'+esc(guide.choose)+'</option>':'';
  const html=[
- '<div class="rq-cl-head"><h2>'+esc(tr('post'))+'</h2><p>'+esc(tr('photosHint'))+'</p></div>',
+ '<div class="rq-cl-head"><h2>'+esc(tr('post'))+'</h2><p>'+esc(firstProduct?guide.caption:tr('photosHint'))+'</p></div>',
+ firstProduct?'<p class="rq-cl-sale-note" role="status">'+esc(guide.tip)+'</p>':'',
  '<form id="rqQuickSellForm" class="rq-classifieds-form">',
  '<label class="rq-cl-field rq-cl-method"><span>'+esc(qt('sellMode'))+'</span><select name="sellMethod" id="rqClSellMethod" required><option value="quotes">'+esc(qt('compare'))+'</option><option value="fixed">'+esc(qt('fixed'))+'</option></select></label>',
  '<p class="rq-cl-sale-note">'+esc(qt('hint'))+'</p>',
  '<div class="rq-cl-pictures"><label>'+esc(tr('images'))+' *<input id="rqClPhotos" type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" required></label><div id="rqClPreview" class="rq-cl-pictures-grid"></div></div>',
  '<div class="rq-cl-columns">',
  '<label class="rq-cl-field"><span>'+esc(tr('category'))+' *</span><select name="itemCategory" required>'+choices(C[lang()]||C.en,initial)+'</select></label>',
- '<label class="rq-cl-field"><span>'+esc(tr('condition'))+' *</span><select name="itemCondition" required>'+choices(CONDITIONS[lang()]||CONDITIONS.en,'used')+'</select></label>',
- '<label class="rq-cl-field"><span>'+esc(tr('country'))+' *</span><select name="country" id="rqClCountry" required>'+choices(Object.fromEntries(Object.keys(COUNTRIES).map(k=>[k,countryName(k)])),'Japan')+'</select></label>',
+ '<label class="rq-cl-field"><span>'+esc(tr('condition'))+' *</span><select name="itemCondition" required>'+requiredOption+choices(CONDITIONS[lang()]||CONDITIONS.en,firstProduct?'':'used')+'</select></label>',
+ '<label class="rq-cl-field"><span>'+esc(tr('country'))+' *</span><select name="country" id="rqClCountry" required>'+requiredOption+choices(Object.fromEntries(Object.keys(COUNTRIES).map(k=>[k,countryName(k)])),firstProduct?'':'Japan')+'</select></label>',
  '<label class="rq-cl-field"><span>'+esc(tr('currency'))+' *</span><select name="currency" id="rqClCurrency" required>'+choices(CURRENCIES,'JPY')+'</select></label>',
- field(tr('title'),'model',{required:true,placeholder:'FANUC CRX-10iA / RG2 / R-30iB'}),
- field(tr('brand'),'maker',{placeholder:'FANUC / OnRobot'}),
+ field(tr('title'),'model',{required:true,placeholder:'FANUC CRX-10iA / RG2 / R-30iB',value:firstProduct?YASKAWA_FIRST_LISTING.model:''}),
+ field(tr('brand'),'maker',{placeholder:'FANUC / OnRobot',value:firstProduct?YASKAWA_FIRST_LISTING.maker:''}),
  field(tr('price'),'price',{type:'number',min:'0',placeholder:'250000'}),
  field(tr('location'),'location',{required:true,placeholder:'Tokyo / Osaka'}),
  '</div>',
- '<label class="rq-cl-field"><span>'+esc(tr('description'))+' *</span><textarea name="description" required rows="4" maxlength="5000"></textarea></label>',
+ '<label class="rq-cl-field"><span>'+esc(tr('description'))+' *</span><textarea name="description" required rows="4" maxlength="5000">'+esc(firstProduct?firstDescription:'')+'</textarea></label>',
  '<div class="rq-cl-columns">',
  '<label class="rq-cl-field"><span>'+esc(tr('sellerType'))+' *</span><select name="sellerType" required>'+choices({individual:tr('sellerIndividual'),business:tr('sellerBusiness')},'individual')+'</select></label>',
  field(tr('name'),'companyName',{required:true,value:meta.company_name||meta.display_name||''}),
  field(tr('email'),'contactEmail',{required:true,type:'email',value:account?.email||''}),
- field(tr('phone'),'contactPhone',{required:true,type:'tel',value:meta.phone||''}),
+ field(tr('phone'),'contactPhone',{required:true,type:'tel',value:firstProduct?YASKAWA_FIRST_LISTING.phone:(meta.phone||'')}),
  '</div>',
  '<label class="rq-cl-consent"><input type="checkbox" name="declared" required><span>'+esc(tr('declaration'))+'</span></label>',
  '<p class="rq-cl-disclaimer">'+esc(tr('priceHint'))+'</p>',
@@ -233,6 +252,7 @@ function showSell(initialCat){
    img.onload=()=>URL.revokeObjectURL(img.src);previews.appendChild(img);
   });
  });
+ if(firstProduct){form.dataset.firstProduct='yaskawa-csra-sdb06ha';form.querySelector('[name="sellMethod"]').value='quotes';}
  form.addEventListener('submit',submitListing);
 }
 async function submitListing(event){
@@ -351,6 +371,7 @@ async function openThread(id){
 function init(){
  window.rqMarketResultsChanged=updateMarketFeedback;
  window.rqStartSell=showSell;
+ window.rqStartFirstProduct=()=>showSell('part','yaskawa-csra-sdb06ha');
  window.rqContactAboutListing=askSeller;
  window.rqOpenMarketInbox=openInbox;
  const existing=window.rqSetSellerLiveListings;
@@ -367,6 +388,10 @@ function init(){
  route(pageId);
  // Reveal the prepared page only after v24 and marketplace setup have run.
  requestAnimationFrame(()=>document.documentElement.classList.remove('rq-first-paint'));
+ // Opt-in owner preview link; this prefills a form only. It never writes to the live DB.
+ if(new URLSearchParams(location.search).get('firstProduct')==='yaskawa-csra-sdb06ha'){
+   setTimeout(()=>window.rqStartFirstProduct?.(),550);
+ }
  document.addEventListener('rq:languagechange',()=>{
   putMarketActions();
   const hint=$('#rqMarketInfo');if(hint)hint.textContent=tr('priceHint');

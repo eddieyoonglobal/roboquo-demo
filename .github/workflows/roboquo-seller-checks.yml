@@ -60,6 +60,7 @@ jobs:
           npm install --no-save --no-package-lock playwright@1.56.1
           node tests/browser-marketplace-smoke.cjs
           node tests/first-paint-regression.cjs
+          node tests/first-yaskawa-listing-guide.cjs
 
       - name: Attach fixture-only browser screenshots
         if: always()
