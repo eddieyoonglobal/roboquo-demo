@@ -110,33 +110,42 @@ function makeBrandChoices(form,firstProduct){
  }).catch(e=>{count.textContent=u.manufacturerCount(catalog.length)+' · '+u.manufacturerOtherHint;console.warn('RoboQuo maker directory unavailable',e.message)});
 }
 function enhanceSaleCurrency(form){
- const country=form.querySelector('#rqClCountry'),currency=form.querySelector('#rqClCurrency'),price=form.querySelector('[name="price"]');
- const label=form.querySelector('#rqClPriceLabel'),help=form.querySelector('#rqClPriceHelp'),mode=form.querySelector('#rqClSellMethod');
+ // The seller-country choice is the only currency source in this simple posting flow.
+ // Avoid a separately editable currency select that can contradict the country.
+ const country=form.querySelector('#rqClCountry');
+ const currency=form.querySelector('#rqClCurrency'); // hidden input, included in FormData
+ const display=form.querySelector('#rqClCurrencyDisplay');
+ const price=form.querySelector('[name="price"]');
+ const label=form.querySelector('#rqClPriceLabel');
+ const help=form.querySelector('#rqClPriceHelp');
+ const mode=form.querySelector('#rqClSellMethod');
  const u=sellUi();
  function repaint(warning=false){
-   const fixed=mode.value==='fixed',unit=currency.value||'JPY';
-   label.textContent=(fixed?u.fixedPrice:u.price)+' ('+(CURRENCIES[unit]||unit)+')'+(fixed?' *':' · '+u.optional);
+   const fixed=mode.value==='fixed';
+   const unit=currency.value||'JPY';
+   const amountUnit=CURRENCIES[unit]||unit;
+   label.textContent=(fixed?u.fixedPrice:u.price)+' ('+amountUnit+')'+(fixed?' *':' · '+u.optional);
+   display.textContent=amountUnit;
    price.required=fixed;
    price.placeholder=u.pricePlaceholder;
-   help.textContent=warning?u.priceChanged:(fixed?u.priceRequired+' ':'' )+u.priceHelp;
+   help.textContent=warning?u.priceChanged:(fixed?u.priceRequired+' ':'')+u.priceHelp;
  }
- function changeCurrency(next){
-   const previous=currency.dataset.previous||currency.value;
+ function syncFromCountry(){
+   const chosen=country.value;
+   if(!chosen){repaint();return;}
+   const next=currForCountry[chosen]||'USD';
+   const changed=currency.value!==next;
+   const cleared=changed&&price.value.trim()!=='';
+   if(cleared)price.value='';
    currency.value=next;
-   const changed=previous!==next;
-   const clear=changed&&price.value.trim()!=='';
-   if(clear)price.value='';
-   currency.dataset.previous=next;
-   repaint(clear);
+   repaint(cleared);
  }
- currency.dataset.previous=currency.value;
- currency.addEventListener('change',()=>changeCurrency(currency.value));
- country.addEventListener('change',()=>{
-   const next=currForCountry[country.value]||currency.value;
-   changeCurrency(next);
- });
+ country.addEventListener('change',syncFromCountry);
  mode.addEventListener('change',()=>repaint());
- repaint();
+ // On every opening, recover even if old code left a mismatched country/currency.
+ syncFromCountry();
+ // Block accidental/malformed FormData currency values from inconsistent seller UI.
+ form.addEventListener('submit',()=>syncFromCountry(),{capture:true});
 }
 const tr=k=>(L[lang()]||L.en)[k]||L.en[k]||k;
 const cat=k=>(C[lang()]||C.en)[k]||C.en[k]||k;
@@ -300,7 +309,7 @@ function showSell(initialCat,presetId){
  '<label class="rq-cl-field"><span>'+esc(tr('category'))+' *</span><select name="itemCategory" required>'+choices(C[lang()]||C.en,initial)+'</select></label>',
  '<label class="rq-cl-field"><span>'+esc(tr('condition'))+' *</span><select name="itemCondition" required>'+requiredOption+choices(CONDITIONS[lang()]||CONDITIONS.en,firstProduct?'':'used')+'</select></label>',
  '<label class="rq-cl-field"><span>'+esc(tr('country'))+' *</span><select name="country" id="rqClCountry" required>'+requiredOption+choices(Object.fromEntries(Object.keys(COUNTRIES).map(k=>[k,countryName(k)])),firstProduct?'':'Japan')+'</select></label>',
- '<label class="rq-cl-field"><span>'+esc(tr('currency'))+' *</span><select name="currency" id="rqClCurrency" required>'+choices(CURRENCIES,'JPY')+'</select></label>',
+ '<label class="rq-cl-field"><span>'+esc(tr('currency'))+'</span><span id="rqClCurrencyDisplay" class="rq-cl-currency-display" role="status" aria-live="polite">'+esc(CURRENCIES.JPY)+'</span><input name="currency" id="rqClCurrency" type="hidden" value="JPY"></label>',
  field(tr('title'),'model',{required:true,placeholder:'FANUC CRX-10iA / RG2 / R-30iB',value:firstProduct?YASKAWA_FIRST_LISTING.model:''}),
  '<label class="rq-cl-field"><span>'+esc(tr('brand'))+' *</span><input id="rqClMakerSearch" type="search" autocomplete="off" aria-label="'+esc(sellUi().manufacturerSearch)+'" placeholder="'+esc(sellUi().manufacturerSearch)+'"><select name="maker" id="rqClMakerSelect" required aria-label="'+esc(sellUi().manufacturerSelect)+'"><option value="" disabled selected>'+esc(sellUi().manufacturerLoading)+'</option></select><small id="rqClMakerCount" aria-live="polite"></small><input type="text" name="makerOther" id="rqClMakerOther" maxlength="120" placeholder="'+esc(sellUi().manufacturerOtherPlaceholder)+'" hidden disabled></label>',
  '<label class="rq-cl-field"><span id="rqClPriceLabel">'+esc(sellUi().price)+'</span><input type="number" name="price" min="0" step="any" inputmode="decimal" placeholder="'+esc(sellUi().pricePlaceholder)+'"><small id="rqClPriceHelp" role="status" aria-live="polite"></small></label>',
@@ -339,6 +348,10 @@ async function submitListing(event){
  event.preventDefault();if(busy)return;
  const form=event.currentTarget,status=$('#rqClStatus'),btn=$('#rqClSubmit');
  const data=Object.fromEntries(new FormData(form).entries());
+ // A mismatch is never silently published; posting uses the currency of the seller's country.
+ if(data.country && data.currency!==(currForCountry[data.country]||'USD')){
+   status.textContent=sellUi().priceChanged;return;
+ }
  data.maker=data.maker==='__other__'?String(data.makerOther||'').trim():String(data.maker||'').trim();
  if(!data.maker){status.textContent=sellUi().makerRequired;return;}
  if(data.price.trim() && (!Number.isFinite(Number(data.price))||Number(data.price)<=0)){
