@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" class="rq-first-paint">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1,viewport-fit=cover" name="viewport"/>
@@ -61,6 +61,49 @@
   ]
 }
 </script>
+
+<!-- Render the marketplace shell before loading external scripts; never flash the legacy home. -->
+<style id="rqFirstPaintStyle">
+  html.rq-first-paint .page{display:none!important}
+  html.rq-first-paint .site-header .desktop-nav,
+  html.rq-first-paint .site-header .header-actions{visibility:hidden!important}
+  .rq-initial-shell{display:none}
+  html.rq-first-paint .rq-initial-shell{
+    display:block;box-sizing:border-box;
+    width:min(1180px,92vw);margin:34px auto 40px;
+    min-height:460px;color:#26364b;
+  }
+  .rq-initial-shell .rq-firstpaint-title{
+    font:800 clamp(23px,3.5vw,40px)/1.25 -apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+    letter-spacing:-.035em;margin:0 0 20px
+  }
+  .rq-initial-shell .rq-firstpaint-kicker{color:#64748b;font-size:11px;letter-spacing:.09em;font-weight:750;margin-bottom:10px}
+  .rq-initial-shell .rq-skeleton-search{
+    height:44px;width:min(760px,100%);background:#edf1f5;border-radius:12px;margin-bottom:22px
+  }
+  .rq-initial-shell .rq-skeleton-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .rq-initial-shell .rq-skeleton-card{height:138px;background:#f0f3f7;border:1px solid #e5e9ee;border-radius:14px}
+  @media(max-width:760px){
+    html.rq-first-paint .rq-initial-shell{margin:22px auto;min-height:380px}
+    .rq-initial-shell .rq-skeleton-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .rq-initial-shell .rq-skeleton-card{height:105px}
+  }
+</style>
+<noscript><style>
+  html.rq-first-paint .rq-initial-shell{display:none!important}
+  html.rq-first-paint #robots{display:block!important}
+  html.rq-first-paint .site-header .desktop-nav,
+  html.rq-first-paint .site-header .header-actions{visibility:visible!important}
+</style></noscript>
+<script>
+/* If marketplace JavaScript fails to initialize, restore the preselected marketplace without a permanent loading screen. */
+window.setTimeout(function(){
+ if(document.documentElement.classList.contains('rq-first-paint')){
+   document.documentElement.classList.remove('rq-first-paint');
+   console.warn('RoboQuo marketplace first-paint fallback');
+ }
+},7500);
+</script>
 </head>
 <body>
 <header class="site-header">
@@ -79,7 +122,16 @@
 </div>
 </header>
 <main>
-<section class="page active" id="home">
+<div class="rq-initial-shell" id="rqInitialShell" role="status" aria-label="Loading RoboQuo marketplace">
+  <div class="rq-firstpaint-kicker">ROBOQUO</div>
+  <h1 class="rq-firstpaint-title">Marketplace</h1>
+  <div class="rq-skeleton-search" aria-hidden="true"></div>
+  <div class="rq-skeleton-grid" aria-hidden="true">
+    <div class="rq-skeleton-card"></div><div class="rq-skeleton-card"></div>
+    <div class="rq-skeleton-card"></div><div class="rq-skeleton-card"></div>
+  </div>
+</div>
+<section class="page" id="home">
 <div class="hero wrap">
 <div class="hero-copy">
 <div class="kicker">ROBOQUO</div>
@@ -201,7 +253,7 @@
 <div class="wrap category-section-head application-head"><div><div class="kicker">APPLICATIONS</div><h2 data-i18n="applicationTitle">Applications</h2></div><p data-i18n="applicationDesc">Welding, painting, palletizing, machine tending, inspection and more.</p></div>
 <div class="wrap category-grid application-grid" id="applicationGrid"></div>
 </section>
-<section class="page" id="robots">
+<section class="page active" id="robots">
 <div class="wrap page-head rq-market-heading"><div class="rq-market-heading-copy"><div class="kicker">ROBOQUO MARKETPLACE</div><h1 data-i18n="marketTitle">Buy &amp; sell robots and parts</h1><p data-i18n="marketDesc">New or used. Find an item or post yours in a few steps.</p>
 <div class="rq-market-primary-actions" aria-label="Marketplace actions">
 <button type="button" data-rq-quick-action="buy" class="rq-market-buy-button">Buy equipment</button>
@@ -498,7 +550,7 @@
 <script src="auth.js"></script>
 <script src="seller-backend.js"></script>
 <script src="v24.js?v=20261115header"></script>
-<script src="marketplace-v2.js"></script>
+<script src="marketplace-v2.js?v=20261116firstpaint"></script>
 <script src="cobot-compare.js"></script>
 <script src="visuals.js"></script>
 <script src="mobile-market.js"></script>
