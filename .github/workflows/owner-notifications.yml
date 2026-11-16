@@ -1,0 +1,29 @@
+name: Test owner LINE Kakao notification adapter (offline)
+on:
+  pull_request:
+    paths:
+      - 'supabase/functions/roboquo-owner-alerts/**'
+      - 'tests/owner-notifications-regression.mjs'
+      - '.github/workflows/owner-notifications.yml'
+      - 'docs/OWNER_LINE_KAKAO_ALERTS_KO.md'
+  push:
+    branches: [main]
+    paths:
+      - 'supabase/functions/roboquo-owner-alerts/**'
+      - 'tests/owner-notifications-regression.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  mock-only:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test secrets guard, payload filtering, two provider adapters
+        run: node tests/owner-notifications-regression.mjs
