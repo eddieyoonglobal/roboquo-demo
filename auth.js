@@ -15,7 +15,7 @@
   const errorCopy={
     en:{invalid:'Email or password is incorrect.',exists:'An account already exists for this email.',unconfirmed:'Confirm your email before signing in.',rate:'Too many attempts. Please wait and try again.',network:'Check your connection and try again.',disabled:'Account registration is currently unavailable.',email:'Enter a valid email address.',weak:'Use a stronger password with at least 8 characters.'},
     ja:{invalid:'メールアドレスまたはパスワードが正しくありません。',exists:'このメールアドレスのアカウントはすでに存在します。',unconfirmed:'メール確認を完了してからログインしてください。',rate:'試行回数が多すぎます。しばらく待ってから再度お試しください。',network:'通信状況を確認して再度お試しください。',disabled:'現在、アカウント登録を利用できません。',email:'有効なメールアドレスを入力してください。',weak:'8文字以上のより安全なパスワードを設定してください。'},
-    ko:{invalid:'이메일 또는 비밀번호가 올바르지 않습니다.',exists:'이미 이 이메일로 만든 계정이 있습니다.',unconfirmed:'이메일 확인을 완료한 뒤 로그인해주세요.',rate:'시도 횟수가 많습니다. 잠시 후 다시 시도해주세요.',network:'인터넷 연결을 확인한 뒤 다시 시도해주세요.',disabled:'현재 회원가입을 이용할 수 없습니다.',email:'올바른 이메일 주소를 입력해주세요.',weak:'8자 이상의 더 안전한 비밀번호를 사용해주세요.'},
+    ko:{invalid:'이메일 또는 비밀번호가 올바르지 않습니다.',exists:'이미 이 이메일로 만든 계정이 있습니다.',unconfirmed:'이메일 확인을 완료한 뒤 로그인해주세요.',rate:'요청이 잠시 제한되었습니다. 가입 확인 메일을 받았다면 회원가입을 반복하지 말고 로그인해 주세요.',network:'인터넷 연결을 확인한 뒤 다시 시도해주세요.',disabled:'현재 회원가입을 이용할 수 없습니다.',email:'올바른 이메일 주소를 입력해주세요.',weak:'8자 이상의 더 안전한 비밀번호를 사용해주세요.'},
     zh:{invalid:'邮箱或密码不正确。',exists:'此邮箱已注册账户。',unconfirmed:'请先完成邮箱验证后再登录。',rate:'尝试次数过多，请稍后重试。',network:'请检查网络连接后重试。',disabled:'当前无法注册账户。',email:'请输入有效的邮箱地址。',weak:'请使用至少8位的更强密码。'},
     de:{invalid:'E-Mail oder Passwort ist falsch.',exists:'Für diese E-Mail besteht bereits ein Konto.',unconfirmed:'Bitte zuerst die E-Mail bestätigen.',rate:'Zu viele Versuche. Bitte später erneut versuchen.',network:'Verbindung prüfen und erneut versuchen.',disabled:'Die Registrierung ist derzeit nicht verfügbar.',email:'Bitte eine gültige E-Mail eingeben.',weak:'Bitte ein stärkeres Passwort mit mindestens 8 Zeichen verwenden.'},
     fr:{invalid:'L’adresse e-mail ou le mot de passe est incorrect.',exists:'Un compte existe déjà pour cette adresse.',unconfirmed:'Confirmez votre e-mail avant de vous connecter.',rate:'Trop de tentatives. Réessayez plus tard.',network:'Vérifiez votre connexion puis réessayez.',disabled:'La création de compte est indisponible.',email:'Saisissez une adresse e-mail valide.',weak:'Utilisez un mot de passe plus robuste d’au moins 8 caractères.'},
@@ -29,7 +29,7 @@
   const PROD_ORIGIN='https://roboquo.com';
   const PENDING_KEY='rqPendingAuthV24';
   let client=null,session=null,pending=null;
-  function pendingFromUrl(){try{return new URLSearchParams(location.search).get('resume')==='sell'?{type:'publishSell',target:'Sell a Robot'}:null}catch(_){return null}}
+  function pendingFromUrl(){try{const v=new URLSearchParams(location.search).get('resume');return v==='quick'?{type:'publishSellQuick',target:'Post item'}:v==='sell'?{type:'publishSell',target:'Sell a Robot'}:null}catch(_){return null}}
   function loadPending(){try{return JSON.parse(localStorage.getItem(PENDING_KEY)||'null')||pendingFromUrl()}catch(_){return pendingFromUrl()}}
   function clearResumeParam(){try{const url=new URL(location.href);if(!url.searchParams.has('resume'))return;url.searchParams.delete('resume');history.replaceState({},'',url.pathname+(url.search?url.search:'')+url.hash);}catch(_){}}
   function savePending(v){pending=v||null;if(v)localStorage.setItem(PENDING_KEY,JSON.stringify(v));else{localStorage.removeItem(PENDING_KEY);clearResumeParam();}}
@@ -40,7 +40,7 @@
     const safeOrigin=location.protocol==='https:'||['localhost','127.0.0.1'].includes(location.hostname)?location.origin:PROD_ORIGIN;
     const url=new URL('/',safeOrigin);
     const p=pending||loadPending();
-    if(p&&['sell','publishSell'].includes(p.type))url.searchParams.set('resume','sell');
+    if(p&&['sell','publishSell','publishSellQuick'].includes(p.type))url.searchParams.set('resume',p.type==='publishSellQuick'?'quick':'sell');
     return url.toString();
   }
   window.rqAuthSession=null;
@@ -55,7 +55,7 @@
   window.rqShowAuth=(mode)=>authModal(mode,pending?.type||'generic',pending?.target||'RoboQuo',(document.getElementById('rqAuthEmail')?.value||'').trim());
   function errMsg(msg){const el=document.getElementById('rqAuthError');if(el)el.textContent=msg||tx('failed');}
   function authErrorMessage(error){const c=errorCopy[lang()]||errorCopy.en;const code=String(error?.code||'').toLowerCase();if(!navigator.onLine||code==='network_error')return c.network;if(['invalid_credentials','invalid_grant'].includes(code))return c.invalid;if(code==='email_not_confirmed')return c.unconfirmed;if(['user_already_exists','email_exists','identity_already_exists'].includes(code))return c.exists;if(['over_email_send_rate_limit','over_request_rate_limit','too_many_requests'].includes(code)||error?.status===429)return c.rate;if(code==='signup_disabled')return c.disabled;if(['email_address_invalid','validation_failed'].includes(code))return c.email;if(code==='weak_password')return c.weak;return tx('failed');}
-  async function resume(){const p=pending||loadPending();savePending(null);closeModal();if(!p)return;if(p.type==='bid'&&window.openBid)return window.openBid(p.target);if((p.type==='sell'||p.type==='publishSell')&&window.rqStartSell)return window.rqStartSell();if(window.toast)toast(`${p.target}: ${tx('welcome')}`);}
+  async function resume(){const p=pending||loadPending();savePending(null);closeModal();if(!p)return;if(p.type==='bid'&&window.openBid)return window.openBid(p.target);if(p.type==='publishSellQuick'&&window.rqResumeQuickListing)return window.rqResumeQuickListing();if((p.type==='sell'||p.type==='publishSell')&&window.rqStartSell)return window.rqStartSell();if(window.toast)toast(`${p.target}: ${tx('welcome')}`);}
   window.rqSubmitAuth=async(mode)=>{
     if(!client)return errMsg(tx('failed'));
     if(mode==='signup'&&window.rqCanWriteSupabase?.()===false)return errMsg(window.rqPreviewReadOnlyMessage?.()||tx('failed'));
