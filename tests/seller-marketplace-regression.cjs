@@ -9,6 +9,8 @@ const seller=fs.readFileSync(path.join(root,'seller-backend.js'),'utf8');
 const market=fs.readFileSync(path.join(root,'v24.js'),'utf8');
 const app=fs.readFileSync(path.join(root,'app.js'),'utf8');
 new Function(seller);new Function(market);new Function(app);
+assert.match(app,/function rqSellerDefaultCurrency\(country\)/,'legacy seller wizard maps currency from the chosen country');
+assert.match(app,/rqSellDraft\.currency\|\|rqSellerDefaultCurrency/,'legacy seller wizard must not hard-code JPY');
 assert.match(market,/r\._source==='seller-supabase'&&!isDemo\(r\)/,'marketplace must show real seller-submitted items only');
 assert.match(market,/\$\('#robots \.v24-market-note'\)\?\.remove\(\)/,'repeated market promotion is removed from the first screen');
 assert.match(market,/rq-market-empty/,'the market still explains an empty inventory');
