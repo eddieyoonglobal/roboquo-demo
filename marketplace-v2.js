@@ -56,7 +56,88 @@ Object.assign(MARKET_WORDS,{"zh":{"country":"卖家所在国家","currency":"货
 Object.entries({"Japan":{"zh":"日本","de":"Japan","fr":"Japon","es":"Japón","it":"Giappone","pt":"Japão","vi":"Nhật Bản"},"Korea":{"zh":"韩国","de":"Südkorea","fr":"Corée du Sud","es":"Corea del Sur","it":"Corea del Sud","pt":"Coreia do Sul","vi":"Hàn Quốc"},"China":{"zh":"中国","de":"China","fr":"Chine","es":"China","it":"Cina","pt":"China","vi":"Trung Quốc"},"Taiwan":{"zh":"台湾","de":"Taiwan","fr":"Taïwan","es":"Taiwán","it":"Taiwan","pt":"Taiwan","vi":"Đài Loan"},"USA":{"zh":"美国","de":"USA","fr":"États-Unis","es":"EE. UU.","it":"Stati Uniti","pt":"EUA","vi":"Hoa Kỳ"},"Germany":{"zh":"德国","de":"Deutschland","fr":"Allemagne","es":"Alemania","it":"Germania","pt":"Alemanha","vi":"Đức"},"Other":{"zh":"其他","de":"Sonstige","fr":"Autre","es":"Otro","it":"Altro","pt":"Outros","vi":"Khác"}}).forEach(([country,labels])=>Object.assign(COUNTRIES[country],labels));
 const countryName=key=>COUNTRIES[key]?.[lang()]||COUNTRIES[key]?.en||key;
 const currForCountry={Japan:'JPY',Korea:'KRW',China:'CNY',Taiwan:'USD',USA:'USD',Germany:'EUR',Other:'USD'};
-const CURRENCIES={JPY:'¥ JPY',KRW:'₩ KRW',CNY:'¥ CNY',USD:'$ USD',EUR:'€ EUR'};
+const CURRENCIES={JPY:'¥ JPY',KRW:'₩ KRW',CNY:'CN¥ CNY',USD:'$ USD',EUR:'€ EUR'};
+const SELL_UI={
+ ko:{manufacturerSearch:'제조사 검색',manufacturerSelect:'제조사 선택',manufacturerOther:'기타 — 제조사 직접 입력',manufacturerOtherHint:'등록된 제조사가 없으면 제조사명을 직접 입력하세요.',manufacturerOtherPlaceholder:'제조사명을 입력하세요',manufacturerLoading:'제조사 목록을 불러오는 중…',manufacturerCount:n=>'제조사 '+n+'곳',manufacturerNone:'일치하는 제조사가 없습니다. 기타를 선택해 직접 입력하세요.',price:'판매 희망 가격',fixedPrice:'판매 가격',optional:'선택',priceHelp:'가격 협의는 비워둘 수 있습니다. 통화만 바뀌며 금액은 자동 환산하지 않습니다.',priceRequired:'정가 판매는 실제 판매 가격을 입력해야 합니다.',priceChanged:'통화가 바뀌어 기존 가격을 지웠습니다. 새 통화 기준으로 다시 입력하세요.',pricePlaceholder:'가격 입력 또는 공란 유지',makerRequired:'제조사를 선택하거나 기타에서 직접 입력하세요.',invalidPrice:'금액은 0보다 큰 숫자로 입력하거나, 가격 협의 방식에서는 공란으로 두세요.'},
+ ja:{manufacturerSearch:'メーカーを検索',manufacturerSelect:'メーカーを選択',manufacturerOther:'その他・メーカー名を入力',manufacturerOtherHint:'一覧にないメーカーは直接入力してください。',manufacturerOtherPlaceholder:'メーカー名',manufacturerLoading:'メーカー一覧を読み込み中…',manufacturerCount:n=>'メーカー '+n+' 社',manufacturerNone:'該当なし。その他から直接入力できます。',price:'希望販売価格',fixedPrice:'販売価格',optional:'任意',priceHelp:'価格交渉の場合は空欄にできます。通貨の変更時に金額の換算は行いません。',priceRequired:'定額販売には販売価格の入力が必要です。',priceChanged:'通貨が変更されたため、旧金額を消去しました。新しい通貨で入力してください。',pricePlaceholder:'金額を入力、または空欄',makerRequired:'メーカーを選択するか、その他を選んで入力してください。',invalidPrice:'0より大きい金額を入力してください。価格交渉なら空欄にできます。'},
+ en:{manufacturerSearch:'Search manufacturers',manufacturerSelect:'Select manufacturer',manufacturerOther:'Other — enter a manufacturer',manufacturerOtherHint:'If the maker is missing, select Other and enter its real name.',manufacturerOtherPlaceholder:'Enter manufacturer name',manufacturerLoading:'Loading all manufacturers…',manufacturerCount:n=>n+' manufacturers',manufacturerNone:'No matches. Choose Other to enter it manually.',price:'Asking price',fixedPrice:'Fixed selling price',optional:'optional',priceHelp:'Leave blank for private offers. Currency changes never convert numbers.',priceRequired:'Fixed-price listings require a selling price.',priceChanged:'Currency changed; the old amount was cleared. Enter a price in the new currency.',pricePlaceholder:'Enter amount or leave blank',makerRequired:'Select a manufacturer or enter its name under Other.',invalidPrice:'Enter a number greater than zero, or leave blank for private offers.'}
+};
+const sellUi=()=>SELL_UI[lang()]||SELL_UI.en;
+const MAKER_FALLBACK=['ABB Robotics','FANUC','KUKA','Mitsubishi Electric','Nachi-Fujikoshi','OMRON Robotics','OnRobot','SMC','Universal Robots','YASKAWA'];
+const makerValue=name=>name==='Yaskawa Electric'?'YASKAWA':name;
+function makeBrandChoices(form,firstProduct){
+ const selector=form.querySelector('#rqClMakerSelect'),search=form.querySelector('#rqClMakerSearch');
+ const other=form.querySelector('#rqClMakerOther'),count=form.querySelector('#rqClMakerCount');
+ const u=sellUi();
+ let catalog=[...MAKER_FALLBACK],chosen=firstProduct?'YASKAWA':'';
+ function renderOptions(){
+   const term=String(search.value||'').trim().toLocaleLowerCase();
+   const options=catalog.filter(name=>name.toLocaleLowerCase().includes(term));
+   selector.replaceChildren();
+   const prompt=document.createElement('option');prompt.value='';prompt.textContent=u.manufacturerSelect;prompt.disabled=true;selector.append(prompt);
+   for(const name of options){
+     const option=document.createElement('option');option.value=name;option.textContent=name;selector.append(option);
+   }
+   const custom=document.createElement('option');custom.value='__other__';custom.textContent=u.manufacturerOther;selector.append(custom);
+   // Preserve a selected maker while searching for another.
+   if(chosen&&!options.includes(chosen)&&chosen!=='__other__'){
+     const kept=document.createElement('option');kept.value=chosen;kept.textContent=chosen;selector.insertBefore(kept,selector.children[1]);
+   }
+   selector.value=chosen||'';
+   if(selector.selectedIndex<0)selector.selectedIndex=0;
+   count.textContent=u.manufacturerCount(catalog.length)+(term&&!options.length?' · '+u.manufacturerNone:'');
+ }
+ function onSelect(){
+   chosen=selector.value;
+   const custom=chosen==='__other__';
+   other.hidden=!custom;other.disabled=!custom;other.required=custom;
+   if(custom)other.focus();
+ }
+ search.setAttribute('aria-label',u.manufacturerSearch);
+ search.placeholder=u.manufacturerSearch;
+ other.placeholder=u.manufacturerOtherPlaceholder;
+ other.setAttribute('aria-label',u.manufacturerOtherHint);
+ selector.addEventListener('change',onSelect);
+ search.addEventListener('input',renderOptions);
+ renderOptions();onSelect();
+ fetch('./seller-manufacturers.json?v=20261116',{cache:'no-store'})
+ .then(r=>{if(!r.ok)throw Error('Maker directory HTTP '+r.status);return r.json();})
+ .then(data=>{
+   if(!Array.isArray(data.names)||data.names.length<150)throw Error('Maker directory incomplete');
+   const expanded=data.names.map(makerValue);
+   catalog=[...new Set([...expanded,...MAKER_FALLBACK])].sort((a,b)=>a.localeCompare(b,'en',{sensitivity:'base'}));
+   renderOptions();onSelect();
+ }).catch(e=>{count.textContent=u.manufacturerCount(catalog.length)+' · '+u.manufacturerOtherHint;console.warn('RoboQuo maker directory unavailable',e.message)});
+}
+function enhanceSaleCurrency(form){
+ const country=form.querySelector('#rqClCountry'),currency=form.querySelector('#rqClCurrency'),price=form.querySelector('[name="price"]');
+ const label=form.querySelector('#rqClPriceLabel'),help=form.querySelector('#rqClPriceHelp'),mode=form.querySelector('#rqClSellMethod');
+ const u=sellUi();
+ function repaint(warning=false){
+   const fixed=mode.value==='fixed',unit=currency.value||'JPY';
+   label.textContent=(fixed?u.fixedPrice:u.price)+' ('+(CURRENCIES[unit]||unit)+')'+(fixed?' *':' · '+u.optional);
+   price.required=fixed;
+   price.placeholder=u.pricePlaceholder;
+   help.textContent=warning?u.priceChanged:(fixed?u.priceRequired+' ':'' )+u.priceHelp;
+ }
+ function changeCurrency(next){
+   const previous=currency.dataset.previous||currency.value;
+   currency.value=next;
+   const changed=previous!==next;
+   const clear=changed&&price.value.trim()!=='';
+   if(clear)price.value='';
+   currency.dataset.previous=next;
+   repaint(clear);
+ }
+ currency.dataset.previous=currency.value;
+ currency.addEventListener('change',()=>changeCurrency(currency.value));
+ country.addEventListener('change',()=>{
+   const next=currForCountry[country.value]||currency.value;
+   changeCurrency(next);
+ });
+ mode.addEventListener('change',()=>repaint());
+ repaint();
+}
 const tr=k=>(L[lang()]||L.en)[k]||L.en[k]||k;
 const cat=k=>(C[lang()]||C.en)[k]||C.en[k]||k;
 const esc=t=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','"':'&quot;',"'":'&#39;'}[c]));
@@ -221,8 +302,8 @@ function showSell(initialCat,presetId){
  '<label class="rq-cl-field"><span>'+esc(tr('country'))+' *</span><select name="country" id="rqClCountry" required>'+requiredOption+choices(Object.fromEntries(Object.keys(COUNTRIES).map(k=>[k,countryName(k)])),firstProduct?'':'Japan')+'</select></label>',
  '<label class="rq-cl-field"><span>'+esc(tr('currency'))+' *</span><select name="currency" id="rqClCurrency" required>'+choices(CURRENCIES,'JPY')+'</select></label>',
  field(tr('title'),'model',{required:true,placeholder:'FANUC CRX-10iA / RG2 / R-30iB',value:firstProduct?YASKAWA_FIRST_LISTING.model:''}),
- field(tr('brand'),'maker',{placeholder:'FANUC / OnRobot',value:firstProduct?YASKAWA_FIRST_LISTING.maker:''}),
- field(tr('price'),'price',{type:'number',min:'0',placeholder:'250000'}),
+ '<label class="rq-cl-field"><span>'+esc(tr('brand'))+' *</span><input id="rqClMakerSearch" type="search" autocomplete="off" aria-label="'+esc(sellUi().manufacturerSearch)+'" placeholder="'+esc(sellUi().manufacturerSearch)+'"><select name="maker" id="rqClMakerSelect" required aria-label="'+esc(sellUi().manufacturerSelect)+'"><option value="" disabled selected>'+esc(sellUi().manufacturerLoading)+'</option></select><small id="rqClMakerCount" aria-live="polite"></small><input type="text" name="makerOther" id="rqClMakerOther" maxlength="120" placeholder="'+esc(sellUi().manufacturerOtherPlaceholder)+'" hidden disabled></label>',
+ '<label class="rq-cl-field"><span id="rqClPriceLabel">'+esc(sellUi().price)+'</span><input type="number" name="price" min="0" step="any" inputmode="decimal" placeholder="'+esc(sellUi().pricePlaceholder)+'"><small id="rqClPriceHelp" role="status" aria-live="polite"></small></label>',
  field(tr('location'),'location',{required:true,placeholder:'Tokyo / Osaka'}),
  '</div>',
  '<label class="rq-cl-field"><span>'+esc(tr('description'))+' *</span><textarea name="description" required rows="4" maxlength="5000">'+esc(firstProduct?firstDescription:'')+'</textarea></label>',
@@ -241,9 +322,8 @@ function showSell(initialCat,presetId){
  modal(html);
  const form=$('#rqQuickSellForm');
  $('#rqClCancel')?.addEventListener('click',()=>window.closeModal?.());
- $('#rqClCountry')?.addEventListener('change',e=>{
-  const select=$('#rqClCurrency');if(select)select.value=currForCountry[e.target.value]||'USD';
- });
+ makeBrandChoices(form,firstProduct);
+ enhanceSaleCurrency(form);
  $('#rqClPhotos')?.addEventListener('change',e=>{
   files=[...(e.target.files||[])];
   const previews=$('#rqClPreview');previews.replaceChildren();
@@ -259,6 +339,14 @@ async function submitListing(event){
  event.preventDefault();if(busy)return;
  const form=event.currentTarget,status=$('#rqClStatus'),btn=$('#rqClSubmit');
  const data=Object.fromEntries(new FormData(form).entries());
+ data.maker=data.maker==='__other__'?String(data.makerOther||'').trim():String(data.maker||'').trim();
+ if(!data.maker){status.textContent=sellUi().makerRequired;return;}
+ if(data.price.trim() && (!Number.isFinite(Number(data.price))||Number(data.price)<=0)){
+  status.textContent=sellUi().invalidPrice;return;
+ }
+ if(data.sellMethod==='fixed'&&(!data.price.trim()||Number(data.price)<=0)){
+  status.textContent=sellUi().priceRequired;return;
+ }
  if(files.length<1||files.length>8||!data.declared||!data.model?.trim()||!data.description?.trim()||!data.companyName?.trim()||!data.contactEmail?.trim()||!data.contactPhone?.trim()){
   status.textContent=tr('required');return;
  }
