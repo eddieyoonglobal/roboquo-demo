@@ -85,6 +85,28 @@ const stop=()=>new Promise(resolve=>server.close(resolve));
   assert.equal((await regions.nth(5).innerText()).trim(),'유럽','Korean Europe button');
   assert.equal((await page.locator('#rqFeaturedTitle').innerText()).trim(),'로봇 메이커 찾기');
   assert.equal((await page.locator('#rqEoatTitle').innerText()).trim(),'그리퍼·EOAT 메이커 찾기');
+  // Proposed success fees only. No listing fee, automatic billing or payment activation.
+  await page.evaluate(()=>window.route?.('about'));
+  await page.waitForFunction(()=>document.getElementById('rqPricingTitle')?.textContent==='수수료 안내');
+  assert.equal(await page.locator('#rqPricingGrid .rq-fee-plan').count(),4);
+  assert.equal((await page.locator('#rqPricingGrid [data-tier="directory"] .rq-fee-promo').innerText()).trim(),'무료');
+  for(const [tier,promo] of [['introduction','2.5%'],['assisted','5%'],['managed','7.5%']]){
+    const box=page.locator('#rqPricingGrid [data-tier="'+tier+'"]');
+    assert((await box.locator('.rq-fee-promo').innerText()).includes(promo),tier+' proposed introductory fee');
+    assert.equal(await box.locator('.rq-fee-regular').count(),0,'no invented previous regular price');
+  }
+  assert.match(await page.locator('#rqPricingPending').innerText(),/자동 결제.*시행하지 않습니다/);
+  const pricing=await page.evaluate(()=>window.RQ_PRICING_REPORT?.());
+  assert(pricing?.isProposed&&pricing.automaticBilling===false,'no billing claims');
+  assert.deepEqual(pricing.tiers.map(x=>x.promo),[0,2.5,5,7.5]);
+  await page.locator('#languageSelect').selectOption('ja');
+  await page.waitForFunction(()=>document.getElementById('rqPricingTitle')?.textContent==='手数料のご案内');
+  assert.match(await page.locator('#rqPricingPending').innerText(),/自動決済.*開始していません/);
+  await page.locator('#languageSelect').selectOption('ko');
+  await page.waitForFunction(()=>document.getElementById('rqPricingTitle')?.textContent==='수수료 안내');
+  assert((await page.evaluate(()=>document.documentElement.scrollWidth-innerWidth))<=3,'pricing must not overflow');
+  await page.evaluate(()=>window.route?.('robots'));
+
   const footerDebug=await page.evaluate(()=>({
     footerCount:document.querySelectorAll('.v24-site-footer').length,
     mobileTexts:[...document.querySelectorAll('.mobile-nav button small')].map(x=>x.textContent.trim()),
