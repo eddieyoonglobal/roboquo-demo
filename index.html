@@ -96,7 +96,13 @@
   html.rq-first-paint .site-header .header-actions{visibility:visible!important}
 </style></noscript>
 <script>
-/* If marketplace JavaScript fails to initialize, restore the preselected marketplace without a permanent loading screen. */
+/* Fallback for a stale service worker or delayed enhancement script. DOMContentLoaded
+   is fired after all parser-loaded scripts; the next frame is safe to reveal. */
+document.addEventListener('DOMContentLoaded',function(){
+ requestAnimationFrame(function(){
+   document.documentElement.classList.remove('rq-first-paint');
+ });
+});
 window.setTimeout(function(){
  if(document.documentElement.classList.contains('rq-first-paint')){
    document.documentElement.classList.remove('rq-first-paint');
