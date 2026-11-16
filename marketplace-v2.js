@@ -106,7 +106,7 @@ function makeBrandChoices(form,firstProduct){
    if(!Array.isArray(data.names)||data.names.length<150)throw Error('Maker directory incomplete');
    const expanded=data.names.map(makerValue);
    catalog=[...new Set([...expanded,...MAKER_FALLBACK])].sort((a,b)=>a.localeCompare(b,'en',{sensitivity:'base'}));
-   renderOptions();onSelect();
+   renderOptions();onSelect();form.dispatchEvent(new Event('rq:makers-ready'));
  }).catch(e=>{count.textContent=u.manufacturerCount(catalog.length)+' · '+u.manufacturerOtherHint;console.warn('RoboQuo maker directory unavailable',e.message)});
 }
 function enhanceSaleCurrency(form){
@@ -153,10 +153,80 @@ const esc=t=>String(t==null?'':t).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;'
 const api=()=>window.rqSupabase||null;
 const user=()=>window.rqAuthSession?.user||null;
 let files=[],activeThread='',busy=false;
+const QUICK_DRAFT_KEY='rqQuickSellDraftAfterAuthV1';
+function getQuickDraft(){
+ try{
+  const saved=JSON.parse(sessionStorage.getItem(QUICK_DRAFT_KEY)||'null');
+  if(!saved||!saved.at||Date.now()-saved.at>86400000){
+   sessionStorage.removeItem(QUICK_DRAFT_KEY);return null;
+  }
+  return saved;
+ }catch{return null}
+}
+function storeQuickDraft(form){
+ if(!form)return;
+ try{
+  const fields=Object.fromEntries(new FormData(form).entries());
+  // File objects cannot be serialized; keep them in memory for the current tab.
+  delete fields.declared;delete fields.makerOther;
+  if(form.elements.namedItem('maker')?.value==='__other__')
+    fields.makerOther=form.elements.namedItem('makerOther')?.value||'';
+  sessionStorage.setItem(QUICK_DRAFT_KEY,JSON.stringify({
+   at:Date.now(),fields,firstProduct:form.dataset.firstProduct==='yaskawa-csra-sdb06ha',
+   photoCount:files.length
+  }));
+ }catch(e){console.warn('RoboQuo draft not stored',e?.name||'error')}
+}
+function clearQuickDraft(){try{sessionStorage.removeItem(QUICK_DRAFT_KEY)}catch{}}
+function loadQuickDraft(form,saved){
+ if(!saved?.fields)return;
+ const fields=saved.fields;
+ for(const name of ['itemCategory','itemCondition','country','sellMethod','model','location',
+                     'description','companyName','contactEmail','contactPhone','sellerType']){
+  const el=form.elements.namedItem(name);
+  if(el&&typeof fields[name]==='string')el.value=fields[name];
+ }
+ // Always derive the currency from restored selling country; no stale price units.
+ form.elements.namedItem('country')?.dispatchEvent(new Event('change',{bubbles:true}));
+ form.elements.namedItem('sellMethod')?.dispatchEvent(new Event('change',{bubbles:true}));
+ if(fields.currency===form.elements.namedItem('currency')?.value && typeof fields.price==='string')
+  form.elements.namedItem('price').value=fields.price;
+ function restoreMaker(){
+  const select=form.elements.namedItem('maker');
+  const other=form.elements.namedItem('makerOther');
+  const name=String(fields.maker||'');
+  if(!select||!name)return;
+  const known=[...select.options].some(opt=>opt.value===name);
+  select.value=known?name:'__other__';
+  select.dispatchEvent(new Event('change',{bubbles:true}));
+  if(!known&&other)other.value=fields.makerOther||name;
+ }
+ restoreMaker();
+ form.addEventListener('rq:makers-ready',restoreMaker,{once:true});
+ // Reattach the same in-memory files when login merely replaced the form modal.
+ const fileInput=form.querySelector('#rqClPhotos');
+ if(files.length&&fileInput&&typeof DataTransfer!=='undefined'){
+  const transfer=new DataTransfer();
+  files.slice(0,8).forEach(file=>transfer.items.add(file));
+  fileInput.files=transfer.files;
+  fileInput.dispatchEvent(new Event('change',{bubbles:true}));
+ }else if(saved.photoCount){
+  const note=document.createElement('p');
+  note.className='rq-cl-sale-note';
+  note.textContent=lang()==='ko'?'입력한 정보는 복구했습니다. 사진은 다시 선택해주세요.'
+   :lang()==='ja'?'出品情報を復元しました。写真は再度選択してください。'
+   :'Your listing details were restored. Please choose the photos again.';
+  form.querySelector('.rq-cl-pictures')?.append(note);
+ }
+ // Seller must confirm the declaration again before publishing.
+ const consent=form.elements.namedItem('declared');
+ if(consent)consent.checked=false;
+}
+
 const photoTypes=new Set(['image/jpeg','image/png','image/webp','image/heic','image/heif']);
 function notice(message){if(typeof window.toast==='function')window.toast(message);else alert(message)}
 function modal(content){openModal('<div class="rq-classifieds-modal">'+content+'</div>')}
-function authRequired(){if(user())return false;window.rqRequireAuth?.('generic',tr('login'));return true}
+function authRequired(type='generic'){if(user())return false;window.rqRequireAuth?.(type,type==='publishSellQuick'?tr('post'):tr('login'));return true}
 function field(label,name,opts){
  opts=opts||{};
  return '<label class="rq-cl-field"><span>'+esc(label)+(opts.required?' *':'')+'</span><input name="'+esc(name)+'" type="'+esc(opts.type||'text')+'" '+(opts.required?'required ':'')+(opts.placeholder?'placeholder="'+esc(opts.placeholder)+'" ':'')+'value="'+esc(opts.value||'')+'" '+(opts.min?'min="'+opts.min+'" ':'')+'></label>';
@@ -289,9 +359,10 @@ function putMarketActions(){
  patchMarketFilters();
  installMarketFeedback();
 }
-function showSell(initialCat,presetId){
- files=[];
- const firstProduct=presetId==='yaskawa-csra-sdb06ha';
+function showSell(initialCat,presetId,options={}){
+ const saved=(options.restore||presetId==='yaskawa-csra-sdb06ha')?getQuickDraft():null;
+ if(!saved)files=[];
+ const firstProduct=presetId==='yaskawa-csra-sdb06ha'||Boolean(saved?.firstProduct);
  const guide=YASKAWA_GUIDE[lang()]||YASKAWA_GUIDE.en;
  const account=user();
  const meta=account?.user_metadata||{};
@@ -342,6 +413,9 @@ function showSell(initialCat,presetId){
   });
  });
  if(firstProduct){form.dataset.firstProduct='yaskawa-csra-sdb06ha';form.querySelector('[name="sellMethod"]').value='quotes';}
+ if(saved)loadQuickDraft(form,saved);
+ form.addEventListener('input',()=>storeQuickDraft(form));
+ form.addEventListener('change',()=>storeQuickDraft(form));
  form.addEventListener('submit',submitListing);
 }
 async function submitListing(event){
@@ -371,11 +445,16 @@ async function submitListing(event){
   photos.push({slot:i===0?'overall':'extra'+i,blob:file,name:file.name,type,size:file.size});
  }
  if(window.rqCanWriteSupabase?.()===false){status.textContent=tr('preview');return}
- if(authRequired()){status.textContent=tr('none');return}
+ if(!user()){
+  storeQuickDraft(form);
+  authRequired('publishSellQuick');
+  return;
+ }
  busy=true;btn.disabled=true;btn.textContent=tr('publishing');
  try{
   const draft={...data,contactName:data.companyName,sale:data.sellMethod==='fixed'?'fixed':'bid',working:'unknown',declared:true};
   await window.rqSubmitSellerListing(draft,{photos});
+  clearQuickDraft();files=[];
   window.closeModal?.();
   notice(tr('published'));
   route('robots');
@@ -473,6 +552,7 @@ function init(){
  window.rqMarketResultsChanged=updateMarketFeedback;
  window.rqStartSell=showSell;
  window.rqStartFirstProduct=()=>showSell('part','yaskawa-csra-sdb06ha');
+ window.rqResumeQuickListing=()=>{const saved=getQuickDraft();return showSell(saved?.fields?.itemCategory||'part',saved?.firstProduct?'yaskawa-csra-sdb06ha':null,{restore:true});};
  window.rqContactAboutListing=askSeller;
  window.rqOpenMarketInbox=openInbox;
  const existing=window.rqSetSellerLiveListings;
