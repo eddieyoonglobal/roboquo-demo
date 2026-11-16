@@ -71,6 +71,13 @@
   }
 
   window.rqSubmitSellerListing=async(draft,options={})=>{
+    // Fail before any database write if a fixed-price listing has no valid amount.
+    // No currency FX conversion is performed: price is in draft.currency.
+    const amount=numberOrNull(draft.price);
+    if(draft.sale!=='bid'&&(amount===null||amount<=0))
+      throw Object.assign(new Error('Fixed-price listing needs a positive amount'),{code:'PRICE_REQUIRED'});
+    if(amount!==null&&amount<=0)
+      throw Object.assign(new Error('Price must be positive'),{code:'PRICE_INVALID'});
     // Do not submit test listings into the live database from a Preview URL.
     if(window.rqCanWriteSupabase?.()===false)throw Object.assign(new Error('Preview is read-only'),{code:'PREVIEW_READ_ONLY'});
     const api=client(),account=user();if(!api||!account)throw Object.assign(new Error('Authentication required'),{code:'AUTH_REQUIRED'});
