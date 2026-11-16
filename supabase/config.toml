@@ -1,0 +1,4 @@
+# This function receives only server-to-server database webhooks.
+# Its handler denies all requests unless a >=32-character shared secret is set.
+[functions.roboquo-owner-alerts]
+verify_jwt = false
