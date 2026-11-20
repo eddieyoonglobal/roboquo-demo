@@ -28,11 +28,8 @@
 <link href="v24.css" rel="stylesheet"/>
 <link href="marketplace-v2.css" rel="stylesheet"/>
 <link href="visuals.css" rel="stylesheet"/>
-<link href="mobile-market.css" rel="stylesheet"/>
-<link href="featured-showcase.css" rel="stylesheet"/>
 <link href="quote-market.css" rel="stylesheet"/>
-<link href="simple-market.css" rel="stylesheet"/>
-<script>try{localStorage.removeItem("rqLangV21")}catch(e){}</script>
+<link href="storefront.css" rel="stylesheet"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -58,132 +55,17 @@
 </script>
 </head>
 <body>
-<header class="site-header">
-<a aria-label="RoboQuo home" class="brand" data-route="home" href="#home"><img class="rq-site-logo" src="./assets/rq-brand.svg" alt="RoboQuo" width="186" height="43"></a>
-<nav class="desktop-nav">
-<a data-route="robots" href="#robots">Buy</a>
-<a href="#sell" data-rq-quick-action="sell">Sell</a>
-<a data-i18n="navRobots" data-route="robots" href="#robots">Robots</a>
-<a data-i18n="navCategories" data-route="categories" href="#categories">Categories</a>
-<a data-i18n="navBuy" data-route="buy" href="#buy">Where to Buy</a>
-<a data-i18n="navEvents" data-route="events" href="#events">Events</a>
-<a data-i18n="navMakers" data-route="makers" href="#makers">Manufacturers</a>
-<a data-i18n="navCompanies" data-route="companies" href="#companies">Find Companies</a>
-<a data-i18n="navProjects" data-route="projects" href="#projects">Projects</a>
-<a href="/software/">Software</a>
-<a data-i18n="navAbout" data-route="about" href="#about">About RoboQuo</a>
-</nav>
-<div class="header-actions">
-<select aria-label="Language" class="lang" id="languageSelect">
-<option value="en">English</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="zh">简体中文</option><option value="de">Deutsch</option><option value="fr">Français</option><option value="es">Español</option><option value="it">Italiano</option><option value="pt">Português</option><option value="vi">Tiếng Việt</option>
-</select>
-<button class="text-btn" data-i18n="myRoboquo" id="myRoboquoBtn">My RoboQuo</button>
-<button class="primary small" data-action="sell" data-i18n="sellRobot">Sell a Robot</button>
-</div>
-</header>
-<main>
-<section class="page active" id="home">
-<div class="hero wrap">
-<div class="hero-copy">
-<div class="kicker">ROBOQUO</div>
-<h1>Buy &amp; Sell Robots.<br/><span>Fast and Simple.</span></h1>
-<p class="local-headline">Robots, grippers, parts and automation equipment — all in one marketplace.</p>
-<p class="hero-desc" data-i18n="heroDesc">Buy or sell used robots and automation equipment.</p>
-<div class="hero-search">
-<div class="search-field"><span aria-hidden="true">⌕</span><input aria-label="Search RoboQuo" data-i18n-placeholder="searchPlaceholder" id="globalSearch" placeholder="FANUC CRX, OnRobot RG2, robot teaching..."/></div>
-<button class="primary" data-i18n="search" id="searchBtn">Search</button>
-</div>
-<div class="hero-actions">
-<button class="primary big" data-rq-quick-action="buy" type="button">Buy Robots</button>
-<button class="primary big" data-rq-quick-action="sell" type="button">Sell Robots &amp; Parts</button>
-
-</div>
-<p class="access-note"><strong data-i18n="browseFree">Browse freely.</strong> <span data-i18n="joinWhenNeeded">Join only when you need to inquire, bid or trade.</span></p>
-</div>
-<div class="hero-visual hero-sell-panel">
-  
-  <div class="hero-sell-card">
-    <div class="hero-sell-topline" data-hero-sell-eyebrow>SELL</div>
-    <h3 data-hero-sell-title>Sell a Robot</h3>
-    <p data-hero-sell-body>Upload a few photos and start. You can add details later.</p>
-    <div class="hero-photo-grid" aria-label="Robot photo upload examples">
-      <button class="hero-photo-slot" type="button" data-action="sell">
-        <span aria-hidden="true" class="hero-photo-plus">＋</span>
-        <strong data-hero-photo-robot>Robot</strong>
-      </button>
-      <button class="hero-photo-slot" type="button" data-action="sell">
-        <span aria-hidden="true" class="hero-photo-plus">＋</span>
-        <strong data-hero-photo-nameplate>Nameplate</strong>
-      </button>
-      <button class="hero-photo-slot" type="button" data-action="sell">
-        <span aria-hidden="true" class="hero-photo-plus">＋</span>
-        <strong data-hero-photo-controller>Controller</strong>
-      </button>
-    </div>
-
-  </div>
-</div>
-</div>
-<section class="wrap rq-visual-market" id="rqVisualMarket" aria-label="Browse robot equipment visually">
-  <div class="rq-visual-market-heading"><div><div class="kicker">SHOP BY EQUIPMENT</div><h2 id="rqVisualMarketTitle">See it. Find it.</h2><p id="rqVisualMarketSubtitle">Start with the type of robot equipment you need.</p></div></div>
-  <div class="rq-visual-market-grid">
-    <button type="button" class="rq-visual-market-card" data-rq-market-category="robot">
-      <img src="./assets/rq-robot.svg" alt="" loading="lazy" width="160" height="130">
-      <span class="rq-visual-market-card-info"><strong data-rq-label="robot">Robots</strong><small data-rq-sub="robot">Industrial and collaborative robots</small><b aria-hidden="true">→</b></span>
-    </button>
-    <button type="button" class="rq-visual-market-card" data-rq-market-category="gripper">
-      <img src="./assets/rq-gripper.svg" alt="" loading="lazy" width="160" height="130">
-      <span class="rq-visual-market-card-info"><strong data-rq-label="gripper">Grippers & EOAT</strong><small data-rq-sub="gripper">End effectors and tooling</small><b aria-hidden="true">→</b></span>
-    </button>
-    <button type="button" class="rq-visual-market-card" data-rq-market-category="part">
-      <img src="./assets/rq-parts.svg" alt="" loading="lazy" width="640" height="440">
-      <span class="rq-visual-market-card-info"><strong data-rq-label="part">Parts & Controllers</strong><small data-rq-sub="part">Automation equipment and spare parts</small><b aria-hidden="true">→</b></span>
-    </button>
-  </div>
-</section>
-<div class="principle-bar">
-<div><strong data-i18n="browse">Browse</strong><span data-i18n="browseSub">Search without signup</span></div>
-<div><strong data-i18n="join">Join</strong><span data-i18n="joinSub">Email signup when needed</span></div>
-<div><strong data-i18n="verify">Verify</strong><span data-i18n="verifySub">Company verification for selling and trading</span></div>
-<div><strong data-i18n="trade">Trade</strong><span data-i18n="tradeSub">Bids, inquiries and services</span></div>
-</div>
-<section class="wrap section-block">
-<div class="section-title-row"><div><div class="kicker" data-i18n="startHere">START HERE</div><h2 data-i18n="whatNeed">What are you looking for?</h2></div></div>
-<div class="start-grid">
-<button class="start-card" data-route="robots"><span class="start-icon">⌕</span><div><strong data-i18n="buyRobot">Buy a Robot</strong><small data-i18n="buyRobotSub">Search used and new robots</small></div><b>→</b></button>
-<button class="start-card" data-route="buy"><span class="start-icon">↗</span><div><strong data-i18n="buyOnline">Buy Online</strong><small data-i18n="buyOnlineSub">Retailers and prices by country</small></div><b>→</b></button>
-<button class="start-card" data-action="solution"><span class="start-icon">◎</span><div><strong data-i18n="buildSolution">Build Your Solution</strong><small data-i18n="buildSolutionSub">Robot → EOAT → vision → service → logistics</small></div><b>→</b></button>
-
-<button class="start-card" data-route="makers"><span class="start-icon">⌘</span><div><strong data-i18n="findPeripheral">Find Peripherals</strong><small data-i18n="findPeripheralSub">Grippers, vision, tool changers</small></div><b>→</b></button>
-<button class="start-card" data-route="companies"><span class="start-icon">▦</span><div><strong data-i18n="findCompany">Find a Company</strong><small data-i18n="findCompanySub">Dealers, SIs and service providers</small></div><b>→</b></button>
-<button class="start-card" data-route="projects"><span class="start-icon">↗</span><div><strong data-i18n="postProject">Post a Project</strong><small data-i18n="postProjectSub">Teaching, installation and repair</small></div><b>→</b></button>
-<button class="start-card" data-route="events"><span class="start-icon">◷</span><div><strong data-i18n="navEvents">Events</strong><small data-i18n="eventsDesc">Global robotics events and exhibitions</small></div><b>→</b></button>
-<button class="start-card" data-route="categories"><span class="start-icon">◫</span><div><strong data-i18n="browseCategory">Browse Categories</strong><small data-i18n="browseCategorySub">Find by application or robot type</small></div><b>→</b></button>
-</div>
-</section>
-<section class="wrap section-block rq-software-promo" aria-labelledby="rqSoftwareHeading"><div class="rq-software-header"><div><div class="kicker">ROBOQUO SOFTWARE</div><h2 id="rqSoftwareHeading">Tools built for robotics workflows.</h2><p>Independent software for gripper analysis and force/torque diagnostics. <strong>Developed by RoboQuo.</strong></p></div><a class="rq-software-link" href="/software/">Explore software →</a></div><div class="rq-software-cards"><article><span class="rq-sw-icon" aria-hidden="true">◉</span><div><div class="rq-sw-eyebrow">GRIPPER ANALYSIS</div><h3>Smart Grip Studio</h3><p>Study gripping behavior, test force settings and review contact and width data.</p><a href="/software/smart-grip-studio/">Product overview →</a></div></article><article><span class="rq-sw-icon rq-sw-hex" aria-hidden="true">H</span><div><div class="rq-sw-eyebrow">FORCE / TORQUE DIAGNOSTICS</div><h3>HEX Diagnostic Studio</h3><p>View signals, capture diagnostic sessions and prepare troubleshooting reports.</p><a href="/software/hex-diagnostic-studio/">Product overview →</a></div></article></div><p class="rq-software-disclaimer">Product previews only · Trial access and licensing subject to confirmation · Not official OnRobot software</p></section>
-<section class="wrap section-block compact">
-<div class="section-title-row"><div><div class="kicker" data-i18n="popularCategories">POPULAR CATEGORIES</div><h2 data-i18n="robotMadeSimple">Complex robot choices, made simple by application</h2></div><button class="link-btn" data-i18n="viewAll" data-route="categories">View all →</button></div>
-<div class="category-strip" id="homeCategoryStrip"></div>
-</section>
-<section class="wrap section-block compact">
-<div class="section-title-row"><div><div class="kicker">MARKET</div><h2 data-i18n="latestRobots">Latest robot listings</h2></div><button class="link-btn" data-i18n="viewMarket" data-route="robots">View market →</button></div>
-<div class="listing-grid" id="homeListings"></div>
-</section>
-<section class="wrap ecosystem-callout">
-<div><div class="kicker">ROBOT ECOSYSTEM</div><h2 data-i18n="ecosystemTitle">Beyond buying robots, connect the entire ecosystem</h2><p data-i18n="ecosystemBody">RoboQuo connects robot and EOAT manufacturers, dealers, system integrators, experts and logistics in one transaction flow.</p></div>
-<div class="eco-flow"><span>Robot Maker</span><b>→</b><span>EOAT</span><b>→</b><span>Seller</span><b>→</b><span>SI / Expert</span><b>→</b><span>Buyer</span></div>
-</section>
-<section class="wrap one-vendor-section">
-<div class="one-vendor-copy"><div class="kicker">ROBOQUO ONE VENDOR</div><h2 data-i18n="oneVendorTitle">One inquiry. Multiple suppliers. One simple procurement flow.</h2><p data-i18n="oneVendorBody">Build the solution in RoboQuo and reduce the work of registering and managing multiple suppliers, payment destinations and service vendors.</p><div class="one-vendor-actions"><button class="primary" data-action="solution" data-i18n="startSolution">Build a solution</button><button class="secondary" data-route="projects" data-i18n="submitProject">Submit a project</button></div></div>
-<div class="procurement-flow"><span data-i18n="flowRobot">Robot</span><b>+</b><span>EOAT</span><b>+</b><span data-i18n="flowVision">Vision</span><b>+</b><span>SI</span><b>+</b><span data-i18n="flowLogistics">Logistics</span><b>→</b><strong>RoboQuo</strong></div>
-<div class="payment-options"><small data-i18n="paymentPreview">Payment options can be matched to transaction size</small><div><span>Card / Deposit</span><span>Bank Transfer</span><span>Invoice / PO</span></div></div>
-</section>
-<section class="wrap rfq-section">
-<div class="kicker">ONE RFQ ENGINE</div><h2 data-i18n="rfqTitle">New, used and services — one request flow</h2><p data-i18n="rfqDesc">For new equipment, local dealers can quote. Used robots can be fixed-price or bidding. Service providers bid on projects.</p>
-<div class="rfq-grid"><div><strong data-i18n="rfqNew">New robots &amp; EOAT</strong><span data-i18n="rfqNewSub">Request quote → regional sellers respond</span></div><div><strong data-i18n="rfqUsed">Used robots</strong><span data-i18n="rfqUsedSub">Fixed price or bidding</span></div><div><strong data-i18n="rfqService">Services</strong><span data-i18n="rfqServiceSub">Project post → matched providers bid</span></div></div>
-</section>
-</section>
+<header class="shop-header"><div class="mast">
+<a class="wordmark" data-route="home" href="#home" aria-label="RoboQuo home"><i aria-hidden="true">▰</i> RoboQuo</a>
+<nav aria-label="Marketplace"><button data-browse><span data-ui="buy">Buy</span></button><button data-sell><span data-ui="sell">Sell</span></button></nav>
+<form class="shop-search" id="catalogSearch"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" id="globalSearch" aria-label="Search equipment" placeholder="Search brands, models, parts…"/><button type="submit" aria-label="Search"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button></form>
+<div class="header-actions"><button id="myRoboquoBtn"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M4 21c0-8 16-8 16 0"/></svg><span data-ui="login">Log in</span></button><label class="locale"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18"/></svg><select id="languageSelect" aria-label="Language"><option value="en">EN</option><option value="ja">日本語</option><option value="ko">한국어</option></select></label></div></div></header><main><section class="page active" id="home"><div class="store-width">
+<div class="editorial"><div class="hero-art"></div><div class="editorial-copy"><p class="overline"><b></b><span data-ui="market">Robotics marketplace</span></p><h1><span data-ui="headline1">Industrial robots.</span><br><em><span data-ui="headline2">Second life.</span></em></h1><p class="intro"><span data-ui="intro">Buy and sell pre-owned robots, grippers and automation parts from around the world.</span></p><div class="editorial-actions"><button class="shop-button" data-browse><span data-ui="browse">Browse equipment</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button><button class="shop-link" data-sell><span data-ui="list">Sell equipment</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19 19 5M6 5h13v13"/></svg></button></div></div></div>
+<div class="manufacturer"><div class="deck"><h2><span data-ui="brands">Shop by manufacturer</span></h2><div class="rail-nav"><button data-scroll="-1" aria-label="Previous manufacturers">‹</button><button data-scroll="1" aria-label="Next manufacturers">›</button></div></div><div class="maker-rail"><button data-maker="FANUC" class="maker maker-0">FANUC</button><button data-maker="YASKAWA" class="maker maker-1">YASKAWA</button><button data-maker="ABB" class="maker maker-2">ABB</button><button data-maker="KUKA" class="maker maker-3">KUKA</button><button data-maker="Universal Robots" class="maker maker-4">Universal Robots</button><button data-maker="OnRobot" class="maker maker-5">OnRobot</button><button data-maker="SCHUNK" class="maker maker-6">SCHUNK</button></div></div>
+<section class="category-shop"><div class="deck"><h2><span data-ui="category">Shop by category</span></h2><button class="shop-button" data-browse><span data-ui="all">View all equipment</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button></div><div class="tiles"><button class="category-tile" data-category="robot"><img loading="lazy" src="assets/category-robot.webp" alt=""/><strong><span data-ui="robot">Robots</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19 19 5M6 5h13v13"/></svg></strong></button><button class="category-tile" data-category="gripper"><img loading="lazy" src="assets/category-gripper.webp" alt=""/><strong><span data-ui="gripper">Grippers & EOAT</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19 19 5M6 5h13v13"/></svg></strong></button><button class="category-tile" data-category="part"><img loading="lazy" src="assets/category-part.webp" alt=""/><strong><span data-ui="part">Parts</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19 19 5M6 5h13v13"/></svg></strong></button><button class="category-tile" data-category="controller"><img loading="lazy" src="assets/category-controller.webp" alt=""/><strong><span data-ui="controller">Controllers</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19 19 5M6 5h13v13"/></svg></strong></button><button class="category-tile" data-category="vision"><img loading="lazy" src="assets/category-vision.webp" alt=""/><strong><span data-ui="vision">Vision</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19 19 5M6 5h13v13"/></svg></strong></button></div></section>
+<section class="shelf"><div class="deck"><h2><span data-ui="arrivals">New arrivals</span></h2></div><div id="homeListings" class="cards"></div></section>
+<section class="shelf"><div class="deck"><h2><span data-ui="featured">Featured listings</span></h2></div><div id="featuredCommerceGrid" class="cards"></div></section>
+<section class="sell-guide"><div><p class="overline"><span data-ui="guide">For sellers</span></p><h2><span data-ui="sellTitle">Give your equipment a second life.</span></h2></div><div><p><span data-ui="steps">Choose your model, add photos and describe its condition. Set a price or invite private quotes from buyers.</span></p><button class="shop-link" data-sell><span data-ui="list">Sell equipment</span><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 19 19 5M6 5h13v13"/></svg></button></div></section></div></section>
 <section class="page" id="searchResults">
 <div class="wrap page-head search-results-head">
 <div class="kicker">GLOBAL SEARCH</div>
@@ -204,45 +86,7 @@
 <div class="wrap category-section-head application-head"><div><div class="kicker">APPLICATIONS</div><h2 data-i18n="applicationTitle">Applications</h2></div><p data-i18n="applicationDesc">Welding, painting, palletizing, machine tending, inspection and more.</p></div>
 <div class="wrap category-grid application-grid" id="applicationGrid"></div>
 </section>
-<section class="page" id="robots">
-<div class="wrap page-head rq-market-heading"><div class="rq-market-heading-copy"><div class="kicker">ROBOQUO MARKETPLACE</div><h1 data-i18n="marketTitle">Buy &amp; sell robots and parts</h1><p data-i18n="marketDesc">New or used. Find an item or post yours in a few steps.</p>
-<div class="rq-market-primary-actions" aria-label="Marketplace actions">
-<button type="button" data-rq-quick-action="buy" class="rq-market-buy-button">Buy equipment</button>
-<button type="button" data-rq-quick-action="sell" class="rq-market-sell-button">Sell equipment</button>
-</div></div></div>
-
-
-<div class="rq-mobile-market-search" id="rqMobileMarketSearch">
-  <label class="rq-mobile-search-field" for="rqMobileQuery">
-    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
-    <input type="search" id="rqMobileQuery" autocomplete="off" enterkeyhint="search" placeholder="商品名・メーカーを検索" aria-label="Search RoboQuo listings">
-  </label>
-  <button type="button" id="rqMobileReset" class="rq-mobile-search-reset" aria-label="Clear search" hidden>×</button>
-</div>
-<nav class="rq-mobile-market-pills" id="rqMobileMarketPills" aria-label="Quick filters">
-  <button type="button" data-rq-mobile-condition="" aria-pressed="true">すべて</button>
-  <button type="button" data-rq-mobile-condition="used" aria-pressed="false">中古</button>
-  <button type="button" data-rq-mobile-condition="new" aria-pressed="false">新品</button>
-  <button type="button" data-rq-mobile-action="brands" aria-pressed="false">メーカー</button>
-</nav>
-<section class="wrap rq-market-discovery" aria-labelledby="rqMarketDiscoveryTitle">
-  <div class="rq-discovery-header"><div><div class="kicker">DISCOVER BY CATEGORY</div><h2 id="rqMarketDiscoveryTitle">Browse by equipment</h2></div><button type="button" id="rqVisualClear" class="rq-discovery-clear">Show all items</button></div>
-  <nav class="rq-market-discovery-grid" aria-label="Equipment category">
-    <button class="rq-market-discovery-card" type="button" data-rq-market-category="robot" aria-pressed="false">
-      <img src="./assets/rq-robot.svg" alt="" width="64" height="64" loading="lazy">
-      <span data-rq-label="robot">Robots</span><span class="rq-category-arrow" aria-hidden="true">→</span>
-    </button>
-    <button class="rq-market-discovery-card" type="button" data-rq-market-category="gripper" aria-pressed="false">
-      <img src="./assets/rq-gripper.svg" alt="" width="64" height="64" loading="lazy">
-      <span data-rq-label="gripper">Grippers &amp; EOAT</span><span class="rq-category-arrow" aria-hidden="true">→</span>
-    </button>
-    <button class="rq-market-discovery-card" type="button" data-rq-market-category="part" aria-pressed="false">
-      <img src="./assets/rq-parts.svg" width="640" height="440" alt="" loading="eager">
-      <span data-rq-label="part">Parts &amp; Controllers</span><span class="rq-category-arrow" aria-hidden="true">→</span>
-    </button>
-  </nav>
-</section>
-<div class="wrap market-toolbar" id="rqMarketSearchArea">
+<section class="page" id="robots"><div class="store-width"><h1 class="browse-title" data-ui="equipment">Equipment</h1></div><div class="wrap market-toolbar" id="rqMarketSearchArea">
 <div class="search-field"><span>⌕</span><input data-i18n-placeholder="marketSearchPh" id="marketSearch" placeholder="Search maker, model or location"/></div>
 <select id="categoryFilter"><option data-i18n="allCategories" value="">All categories</option></select>
 <select id="applicationFilter"><option data-i18n="allApplications" value="">All applications</option></select>
@@ -250,118 +94,6 @@
 <select id="conditionFilter" aria-label="Condition"><option value="">All conditions</option><option value="new">New</option><option value="used">Used</option><option value="refurbished">Refurbished</option><option value="for_parts">For parts</option></select>
 </div>
 <div class="wrap listing-grid market" id="marketListings"></div>
-<section class="wrap rq-featured-showcase" id="rqFeaturedShowcase" aria-labelledby="rqFeaturedTitle">
-  <div class="rq-featured-title-row">
-    <div><div class="kicker">ROBOT BRANDS</div><h2 id="rqFeaturedTitle">Explore iconic robot makers</h2></div>
-    <span class="rq-featured-note" id="rqFeaturedNote"></span>
-    <nav class="rq-maker-arrows" aria-label="Robot brands">
-      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqRobotMakerTrack" data-rq-scroll="-1" aria-label="Scroll robot makers left">‹</button>
-      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqRobotMakerTrack" data-rq-scroll="1" aria-label="Scroll robot makers right">›</button>
-    </nav>
-  </div>
-  <div class="rq-featured-track" id="rqRobotMakerTrack" role="list" aria-label="Representative industrial and collaborative robot makers">
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="FANUC" data-rq-featured-kind="robot" aria-label="Filter listings by FANUC"><span class="rq-featured-brand-mark"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/Fanuc_logo.svg" alt="FANUC" loading="lazy" width="80" height="20"></span></button>
-    </article>
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Yaskawa" data-rq-featured-kind="robot" aria-label="Filter listings by Yaskawa"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">YASKAWA</span></button>
-    </article>
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Universal Robots" data-rq-featured-kind="robot" aria-label="Filter listings by Universal Robots"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Universal Robots</span></button>
-    </article>
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="ABB Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by ABB Robotics"><span class="rq-featured-brand-mark"><img src="https://commons.wikimedia.org/wiki/Special:FilePath/ABB_logo.svg" alt="ABB Robotics" loading="lazy" width="56" height="22"></span></button>
-    </article>
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="KUKA" data-rq-featured-kind="robot" aria-label="Filter listings by KUKA"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">KUKA</span></button>
-    </article>
-
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Kawasaki Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by Kawasaki Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Kawasaki Robotics</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="DENSO Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by DENSO Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">DENSO Robotics</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Doosan Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by Doosan Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Doosan Robotics</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Nachi-Fujikoshi" data-rq-featured-kind="robot" aria-label="Filter listings by Nachi-Fujikoshi"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Nachi-Fujikoshi</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="OMRON Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by OMRON Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">OMRON Robotics</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Epson Robots" data-rq-featured-kind="robot" aria-label="Filter listings by Epson Robots"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Epson Robots</span></button>
-    </article>
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Stäubli Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by Stäubli Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Stäubli Robotics</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Comau" data-rq-featured-kind="robot" aria-label="Filter listings by Comau"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Comau</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Rainbow Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by Rainbow Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Rainbow Robotics</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="HD Hyundai Robotics" data-rq-featured-kind="robot" aria-label="Filter listings by HD Hyundai Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">HD Hyundai Robotics</span></button>
-    </article>
-  </div>
-</section>
-<section class="wrap rq-featured-showcase rq-eoat-showcase" id="rqEoatShowcase" aria-labelledby="rqEoatTitle">
-  <div class="rq-featured-title-row">
-    <div><div class="kicker">GRIPPER BRANDS</div><h2 id="rqEoatTitle">Explore gripper and EOAT makers</h2></div>
-    <span class="rq-featured-note" id="rqEoatNote"></span>
-    <nav class="rq-maker-arrows" aria-label="Gripper brands">
-      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqEoatMakerTrack" data-rq-scroll="-1" aria-label="Scroll gripper makers left">‹</button>
-      <button type="button" class="rq-maker-arrow" data-rq-gallery="rqEoatMakerTrack" data-rq-scroll="1" aria-label="Scroll gripper makers right">›</button>
-    </nav>
-  </div>
-  <div class="rq-featured-track" id="rqEoatMakerTrack" role="list" aria-label="Representative gripper and EOAT manufacturers">
-    <article class="rq-featured-product" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="OnRobot" data-rq-featured-kind="eoat" aria-label="Filter listings by OnRobot"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">OnRobot</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-real-photo" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="SCHUNK" data-rq-featured-kind="eoat" aria-label="Filter listings by SCHUNK"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">SCHUNK</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Zimmer Group" data-rq-featured-kind="eoat" aria-label="Filter listings by Zimmer Group"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Zimmer Group</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="SMC" data-rq-featured-kind="eoat" aria-label="Filter listings by SMC"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">SMC</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-real-photo" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Schmalz" data-rq-featured-kind="eoat" aria-label="Filter listings by Schmalz"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Schmalz</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Piab" data-rq-featured-kind="eoat" aria-label="Filter listings by Piab"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Piab</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="CKD" data-rq-featured-kind="eoat" aria-label="Filter listings by CKD"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">CKD</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Gimatic" data-rq-featured-kind="eoat" aria-label="Filter listings by Gimatic"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Gimatic</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Koganei" data-rq-featured-kind="eoat" aria-label="Filter listings by Koganei"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Koganei</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="Tesollo" data-rq-featured-kind="eoat" aria-label="Filter listings by Tesollo"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">Tesollo</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="WONIK Robotics" data-rq-featured-kind="eoat" aria-label="Filter listings by WONIK Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">WONIK Robotics</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="AIDIN Robotics" data-rq-featured-kind="eoat" aria-label="Filter listings by AIDIN Robotics"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">AIDIN Robotics</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="ROBOTIS" data-rq-featured-kind="eoat" aria-label="Filter listings by ROBOTIS"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">ROBOTIS</span></button>
-    </article>
-    <article class="rq-featured-product rq-maker-illustration" role="listitem">
-      <button type="button" class="rq-featured-card" data-rq-featured-maker="PISCO" data-rq-featured-kind="eoat" aria-label="Filter listings by PISCO"><span class="rq-featured-brand-mark rq-featured-brand-mark--text">PISCO</span></button>
-    </article>
-  </div>
-</section>
 </section>
 <section class="page" id="buy">
 <div class="wrap page-head split"><div><div class="kicker">WHERE TO BUY</div><h1 data-i18n="buyTitle">Find robots you can buy online</h1><p data-i18n="buyDesc">Compare products and purchase channels in RoboQuo, then confirm the latest price, stock, lead time and warranty on the seller's website before purchasing.</p></div><div class="source-pill"><span class="pulse"></span><span data-i18n="sourceBased">Source and check date shown</span></div></div>
@@ -478,7 +210,7 @@
 </section>
 
 </main>
-<div class="mobile-nav"><button data-route="home"><span>⌂</span><small data-i18n="home">Home</small></button><button data-route="robots"><span>⌕</span><small data-i18n="navRobots">Robots</small></button><button class="sell-mobile" data-action="sell"><span>＋</span><small data-i18n="sellShort">Sell</small></button><button data-route="companies"><span>▦</span><small data-i18n="navCompanies">Find Companies</small></button><button data-route="makers"><span>⌘</span><small data-i18n="navMakers">Manufacturers</small></button></div>
+<footer class="shop-foot"><a class="wordmark" data-route="home" href="#home">RoboQuo</a><button data-inbox data-ui="messages">Messages</button><a href="/software/">Software</a><a href="mailto:info@roboquo.com">info@roboquo.com</a></footer>
 <div aria-hidden="true" class="modal-backdrop hidden" id="modalBackdrop">
 <div aria-modal="true" class="modal" id="modal" role="dialog" tabindex="-1"></div>
 </div>
@@ -493,9 +225,7 @@
 <script src="marketplace-v2.js"></script>
 <script src="cobot-compare.js"></script>
 <script src="visuals.js"></script>
-<script src="mobile-market.js"></script>
-<script src="featured-showcase.js"></script>
 <script src="quote-market.js"></script>
-<script src="simple-market.js"></script>
+<script src="storefront.js"></script>
 </body>
 </html>

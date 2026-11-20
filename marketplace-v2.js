@@ -193,17 +193,20 @@ function showSell(initialCat){
  const html=[
  '<div class="rq-cl-head"><h2>'+esc(tr('post'))+'</h2><p>'+esc(tr('photosHint'))+'</p></div>',
  '<form id="rqQuickSellForm" class="rq-classifieds-form">',
+ '<div class="rq-cl-columns">',
+ field(tr('brand'),'maker',{required:true,placeholder:'FANUC / OnRobot'}),
+ field(tr('title'),'model',{required:true,placeholder:'CRX-10iA / RG2'}),
+ '</div><datalist id="rqMakers"></datalist><datalist id="rqModels"></datalist>',
+ '<div class="rq-cl-pictures"><label>'+esc(tr('images'))+' *<input id="rqClPhotos" type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" required></label><div id="rqClPreview" class="rq-cl-pictures-grid"></div></div>',
  '<label class="rq-cl-field rq-cl-method"><span>'+esc(qt('sellMode'))+'</span><select name="sellMethod" id="rqClSellMethod" required><option value="quotes">'+esc(qt('compare'))+'</option><option value="fixed">'+esc(qt('fixed'))+'</option></select></label>',
  '<p class="rq-cl-sale-note">'+esc(qt('hint'))+'</p>',
- '<div class="rq-cl-pictures"><label>'+esc(tr('images'))+' *<input id="rqClPhotos" type="file" multiple accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" required></label><div id="rqClPreview" class="rq-cl-pictures-grid"></div></div>',
  '<div class="rq-cl-columns">',
  '<label class="rq-cl-field"><span>'+esc(tr('category'))+' *</span><select name="itemCategory" required>'+choices(C[lang()]||C.en,initial)+'</select></label>',
  '<label class="rq-cl-field"><span>'+esc(tr('condition'))+' *</span><select name="itemCondition" required>'+choices(CONDITIONS[lang()]||CONDITIONS.en,'used')+'</select></label>',
  '<label class="rq-cl-field"><span>'+esc(tr('country'))+' *</span><select name="country" id="rqClCountry" required>'+choices(Object.fromEntries(Object.keys(COUNTRIES).map(k=>[k,countryName(k)])),'Japan')+'</select></label>',
  '<label class="rq-cl-field"><span>'+esc(tr('currency'))+' *</span><select name="currency" id="rqClCurrency" required>'+choices(CURRENCIES,'JPY')+'</select></label>',
- field(tr('title'),'model',{required:true,placeholder:'FANUC CRX-10iA / RG2 / R-30iB'}),
- field(tr('brand'),'maker',{placeholder:'FANUC / OnRobot'}),
  field(tr('price'),'price',{type:'number',min:'0',placeholder:'250000'}),
+ field(({ko:'제조연도',ja:'製造年'})[lang()]||'Year of manufacture','year',{type:'number',min:'1900'}),
  field(tr('location'),'location',{required:true,placeholder:'Tokyo / Osaka'}),
  '</div>',
  '<label class="rq-cl-field"><span>'+esc(tr('description'))+' *</span><textarea name="description" required rows="4" maxlength="5000"></textarea></label>',
@@ -221,6 +224,12 @@ function showSell(initialCat){
  ].join('');
  modal(html);
  const form=$('#rqQuickSellForm');
+ const directory=window.RQ_ROBOT_MODEL_MASTER||{};
+ const maker=form.elements.maker, model=form.elements.model;
+ maker.setAttribute('list','rqMakers');model.setAttribute('list','rqModels');
+ const options=values=>values.map(value=>new Option(value,value));
+ $('#rqMakers').replaceChildren(...options([...new Set([...(directory.manufacturers||[]),'OnRobot','SCHUNK'])]));
+ maker.addEventListener('input',()=>$('#rqModels').replaceChildren(...options(directory.models?.[maker.value]||[])));
  $('#rqClCancel')?.addEventListener('click',()=>window.closeModal?.());
  $('#rqClCountry')?.addEventListener('change',e=>{
   const select=$('#rqClCurrency');if(select)select.value=currForCountry[e.target.value]||'USD';
@@ -361,7 +370,7 @@ function init(){
  putMarketActions();
  // The classifieds feed is the product's primary landing page; the former
  // multi-service demo home remains accessible through the Home navigation.
- if(!location.hash||location.hash==='#robots')route('robots');
+ if(location.hash==='#robots')route('robots');
  document.addEventListener('rq:languagechange',()=>{
   putMarketActions();
   const hint=$('#rqMarketInfo');if(hint)hint.textContent=tr('priceHint');

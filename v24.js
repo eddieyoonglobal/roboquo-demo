@@ -38,6 +38,7 @@
   function trustBadges(r){const items=[];if(isDemo(r))items.push(`<span class="neutral">${tx('demoListing')}</span>`);if(r.sellerCompany)items.push(`<span class="info">${escHtml(r.sellerCompany)}</span>`);if(r.verified)items.push(`<span>${tx('verifiedSeller')}</span>`);else items.push(`<span class="neutral">${tx('sellerUnverified')}</span>`);if(r.media?.nameplate)items.push(`<span>${tx('nameplate')}</span>`);if(r.media?.video)items.push(`<span>${tx('video')}</span>`);if(r.photoCount)items.push(`<span class="info">${escHtml(r.photoCount)} ${tx('photosUploaded')}</span>`);return items.join('');}
   function initials(s){ return String(s||'R').split(/\s+/).map(x=>x[0]).join('').slice(0,3).toUpperCase(); }
   function robotSvg(r, variant='main'){
+    if(r._source==='seller-supabase')return '<span aria-hidden="true">—</span>';
     const colors=['#f5b301','#2848ff','#10b981','#ef4444','#8b5cf6','#0ea5e9'];
     const idx=Math.abs((String(r.brand||'').charCodeAt(0)+String(r.model||'').charCodeAt(0)))%colors.length;
     const c=colors[idx];
@@ -65,214 +66,6 @@
   function navLabel(route){
     const map={robots:tx('buy'),categories:tx('categories'),projects:tx('services'),companies:tx('companies'),events:tx('events'),about:'About'};
     return map[route]||route;
-  }
-
-  function ensureCartButton(){
-    let btn=$('.header-actions > .cart-btn');
-    if(!btn){btn=document.createElement('button');btn.className='cart-btn';btn.addEventListener('click',()=>window.rqOpenMarketInbox?window.rqOpenMarketInbox():route('robots'));$('.header-actions')?.insertBefore(btn,$('.header-actions').firstElementChild);}
-    const messageLabel=lang()==='ko'?'내 채팅':lang()==='ja'?'メッセージ':'Messages';
-    btn.setAttribute('aria-label',messageLabel);
-    btn.innerHTML=`<span aria-hidden="true">💬</span> <span>${messageLabel}</span>`;
-  }
-
-  function enhanceAccessibility(){
-    $$('.search-field > span, .start-icon, .eco-flow > b, .compat-path > b, .membership-steps > b, .refresh-steps > b, .procurement-flow > b').forEach(el=>el.setAttribute('aria-hidden','true'));
-    $$('.v24-list > div > span:first-child').forEach(el=>{if(/[📷🧾🚚🤝]/u.test(el.textContent||''))el.setAttribute('aria-hidden','true');});
-    const search=$('#globalSearch');if(search)search.setAttribute('aria-label',tx('heroSearch'));
-    const photoGrid=$('.hero-photo-grid');if(photoGrid)photoGrid.setAttribute('aria-label',tx('sellCardBody'));
-  }
-
-  function patchNav(){
-    const locale=lang();
-    const navCopy={
-      ko:{find:'구매',post:'판매 등록',help:'이용 안내',chat:'채팅'},
-      ja:{find:'購入',post:'出品する',help:'ご利用ガイド',chat:'チャット'},
-      en:{find:'Buy equipment',post:'Sell equipment',help:'How it works',chat:'Messages'}
-    };
-    const copy=navCopy[locale]||navCopy.en;
-    const topSell=$('.header-actions [data-action="sell"]');
-    if(topSell)topSell.textContent=copy.post;
-    const nav=$('.desktop-nav');
-    if(nav){
-      nav.innerHTML=`
-        <a data-route="robots" href="#robots">${copy.find}</a>
-        <a data-route="about" href="#about">${copy.help}</a>`;
-      $$('[data-route]',nav).forEach(a=>a.addEventListener('click',e=>{e.preventDefault();route(a.dataset.route)}));
-    }
-    const mobile=$('.mobile-nav');
-    if(mobile){
-      mobile.innerHTML=`
-        <button data-route="robots" aria-label="${copy.find}"><span aria-hidden="true">⌕</span><small>${copy.find}</small></button>
-        <button class="sell-mobile" data-action="sell" aria-label="${copy.post}"><span aria-hidden="true">＋</span><small>${copy.post}</small></button>
-        <button class="rq-mobile-messages" aria-label="${copy.chat}"><span aria-hidden="true">💬</span><small>${copy.chat}</small></button>`;
-      $$('[data-route]',mobile).forEach(a=>a.addEventListener('click',()=>route(a.dataset.route)));
-      const post=$('[data-action="sell"]',mobile);if(post){post.dataset.v24sell='1';post.addEventListener('click',()=>window.rqStartSell?.());}
-      $('.rq-mobile-messages',mobile)?.addEventListener('click',()=>window.rqOpenMarketInbox?.());
-    }
-  }
-  function patchHero(){
-    const title=$('#home .hero-copy h1'); if(title) title.innerHTML='Buy &amp; Sell Robots.<br><span>Fast and Simple.</span>'; // Brand headline stays English in every locale
-    const lead=$('#home .local-headline'); if(lead) lead.textContent=tx('heroLead');
-    const body=$('#home .hero-desc'); if(body) body.textContent=tx('heroBody');
-    const input=$('#globalSearch'); if(input) input.placeholder=tx('heroSearch');
-    const primary=$('#home .hero-actions .primary:not([data-rq-quick-action])'); if(primary){primary.textContent=tx('heroPrimary'); primary.onclick=()=>route('robots');}
-    const secondary=$('#home .hero-actions .secondary'); if(secondary){secondary.textContent=tx('heroSecondary'); secondary.onclick=()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow());}
-    if(!$('#home .hero-trust')){
-      $('.hero-copy .hero-actions')?.insertAdjacentHTML('afterend',`<div class="hero-trust"><span>✓ ${tx('trust1')}</span><span>✓ ${tx('trust2')}</span><span>✓ ${tx('trust3')}</span><span>✓ ${tx('trust4')}</span></div>`);
-    } else {
-      $('#home .hero-trust').innerHTML=`<span>✓ ${tx('trust1')}</span><span>✓ ${tx('trust2')}</span><span>✓ ${tx('trust3')}</span><span>✓ ${tx('trust4')}</span>`;
-    }
-    const sellEyebrow=$('[data-hero-sell-eyebrow]'); if(sellEyebrow) sellEyebrow.textContent=tx('eyebrowSell');
-    const sellTitle=$('[data-hero-sell-title]'); if(sellTitle) sellTitle.textContent=tx('heroSecondary');
-    const sellBody=$('[data-hero-sell-body]'); if(sellBody) sellBody.textContent=tx('sellCardBody');
-    const photoRobot=$('[data-hero-photo-robot]'); if(photoRobot) photoRobot.textContent=tx('solutionRobot');
-    const photoNameplate=$('[data-hero-photo-nameplate]'); if(photoNameplate) photoNameplate.textContent=tx('nameplateLabel');
-    const photoController=$('[data-hero-photo-controller]'); if(photoController) photoController.textContent=tx('controllerLabel');
-    const sellCta=$('[data-hero-sell-cta]'); if(sellCta) sellCta.textContent=tx('heroSecondary');
-    const sellNote=$('[data-hero-sell-note]'); if(sellNote){
-      const notes={
-        en:'Start with photos. Add price and specifications later.',
-        ja:'まずは写真だけで開始できます。価格や仕様は後から追加できます。',
-        ko:'사진만으로 시작할 수 있습니다. 가격과 상세 사양은 나중에 추가하면 됩니다.',
-        zh:'先上传照片即可开始，价格和详细规格可稍后补充。',
-        de:'Starten Sie mit Fotos. Preis und technische Daten können später ergänzt werden.',
-        fr:'Commencez avec des photos. Le prix et les spécifications peuvent être ajoutés plus tard.',
-        es:'Empieza con fotos. El precio y las especificaciones pueden añadirse después.',
-        it:'Inizia con le foto. Prezzo e specifiche possono essere aggiunti in seguito.',
-        pt:'Comece com fotos. Preço e especificações podem ser adicionados depois.',
-        vi:'Bắt đầu bằng ảnh. Giá và thông số có thể bổ sung sau.'
-      };
-      sellNote.textContent=notes[lang()]||notes.en;
-    }
-    $$('.hero-photo-slot').forEach(button=>button.setAttribute('aria-label',`${tx('heroSecondary')}: ${button.querySelector('strong')?.textContent||''}`));
-    $$('.hero-sell-card [data-action="sell"]').forEach(el=>{el.onclick=()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow());});
-  }
-
-  function injectCommerceSections(){
-    const home=$('#home'); if(!home) return;
-    const existing=$('#v24CommerceBlock'); if(existing) existing.remove();
-    if(!$('#v24CommerceBlock')){
-      const block=document.createElement('div');
-      block.id='v24CommerceBlock';
-      block.innerHTML=`
-        <section class="v24-quick-commerce">
-          <div class="v24-card-grid">
-            <article class="v24-action-card">
-              <span class="eyebrow">${tx('eyebrowBuy')}</span>
-              <h3>${tx('buyCardTitle')}</h3>
-              <p>${tx('buyCardBody')}</p>
-              <button class="primary" data-route="robots">${tx('heroPrimary')}</button>
-              <div class="v24-metric-row"><span>${tx('verifiedSeller')}</span><span>${tx('cart')}</span><span>${tx('makeOffer')}</span></div>
-            </article>
-            <article class="v24-action-card">
-              <span class="eyebrow">${tx('eyebrowSell')}</span>
-              <h3>${tx('sellCardTitle')}</h3>
-              <p>${tx('sellCardBody')}</p>
-              <div class="v24-metric-row"><span>${tx('nameplate')}</span><span>${tx('detailHours')}</span><span>${tx('detailShipping')}</span></div>
-            </article>
-            <article class="v24-action-card">
-              <span class="eyebrow">${tx('eyebrowSolution')}</span>
-              <h3>${tx('solutionTitle')}</h3>
-              <p>${tx('solutionBody')}</p>
-              <button class="secondary" data-route="projects">${tx('services')}</button>
-              <div class="v24-metric-row"><span>${tx('solutionRobot')}</span><span>${tx('solutionEOAT')}</span><span>${tx('solutionVision')}</span><span>${tx('solutionLogistics')}</span></div>
-            </article>
-            <article class="v24-action-card">
-              <span class="eyebrow">${tx('eyebrowNetwork')}</span>
-              <h3>${tx('dealers')}</h3>
-              <p>${tx('eventsNow')}</p>
-              <button class="secondary" data-route="companies">${tx('companies')}</button>
-              <div class="v24-metric-row"><span>${tx('events')}</span><span>${tx('companies')}</span><span>${tx('manufacturers')}</span></div>
-            </article>
-          </div>
-        </section>
-        <section class="v24-highlight-strip">
-          <article class="v24-highlight-item"><strong>${tx('why1')}</strong><p>${tx('marketNoticeBody')}</p></article>
-          <article class="v24-highlight-item"><strong>${tx('why2')}</strong><p>${tx('buyCardBody')}</p></article>
-          <article class="v24-highlight-item"><strong>${tx('why3')}</strong><p>${tx('servicesBody')}</p></article>
-          <article class="v24-highlight-item"><strong>${tx('why4')}</strong><p>${tx('wizardBody')}</p></article>
-        </section>
-        <section class="wrap section-block v24-products-section">
-          <div class="section-title-row"><div><div class="kicker">${tx('kickerBuyNow')}</div><h2>${tx('featuredTitle')}</h2></div><button class="link-btn" data-route="robots">${tx('featuredLink')}</button></div>
-          <div class="v24-products-grid" id="featuredCommerceGrid"></div>
-        </section>
-        <section class="wrap section-block v24-services-section">
-          <div class="section-title-row"><div><div class="kicker">${tx('kickerServices')}</div><h2>${tx('servicesTitle')}</h2><p>${tx('servicesBody')}</p></div></div>
-          <div class="v24-services-board">
-            <article class="v24-panel">
-              <h3>${tx('whyTitle')}</h3>
-              <div class="v24-list">
-                <div><span>01</span><span><strong>${tx('why1')}</strong>${tx('buyCardBody')}</span></div>
-                <div><span>02</span><span><strong>${tx('why2')}</strong>${tx('marketNoticeBody')}</span></div>
-                <div><span>03</span><span><strong>${tx('why3')}</strong>${tx('solutionBody')}</span></div>
-                <div><span>04</span><span><strong>${tx('why4')}</strong>${tx('wizardBody')}</span></div>
-              </div>
-            </article>
-            <article class="v24-panel">
-              <h3>${tx('wizardTitle')}</h3>
-              <p>${tx('wizardBody')}</p>
-              <div class="v24-list">
-                <div><span>📷</span><span><strong>${tx('robotBodyPhotos')}</strong>${tx('robotBodyPhotosDesc')}</span></div>
-                <div><span>🧾</span><span><strong>${tx('conditionChecklist')}</strong>${tx('conditionChecklistDesc')}</span></div>
-                <div><span>🚚</span><span><strong>${tx('shippingReadiness')}</strong>${tx('shippingReadinessDesc')}</span></div>
-                <div><span>🤝</span><span><strong>${tx('commercialOptions')}</strong>${tx('commercialOptionsDesc')}</span></div>
-              </div>
-            </article>
-          </div>
-        </section>
-        <section class="v24-sell-banner">
-          <div>
-            <div class="kicker">${tx('kickerSellGlobal')}</div>
-            <h2>${tx('wizardTitle')}</h2>
-            <p>${tx('wizardBody')}</p>
-            <div class="hero-actions" style="margin-top:18px"><button class="secondary big" data-route="companies">${tx('companies')}</button></div>
-          </div>
-          <div class="v24-sell-checks">
-            <span>✓ ${tx('nameplate')}</span>
-            <span>✓ ${tx('video')}</span>
-            <span>✓ ${tx('detailHours')}</span>
-            <span>✓ ${tx('detailShipping')}</span>
-            <span>✓ ${tx('verifiedSeller')}</span>
-            <span>✓ ${tx('makeOffer')}</span>
-          </div>
-        </section>
-        <section class="v24-collab-section">
-          <div class="v24-collab-copy">
-            <div class="kicker">${tx('kickerPartnership')}</div>
-            <h2>${tx('collabTitle')}</h2>
-            <p>${tx('collabBody')}</p>
-            <small>${tx('collabNote')}</small>
-          </div>
-          <div class="v24-contact-grid">
-            <a class="v24-contact-card primary-card" href="mailto:${tx('collabMail')}?subject=RoboQuo%20Partnership%20%26%20Collaboration">
-              <span>${tx('kickerPartnership')}</span><strong>${tx('collabBtn')}</strong><b>${tx('collabMail')} →</b>
-            </a>
-            <a class="v24-contact-card" href="mailto:${tx('salesMail')}?subject=RoboQuo%20Sales%20Inquiry">
-              <span>${tx('salesBtn')}</span><strong>${tx('salesBtn')}</strong><b>${tx('salesMail')} →</b>
-            </a>
-            <a class="v24-contact-card" href="mailto:${tx('infoMail')}?subject=RoboQuo%20General%20Inquiry">
-              <span>${tx('contactLabel')}</span><strong>${tx('generalBtn')}</strong><b>${tx('infoMail')} →</b>
-            </a>
-          </div>
-        </section>
-      `;
-      const principle=$('#home .principle-bar');
-      principle?.insertAdjacentElement('afterend',block);
-    }
-    // Refresh text inside existing injected block
-    $('#v24CommerceBlock .v24-products-section h2')?.replaceChildren(document.createTextNode(tx('featuredTitle')));
-    const featuredLink=$('#v24CommerceBlock .v24-products-section .link-btn'); if(featuredLink) featuredLink.textContent=tx('featuredLink');
-    $$('#v24CommerceBlock [data-route]').forEach(el=>el.onclick=()=>route(el.dataset.route));
-    $$('#v24CommerceBlock [data-action="sell"]').forEach(el=>el.onclick=()=>window.rqStartSell?window.rqStartSell(): (typeof sellFlow==='function'&&sellFlow()));
-  }
-
-
-  function ensureFooter(){
-    document.querySelector('.v24-site-footer')?.remove();
-    const footer=document.createElement('footer');
-    footer.className='v24-site-footer';
-    footer.innerHTML=`<div class="v24-footer-inner"><div><div class="v24-footer-brand">RoboQuo</div><p>${tx('collabBody')}</p></div><div class="v24-footer-contacts"><a href="mailto:${tx('salesMail')}?subject=RoboQuo%20Sales%20Inquiry">${tx('salesBtn')} · ${tx('salesMail')}</a><a href="mailto:${tx('collabMail')}?subject=RoboQuo%20Partnership%20%26%20Collaboration">${tx('collabBtn')} · ${tx('collabMail')}</a><a href="mailto:${tx('infoMail')}?subject=RoboQuo%20General%20Inquiry">${tx('generalBtn')} · ${tx('infoMail')}</a></div></div><div class="v24-footer-bottom"><span>© 2026 RoboQuo</span><span>roboquo.com</span></div>`;
-    document.body.insertBefore(footer, document.getElementById('modalBackdrop'));
   }
 
   function patchStaticLabels(){
@@ -323,37 +116,14 @@
   function renderCard(r){
     const id=idOf(r), fixed=r.sale!=='bid';
     const title=[r.brand,r.model].filter(Boolean).join(' ')||tx('usedRobot');
-    const localDemo=r._source==='local-demo';
-    const openAction=escHtml(`rqOpenProduct(${JSON.stringify(id)})`);
     const isPrivateQuote=r.sale==='bid'&&r._source==='seller-supabase';
     const askAction=escHtml(isPrivateQuote?`rqOpenBuyerOffer(${JSON.stringify(id)})`:`rqContactAboutListing(${JSON.stringify(id)},'question')`);
-    const quoteLabel=lang()==='ja'?'買取価格を提案':lang()==='ko'?'매입가격 제안':'Send private quote';
-    const buyAction=escHtml(`rqContactAboutListing(${JSON.stringify(id)},${fixed?"'purchase'":"'offer'"})`);
-    const cartAction=escHtml(fixed?`rqAddToCart(${JSON.stringify(id)})`:`rqOpenProduct(${JSON.stringify(id)})`);
-    const meta=[r.year, r.payload==='—'?'':r.payload, r.location].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
-    const tags=[(categoryCopy()[r.itemCategory]||displayTag(r.cat)), ...(r.apps||[]).map(displayTag)].filter(Boolean).slice(0,3).map(x=>`<span>${escHtml(x)}</span>`).join('');
-    const photoVisual=r.photoUrl?`<img src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}" loading="lazy">`:robotSvg(r);
-    return `<article class="v24-listing-card">
-      <button aria-label="${escHtml(title)}" class="v24-photo v24-photo-button ${r.photoUrl?'has-uploaded-photo':''}" onclick="${openAction}" type="button" ${r.photoKey?`data-rq-photo-alt="${escHtml(title)}" data-rq-photo-key="${escHtml(r.photoKey)}"`:''}>
-        <div class="photo-badges"><span class="v24-badge">${escHtml(displayCountry(r.country))}</span>${isDemo(r)?`<span class="v24-badge demo">${tx('demoBadge')}</span>`:''}<span class="v24-badge dark">${escHtml(conditionCopy()[r.itemCondition]||tx('conditionUnverified'))}</span></div>
-        ${photoVisual}
-      </button>
-      <div class="v24-card-body">
-        <div class="v24-card-top">
-          <div>
-            <h3 class="v24-card-title">${escHtml(title)}</h3>
-            <div class="v24-card-sub">${escHtml([r.location,displayCountry(r.country)].filter(Boolean).join(' · '))}</div>
-          </div>
-          <div class="v24-card-price"><strong>${formatPrice(r)}</strong><small>${fixed?tx('buyNowEligible'):tx('privateOfferFlow')}</small></div>
-        </div>
-        <div class="v24-trust-row">${trustBadges(r)}</div>
-        <div class="v24-meta-row">${meta || `<span>${tx('usedRobot')}</span>`}</div>
-        <div class="v24-card-tags">${tags || `<span>${tx('industrialRobot')}</span>`}</div>
-        <div class="v24-actions">
-          ${isDemo(r)?`<button class="ghost" onclick="${openAction}">${tx('demoAction')}</button>${localDemo?`<button class="danger-button" onclick="rqDeleteLocalListing('${escHtml(id)}')">${typeof rqw==='function'?rqw('deleteListing'):tx('remove')}</button>`:`<button class="buy" disabled title="${escHtml(tx('demoListing'))}">${tx('demoListing')}</button>`}`:`<button class="buy" onclick="${askAction}">${isPrivateQuote?quoteLabel:tx('contactRoboquo')}</button>`}
-        </div>
-      </div>
-    </article>`;
+    const contact=isPrivateQuote?({ko:'비공개 견적',ja:'非公開見積もり'}[lang()]||'Send private quote'):({ko:'판매자 문의',ja:'出品者に質問'}[lang()]||'Contact seller');
+    const openAction=escHtml(`rqOpenProduct(${JSON.stringify(id)})`);
+    const meta=[r.year,conditionCopy()[r.itemCondition],displayCountry(r.country)].filter(Boolean).map(escHtml).join(' · ');
+    const image=r.photoUrl?`<img loading="lazy" src="${escHtml(r.photoUrl)}" alt="${escHtml(title)}">`:'<span aria-hidden="true">—</span>';
+    return `<article class="v24-listing-card product"><button class="product-open" onclick="${openAction}"><span class="product-photo">${image}</span><small>${escHtml(r.brand)}</small><strong>${escHtml(r.model)}</strong><span>${meta}</span><b>${fixed?formatPrice(r):escHtml(saleLabel(r))}</b></button><button class="product-contact" onclick="${askAction}">${escHtml(contact)}</button></article>`;
+
   }
 
   const MARKET_CATEGORIES={
@@ -456,8 +226,9 @@
     );
     const market=$('#marketListings');if(market)market.innerHTML=items.map(renderCard).join('')||marketplaceEmpty(Boolean(search||category||country||condition));
     window.rqMarketResultsChanged?.(items.length,actual.length);
-    const home=$('#homeListings');if(home)home.innerHTML=actual.slice(0,3).map(renderCard).join('')||marketplaceEmpty();
-    const featured=$('#featuredCommerceGrid');if(featured)featured.innerHTML=actual.filter(r=>r.sale!=='bid').slice(0,4).map(renderCard).join('')||marketplaceEmpty();
+    const quiet=key=>window.rqStoreEmpty?.(key)||'';
+    const home=$('#homeListings');if(home)home.innerHTML=actual.slice(0,4).map(renderCard).join('')||quiet('empty');
+    const featured=$('#featuredCommerceGrid');if(featured)featured.innerHTML=actual.filter(r=>r.photoUrl&&r.year&&r.itemCondition).slice(0,4).map(renderCard).join('')||quiet('emptyFeatured');
     const featuredTitle=$('#v24CommerceBlock .v24-products-section h2');if(featuredTitle)featuredTitle.textContent=tx('featuredTitle');
     window.rqHydrateListingPhotos?.(document);
   }
@@ -591,7 +362,7 @@
   }
 
   function refresh(){
-    ensureCartButton(); patchNav(); patchHero(); injectCommerceSections(); patchStaticLabels(); patchRobotsPage(); ensureFooter(); enhanceAccessibility(); updateCartCount(); renderListingsV24(); renderCartPage();
+    patchStaticLabels(); patchRobotsPage(); updateCartCount(); renderListingsV24(); renderCartPage();
     const cartHead=$('#cart .page-head h1'); if(cartHead) cartHead.textContent=tx('cartTitle');
     const cartDesc=$('#cart .page-head p'); if(cartDesc) cartDesc.textContent=tx('cartPageDesc');
     const cartBtn=$('#cart .page-head button'); if(cartBtn) cartBtn.textContent=tx('continueShopping');
