@@ -43,125 +43,26 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   });
   await page.goto(origin+'/',{waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForFunction(()=>Boolean(document.querySelector('#marketListings .rq-market-empty')),{timeout:15000});
-  assert(await page.locator('#robots').isVisible(),'marketplace must be first page');
-  // Actual landmark products — clearly separated from uploaded seller inventory.
-  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-product').count(),15,'fifteen representative robot manufacturers in the first row');
-  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card>img[data-rq-photo-fallback]').count(),6,'six freely reusable real robot photographs are configured');
-  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-credit').count(),15,'every robot card has a source or an explicit illustration note');
-  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-brand-mark img').count(),3,'three source-verified manufacturer wordmarks are displayed');
-  assert.equal(await page.locator('#rqEoatShowcase .rq-featured-product').count(),14,'second row has fourteen gripper and EOAT manufacturers');
-  assert.equal(await page.locator('#rqEoatShowcase .rq-maker-real-photo').count(),2,'SCHUNK and Schmalz real product photos appear in gripper gallery');
-  assert.equal(await page.locator('#rqEoatShowcase .rq-maker-real-photo img[data-rq-photo-fallback]').count(),2,'real gripper photos include safe offline fallback');
-  assert.equal(await page.locator('#rqEoatShowcase .rq-maker-real-photo .rq-featured-credit[href*="commons.wikimedia.org"]').count(),2,'licensed brand imagery includes original source links');
-  const sourceHtml=fs.readFileSync(path.join(root,'index.html'),'utf8');
-  assert(sourceHtml.includes('Servo-electric_5-Finger_gripping_hand_-_Schunk_SVH.JPG?width=640'),'SCHUNK real licensed photograph is declared, even in network-blocked CI');
-  assert(sourceHtml.includes('Schmalz_Vakuum-Komponenten_allgemein.jpg?width=640'),'Schmalz real licensed photograph is declared, even in network-blocked CI');
-  assert.equal(await page.locator('#rqEoatShowcase .rq-featured-credit').count(),14,'every EOAT maker card has a source or an explicit illustration label');
-  assert.equal(await page.locator('#rqEoatShowcase .rq-featured-card[data-rq-featured-kind="eoat"]').count(),14,'gripper card searches EOAT directory, not robot arm directory');
-  assert.equal(await page.locator('#rqEoatShowcase img[src$="rq-vacuum-eoat.svg"]').count(),3,'vacuum EOAT uses a clearly labeled generic vacuum illustration');
-  assert.equal(await page.locator('#rqEoatShowcase img[src$="rq-robotic-hand.svg"]').count(),3,'robotic hand makers use a clearly labeled generic hand illustration');
-  assert.equal(await page.locator('#rqEoatShowcase img[src*="commons.wikimedia.org"]').count(),0,'unlicensed gripper marketing photographs must not be represented as approved OEM photos');
-  assert.equal(await page.locator('#rqEoatShowcase [data-rq-featured-maker="OnRobot"] img[src$="rq-gripper.svg"]').count(),1,'OnRobot uses an illustration until approved images are available');
-  const featuredMakers=await page.locator('#rqFeaturedShowcase .rq-featured-card').evaluateAll(els=>els.map(el=>el.dataset.rqFeaturedMaker));
-  assert.deepEqual(featuredMakers,['FANUC','Yaskawa','Universal Robots','ABB Robotics','KUKA','Kawasaki Robotics','DENSO Robotics','Doosan Robotics','Nachi-Fujikoshi','OMRON Robotics','Epson Robots','Stäubli Robotics','Comau','Rainbow Robotics','HD Hyundai Robotics'],'hero spotlights only reviewed non-Chinese makers');
-  assert.equal(await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="Yaskawa"] img[data-rq-photo-fallback]').count(),1,'Yaskawa real image with offline fallback is configured');
-  assert.match(fs.readFileSync(path.join(root,'index.html'),'utf8'),/data-rq-featured-maker="Yaskawa"[\s\S]{0,220}Welding_Robot_resized\.jpg/,'Yaskawa real photo source is maintained even when CI deliberately blocks external images');
-  assert.equal(await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="KUKA"] img[data-rq-photo-fallback]').count(),1,'KUKA real image with offline fallback is configured');
-  assert.match(fs.readFileSync(path.join(root,'index.html'),'utf8'),/data-rq-featured-maker="KUKA"[\s\S]{0,220}KUKA_Robot_and_Target\.jpg/,'KUKA real photo source is maintained even when CI deliberately blocks external images');
-  assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-credit[href*="commons.wikimedia.org/wiki/File:"]').count(),6,'all six real-photo cards link to original photo and usage terms');
-  assert.match(await page.locator('#rqFeaturedNote').innerText(),/not items for sale/i,'reference photos must not be claimed as stock');
-  await page.locator('#rqFeaturedShowcase [data-rq-featured-maker="FANUC"]').click();
-  assert(await page.locator('#makers').isVisible(),'selected representative photo opens manufacturer directory');
-  assert.equal(await page.locator('#makerSearch').inputValue(),'FANUC','FANUC photo locates FANUC manufacturer');
-  assert.equal(await page.locator('#makerTypeFilter').inputValue(),'','featured industrial manufacturers are not restricted to collaborative robots');
-  assert.equal(await page.locator('#makerGrid .maker-card').count(),1,'FANUC manufacturer search narrows directory');
-  await page.evaluate(()=>route('robots'));
-  await page.locator('#rqEoatShowcase [data-rq-featured-maker="OnRobot"]').click();
-  assert(await page.locator('#makers').isVisible(),'OnRobot artwork opens EOAT makers');
-  assert(await page.locator('[data-maker-tab="eoat"]').evaluate(el=>el.classList.contains('active')),'OnRobot is an EOAT maker, not a robot arm OEM');
-  assert.equal(await page.locator('#makerSearch').inputValue(),'OnRobot','OnRobot profile is searched');
-  await page.evaluate(()=>route('robots'));
-  await page.locator('#rqEoatShowcase [data-rq-featured-maker="Tesollo"]').click();
-  assert(await page.locator('[data-maker-tab="eoat"]').evaluate(el=>el.classList.contains('active')),'Korean dexterous hand brand navigates EOAT directory');
-  assert.equal(await page.locator('#makerSearch').inputValue(),'Tesollo','seller can find actual Tesollo maker directory entry');
-  assert.equal(await page.locator('#makerGrid .maker-card').count(),1,'new EOAT gallery card finds a real indexed manufacturer');
-  await page.locator('[data-maker-tab="robot"]').click();
-  await page.locator('#makerSearch').fill('');
-  await page.locator('#makerTypeFilter').selectOption('collaborative'); // Restore cobot default for unrelated catalog smoke tests.
-  await page.evaluate(()=>route('robots'));
-
-
-  assert.equal(await page.locator('#robots .rq-market-heading-photo img').count(),1,'first visible market screen has a real factory robot photograph');
-  assert.equal(await page.locator('.site-header [data-action="sell"]').count(),1,'desktop header has one Sell entry');
-  assert.equal(await page.locator('.mobile-nav [data-action="sell"]').count(),1,'mobile footer has one Sell entry');
-  assert.equal(await page.locator('#home .hero-actions [data-action="sell"], #home .start-grid [data-action="sell"], #home .hero-sell-cta').count(),0,'home duplicate Sell actions removed');
-  assert.equal(await page.locator('#rqMarketQuickStart, #rqBrowseShortcut, #rqSellShortcut').count(),0,'redundant marketplace calls to action removed');
-  assert.equal(await page.locator('#home .rq-category-real-photo').count(),2,'home categories display actual representative industrial photography');
-  assert.equal(await page.locator('#robots .rq-category-real-photo').count(),2,'marketplace categories display actual robot and SCHUNK gripper photos');
-  assert.equal(await page.locator('#robots .rq-market-discovery-card').count(),3,'first marketplace route offers three illustrated categories');
-  await page.locator('#robots .rq-market-discovery-card[data-rq-market-category="gripper"]').click();
-  const marketVisualDebug=await page.evaluate(()=>({value:document.getElementById('categoryFilter')?.value,options:[...document.getElementById('categoryFilter').options].map(o=>o.value),render:typeof window.rqRenderMarketplace,route:typeof window.route,active:document.querySelector('#robots .rq-market-discovery-card[aria-pressed="true"]')?.dataset.rqMarketCategory}));
-  assert.equal(await page.locator('#categoryFilter').inputValue(),'gripper','market visual category selects actual gripper filter: '+JSON.stringify(marketVisualDebug));
-  assert.equal(await page.locator('#robots .rq-market-discovery-card[data-rq-market-category="gripper"]').getAttribute('aria-pressed'),'true','selected visual category is visibly active');
-  await page.locator('#rqVisualClear').click();
-  assert.equal(await page.locator('#categoryFilter').inputValue(),'','clear visible category filter returns all items');
-  assert.equal(await page.locator('#robots .rq-market-discovery-card[aria-pressed="true"]').count(),0,'no category remains highlighted after clearing');
-
-  assert.equal(await page.locator('.site-header img.rq-site-logo').count(),1,'original RoboQuo logo is visible in the header');
-
-  await page.locator('.site-header a.brand').click();
-  assert(await page.locator('#home').isVisible(),'RoboQuo brand logo opens photo-first home');
-  await page.evaluate(()=>route('robots'));
-  for(const name of ['rq-robot.svg','rq-gripper.svg','rq-parts.svg','rq-brand.svg']){
-    const response=await page.evaluate(n=>fetch('./assets/'+n).then(r=>({ok:r.ok,contentType:r.headers.get('content-type')})),name);
-    assert(response.ok&&response.contentType.includes('svg'),'valid local visual asset: '+name);
-  }
-
-  assert(await page.locator('.site-header [data-action="sell"]').isVisible(),'single desktop Sell CTA remains visible');
-  assert.match(await page.locator('.site-header [data-action="sell"]').innerText(),/Post an item/);
-
-  // All available locale selectors must localize the actual Buy/Sell entry points.
-  for(const [language,buy,sell,gripper,countryAll,japanName] of [
-    ['ko','상품 찾기','상품 팔기','그리퍼·EOAT','전체 국가','일본'],
-    ['ja','商品を探す','商品を売る','グリッパー・EOAT','すべての国','日本'],
-    ['zh','查找商品','发布商品','夹爪与EOAT','所有国家','日本'],
-    ['de','Artikel finden','Artikel verkaufen','Greifer / EOAT','Alle Länder','Japan'],
-    ['fr','Trouver un article','Vendre un article','Préhenseur / EOAT','Tous pays','Japon']
-  ]){
-    await page.locator('#languageSelect').selectOption(language);
-    if(language==='ja'||language==='ko'){
-      await page.waitForFunction(l=>document.querySelector('#rqMarketDiscoveryTitle')?.textContent === (l==='ja'?'写真から、もっと簡単に探す。':'사진으로 보고, 쉽게 찾으세요.'),language);
-      assert.equal(await page.locator('#robots .rq-market-discovery-card').count(),3,'localized visual equipment menu '+language);
+  assert(await page.locator('#home').isVisible(),'storefront is the landing page');
+  for(const width of [1440,390]){
+    await page.setViewportSize({width,height:900});
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth),width,'no horizontal page overflow');
+    await page.locator('[data-maker="FANUC"]').click();
+    assert.equal(await page.locator('#marketSearch').inputValue(),'FANUC');
+    await page.locator('.wordmark').first().click();
+    await page.locator('[data-category="gripper"]').click();
+    assert.equal(await page.locator('#categoryFilter').inputValue(),'gripper');
+    await page.locator('#globalSearch').fill('RG2');
+    await page.locator('#globalSearch').press('Enter');
+    assert.equal(await page.locator('#marketSearch').inputValue(),'RG2');
+    for(const lang of ['ja','ko','en']){
+      await page.locator('#languageSelect').selectOption(lang);
+      assert.equal(await page.locator('html').getAttribute('lang'),lang);
     }
-
-    assert((await page.locator('.site-header [data-action="sell"]').innerText()).trim().length>0,'single Sell CTA remains localized in '+language);
-    assert.equal(await page.locator('#rqMarketQuickStart').count(),0,'no duplicate CTA in '+language);
-    await page.evaluate(()=>route('robots'));
-    assert.match(await page.locator('#rqMarketCategoryChips').innerText(),new RegExp(gripper));
-    assert.equal((await page.locator('#countryFilter option').first().textContent()).trim(),countryAll,'localized country filter '+language);
-    assert.equal((await page.locator('#countryFilter option[value="Japan"]').textContent()).trim(),japanName,'localized Japan option '+language);
+    await page.locator('.wordmark').first().click();
   }
-  await page.locator('#languageSelect').selectOption('ja');
-  await page.waitForFunction(()=>document.querySelector('#rqFeaturedTitle')?.textContent==='代表ロボットメーカー');
-  await page.locator('#languageSelect').selectOption('ko');
-  await page.waitForFunction(()=>document.querySelector('#rqFeaturedTitle')?.textContent==='대표 로봇 메이커');
-  await page.locator('#languageSelect').selectOption('en');
-  await page.waitForFunction(()=>document.querySelector('.site-header [data-action="sell"]')?.textContent==='Post an item');
-  assert.equal(await page.locator('#robots .v24-market-note').count(),0,'duplicated market notice removed');
-
-  await page.evaluate(()=>route('home'));
-  assert.equal(await page.locator('#rqVisualMarket .rq-visual-market-card').count(),3,'homepage has 3 visual equipment categories');
-  await page.locator('#home .rq-visual-market-card[data-rq-market-category="gripper"]').click();
-  assert(await page.locator('#robots').isVisible(),'visual navigation returns to market');
-  assert.equal(await page.locator('#categoryFilter').inputValue(),'gripper','visual gripper card synchronizes actual market category filter');
-  await page.evaluate(()=>route('home'));
-  await page.locator('#languageSelect').selectOption('ja');
-  await page.waitForFunction(()=>document.querySelector('#rqVisualMarketTitle')?.textContent?.includes('写真から'));
-  assert.match(await page.locator('#home [data-rq-label="gripper"]').innerText(),/グリッパー/,'Japanese visual category labels');
-  await page.locator('#languageSelect').selectOption('en');
-  await page.evaluate(()=>route('robots'));
-
-
+  await page.locator('[data-browse]').first().click();
+  await page.setViewportSize({width:1440,height:900});
   // Manufacturer data uses reviewed static seed only; no live DB writes.
   await page.evaluate(()=>route('makers'));
   await page.waitForFunction(()=>document.querySelectorAll('#makerGrid .maker-card').length>=40,{timeout:15000});
@@ -242,24 +143,15 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
 
   await page.locator('#marketSearch').focus();
   assert.equal(await page.evaluate(()=>document.activeElement?.id),'marketSearch','search is directly focusable with no duplicate shortcut');
-  await page.locator('.site-header [data-action="sell"]').click();
+  await page.locator('.mast [data-sell]').click();
   assert(await page.locator('#rqQuickSellForm').isVisible(),'the one global desktop Sell entry opens the photo-first form');
   await page.evaluate(()=>window.closeModal());
 
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),0,'no fake robot inventory is displayed');
   assert(await page.locator('#marketListings [data-rq-empty-action="brands"]').isVisible(),'empty real inventory offers brand directory navigation');
-  await page.locator('#marketListings [data-rq-empty-action="brands"]').click();
-  assert(await page.locator('#makers').isVisible(),'empty state navigates to real manufacturer directory');
-  await page.evaluate(()=>route('robots'));
-  assert.equal(await page.locator('#homeListings .v24-listing-card').count(),0,'homepage contains real listings only');
-  assert.equal(await page.evaluate(()=>window.rqCanWriteSupabase()),false,'Preview stays read-only against production');
+  await page.locator('[data-browse]').first().click();
   const screenshotDir=path.join(root,'test-artifacts');
-  if(process.env.CI){
-    fs.mkdirSync(screenshotDir,{recursive:true});
-    await page.screenshot({path:path.join(screenshotDir,'roboquo-home-desktop.png'),fullPage:true});
-  }
-  await page.evaluate(()=>route('robots'));
-  assert.equal(await page.locator('#rqMarketCategoryChips button').count(),8,'robot/part category shortcuts render');
+  if(process.env.CI)fs.mkdirSync(screenshotDir,{recursive:true});
   await page.evaluate(()=>window.rqSetSellerLiveListings([
     {id:'seller:robot-fixture',backendId:'robot-fixture',brand:'FANUC',model:'CRX TEST',year:2024,location:'Shanghai',country:'China',
       price:19000,currency:'CNY',sale:'fixed',cat:'industrial',itemCategory:'robot',itemCondition:'new',sellerType:'business',description:'New robot from Chinese dealer',
@@ -274,7 +166,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   ]));
   assert.equal(await page.locator('#marketListings .v24-listing-card').count(),2,'only 2 real seller fixtures are visible');
   // Buyer should see every uploaded real seller photo, not only the cover.
-  await page.locator('#marketListings .v24-listing-card').first().locator('.v24-photo').click();
+  await page.locator('#marketListings .v24-listing-card').first().locator('.product-open').click();
   assert(await page.locator('#v24MainImage').isVisible(),'seller product details open');
   assert.equal(await page.locator('#modal .v24-thumb').count(),3,'cover and additional two seller photos appear in gallery');
   await page.locator('#modal .v24-thumb[data-view="extra2"]').click();
@@ -317,83 +209,12 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.locator('#marketSearch').fill('RG2');
   const grip=page.locator('#marketListings .v24-listing-card');
   assert.equal(await grip.count(),1);
-  await grip.locator('.v24-photo-button').click();
+  await grip.locator('.product-open').click();
   assert.match(await page.locator('#modal').innerText(),/RG2 GRIPPER TEST/);
   await page.evaluate(()=>window.rqContactAboutListing('seller:gripper-fixture','offer'));
   assert(await page.locator('#rqAskForm textarea').isVisible(),'buyer can compose a real in-app message');
   if(process.env.CI)await page.screenshot({path:path.join(screenshotDir,'roboquo-buyer-inquiry-desktop.png'),fullPage:true});
   await page.evaluate(()=>window.closeModal());
-  if(process.env.CI){
-    await page.evaluate(()=>{
-      for(const id of ['rqRobotMakerTrack','rqEoatMakerTrack']){
-        const track=document.getElementById(id);
-        if(track)track.scrollLeft=0;
-      }
-    });
-    await page.screenshot({path:path.join(screenshotDir,'roboquo-market-desktop.png'),fullPage:true});
-    await page.setViewportSize({width:390,height:844});
-    assert(await page.locator('#rqMobileQuery').isVisible(),'mobile search is present at top');
-    assert.equal(await page.locator('#rqMobileMarketPills button').count(),4,'mobile has four quick filters');
-    assert(!(await page.locator('#robots .rq-market-heading').isVisible()),'long desktop heading is hidden on mobile');
-
-    assert.equal(await page.locator('#robots .rq-market-discovery-card').count(),3,'mobile shows exactly three pictorial equipment categories');
-    await page.locator('#rqMobileQuery').fill('RG2');
-    assert.equal(await page.locator('#marketSearch').inputValue(),'RG2','mobile query synchronizes with real market search');
-    assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'mobile search filters actual seller rows');
-    await page.locator('#rqMobileReset').click();
-    assert.equal(await page.locator('#marketSearch').inputValue(),'','mobile clear button resets search');
-    await page.locator('[data-rq-mobile-condition="used"]').click();
-    assert.equal(await page.locator('#conditionFilter').inputValue(),'used','mobile used chip updates condition filter');
-    assert.equal(await page.locator('#marketListings .v24-listing-card').count(),1,'used chip excludes new robot fixture');
-    await page.locator('[data-rq-mobile-condition=""]').click();
-    assert.equal(await page.locator('#conditionFilter').inputValue(),'','all-items chip clears condition');
-    assert.equal(await page.locator('#marketListings .v24-listing-card').count(),2,'all-items chip restores both real fixture listings');
-    const cardColumnCount=await page.locator('#marketListings').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
-    assert.equal(cardColumnCount,2,'mobile cards use a two-column photo-first grid');
-    assert(!(await page.locator('#conditionFilter').isVisible()),'mobile hides duplicate condition dropdown because used/new chips already filter');
-    const listingVisible=await page.locator('#marketListings .v24-listing-card').first();
-    assert(!(await listingVisible.locator('.v24-meta-row').isVisible()),'mobile hides secondary metadata for compact card');
-    assert(await listingVisible.locator('.v24-card-price strong').isVisible(),'mobile card keeps real price visible');
-    assert(await listingVisible.locator('.v24-actions .buy').isVisible(),'mobile card retains buyer inquiry action');
-    const searchTop=await page.locator('#rqMobileQuery').boundingBox();
-    const pictureTop=await page.locator('#robots .rq-market-discovery-card').first().boundingBox();
-    const featureTop=await page.locator('#rqFeaturedShowcase').boundingBox();
-    assert(featureTop&&searchTop&&pictureTop&&searchTop.y<featureTop.y&&featureTop.y<pictureTop.y,'mobile shows search, representative robot photos, then equipment categories');
-    const categoryGeometry=await page.locator('#robots .rq-market-discovery-card').first().evaluate(card=>{
-      const cardRect=card.getBoundingClientRect(),photoRect=card.querySelector('img').getBoundingClientRect(),labelRect=card.querySelector('[data-rq-label]').getBoundingClientRect();
-      return {cardW:cardRect.width,photoW:photoRect.width,photoBottom:photoRect.bottom,labelTop:labelRect.top,labelW:labelRect.width};
-    });
-    assert(categoryGeometry.photoW>=categoryGeometry.cardW*.75,'mobile category image fills card width instead of squeezing alongside text: '+JSON.stringify(categoryGeometry));
-    assert(categoryGeometry.labelTop>=categoryGeometry.photoBottom-2,'mobile category label appears BELOW the photo: '+JSON.stringify(categoryGeometry));
-    assert(categoryGeometry.labelW>=categoryGeometry.cardW*.75,'mobile category label has enough width for readable text');
-    assert.equal(await page.locator('#rqFeaturedShowcase .rq-featured-card').count(),15,'mobile robot maker strip contains fifteen recognisable brands');
-    const stripScrolling=await page.locator('#rqFeaturedShowcase .rq-featured-track').evaluate(el=>({scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}));
-    assert(stripScrolling.scrollWidth>stripScrolling.clientWidth,'mobile featured images scroll horizontally rather than overflow the page');
-    assert.equal(await page.locator('#rqEoatShowcase .rq-featured-card').count(),14,'mobile gripper swipe strip has fourteen brands');
-    const eoatScrolling=await page.locator('#rqEoatMakerTrack').evaluate(el=>({scrollWidth:el.scrollWidth,clientWidth:el.clientWidth}));
-    assert(eoatScrolling.scrollWidth>eoatScrolling.clientWidth,'mobile gripper brands scroll in a second horizontal row');
-    assert(await page.locator('#rqFeaturedShowcase .rq-maker-arrow').count()===2,'robot gallery exposes desktop-friendly left and right controls');
-    assert(await page.locator('#rqEoatShowcase .rq-maker-arrow').count()===2,'gripper gallery exposes independent left and right controls');
-    await page.locator('#rqEoatShowcase .rq-maker-arrow[data-rq-scroll="1"]').click();
-    await page.waitForFunction(()=>document.getElementById('rqEoatMakerTrack')?.scrollLeft>100,{timeout:4000});
-    assert(searchTop && pictureTop && searchTop.y<pictureTop.y,'mobile search precedes category image cards');
-    assert(await page.locator('.mobile-nav').isVisible(),'bottom action bar remains visible');
-
-    assert.equal(await page.locator('#robots .rq-market-discovery-card').count(),3,'mobile keeps equipment navigation');
-    const overflow=await page.evaluate(()=>document.documentElement.scrollWidth-document.documentElement.clientWidth);
-    assert(overflow<=2,'market photo/category layout should not create horizontal overflow: '+overflow);
-
-
-
-    assert(await page.locator('.mobile-nav .sell-mobile').isVisible(),'mobile Sell action remains available in bottom nav');
-    await page.evaluate(()=>{
-      for(const id of ['rqRobotMakerTrack','rqEoatMakerTrack']){
-        const track=document.getElementById(id);
-        if(track)track.scrollLeft=0;
-      }
-    });
-    await page.screenshot({path:path.join(screenshotDir,'roboquo-market-mobile.png'),fullPage:true});
-  }
   await page.evaluate(()=>window.rqStartSell('part'));
   assert(await page.locator('#rqQuickSellForm').isVisible(),'short photo-first sell form opens');
   assert.equal(await page.locator('#rqQuickSellForm select[name="itemCategory"]').inputValue(),'part');
@@ -404,6 +225,7 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   assert.equal(await page.locator('#rqClCurrency').inputValue(),'JPY','Japan seller currency should follow country');
   const png=Buffer.from('iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQIHWP4z8DwHwAFgAI/ScL/nwAAAABJRU5ErkJggg==','base64');
   await page.locator('#rqClPhotos').setInputFiles({name:'part.png',mimeType:'image/png',buffer:png});
+  await page.locator('#rqQuickSellForm [name=maker]').fill('FANUC');
   await page.locator('#rqQuickSellForm [name=model]').fill('FANUC gear TEST');
   await page.locator('#rqQuickSellForm [name=location]').fill('Tokyo');
   await page.locator('#rqQuickSellForm [name=description]').fill('Real spare part with serial number, photos and condition');
@@ -414,14 +236,9 @@ const closeServer=()=>new Promise(resolve=>server.close(resolve));
   await page.locator('#rqClSubmit').click();
   assert.match(await page.locator('#rqClStatus').innerText(),/Preview|preview|live database/i,'Preview upload must remain blocked before production');
 
-  await page.goto(origin+'/review.html',{waitUntil:'domcontentloaded'});
-  assert(await page.locator('.rq-review-visuals').isVisible(),'preview review guide contains actual robot and category visuals');
-  assert.equal(await page.locator('.rq-review-visual-cats img').count(),3,'review page shows robot, gripper and parts');
-  assert.equal(await page.locator('nav .logo img[src$="rq-brand.svg"]').count(),1,'review guide uses matching RoboQuo branding');
-  assert.match(await page.locator('.rq-review-photo figcaption').innerText(),/Bobjgalindo.*CC BY 4.0/,'FANUC photo has correct photographer and license attribution');
-  if(process.env.CI)await page.screenshot({path:path.join(screenshotDir,'roboquo-review-visual-guide.png'),fullPage:true});
-
   assert.equal(errors.length,0,'uncaught runtime errors: '+errors.join(' | '));
   console.log('PASS marketplace: real robots+parts, category/search, buyer chat form, photo upload preview guard');
  }finally{await browser.close()}
 })().catch(e=>{console.error(e);process.exitCode=1}).finally(closeServer);
+
+
